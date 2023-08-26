@@ -1,0 +1,28 @@
+﻿using ClsModSysAgro.Usuarios;
+using ClsNegSysAgro.Usuario;
+using MaSysAgro;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Http;
+
+namespace SysAgroAp.Controllers
+{
+    public class UsuarioController : ApiController
+    {
+        ClsModResponse objResponse = new ClsModResponse();
+        ClsNegUsuario objNegUsuarios = new ClsNegUsuario();
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ActionName("postSolicitarContrasena")]
+        public ClsModResponse postSolicitarContrasena(paramsUsuarioDTO parametros)
+        {
+            objResponse = new ClsModResponse();
+            objResponse = objNegUsuarios.postSolicitarContrasena(parametros);
+            return objResponse;
+        }
+
+    }
+}

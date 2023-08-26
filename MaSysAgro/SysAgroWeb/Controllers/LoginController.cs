@@ -13,7 +13,26 @@ namespace SysAgroWeb.Controllers
         {
             return View();
         }
+        public JsonResult postCerrarSession()
+        {
+            var obj = new
+            {
+                hola = ""
+            };
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult RecuperarPassword()
+        {
+            return View();
+        }
+        public JsonResult postRecuperarContraseña()
+        {
+            var obj = new
+            {
+                adan = ""
+            };
 
-   
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
     }
 }

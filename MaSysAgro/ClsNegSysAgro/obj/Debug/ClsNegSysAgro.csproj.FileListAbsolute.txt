@@ -1,0 +1,16 @@
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\ClsNegSysAgro.dll
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\ClsNegSysAgro.pdb
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\ClsDatSysAgro.dll
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\ClsModSysAgro.dll
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\MaSysAgro.dll
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\EntityFramework.dll
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\ClsDatSysAgro.pdb
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\ClsDatSysAgro.dll.config
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\ClsModSysAgro.pdb
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\MaSysAgro.pdb
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\EntityFramework.xml
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\obj\Debug\ClsNegSysAgro.csproj.AssemblyReference.cache
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\obj\Debug\ClsNegSysAgro.csproj.CoreCompileInputs.cache
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\obj\Debug\ClsNegSysAgro.csproj.CopyComplete
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\obj\Debug\ClsNegSysAgro.dll
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\obj\Debug\ClsNegSysAgro.pdb
