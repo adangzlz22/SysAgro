@@ -1,0 +1,119 @@
+﻿
+.card-login {
+    border: none;
+    border-radius: 0.75rem !important;
+    box-shadow: 0 0.1rem 1rem 0.25rem rgb(0 0 0 / 5%) !important;
+}
+.logo {
+    color: #05a692   ;
+    font-size:70px;
+    font-weight:900
+}
+#body-2{
+    background:none
+}
+@media screen and (max-width: 600px) {
+    .padding1 {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    .body1 {
+        background-color: #f3f7fa;
+        
+    }
+    .fondo{
+        display:none
+    }
+    #noMovil {
+        display: none
+    }
+}
+@media screen and (max-width: 767px) {
+
+    .fondo {
+        display: none
+    }
+}
+@media screen and (min-width: 601px) {
+    .padding1 {
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+    }
+    .body1 {
+        background-color: #f3f7fa;
+        background-image: url(/content/img/login-fondo.png);
+        background-attachment: fixed;
+        background-size: 100%;
+        background-position-y: bottom;
+        background-repeat: no-repeat;
+    }
+  
+}
+@media screen and (min-width: 920px) {
+
+    .body-login3 {
+        padding-left: 25%;
+        padding-right: 25%
+    }
+}
+@media screen and (min-width: 600px) and (max-width: 1200px) {
+
+    .img-login3{
+        margin-top:45%
+    }
+}
+#btnLogearse {
+    width: 100%;
+    background-color: #05a692   ;
+    border:none;
+    padding:10px;
+    font-size:18px
+}
+#btnLogearse:hover {
+    width: 100%;
+    background-color: #000;
+    border: none;
+    padding: 10px;
+    font-size: 18px
+}
+#btnRecuperar {
+    width: 100%;
+    background-color: #05a692;
+    border: none;
+    padding: 10px;
+    font-size: 18px
+}
+
+    #btnRecuperar:hover {
+        width: 100%;
+        background-color: #000;
+        border: none;
+        padding: 10px;
+        font-size: 18px
+    }
+.form-login {
+    background-color: #f6f6f6;
+    border: none;
+    color: #05a692   ;
+    height:45px
+}
+.label-login{
+    font-size:16px;
+    color:#2a2a2a;
+    font-weight:600
+}
+a {
+    color: #05a692   ;
+    text-decoration:none
+}
+a:hover {
+    color: #000
+}
+h3 {
+    color: #2a2a2a;
+}
+.fondo {
+    background-color: #05a692   !important; 
+   padding-top:10%
+}
+

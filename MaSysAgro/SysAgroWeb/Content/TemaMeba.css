@@ -1,0 +1,116 @@
+﻿
+/*menu lateral*/
+#accordionSidebar {
+    background-color: #05A692 !important;
+}
+.sidebar-dark .nav-item .nav-link svg {
+    color: #c5fff8;
+}
+.sidebar-dark .nav-item .nav-link:active, .sidebar-dark .nav-item .nav-link:focus, .sidebar-dark .nav-item .nav-link:hover {
+    color: #000
+}
+.sidebar-dark .nav-item .nav-link:active i, .sidebar-dark .nav-item .nav-link:focus i, .sidebar-dark .nav-item .nav-link:hover i {
+    color: #05a692
+}
+.sidebar-dark .nav-item .nav-link {
+    color: #fff;
+}
+    .sidebar-dark .nav-item .nav-link:active, .sidebar-dark .nav-item .nav-link:focus, .sidebar-dark .nav-item .nav-link:hover {
+        color: #000
+    }
+
+/*menu superior*/
+.mensaje {
+    color: #05a692;
+}
+.spantopbar {
+    color: #05a692;
+}
+.modal-header {
+    background-color: #05a692;
+    color: white;
+}
+/*dashboard*/
+.card-datos {
+    background: rgb(47,105,151);
+    background: linear-gradient(90deg, rgb(0 189 166) 0%, rgb(0 127 119) 100%);
+}
+    .card-datos h1 {
+        color: white;
+        font-size: 45px
+    }
+
+    .card-datos svg {
+        color: #ffffff82;
+        font-size: 45px
+    }
+    .card-datos h2 {
+        color: white;
+    }
+
+
+/*Card de paginas internas(donde van las tablas)*/
+.card .card-header {
+    background-color: #05a692;
+    color: white;
+}
+    .card .card-header h2 {
+        color: white !important
+    }
+
+.btn.btn-dark {
+    color: #fff;
+    border-color: #181c32;
+    background-color: #181c32;
+}
+/*aqui es donde se cambia el id de la tabla*/ 
+#tblUsuarios_length label {
+    color: #05a692;
+    font-weight: 600;
+    font-size: 15px;
+}
+#tblUsuarios_filter label {
+    color: #05a692;
+    font-weight: 900;
+    font-size: 20px
+}
+
+/*General*/
+.btn.btn-primary {
+    color: #fff;
+    border-color: #05a692;
+    background-color: #05a692;
+}
+a {
+    color: #05a692;
+    text-decoration: none
+}
+
+    a:hover {
+        color: #006dab;
+        text-decoration: underline
+    }
+.card-imp {
+    background-color: #05a692;
+    border-radius: .75rem
+}
+
+    .card-imp:hover {
+        background-color: #000;
+        border-radius: .75rem;
+    }
+
+    .card-imp p {
+        color: white
+    }
+
+.nav-line-tabs .nav-item .nav-link.active, .nav-line-tabs .nav-item .nav-link:hover:not(.disabled), .nav-line-tabs .nav-item.show .nav-link {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid #05a692;
+    transition: color .2s ease,background-color .2s ease;
+}
+.text-active-primary.active {
+    transition: color .2s ease,background-color .2s ease;
+    color: #05a692 !important;
+}

@@ -1,0 +1,75 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="/Content/img/icono.ico" rel="icon" />
+    <script src="~/Scripts/sweetalert2.all.min.js"></script>
+</head>
+<body class="body1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <br /><br />
+                        <h1 class="logo">
+                            <img src="~/Content/img/icon2.png" />
+                        </h1><br />
+
+                    </div>
+                </div>
+                <div class="card card-login">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <br />
+                                <h3>Iniciar Sesión</h3>
+                                <br />
+                            </div>
+                        </div>
+                        <div class="mb-3 mt-3 padding1">
+                            <label for="email" class="form-label label-login">Usuario:</label>
+                            <input id="txtUsuario" class="form-control form-login" type="text" name="name" value="" />
+                        </div>
+                        <div class="mb-3 mt-3 padding1">
+                            <label for="email" class="form-label label-login">Contraseña:</label>
+                            <input id="txtPassword" class="form-control form-login" type="password" name="name" value="" />
+                        </div>
+                        <div class="mb-3 mt-3 padding1">
+                            <button id="btnLogearse" class="btn btn-primary" type="button" name="name" value="">Ingresar</button>
+                        </div>
+                        <div class="mb-3 mt-3 padding1 text-center">
+                            <p>¿Olvidaste tu contraseña? <a href="/Login/RecuperarPassword">Recuperar Contraseña</a></p> <br />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3"></div>
+
+        </div>
+
+    </div>
+    <script src="~/Scripts/axios.js"></script>
+    <script src="~/Scripts/axios.min.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/js/Login/LoginControllers.js?v=1.0"></script>
+    <script type="text/javascript">
+        (function () {
+            var clsLoginControllers = new LoginControllers();
+            clsLoginControllers.Inicializar();
+        })();
+    </script>
+</body>
+
+</html>
