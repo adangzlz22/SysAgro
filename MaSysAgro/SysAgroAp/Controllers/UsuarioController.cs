@@ -16,6 +16,26 @@ namespace SysAgroAp.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        [ActionName("postLogearseUsuario")]
+        public ClsModResponse postLogearseUsuario(paramsUsuarioDTO parametros)
+        {
+            objResponse = new ClsModResponse();
+            objResponse = objNegUsuarios.postLogearseUsuario(parametros);
+            return objResponse;
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ActionName("postEditarPerfil")]
+        public ClsModResponse postEditarPerfil(paramsUsuarioDTO parametros)
+        {
+            objResponse = new ClsModResponse();
+            objResponse = objNegUsuarios.postEditarPerfil(parametros);
+            return objResponse;
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
         [ActionName("postSolicitarContrasena")]
         public ClsModResponse postSolicitarContrasena(paramsUsuarioDTO parametros)
         {

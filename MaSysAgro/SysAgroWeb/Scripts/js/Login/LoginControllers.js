@@ -7,6 +7,7 @@
 
 
     var Inicializar = function () {
+        console.log('hola soy logincontroller')
         functionListar();
     }
     const functionListar= function(){

@@ -13,6 +13,19 @@ namespace ClsNegSysAgro.Usuario
     {
         ClsModResponse objResponse = new ClsModResponse();
         ClsDatUsuario objDatUsuario = new ClsDatUsuario();
+        public ClsModResponse postLogearseUsuario(paramsUsuarioDTO parametros)
+        {
+            objResponse = new ClsModResponse();
+            objResponse = objDatUsuario.postLogearseUsuario(parametros);
+            return objResponse;
+        }
+        public ClsModResponse postEditarPerfil(paramsUsuarioDTO parametros)
+        {
+            objResponse = new ClsModResponse();
+            objResponse = objDatUsuario.postEditarPerfil(parametros);
+            return objResponse;
+        }
+
         public ClsModResponse postSolicitarContrasena(paramsUsuarioDTO parametros)
         {
             objResponse = new ClsModResponse();

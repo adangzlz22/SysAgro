@@ -15,62 +15,126 @@ namespace ClsDatSysAgro.Usuario
     {
         ClsModResponse objResponse = new ClsModResponse();
         SysAgroEntities db = new SysAgroEntities();
-        public ClsModResponse postLogearseUsuario()
+        public ClsModResponse postLogearseUsuario(paramsUsuarioDTO parametros)
         {
             objResponse = new ClsModResponse();
-            
-            
+            try
+            {
+                string contrasena = Funciones.EncriptarMD5(parametros.Contrasena);
+                var objUsuario = db.GenUsuarios.Where(r => r.Usuario == parametros.Usuario && r.Contrasena == contrasena).FirstOrDefault();
+                if (objUsuario != null)
+                {
+                    objResponse.ITEMS = objUsuario;
+                    objResponse.MESSAGE = "";
+                    objResponse.SUCCESS = true;
+                }
+                else
+                {
+                    objResponse.ITEMS = null;
+                    objResponse.MESSAGE = "Datos incorrectos.";
+                    objResponse.SUCCESS = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = "Ocurrio algun error." + ex.Message;
+                objResponse.SUCCESS = false;
+            }
             return objResponse;
         }
-
-
-        public ClsModResponse postEditarPerfil()
+        public ClsModResponse postEditarPerfil(paramsUsuarioDTO parametros)
         {
             objResponse = new ClsModResponse();
+            try
+            {
+                var objUsuario = db.GenUsuarios.Where(r => r.Id == parametros.Id).FirstOrDefault();
+                if (objUsuario != null)
+                {
+                    objUsuario.Nombre = parametros.Nombre;
+                    objUsuario.ApellidoPaterno = parametros.ApellidoPaterno;
+                    objUsuario.ApellidoMaterno = parametros.ApellidoMaterno;
+                    objUsuario.IDUnico = parametros.IDUnico;
+                    objUsuario.Telefono = parametros.Telefono;
+                    objUsuario.TelefonoContacto = parametros.TelefonoContacto;
+                    objUsuario.Email = parametros.Email;
+                    string contrasena = Funciones.EncriptarMD5(parametros.Contrasena);
+                    if (contrasena != objUsuario.Contrasena)
+                    {
+                        objUsuario.Contrasena = contrasena;
+                    }
+                    db.SaveChanges();
 
-
+                    objResponse.ITEMS = objUsuario;
+                    objResponse.MESSAGE = "Modificado con exito";
+                    objResponse.SUCCESS = true;
+                }
+                else
+                {
+                    objResponse.ITEMS = null;
+                    objResponse.MESSAGE = "Datos incorrectos.";
+                    objResponse.SUCCESS = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = "Ocurrio algun error." + ex.Message;
+                objResponse.SUCCESS = false;
+            }
             return objResponse;
         }
-
         public ClsModResponse postSolicitarContrasena(paramsUsuarioDTO parametros)
         {
             objResponse = new ClsModResponse();
 
-            GenUsuarios objUsuario = db.GenUsuarios.Where(r => r.Usuario == parametros.Usuario && r.Email == parametros.Email).FirstOrDefault();
-            if (objUsuario == null)
+            try
             {
-                objResponse.SUCCESS = false;
-                objResponse.ITEMS = null;
-                objResponse.MESSAGE = "Usuario o correo invalido.";
-                return objResponse;
-            }
-            else
-            {
-                string contrasena = Funciones.DesencriptarMD5(objUsuario.Contrasena);
-                string HTML = ObtenerEscritoHTML(objUsuario.Usuario, contrasena);
-                // Parte 1
-                string Correo = "adangzlz22@gmail.com";
-                string Contrasena = "okbxuwyjtmnnfxrs";
+                GenUsuarios objUsuario = db.GenUsuarios.Where(r => r.Usuario == parametros.Usuario && r.Email == parametros.Email).FirstOrDefault();
+                if (objUsuario == null)
+                {
+                    objResponse.SUCCESS = false;
+                    objResponse.ITEMS = null;
+                    objResponse.MESSAGE = "Usuario o correo invalido.";
+                    return objResponse;
+                }
+                else
+                {
+                    string contrasena = Funciones.DesencriptarMD5(objUsuario.Contrasena);
+                    string HTML = ObtenerEscritoHTML(objUsuario.Usuario, contrasena);
+                    // Parte 1
+                    string Correo = "adangzlz22@gmail.com";
+                    string Contrasena = "okbxuwyjtmnnfxrs";
 
-                SmtpClient smtp = new SmtpClient();
-                smtp.Host = "smtp.gmail.com";
-                smtp.Port = 587;
-                smtp.EnableSsl = true;
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential(Correo, Contrasena);
-                // Parte 2
-                MailMessage mm = new MailMessage();
-                mm.IsBodyHtml = true;
-                mm.Priority = MailPriority.Normal;
-                mm.From = new MailAddress(Correo);
-                mm.Subject = "Recuperar Contraseña";
-                mm.Body = HTML;
-                mm.To.Add(new MailAddress(objUsuario.Email));
-                smtp.Send(mm); // Enviar el mensaje
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new NetworkCredential(Correo, Contrasena);
+                    // Parte 2
+                    MailMessage mm = new MailMessage();
+                    mm.IsBodyHtml = true;
+                    mm.Priority = MailPriority.Normal;
+                    mm.From = new MailAddress(Correo);
+                    mm.Subject = "Recuperar Contraseña";
+                    mm.Body = HTML;
+                    mm.To.Add(new MailAddress(objUsuario.Email));
+                    smtp.Send(mm); // Enviar el mensaje
+                    objResponse.ITEMS = null;
+                    objResponse.MESSAGE = "Correo enviado con exito.";
+                    objResponse.SUCCESS = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = "Ocurrio algun error." + ex.Message;
+                objResponse.SUCCESS = false;
+                throw;
             }
             return objResponse;
         }
-
         public string ObtenerEscritoHTML(string Usuario, string Contrasena)
         {
             #region CONTENIDO HTML
