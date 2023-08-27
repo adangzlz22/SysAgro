@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SysAgroWeb.Clase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,21 +11,57 @@ namespace SysAgroWeb.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            //if (vSesiones.sesionUsuarioDTO != null)
+            //{
+            //    ViewBag.Nombre = vSesiones.sesionUsuarioDTO.Nombre + " " + vSesiones.sesionUsuarioDTO.ApellidoPaterno + " " + vSesiones.sesionUsuarioDTO.ApellidoMaterno;
+               
+                return View();
+            //}
+            //else
+            //{
+            //    return Redirect("/Login/Login");
+            //}
         }
 
         public ActionResult About()
         {
+            //if (vSesiones.sesionUsuarioDTO != null)
+            //{
+            //    ViewBag.Nombre = vSesiones.sesionUsuarioDTO.Nombre + " " + vSesiones.sesionUsuarioDTO.ApellidoPaterno + " " + vSesiones.sesionUsuarioDTO.ApellidoMaterno;
+
             return View();
+            //}
+            //else
+            //{
+            //    return Redirect("/Login/Login");
+            //}
         }
 
         public ActionResult Contact()
         {
+            //if (vSesiones.sesionUsuarioDTO != null)
+            //{
+            //    ViewBag.Nombre = vSesiones.sesionUsuarioDTO.Nombre + " " + vSesiones.sesionUsuarioDTO.ApellidoPaterno + " " + vSesiones.sesionUsuarioDTO.ApellidoMaterno;
+
             return View();
+            //}
+            //else
+            //{
+            //    return Redirect("/Login/Login");
+            //}
         }
         public ActionResult Perfil()
         {
+            //if (vSesiones.sesionUsuarioDTO != null)
+            //{
+            //    ViewBag.Nombre = vSesiones.sesionUsuarioDTO.Nombre + " " + vSesiones.sesionUsuarioDTO.ApellidoPaterno + " " + vSesiones.sesionUsuarioDTO.ApellidoMaterno;
+
             return View();
+            //}
+            //else
+            //{
+            //    return Redirect("/Login/Login");
+            //}
         }
     }
 }

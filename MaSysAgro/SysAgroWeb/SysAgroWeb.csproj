@@ -198,6 +198,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="iconos\css\all.css" />
+    <Content Include="iconos\css\all.css.txt" />
+    <Content Include="iconos\css\fontawesome.css" />
+    <Content Include="iconos\css\regular.min.css" />
+    <Content Include="iconos\js\all.min.js" />
+    <Content Include="iconos\js\fontawesome.js" />
+    <Content Include="iconos\js\regular.min.js" />
     <Content Include="Scripts\aspnet\dx.aspnet.data.js" />
     <Content Include="Scripts\aspnet\dx.aspnet.mvc.js" />
     <Content Include="Scripts\axios.js" />
@@ -228,6 +235,7 @@
     <Content Include="Scripts\datatables\Spanish.json" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="iconos\webfonts\fa-solid-900.woff2" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr.min.js" />
