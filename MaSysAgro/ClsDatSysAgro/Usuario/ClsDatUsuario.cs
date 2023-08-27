@@ -31,14 +31,14 @@ namespace ClsDatSysAgro.Usuario
                 else
                 {
                     objResponse.ITEMS = null;
-                    objResponse.MESSAGE = "Datos incorrectos.";
+                    objResponse.MESSAGE = "Incorrect data";
                     objResponse.SUCCESS = false;
                 }
             }
             catch (Exception ex)
             {
                 objResponse.ITEMS = null;
-                objResponse.MESSAGE = "Ocurrio algun error." + ex.Message;
+                objResponse.MESSAGE = "some error occurred." + ex.Message;
                 objResponse.SUCCESS = false;
             }
             return objResponse;
@@ -48,38 +48,55 @@ namespace ClsDatSysAgro.Usuario
             objResponse = new ClsModResponse();
             try
             {
-                var objUsuario = db.GenUsuarios.Where(r => r.Id == parametros.Id).FirstOrDefault();
-                if (objUsuario != null)
+                string contraseñaActual = Funciones.EncriptarMD5(parametros.ContrasenaActual);
+                var objUsuarioLogeado = db.GenUsuarios.Where(r => r.Usuario == parametros.Usuario && r.Contrasena == contraseñaActual).FirstOrDefault();
+                if (objUsuarioLogeado != null)
                 {
-                    objUsuario.Nombre = parametros.Nombre;
-                    objUsuario.ApellidoPaterno = parametros.ApellidoPaterno;
-                    objUsuario.ApellidoMaterno = parametros.ApellidoMaterno;
-                    objUsuario.IDUnico = parametros.IDUnico;
-                    objUsuario.Telefono = parametros.Telefono;
-                    objUsuario.TelefonoContacto = parametros.TelefonoContacto;
-                    objUsuario.Email = parametros.Email;
-                    string contrasena = Funciones.EncriptarMD5(parametros.Contrasena);
-                    if (contrasena != objUsuario.Contrasena)
+                    var objUsuario = db.GenUsuarios.Where(r => r.Id == parametros.Id).FirstOrDefault();
+                    if (objUsuario != null)
                     {
-                        objUsuario.Contrasena = contrasena;
-                    }
-                    db.SaveChanges();
+                        objUsuario.Nombre = parametros.Nombre;
+                        objUsuario.ApellidoPaterno = parametros.ApellidoPaterno;
+                        objUsuario.ApellidoMaterno = parametros.ApellidoMaterno;
+                        objUsuario.Telefono = parametros.Telefono;
+                        objUsuario.Email = parametros.Email;
+                        if (parametros.ImagenPerfil != "")
+                        {
+                            objUsuario.ImagenPerfil = parametros.ImagenPerfil;
+                        }
+                        if (parametros.Contrasena != "")
+                        {
+                            string contrasena = Funciones.EncriptarMD5(parametros.Contrasena);
+                            if (contrasena != objUsuario.Contrasena)
+                            {
+                                objUsuario.Contrasena = contrasena;
+                            }
+                        }
 
-                    objResponse.ITEMS = objUsuario;
-                    objResponse.MESSAGE = "Modificado con exito";
-                    objResponse.SUCCESS = true;
+                        db.SaveChanges();
+
+                        objResponse.ITEMS = objUsuario;
+                        objResponse.MESSAGE = "Modified successfully";
+                        objResponse.SUCCESS = true;
+                    }
+                    else
+                    {
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "Incorrect data";
+                        objResponse.SUCCESS = false;
+                    }
                 }
                 else
                 {
                     objResponse.ITEMS = null;
-                    objResponse.MESSAGE = "Datos incorrectos.";
+                    objResponse.MESSAGE = "The password could not be changed because it does not match the data";
                     objResponse.SUCCESS = false;
                 }
             }
             catch (Exception ex)
             {
                 objResponse.ITEMS = null;
-                objResponse.MESSAGE = "Ocurrio algun error." + ex.Message;
+                objResponse.MESSAGE = "some error occurred" + ex.Message;
                 objResponse.SUCCESS = false;
             }
             return objResponse;
@@ -95,7 +112,7 @@ namespace ClsDatSysAgro.Usuario
                 {
                     objResponse.SUCCESS = false;
                     objResponse.ITEMS = null;
-                    objResponse.MESSAGE = "Usuario o correo invalido.";
+                    objResponse.MESSAGE = "Invalid username or email.";
                     return objResponse;
                 }
                 else
@@ -122,14 +139,14 @@ namespace ClsDatSysAgro.Usuario
                     mm.To.Add(new MailAddress(objUsuario.Email));
                     smtp.Send(mm); // Enviar el mensaje
                     objResponse.ITEMS = null;
-                    objResponse.MESSAGE = "Correo enviado con exito.";
+                    objResponse.MESSAGE = "Mail sent successfully";
                     objResponse.SUCCESS = true;
                 }
             }
             catch (Exception ex)
             {
                 objResponse.ITEMS = null;
-                objResponse.MESSAGE = "Ocurrio algun error." + ex.Message;
+                objResponse.MESSAGE = "some error occurred" + ex.Message;
                 objResponse.SUCCESS = false;
                 throw;
             }

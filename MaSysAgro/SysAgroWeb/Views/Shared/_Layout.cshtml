@@ -192,7 +192,7 @@
                                         <span class=" fw-bolder lh-1 spantopbar">@ViewBag.Puesto </span>
                                     </span>
 
-                                    <img src="/content/img/noprofile.png" alt="image" width="40px" class="symbol symbol-30px symbol-md-40px">
+                                    <img src="@ViewBag.ImagenPerfil" alt="image" width="40px" class="symbol symbol-30px symbol-md-40px">
 
 
 
@@ -204,7 +204,7 @@
                                     <li class="menu-content align-items-center px-3" style="margin-bottom:10px">
 
                                         <div class="symbol symbol-50px me-5">
-                                            <img src="/content/img/noprofile.png" alt="image" width="30px" class="symbol symbol-30px symbol-md-40px">
+                                            <img src="@ViewBag.ImagenPerfil" alt="image" width="30px" class="symbol symbol-30px symbol-md-40px">
                                         </div>
 
                                         <span class="flex-column align-items-start justify-content-center me-2" style="display:inline-flex">
@@ -333,6 +333,7 @@
     <script src="~/Scripts/axios.js"></script>
     <script src="~/Scripts/axios.min.js"></script>
     @*<script src="~/Scripts/jquery-3.4.1.js"></script>*@
+    <script src="~/Scripts/sweetalert2.all.min.js"></script>
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/bootstrap-datepicker.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>

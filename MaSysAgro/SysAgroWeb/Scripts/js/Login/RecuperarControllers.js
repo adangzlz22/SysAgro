@@ -15,6 +15,14 @@
         });
     }
     const obtener = function () {
+        if (txtCorreo.val() == '') {
+            Swal.fire('Please enter an email');
+            return;
+        }
+        if (txtUsuario.val() == '') {
+            Swal.fire('empty user please put one');
+            return;
+        }
         let parametros = {
             Usuario: txtUsuario.val(),
             Correo: txtCorreo.val()
@@ -25,6 +33,7 @@
             if (result.SUCCESS == true) {
                 window.location.href = "/Login/Login";
             } else {
+                Swal.fire(result.MESSAGE);
             }
         }).catch(function (error) {
             console.error(error);
