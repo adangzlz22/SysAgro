@@ -10,6 +10,7 @@
     <title>Login</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome-web/css/all.css" rel="stylesheet" />
     <link href="/Content/img/icono-pest.ico" rel="icon" />
     <script src="~/Scripts/sweetalert2.all.min.js"></script>
 </head>
@@ -42,16 +43,19 @@
                         </div>
                         <div class="mb-3 mt-3 padding1">
                             <label for="email" class="form-label label-login">Password:</label>
-                            <input id="txtPassword" class="form-control form-login" type="password" name="name" value="" />
+                            <div class="input-group mb-3">
+                                <input id="txtPassword" class="form-control form-login" type="password" name="name" value="" />
+                                <span class="input-group-text contra2" style="background-color: #343433; border-color: #343433 "><i class="fa fa-eye-slash fs-5 showpwd" onclick="showPwd('txtPassword', this)" style="color: #fff;"></i></span>
+                            </div>
                         </div>
-                        <div class="mb-3 mt-3 padding1">
-                            <button id="btnLogearse" class="btn btn-primary" type="button" name="name" value="">Login</button>
-                        </div>
-                        <div class="mb-3 mt-3 padding1 text-center">
-                            <p> <a href="/Login/RecuperarPassword">Forgot Password?</a></p> <br />
-                        </div>
+                            <div class="mb-3 mt-3 padding1">
+                                <button id="btnLogearse" class="btn btn-primary" type="button" name="name" value="">Login</button>
+                            </div>
+                            <div class="mb-3 mt-3 padding1 text-center">
+                                <p> <a href="/Login/RecuperarPassword">Forgot Password?</a></p> <br />
+                            </div>
 
-                    </div>
+                        </div>
                 </div>
             </div>
             <div class="col-lg-3"></div>
@@ -70,6 +74,19 @@
             var clsLoginControllers = new LoginControllers();
             clsLoginControllers.Inicializar();
         })();
+    </script>
+    <script>
+        function showPwd(id, el) {
+            let x = document.getElementById(id);
+            if (x.type === "password") {
+                x.type = "text";
+                el.className = 'fa fa-eye fs-5 showpwd';
+            } else {
+                x.type = "password";
+                el.className = 'fa fa-eye-slash fs-5 showpwd';
+            }
+        }
+
     </script>
 </body>
 

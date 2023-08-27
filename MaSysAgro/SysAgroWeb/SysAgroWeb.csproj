@@ -191,11 +191,13 @@
     <Content Include="Content\img\icono-pest.png" />
     <Content Include="Content\img\icono.ico" />
     <Content Include="Content\img\icono.png" />
+    <Content Include="Content\img\invisible.png" />
     <Content Include="Content\img\login-fondo.png" />
     <Content Include="Content\img\login.png" />
     <Content Include="Content\img\login3.png" />
     <Content Include="Content\img\logo-movil.png" />
     <Content Include="Content\img\noprofile.png" />
+    <Content Include="Content\img\ojo.png" />
     <Content Include="Content\img\Recurso 1%402x.png" />
     <Content Include="Content\img\Recurso 2%402x.png" />
     <Content Include="Content\img\Recurso 3%402x.png" />
