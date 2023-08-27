@@ -11,57 +11,65 @@ namespace SysAgroWeb.Controllers
     {
         public ActionResult Index()
         {
-            //if (vSesiones.sesionUsuarioDTO != null)
-            //{
-            //    ViewBag.Nombre = vSesiones.sesionUsuarioDTO.Nombre + " " + vSesiones.sesionUsuarioDTO.ApellidoPaterno + " " + vSesiones.sesionUsuarioDTO.ApellidoMaterno;
-               
+            if (vSesiones.sesionUsuarioDTO != null)
+            {
+                ViewBag.Nombre = vSesiones.sesionUsuarioDTO.Nombre + " " + vSesiones.sesionUsuarioDTO.ApellidoPaterno + " " + vSesiones.sesionUsuarioDTO.ApellidoMaterno;
+
                 return View();
-            //}
-            //else
-            //{
-            //    return Redirect("/Login/Login");
-            //}
+            }
+            else
+            {
+                return Redirect("/Login/Login");
+            }
         }
 
         public ActionResult About()
         {
-            //if (vSesiones.sesionUsuarioDTO != null)
-            //{
-            //    ViewBag.Nombre = vSesiones.sesionUsuarioDTO.Nombre + " " + vSesiones.sesionUsuarioDTO.ApellidoPaterno + " " + vSesiones.sesionUsuarioDTO.ApellidoMaterno;
+            if (vSesiones.sesionUsuarioDTO != null)
+            {
+                ViewBag.Nombre = vSesiones.sesionUsuarioDTO.Nombre + " " + vSesiones.sesionUsuarioDTO.ApellidoPaterno + " " + vSesiones.sesionUsuarioDTO.ApellidoMaterno;
 
-            return View();
-            //}
-            //else
-            //{
-            //    return Redirect("/Login/Login");
-            //}
+                return View();
+            }
+            else
+            {
+                return Redirect("/Login/Login");
+            }
         }
 
         public ActionResult Contact()
         {
-            //if (vSesiones.sesionUsuarioDTO != null)
-            //{
-            //    ViewBag.Nombre = vSesiones.sesionUsuarioDTO.Nombre + " " + vSesiones.sesionUsuarioDTO.ApellidoPaterno + " " + vSesiones.sesionUsuarioDTO.ApellidoMaterno;
+            if (vSesiones.sesionUsuarioDTO != null)
+            {
+                ViewBag.Nombre = vSesiones.sesionUsuarioDTO.Nombre + " " + vSesiones.sesionUsuarioDTO.ApellidoPaterno + " " + vSesiones.sesionUsuarioDTO.ApellidoMaterno;
 
-            return View();
-            //}
-            //else
-            //{
-            //    return Redirect("/Login/Login");
-            //}
+                return View();
+            }
+            else
+            {
+                return Redirect("/Login/Login");
+            }
         }
         public ActionResult Perfil()
         {
-            //if (vSesiones.sesionUsuarioDTO != null)
-            //{
-            //    ViewBag.Nombre = vSesiones.sesionUsuarioDTO.Nombre + " " + vSesiones.sesionUsuarioDTO.ApellidoPaterno + " " + vSesiones.sesionUsuarioDTO.ApellidoMaterno;
+            if (vSesiones.sesionUsuarioDTO != null)
+            {
+                ViewBag.Nombre = vSesiones.sesionUsuarioDTO.Nombre + " " + vSesiones.sesionUsuarioDTO.ApellidoPaterno + " " + vSesiones.sesionUsuarioDTO.ApellidoMaterno;
+                ViewBag.Nombre1 = vSesiones.sesionUsuarioDTO.Nombre;
+                ViewBag.ApellidoPaterno = vSesiones.sesionUsuarioDTO.ApellidoPaterno;
+                ViewBag.ApellidoMaterno = vSesiones.sesionUsuarioDTO.ApellidoMaterno;
+                ViewBag.Telefono = vSesiones.sesionUsuarioDTO.Telefono;
+                ViewBag.Email = vSesiones.sesionUsuarioDTO.Email;
+                ViewBag.UserName = vSesiones.sesionUsuarioDTO.UserName;
+                ViewBag.ImagenPerfil = vSesiones.sesionUsuarioDTO.ImagenPerfil;
+                
 
-            return View();
-            //}
-            //else
-            //{
-            //    return Redirect("/Login/Login");
-            //}
+                return View();
+            }
+            else
+            {
+                return Redirect("/Login/Login");
+            }
         }
     }
 }

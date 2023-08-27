@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ClsModSysAgro.Usuarios;
+using SysAgroWeb.Clase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,28 +13,37 @@ namespace SysAgroWeb.Controllers
       
         public ActionResult Login()
         {
-            return View();
-        }
-        public JsonResult postCerrarSession()
-        {
-            var obj = new
+            if (vSesiones.sesionUsuarioDTO != null)
             {
-                hola = ""
-            };
-            return Json(obj, JsonRequestBehavior.AllowGet);
+                return Redirect("/Home/Index");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        [ActionName("postCerrarSession")]
+        public object postCerrarSession()
+        {
+            vSesiones.sesionUsuarioDTO = null;
+            return vSesiones.sesionUsuarioDTO;
         }
         public ActionResult RecuperarPassword()
         {
             return View();
         }
-        public JsonResult postRecuperarContraseña()
+        [HttpPost]
+        [AllowAnonymous]
+        [ActionName("AsignarVariable")]
+        public object AsignarVariable(UsuarioDTO parametros)
         {
-            var obj = new
-            {
-                adan = ""
-            };
-
-            return Json(obj, JsonRequestBehavior.AllowGet);
+            vSesiones.sesionUsuarioDTO = new UsuarioDTO();
+            vSesiones.sesionUsuarioDTO = parametros;
+            return vSesiones.sesionUsuarioDTO;
         }
+
+
     }
 }
