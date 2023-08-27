@@ -1,7 +1,7 @@
 ﻿
 /*menu lateral*/
 #accordionSidebar {
-    background-color: #05A692 !important;
+    background-color: #7ab37f !important;
 }
 .sidebar-dark .nav-item .nav-link svg {
     color: #c5fff8;
@@ -10,7 +10,7 @@
     color: #000
 }
 .sidebar-dark .nav-item .nav-link:active i, .sidebar-dark .nav-item .nav-link:focus i, .sidebar-dark .nav-item .nav-link:hover i {
-    color: #05a692
+    color: #7ab37f
 }
 .sidebar-dark .nav-item .nav-link {
     color: #fff;
@@ -21,13 +21,13 @@
 
 /*menu superior*/
 .mensaje {
-    color: #05a692;
+    color: #7ab37f;
 }
 .spantopbar {
-    color: #05a692;
+    color: #7ab37f;
 }
 .modal-header {
-    background-color: #05a692;
+    background-color: #7ab37f;
     color: white;
 }
 /*dashboard*/
@@ -51,7 +51,7 @@
 
 /*Card de paginas internas(donde van las tablas)*/
 .card .card-header {
-    background-color: #05a692;
+    background-color: #7ab37f;
     color: white;
 }
     .card .card-header h2 {
@@ -65,12 +65,12 @@
 }
 /*aqui es donde se cambia el id de la tabla*/ 
 #tblUsuarios_length label {
-    color: #05a692;
+    color: #7ab37f;
     font-weight: 600;
     font-size: 15px;
 }
 #tblUsuarios_filter label {
-    color: #05a692;
+    color: #7ab37f;
     font-weight: 900;
     font-size: 20px
 }
@@ -78,11 +78,11 @@
 /*General*/
 .btn.btn-primary {
     color: #fff;
-    border-color: #05a692;
-    background-color: #05a692;
+    border-color: #7ab37f;
+    background-color: #7ab37f;
 }
 a {
-    color: #05a692;
+    color: #7ab37f;
     text-decoration: none
 }
 
@@ -91,7 +91,7 @@ a {
         text-decoration: underline
     }
 .card-imp {
-    background-color: #05a692;
+    background-color: #7ab37f;
     border-radius: .75rem
 }
 
@@ -107,10 +107,10 @@ a {
 .nav-line-tabs .nav-item .nav-link.active, .nav-line-tabs .nav-item .nav-link:hover:not(.disabled), .nav-line-tabs .nav-item.show .nav-link {
     background-color: transparent;
     border: 0;
-    border-bottom: 1px solid #05a692;
+    border-bottom: 1px solid #7ab37f;
     transition: color .2s ease,background-color .2s ease;
 }
 .text-active-primary.active {
     transition: color .2s ease,background-color .2s ease;
-    color: #05a692 !important;
+    color: #7ab37f !important;
 }
