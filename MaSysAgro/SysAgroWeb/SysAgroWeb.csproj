@@ -168,6 +168,7 @@
     <Content Include="Content\img\computacion-en-la-nube.png" />
     <Content Include="Content\img\eliminar.png" />
     <Content Include="Content\img\enconstruccion.png" />
+    <Content Include="Content\img\enconstruccion2.png" />
     <Content Include="Content\img\estado1.png" />
     <Content Include="Content\img\estado2.png" />
     <Content Include="Content\img\estado3.png" />
@@ -181,6 +182,13 @@
     <Content Include="Content\img\icon.png" />
     <Content Include="Content\img\icon2.png" />
     <Content Include="Content\img\icono-2.png" />
+    <Content Include="Content\img\icono-p.ico" />
+    <Content Include="Content\img\icono-p.png" />
+    <Content Include="Content\img\icono-pe.ico" />
+    <Content Include="Content\img\icono-pe.png" />
+    <Content Include="Content\img\icono-pes.png" />
+    <Content Include="Content\img\icono-pest.ico" />
+    <Content Include="Content\img\icono-pest.png" />
     <Content Include="Content\img\icono.ico" />
     <Content Include="Content\img\icono.png" />
     <Content Include="Content\img\login-fondo.png" />
@@ -188,6 +196,14 @@
     <Content Include="Content\img\login3.png" />
     <Content Include="Content\img\logo-movil.png" />
     <Content Include="Content\img\noprofile.png" />
+    <Content Include="Content\img\Recurso 1%402x.png" />
+    <Content Include="Content\img\Recurso 2%402x.png" />
+    <Content Include="Content\img\Recurso 3%402x.png" />
+    <Content Include="Content\img\Recurso 4%402x.png" />
+    <Content Include="Content\img\Recurso 5%402x.png" />
+    <Content Include="Content\img\Recurso 6%402x.png" />
+    <Content Include="Content\img\Recurso 7%402x.png" />
+    <Content Include="Content\img\Recurso-1_2x.ico" />
     <Content Include="Content\NuevoSistema\padding-login.css" />
     <Content Include="Content\NuevoSistema\Style.css" />
     <Content Include="Content\select2.css" />

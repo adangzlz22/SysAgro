@@ -39,7 +39,7 @@ textarea {
    border-radius:0!important
 }
 /*.spantopbar {
-    color: #05a692
+    color: #7ab37f
 }*/
 .fade {
     transition: opacity .15s linear !important;
@@ -156,7 +156,7 @@ flex-column {
     }
     #sitio {
         font-size: 35px;
-        color: #05a692;
+        color: #7ab37f;
         text-transform: uppercase
     }
     #iconmovil {
@@ -173,7 +173,7 @@ flex-column {
    
     #sitio {
         font-size: 50px;
-        color: #05a692;
+        color: #7ab37f;
         text-transform: uppercase
     }
     .padding-iconos {
@@ -184,22 +184,22 @@ flex-column {
     }
 }
 .sidebar-dark .nav-item.active .nav-link svg {
-    color: #05a692;
+    color: #7ab37f;
 }
 /*.sidebar-dark .nav-item .nav-link svg {
     color: #c5fff8;
 }*/
     .sidebar-dark .nav-item .nav-link:hover svg {
-        color: #05a692;
+        color: #7ab37f;
     }
 .svg {
     color: #9d9d9d
 }
     .svg .active {
-        color: #05a692 !important
+        color: #7ab37f !important
     }
 .borde1 {
-    border-bottom: 2px solid #05a692
+    border-bottom: 2px solid #7ab37f
 }
 
 @media only screen and (max-device-width:480px) {

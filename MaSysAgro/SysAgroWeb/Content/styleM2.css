@@ -210,7 +210,7 @@ i {
 }
 .sidebar-dark .nav-item.active .nav-link svg {
     /*color:black*/
-    color:#05a692
+    color:#7ab37f
 }
 .table th {
     text-align: center !important;
@@ -235,11 +235,11 @@ i {
 }
 
 thead tr:nth-child(2) {
-    background-color: #05a692 !important;
+    background-color: #7ab37f !important;
 }
 
 thead tr:nth-child(3) th {
-    color: #05a692 !important;
+    color: #7ab37f !important;
     padding-top: 20px;
     padding-bottom: 10px;
 }
@@ -257,7 +257,7 @@ thead tr:nth-child(3) th {
 
 /*.active {
         border-radius: 50% !important;
-        background-image: linear-gradient(#05a692, #05a692);
+        background-image: linear-gradient(#7ab37f, #7ab37f);
         color: #fff !important;
     }*/
 
@@ -281,7 +281,7 @@ thead tr:nth-child(3) th {
 }
 
 .btn-bg-dark:hover {
-    background-color: #05a692 !important;
+    background-color: #7ab37f !important;
 }
 
 .btn-bg-dark {
@@ -482,7 +482,7 @@ thead tr:nth-child(3) th {
     #fondo2 {
         min-height: 200px;
         padding-left: 0px !important;
-        background-image: url(/Content/img/fondo-loginNPD.png),linear-gradient(to right, #05a692, #07ad99);
+        background-image: url(/Content/img/fondo-loginNPD.png),linear-gradient(to right, #7ab37f, #07ad99);
         background-repeat: no-repeat;
         background-size: cover;
         background-origin: padding-box;
@@ -504,7 +504,7 @@ thead tr:nth-child(3) th {
     #fondo2 {
         min-height: 100vh;
         padding-left: 0px !important;
-        background-image: url(/Content/img/fondo-loginNPD.png),linear-gradient(to right, #05a692, #07ad99);
+        background-image: url(/Content/img/fondo-loginNPD.png),linear-gradient(to right, #7ab37f, #07ad99);
         background-repeat: no-repeat;
         background-size: cover;
         background-origin: padding-box;
@@ -548,7 +548,7 @@ thead tr:nth-child(3) th {
 
     #fondo2 {
         padding-left: 0px !important;
-        background-image: url(/Content/img/fondo-loginNPD.png),linear-gradient(to right, #05a692, #07ad99);
+        background-image: url(/Content/img/fondo-loginNPD.png),linear-gradient(to right, #7ab37f, #07ad99);
         background-repeat: no-repeat;
         background-size: cover;
         background-origin: padding-box;
@@ -635,7 +635,7 @@ thead tr:nth-child(3) th {
     #fondo2 {
         min-height: 20vh;
         padding-left: 0px !important;
-        background-image: url(/Content/img/fondo-loginNPD.png),linear-gradient(to right, #05a692, #07ad99);
+        background-image: url(/Content/img/fondo-loginNPD.png),linear-gradient(to right, #7ab37f, #07ad99);
         background-repeat: no-repeat;
         background-size: cover;
         background-origin: padding-box;
@@ -789,7 +789,7 @@ p {
 }
 
 .btn-nuevo {
-    background-color: #05a692;
+    background-color: #7ab37f;
     color: white;
     padding: 0.5rem 0.7rem !important;
 }
@@ -806,12 +806,12 @@ p {
 }
 
     .btn-guardar:hover {
-        background-color: #05a692 !important;
+        background-color: #7ab37f !important;
         color: white !important;
     }
 
 .modal-header {
-    background-color: #05a692;
+    background-color: #7ab37f;
 }
 
     .modal-header h4 {
@@ -844,7 +844,7 @@ p {
     background-position-x: right;
     background-repeat: no-repeat;
     background-size: cover;
-    border-left: 2px solid #05a692;
+    border-left: 2px solid #7ab37f;
 }
 
 
