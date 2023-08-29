@@ -1,0 +1,17 @@
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsDatSysAgro\bin\Release\ClsDatSysAgro.dll.config
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsDatSysAgro\bin\Release\ClsDatSysAgro.dll
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsDatSysAgro\bin\Release\ClsDatSysAgro.pdb
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsDatSysAgro\bin\Release\ClsModSysAgro.dll
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsDatSysAgro\bin\Release\EntityFramework.dll
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsDatSysAgro\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsDatSysAgro\bin\Release\MaSysAgro.dll
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsDatSysAgro\bin\Release\TCITools.dll
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsDatSysAgro\bin\Release\ClsModSysAgro.pdb
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsDatSysAgro\bin\Release\MaSysAgro.pdb
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsDatSysAgro\bin\Release\EntityFramework.xml
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsDatSysAgro\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsDatSysAgro\obj\Release\ClsDatSysAgro.csproj.AssemblyReference.cache
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsDatSysAgro\obj\Release\ClsDatSysAgro.csproj.CoreCompileInputs.cache
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsDatSysAgro\obj\Release\ClsDatSysAgro.csproj.CopyComplete
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsDatSysAgro\obj\Release\ClsDatSysAgro.dll
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsDatSysAgro\obj\Release\ClsDatSysAgro.pdb

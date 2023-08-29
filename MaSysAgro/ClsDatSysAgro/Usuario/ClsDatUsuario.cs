@@ -1,7 +1,10 @@
 ﻿using ClsModSysAgro.Usuarios;
+using Dapper;
 using MaSysAgro;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -14,26 +17,36 @@ namespace ClsDatSysAgro.Usuario
     public class ClsDatUsuario
     {
         ClsModResponse objResponse = new ClsModResponse();
-        SysAgroEntities db = new SysAgroEntities();
+        string conexion = ConfigurationManager.ConnectionStrings["SysAgroEntities"].ToString();
+
         public ClsModResponse postLogearseUsuario(paramsUsuarioDTO parametros)
         {
             objResponse = new ClsModResponse();
             try
             {
+                DynamicParameters paramss = new DynamicParameters();
+
                 string contrasena = Funciones.EncriptarMD5(parametros.Contrasena);
-                var objUsuario = db.GenUsuarios.Where(r => r.Usuario == parametros.Usuario && r.Contrasena == contrasena).FirstOrDefault();
-                if (objUsuario != null)
+                string consultaGenUsuarios = "SELECT * FROM GenUsuarios WHERE Usuario = '{0}' AND Contrasena = '{1}'";
+                using (var ctx = new MySqlConnection(conexion))
                 {
-                    objResponse.ITEMS = objUsuario;
-                    objResponse.MESSAGE = "";
-                    objResponse.SUCCESS = true;
+                    ctx.Open();
+                    var objUsuario = ctx.Query<dynamic>(string.Format(consultaGenUsuarios, parametros.Usuario, contrasena), paramss, null, true, 300).FirstOrDefault();
+                    if (objUsuario != null)
+                    {
+                        objResponse.ITEMS = objUsuario;
+                        objResponse.MESSAGE = "";
+                        objResponse.SUCCESS = true;
+                    }
+                    else
+                    {
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "Incorrect data";
+                        objResponse.SUCCESS = false;
+                    }
+                    ctx.Close();
                 }
-                else
-                {
-                    objResponse.ITEMS = null;
-                    objResponse.MESSAGE = "Incorrect data";
-                    objResponse.SUCCESS = false;
-                }
+
             }
             catch (Exception ex)
             {
@@ -48,49 +61,74 @@ namespace ClsDatSysAgro.Usuario
             objResponse = new ClsModResponse();
             try
             {
+                DynamicParameters paramss = new DynamicParameters();
                 string contraseñaActual = Funciones.EncriptarMD5(parametros.ContrasenaActual);
-                var objUsuarioLogeado = db.GenUsuarios.Where(r => r.Usuario == parametros.Usuario && r.Contrasena == contraseñaActual).FirstOrDefault();
-                if (objUsuarioLogeado != null)
+                string updateConsulta = "";
+                using (var ctx = new MySqlConnection(conexion))
                 {
-                    var objUsuario = db.GenUsuarios.Where(r => r.Id == parametros.Id).FirstOrDefault();
-                    if (objUsuario != null)
+                    ctx.Open();
+                    string consultaGenUsuarios = "SELECT * FROM GenUsuarios WHERE Usuario = '{0}' AND Contrasena = '{1}'";
+                    var objUsuarioLogeado = ctx.Query<paramsUsuarioDTO>(string.Format(consultaGenUsuarios, parametros.Usuario, contraseñaActual), paramss, null, true, 300).FirstOrDefault();
+                    //var objUsuarioLogeado = db.GenUsuarios.Where(r => r.Usuario == parametros.Usuario && r.Contrasena == contraseñaActual).FirstOrDefault();
+                    if (objUsuarioLogeado != null)
                     {
-                        objUsuario.Nombre = parametros.Nombre;
-                        objUsuario.ApellidoPaterno = parametros.ApellidoPaterno;
-                        objUsuario.ApellidoMaterno = parametros.ApellidoMaterno;
-                        objUsuario.Telefono = parametros.Telefono;
-                        objUsuario.Email = parametros.Email;
-                        if (parametros.ImagenPerfil != "")
+                        string consultaGenXId = "SELECT * FROM GenUsuarios WHERE Id = '{0}'";
+                        var objUsuario = ctx.Query<paramsUsuarioDTO>(string.Format(consultaGenXId, parametros.Id), paramss, null, true, 300).FirstOrDefault();
+                        //var objUsuario = db.GenUsuarios.Where(r => r.Id == parametros.Id).FirstOrDefault();
+                        if (objUsuario != null)
                         {
-                            objUsuario.ImagenPerfil = parametros.ImagenPerfil;
-                        }
-                        if (parametros.Contrasena != "")
-                        {
-                            string contrasena = Funciones.EncriptarMD5(parametros.Contrasena);
-                            if (contrasena != objUsuario.Contrasena)
+                            updateConsulta = @"UPDATE GenUsuarios SET 
+                                                                        Nombre='{0}',
+                                                                        ApellidoPaterno='{1}',
+                                                                        ApellidoMaterno='{2}',
+                                                                        Telefono='{3}',
+                                                                        Email='{4}' WHERE Id = {5}
+                            ";
+                            updateConsulta = string.Format(updateConsulta, parametros.Nombre, parametros.ApellidoPaterno, parametros.ApellidoMaterno, parametros.Telefono, parametros.Email, parametros.Id);
+                            objUsuario = ctx.Query<paramsUsuarioDTO>(updateConsulta, paramss, null, true, 300).FirstOrDefault();
+                            if (parametros.ImagenPerfil != "")
                             {
-                                objUsuario.Contrasena = contrasena;
+                                updateConsulta = @"UPDATE GenUsuarios SET 
+                                                                        ImagenPerfil='{0}' WHERE Id = {1}
+                            ";
+                                updateConsulta = string.Format(updateConsulta, parametros.ImagenPerfil, parametros.Id);
+                                objUsuario = ctx.Query<paramsUsuarioDTO>(updateConsulta, paramss, null, true, 300).FirstOrDefault();
+
                             }
+                            if (parametros.Contrasena != "")
+                            {
+                                string contrasena = Funciones.EncriptarMD5(parametros.Contrasena);
+                                if (contrasena != objUsuario.Contrasena)
+                                {
+                                    updateConsulta = @"UPDATE GenUsuarios SET 
+                                                                        Contrasena='{0}' WHERE Id = {1}
+                            ";
+                                    updateConsulta = string.Format(updateConsulta, contrasena, parametros.Id);
+                                    objUsuario = ctx.Query<paramsUsuarioDTO>(updateConsulta, paramss, null, true, 300).FirstOrDefault();
+
+                                }
+                            }
+
+                            //db.SaveChanges();
+                             objUsuario = ctx.Query<paramsUsuarioDTO>(string.Format(consultaGenXId, parametros.Id), paramss, null, true, 300).FirstOrDefault();
+                            ctx.Close();
+                            objResponse.ITEMS = objUsuario;
+                            objResponse.MESSAGE = "Modified successfully";
+                            objResponse.SUCCESS = true;
                         }
-
-                        db.SaveChanges();
-
-                        objResponse.ITEMS = objUsuario;
-                        objResponse.MESSAGE = "Modified successfully";
-                        objResponse.SUCCESS = true;
+                        else
+                        {
+                            objResponse.ITEMS = null;
+                            objResponse.MESSAGE = "Incorrect data";
+                            objResponse.SUCCESS = false;
+                        }
                     }
                     else
                     {
                         objResponse.ITEMS = null;
-                        objResponse.MESSAGE = "Incorrect data";
+                        objResponse.MESSAGE = "The password could not be changed because it does not match the data";
                         objResponse.SUCCESS = false;
                     }
-                }
-                else
-                {
-                    objResponse.ITEMS = null;
-                    objResponse.MESSAGE = "The password could not be changed because it does not match the data";
-                    objResponse.SUCCESS = false;
                 }
             }
             catch (Exception ex)
@@ -104,43 +142,50 @@ namespace ClsDatSysAgro.Usuario
         public ClsModResponse postSolicitarContrasena(paramsUsuarioDTO parametros)
         {
             objResponse = new ClsModResponse();
+            DynamicParameters paramss = new DynamicParameters();
 
             try
             {
-                GenUsuarios objUsuario = db.GenUsuarios.Where(r => r.Usuario == parametros.Usuario && r.Email == parametros.Email).FirstOrDefault();
-                if (objUsuario == null)
+                using (var ctx = new MySqlConnection(conexion))
                 {
-                    objResponse.SUCCESS = false;
-                    objResponse.ITEMS = null;
-                    objResponse.MESSAGE = "Invalid username or email.";
-                    return objResponse;
-                }
-                else
-                {
-                    string contrasena = Funciones.DesencriptarMD5(objUsuario.Contrasena);
-                    string HTML = ObtenerEscritoHTML(objUsuario.Usuario, contrasena);
-                    // Parte 1
-                    string Correo = "adangzlz22@gmail.com";
-                    string Contrasena = "okbxuwyjtmnnfxrs";
+                    ctx.Open();
+                    string consultaGenUsuarios = "SELECT * FROM GenUsuarios WHERE Usuario = '{0}' AND Email = '{1}'";
+                    var objUsuario = ctx.Query<paramsUsuarioDTO>(string.Format(consultaGenUsuarios, parametros.Usuario, parametros.Email), paramss, null, true, 300).FirstOrDefault();
+                    //GenUsuarios objUsuario = db.GenUsuarios.Where(r => r.Usuario == parametros.Usuario && r.Email == parametros.Email).FirstOrDefault();
+                    if (objUsuario == null)
+                    {
+                        objResponse.SUCCESS = false;
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "Invalid username or email.";
+                        return objResponse;
+                    }
+                    else
+                    {
+                        string contrasena = Funciones.DesencriptarMD5(objUsuario.Contrasena);
+                        string HTML = ObtenerEscritoHTML(objUsuario.Usuario, contrasena);
+                        // Parte 1
+                        string Correo = "adangzlz22@gmail.com";
+                        string Contrasena = "okbxuwyjtmnnfxrs";
 
-                    SmtpClient smtp = new SmtpClient();
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.Port = 587;
-                    smtp.EnableSsl = true;
-                    smtp.UseDefaultCredentials = false;
-                    smtp.Credentials = new NetworkCredential(Correo, Contrasena);
-                    // Parte 2
-                    MailMessage mm = new MailMessage();
-                    mm.IsBodyHtml = true;
-                    mm.Priority = MailPriority.Normal;
-                    mm.From = new MailAddress(Correo);
-                    mm.Subject = "Recuperar Contraseña";
-                    mm.Body = HTML;
-                    mm.To.Add(new MailAddress(objUsuario.Email));
-                    smtp.Send(mm); // Enviar el mensaje
-                    objResponse.ITEMS = null;
-                    objResponse.MESSAGE = "Mail sent successfully";
-                    objResponse.SUCCESS = true;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.EnableSsl = true;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new NetworkCredential(Correo, Contrasena);
+                        // Parte 2
+                        MailMessage mm = new MailMessage();
+                        mm.IsBodyHtml = true;
+                        mm.Priority = MailPriority.Normal;
+                        mm.From = new MailAddress(Correo);
+                        mm.Subject = "Recuperar Contraseña";
+                        mm.Body = HTML;
+                        mm.To.Add(new MailAddress(objUsuario.Email));
+                        smtp.Send(mm); // Enviar el mensaje
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "Mail sent successfully";
+                        objResponse.SUCCESS = true;
+                    }
                 }
             }
             catch (Exception ex)
