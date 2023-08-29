@@ -6,7 +6,7 @@
     
     var Inicializar = function () {
         functionListar();
-     
+        console.log(urlGlobal)
     }
     const functionListar = function () {
         btnCerrarSession.click(function () {

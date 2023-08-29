@@ -177,9 +177,6 @@
     <Content Include="Content\img\exclamacion-error.png" />
     <Content Include="Content\img\fondo-loginNPD.png" />
     <Content Include="Content\img\fondo-menu.png" />
-    <Content Include="Content\img\icon-blanco.png" />
-    <Content Include="Content\img\icon-blanco2.png" />
-    <Content Include="Content\img\icon.png" />
     <Content Include="Content\img\icon2.png" />
     <Content Include="Content\img\icono-2.png" />
     <Content Include="Content\img\icono-p.ico" />
@@ -189,7 +186,6 @@
     <Content Include="Content\img\icono-pes.png" />
     <Content Include="Content\img\icono-pest.ico" />
     <Content Include="Content\img\icono-pest.png" />
-    <Content Include="Content\img\icono.ico" />
     <Content Include="Content\img\icono.png" />
     <Content Include="Content\img\invisible.png" />
     <Content Include="Content\img\login-fondo.png" />
@@ -341,6 +337,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jszip.js" />
+    <Content Include="Scripts\js\Global.js" />
     <Content Include="Scripts\js\Layout\Layout.js" />
     <Content Include="Scripts\js\Login\LoginControllers.js" />
     <Content Include="Scripts\js\Login\RecuperarControllers.js" />

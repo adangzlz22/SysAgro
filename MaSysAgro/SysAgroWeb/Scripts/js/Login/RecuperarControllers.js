@@ -1,5 +1,5 @@
 ﻿var RecuperarControllers = function () {
-    const url = 'https://localhost:44377/Api'
+    const url = urlGlobal
 
     const txtUsuario = $('#txtUsuario');
     const txtCorreo = $('#txtCorreo');

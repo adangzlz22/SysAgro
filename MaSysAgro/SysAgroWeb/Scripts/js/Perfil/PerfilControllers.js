@@ -1,5 +1,5 @@
 ﻿var PerfilControllers = function () {
-    const url = 'https://localhost:44377/Api'
+    const url = urlGlobal
 
     const btnGuardarPerfil = $('#btnGuardarPerfil');
 

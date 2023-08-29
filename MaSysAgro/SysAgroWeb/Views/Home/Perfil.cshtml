@@ -367,7 +367,7 @@
                                                 <div class="input-group mb-3">
                                                     <input id="txtContraActual" type="password" name="fname" class="form-control form-control-lg form-control-solid  mb-lg-0" style="height:100%">
                                                     <span class="input-group-text contra2" style="background-color: #343433; border-color: #343433 ">
-                                                    <img src="~/Content/img/invisible.png" id="img1" class="showpwd"  onclick="showPwd('txtContraActual', this)" style="width:20px"/>
+                                                        <img src="~/Content/img/invisible.png" id="img1" class="showpwd" onclick="showPwd('txtContraActual', this)" style="width:20px" />
                                                     </span>
 
                                                 </div>   <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -376,13 +376,13 @@
                                                 <!--nueva contraseña-->
                                                 <label class="col-form-label required fw-bold fs-6">New Password</label>
                                                 <div class="input-group mb-3">
-                                                    <input ID="txtNuevaContraseña" type="password" runat="server" class="form-control form-control-lg form-control-solid  mb-lg-0"  style="height:100%"/>
+                                                    <input ID="txtNuevaContraseña" type="password" runat="server" class="form-control form-control-lg form-control-solid  mb-lg-0" style="height:100%" />
                                                     <span class="input-group-text contra2" style="background-color: #343433; border-color: #343433 ">
                                                         <img src="~/Content/img/invisible.png" id="img2" class="showpwd" onclick="showPwd2('txtNuevaContraseña', this)" style="width:20px" />
                                                     </span>
                                                 </div>
-                                                    <div class="fv-plugins-message-container invalid-feedback"></div>
-                                                </div>
+                                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                                            </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <!--confirmar contraseña-->
                                                 <label class="col-form-label required fw-bold fs-6">
@@ -399,7 +399,7 @@
                                                 </div>
                                             </div>
 
-                                            </div>
+                                        </div>
                                     </div>
                                     <!--final Card body-->
                                     <!--card-footer-->
@@ -425,6 +425,7 @@
 <br />
 <br />
 
+<script src="~/Scripts/js/Global.js"></script>
 <script src="~/Scripts/sweetalert2.all.min.js"></script>
 <script src="~/Scripts/axios.js"></script>
 <script src="~/Scripts/axios.min.js"></script>
@@ -486,14 +487,14 @@
             x.type = "text";
             el.className = "showpwd";
             document.getElementById("img1").src = '/Content/img/ojo.png';
-         
-           
+
+
         } else {
             x.type = "password";
             el.className = "showpwd";
             document.getElementById("img1").src = '/Content/img/invisible.png';
-         
-          
+
+
         }
     }
     function showPwd2(id, el, img) {
@@ -501,13 +502,13 @@
         if (x.type === "password") {
             x.type = "text";
             el.className = "showpwd";
-            
+
             document.getElementById("img2").src = '/Content/img/ojo.png';
 
         } else {
             x.type = "password";
             el.className = "showpwd";
-           
+
             document.getElementById("img2").src = '/Content/img/invisible.png';
 
         }
