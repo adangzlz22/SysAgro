@@ -341,6 +341,7 @@
     <Content Include="Scripts\js\Layout\Layout.js" />
     <Content Include="Scripts\js\Login\LoginControllers.js" />
     <Content Include="Scripts\js\Login\RecuperarControllers.js" />
+    <Content Include="Scripts\js\Login\RegistrateControllers.js" />
     <Content Include="Scripts\js\Perfil\PerfilControllers.js" />
     <Content Include="Scripts\localization\dx.messages.cs.js" />
     <Content Include="Scripts\localization\dx.messages.de.js" />
@@ -389,6 +390,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\RecuperarPassword.cshtml" />
     <Content Include="Views\Home\Perfil.cshtml" />
+    <Content Include="Views\Home\Registrate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

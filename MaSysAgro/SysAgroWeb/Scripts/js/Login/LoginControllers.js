@@ -7,7 +7,7 @@
 
 
     var Inicializar = function () {
-
+        console.log(urlGlobal)
         console.log('hola soy logincontroller')
         functionListar();
     }

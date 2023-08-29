@@ -198,10 +198,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/08/2018 12:18:16</publishTime>
     </File>
     <File Include="bin/SysAgroWeb.dll">
-      <publishTime>08/28/2023 17:18:54</publishTime>
+      <publishTime>08/28/2023 17:43:32</publishTime>
     </File>
     <File Include="bin/SysAgroWeb.pdb">
-      <publishTime>08/28/2023 17:18:54</publishTime>
+      <publishTime>08/28/2023 17:43:32</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>11/28/2018 13:04:24</publishTime>
@@ -857,17 +857,20 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Scripts/jquery.validate.unobtrusive.min.js">
       <publishTime>03/08/2023 16:55:56</publishTime>
     </File>
+    <File Include="Scripts/js/Global.js">
+      <publishTime>08/28/2023 17:37:00</publishTime>
+    </File>
     <File Include="Scripts/js/Layout/Layout.js">
-      <publishTime>08/27/2023 11:55:38</publishTime>
+      <publishTime>08/28/2023 17:36:14</publishTime>
     </File>
     <File Include="Scripts/js/Login/LoginControllers.js">
-      <publishTime>08/27/2023 11:44:32</publishTime>
+      <publishTime>08/28/2023 17:38:49</publishTime>
     </File>
     <File Include="Scripts/js/Login/RecuperarControllers.js">
-      <publishTime>08/27/2023 17:23:39</publishTime>
+      <publishTime>08/28/2023 17:35:45</publishTime>
     </File>
     <File Include="Scripts/js/Perfil/PerfilControllers.js">
-      <publishTime>08/27/2023 13:54:52</publishTime>
+      <publishTime>08/28/2023 17:35:27</publishTime>
     </File>
     <File Include="Scripts/jszip.js">
       <publishTime>03/09/2023 19:17:41</publishTime>
@@ -972,13 +975,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/27/2023 14:09:02</publishTime>
     </File>
     <File Include="Views/Home/Perfil.cshtml">
-      <publishTime>08/27/2023 17:17:22</publishTime>
+      <publishTime>08/28/2023 17:39:28</publishTime>
     </File>
     <File Include="Views/Login/Login.cshtml">
-      <publishTime>08/27/2023 17:10:52</publishTime>
+      <publishTime>08/28/2023 17:38:05</publishTime>
     </File>
     <File Include="Views/Login/RecuperarPassword.cshtml">
-      <publishTime>08/27/2023 14:10:24</publishTime>
+      <publishTime>08/28/2023 17:39:03</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>08/26/2023 09:36:57</publishTime>
@@ -993,7 +996,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/26/2023 09:36:57</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/28/2023 17:17:56</publishTime>
+      <publishTime>08/28/2023 17:43:32</publishTime>
     </File>
   </ItemGroup>
 </Project>

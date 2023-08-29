@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SysAgroAp.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -12,22 +13,25 @@ namespace SysAgroAp
         public static void Register(HttpConfiguration config)
         {
             // Configuración y servicios de API web
-            config.Filters.Add(new AuthorizeAttribute());
+            //config.Filters.Add(new AuthorizeAttribute());
 
             // Rutas de API web
             config.MapHttpAttributeRoutes();
 
-            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json"));
-            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("multipart/form-data"));
-            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/octet-stream"));
+            config.EnableCors(new AccesPolicyCors());
 
-            var enableCorsAttribute = new EnableCorsAttribute("*", "Origin, Content-Type, Accept, Authorization", "POST");
+            //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json"));
+            //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("multipart/form-data"));
+            //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/octet-stream"));
 
-            config.EnableCors(enableCorsAttribute);
+            //var enableCorsAttribute = new EnableCorsAttribute("*", "Origin, Content-Type, Accept, Authorization", "POST");
+
+            //config.EnableCors(enableCorsAttribute);
+
 
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-               routeTemplate: "api/{controller}/{action}/{id}",
+                name: "ActionApi",
+                routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
         }

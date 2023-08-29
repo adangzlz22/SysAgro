@@ -80,28 +80,28 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/19/2021 04:53:32</publishTime>
     </File>
     <File Include="bin/ClsDatSysAgro.dll">
-      <publishTime>08/28/2023 17:19:00</publishTime>
+      <publishTime>08/28/2023 20:11:57</publishTime>
     </File>
     <File Include="bin/ClsDatSysAgro.dll.config">
       <publishTime>08/28/2023 17:16:14</publishTime>
     </File>
     <File Include="bin/ClsDatSysAgro.pdb">
-      <publishTime>08/28/2023 17:19:00</publishTime>
+      <publishTime>08/28/2023 20:11:57</publishTime>
     </File>
     <File Include="bin/ClsModSysAgro.dll">
-      <publishTime>08/28/2023 14:27:23</publishTime>
+      <publishTime>08/28/2023 20:11:56</publishTime>
     </File>
     <File Include="bin/ClsModSysAgro.pdb">
-      <publishTime>08/28/2023 14:27:23</publishTime>
+      <publishTime>08/28/2023 20:11:56</publishTime>
     </File>
     <File Include="bin/ClsNegSysAgro.dll">
-      <publishTime>08/28/2023 17:19:00</publishTime>
+      <publishTime>08/28/2023 20:11:57</publishTime>
     </File>
     <File Include="bin/ClsNegSysAgro.dll.config">
       <publishTime>08/28/2023 16:33:42</publishTime>
     </File>
     <File Include="bin/ClsNegSysAgro.pdb">
-      <publishTime>08/28/2023 17:19:00</publishTime>
+      <publishTime>08/28/2023 20:11:57</publishTime>
     </File>
     <File Include="bin/Dapper.dll">
       <publishTime>08/17/2023 12:16:50</publishTime>
@@ -113,13 +113,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/16/2020 13:38:56</publishTime>
     </File>
     <File Include="bin/es/System.Net.Http.Formatting.resources.dll">
-      <publishTime>11/28/2018 06:00:46</publishTime>
+      <publishTime>05/27/2022 16:36:16</publishTime>
     </File>
     <File Include="bin/es/System.Web.Helpers.resources.dll">
       <publishTime>11/28/2018 06:04:36</publishTime>
     </File>
     <File Include="bin/es/System.Web.Http.resources.dll">
-      <publishTime>11/28/2018 06:01:14</publishTime>
+      <publishTime>05/27/2022 16:36:30</publishTime>
     </File>
     <File Include="bin/es/System.Web.Http.WebHost.resources.dll">
       <publishTime>11/28/2018 06:03:04</publishTime>
@@ -158,10 +158,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/08/2022 11:08:14</publishTime>
     </File>
     <File Include="bin/MaSysAgro.dll">
-      <publishTime>08/28/2023 14:27:23</publishTime>
+      <publishTime>08/28/2023 20:11:56</publishTime>
     </File>
     <File Include="bin/MaSysAgro.pdb">
-      <publishTime>08/28/2023 14:27:23</publishTime>
+      <publishTime>08/28/2023 20:11:56</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNetCore.Cors.dll">
       <publishTime>11/12/2018 10:38:58</publishTime>
@@ -359,10 +359,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/08/2018 12:18:16</publishTime>
     </File>
     <File Include="bin/SysAgroAp.dll">
-      <publishTime>08/28/2023 17:30:34</publishTime>
+      <publishTime>08/28/2023 21:50:08</publishTime>
     </File>
     <File Include="bin/SysAgroAp.pdb">
-      <publishTime>08/28/2023 17:30:34</publishTime>
+      <publishTime>08/28/2023 21:50:08</publishTime>
     </File>
     <File Include="bin/System.Buffers.dll">
       <publishTime>02/19/2020 03:05:18</publishTime>
@@ -383,7 +383,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/07/2022 20:31:02</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>11/28/2018 13:00:36</publishTime>
+      <publishTime>05/27/2022 16:41:34</publishTime>
     </File>
     <File Include="bin/System.Numerics.Vectors.dll">
       <publishTime>05/15/2018 06:29:44</publishTime>
@@ -398,16 +398,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>02/19/2020 03:05:18</publishTime>
     </File>
     <File Include="bin/System.Web.Cors.dll">
-      <publishTime>02/07/2022 19:31:58</publishTime>
+      <publishTime>05/27/2022 16:41:44</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>11/28/2018 13:04:24</publishTime>
     </File>
     <File Include="bin/System.Web.Http.Cors.dll">
-      <publishTime>02/07/2022 19:31:58</publishTime>
+      <publishTime>05/27/2022 16:42:16</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
-      <publishTime>11/28/2018 13:01:00</publishTime>
+      <publishTime>05/27/2022 16:41:46</publishTime>
     </File>
     <File Include="bin/System.Web.Http.WebHost.dll">
       <publishTime>11/28/2018 13:02:56</publishTime>
@@ -527,7 +527,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/26/2023 10:24:55</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/28/2023 17:30:34</publishTime>
+      <publishTime>08/28/2023 21:42:24</publishTime>
     </File>
   </ItemGroup>
 </Project>

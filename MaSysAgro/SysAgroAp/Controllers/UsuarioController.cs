@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace SysAgroAp.Controllers
 {
@@ -44,5 +45,15 @@ namespace SysAgroAp.Controllers
             return objResponse;
         }
 
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ActionName("postRegistrarse")]
+        public ClsModResponse postRegistrarse(paramsUsuarioDTO parametros)
+        {
+            objResponse = new ClsModResponse();
+            objResponse = objNegUsuarios.postRegistrarse(parametros);
+            return objResponse;
+        }
     }
 }

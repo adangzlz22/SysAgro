@@ -32,5 +32,13 @@ namespace ClsNegSysAgro.Usuario
             objResponse = objDatUsuario.postSolicitarContrasena(parametros);
             return objResponse;
         }
+
+        public ClsModResponse postRegistrarse(paramsUsuarioDTO parametros)
+        {
+            objResponse = new ClsModResponse();
+            objResponse = objDatUsuario.postRegistrarse(parametros);
+            return objResponse;
+        }
+
     }
 }

@@ -96,5 +96,9 @@ namespace SysAgroWeb.Controllers
                 return Redirect("/Login/Login");
             }
         }
+        public ActionResult Registrate()
+        {
+            return View();
+        }
     }
 }

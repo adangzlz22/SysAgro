@@ -110,7 +110,7 @@ namespace ClsDatSysAgro.Usuario
                             }
 
                             //db.SaveChanges();
-                             objUsuario = ctx.Query<paramsUsuarioDTO>(string.Format(consultaGenXId, parametros.Id), paramss, null, true, 300).FirstOrDefault();
+                            objUsuario = ctx.Query<paramsUsuarioDTO>(string.Format(consultaGenXId, parametros.Id), paramss, null, true, 300).FirstOrDefault();
                             ctx.Close();
                             objResponse.ITEMS = objUsuario;
                             objResponse.MESSAGE = "Modified successfully";
@@ -460,6 +460,91 @@ namespace ClsDatSysAgro.Usuario
 
             #endregion
             return html;
+        }
+
+        public ClsModResponse postRegistrarse(paramsUsuarioDTO parametros)
+        {
+            objResponse = new ClsModResponse();
+            try
+            {
+                DynamicParameters paramss = new DynamicParameters();
+
+                string contrasena = Funciones.EncriptarMD5(parametros.Contrasena);
+                string consultaGenUsuarios = "SELECT * FROM GenUsuarios WHERE Usuario = '{0}'";
+                using (var ctx = new MySqlConnection(conexion))
+                {
+                    ctx.Open();
+                    var objUsuario = ctx.Query<dynamic>(string.Format(consultaGenUsuarios, parametros.Usuario), paramss, null, true, 300).FirstOrDefault();
+                    if (objUsuario == null)
+                    {
+                        consultaGenUsuarios = "SELECT * FROM GenUsuarios WHERE Email = '{0}'";
+                        var objEmail = ctx.Query<dynamic>(string.Format(consultaGenUsuarios, parametros.Email), paramss, null, true, 300).FirstOrDefault();
+                        if (objEmail == null)
+                        {
+                            string fechaActual = @"" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute+ ":" + DateTime.Now.Second+ "";
+                            consultaGenUsuarios = @"INSERT INTO GenUsuarios
+           (IdSucursal
+           ,Usuario
+           ,Contrasena
+           ,Nombre
+           ,ApellidoPaterno
+           ,ApellidoMaterno
+           ,Telefono
+           ,Email
+           ,Activo
+           ,Token
+           ,FechaIngreso
+           ,FechaExpiracion
+           ,ImagenPerfil
+           ,IDUnico
+           ,TelefonoContacto)
+     VALUES
+           (1
+           ,'" + parametros.Usuario + @"'
+           ,'" + contrasena+ @"'
+           ,'" + parametros.Nombre + @"'
+           ,'" + parametros.ApellidoPaterno + @"'
+           ,''
+           ,''
+           ,'" + parametros.Email + @"'
+           ,true
+           ,''
+           ,'" + fechaActual + @"'
+           ,NULL
+           ,''
+           ,''
+           ,'')";
+
+                            var objRegistro = ctx.Query<dynamic>(string.Format(consultaGenUsuarios, parametros.Email), paramss, null, true, 300).FirstOrDefault();
+
+                            objResponse.ITEMS = null;
+                            objResponse.MESSAGE = "Registered user successfully";
+                            objResponse.SUCCESS = true;
+                        }
+                        else
+                        {
+                            objResponse.ITEMS = null;
+                            objResponse.MESSAGE = "This Email is already registered";
+                            objResponse.SUCCESS = false;
+                        }
+                    }
+                    else
+                    {
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "This user is already registered";
+                        objResponse.SUCCESS = false;
+                    }
+                    ctx.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = "some error occurred." + ex.Message;
+                objResponse.SUCCESS = false;
+            }
+            return objResponse;
         }
 
 
