@@ -1,0 +1,192 @@
+﻿.card-header {
+    border-bottom: none !important
+}
+
+.card-footer {
+    border: none !important;
+    padding: 1rem 2.25rem !important
+}
+
+.form-check-input {
+    background-color: #eff2f5;
+    border: none
+}
+.form-check:not(.form-switch) .form-check-input[type=checkbox] {
+    background-size: 50% 50% !important;
+    background-size: 40px !important
+}
+
+/*.card .card-header {
+    background-color: #7ab37f;
+    color: white
+}*/
+
+    /*.card .card-header h2 {
+        color: white !important
+    }*/
+/*.modal-header {
+    background-color: #7ab37f;
+    color: white
+}*/
+
+    .modal-header h2 {
+        color: white
+    }
+    .table-responsive tr
+
+{
+    border-bottom-width: 1px;
+    border-bottom-style: dashed !important;
+    border-bottom-color: #d8dbdf;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
+/*.table-responsive tr {
+            padding-top: 1.25rem;
+            padding-bottom: 1.25rem;
+        }*/
+.table th {
+    /*padding-bottom: 2rem !important;*/
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.table td {
+    /*padding-bottom: 1.7rem !important;*/
+    text-align:left;
+    font-size: 15px;
+    border-top: none !important
+}
+#acciones {
+    text-align: center !important
+}
+.table {
+    font-size: 15px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.tipo3 {
+    overflow: hidden;
+}
+
+.padd-left {
+    padding-left: 15px !important
+}
+
+.padd-right {
+    padding-right: 15px !important
+}
+
+.headT {
+    background-color: #7ab37f !important;
+    color: white;
+    font-weight: 600
+}
+
+
+
+#tblBitacora_previous {
+    color: #808080;
+    background-color: transparent;
+}
+
+#tblBitacora_next {
+    color: #808080;
+    background-color:transparent;
+}
+#tblGrupos_previous {
+    color: #808080;
+    background-color: #ffffff;
+}
+
+#tblGrupos_next {
+    color: #808080;
+    background-color: #ffffff;
+}
+#tblUsuarios_previous {
+    color: #808080;
+    background-color: #ffffff;
+}
+
+#tblUsuarios_next {
+    color: #808080;
+    background-color: #ffffff;
+}
+#tblContactosAsosiados_previous {
+    color: #808080;
+    background-color: #ffffff;
+}
+
+#tblContactosAsosiados_next {
+    color: #808080;
+    background-color: #ffffff;
+}
+.page-item {
+    margin-right: 0.5rem;
+}
+
+.paginate_button {
+    color: #fff;
+    background-color: #000;
+    margin-right: 0.5rem;
+    padding: 0.375rem 0.75rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    font-weight: 500;
+    font-size: 1.075rem;
+}
+    .paginate_button:hover {
+        color: #fff!important;
+        background-color: #7ab37f;
+        margin-right: 0.5rem;
+        padding: 0.375rem 0.75rem;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        height: 2.5rem;
+        min-width: 2.5rem;
+        font-weight: 500;
+        font-size: 1.075rem;
+    }
+#tblGrupos_filter label{
+    margin-right:20px!important;
+    font-size:20px;
+    color:#7ab37f
+}
+@media screen and (max-width: 600px) {
+    .card .card-header h2 {
+       font-size:25px
+    }
+    #tablaReportes {
+        display: none
+    }
+}
+.btn-editar{
+    padding:0.5rem 0.75rem!important;
+    margin:2px
+}
+.btn-eliminar {
+    padding: 0.5rem 0.75rem !important;
+    margin: 2px
+}
+.btn-AgregarMenu {
+    padding: 0.5rem 0.75rem !important;
+    margin: 2px
+}
+.btn-AgregarTema {
+    padding: 0.5rem 0.75rem !important;
+    margin: 2px
+}
+.btn-EditarEstacion {
+    padding: 0.5rem 0.75rem !important;
+    margin: 2px;
+}
+.btn-BorrarEstacion {
+    padding: 0.5rem 0.75rem !important;
+    margin: 2px;
+}

@@ -26,7 +26,7 @@
         axios.post(options, parametros).then(function (response) {
             const result = response.data;
             if (result.SUCCESS == true) {
-                console.log(result.ITEMS)
+                console.log( result.ITEMS)
                 MandarObjUsuarios(result.ITEMS);
             } else {
                 Swal.fire('Usuario y/o contraseña incorrecta.');

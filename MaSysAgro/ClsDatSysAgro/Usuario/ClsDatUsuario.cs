@@ -461,7 +461,6 @@ namespace ClsDatSysAgro.Usuario
             #endregion
             return html;
         }
-
         public ClsModResponse postRegistrarse(paramsUsuarioDTO parametros)
         {
             objResponse = new ClsModResponse();

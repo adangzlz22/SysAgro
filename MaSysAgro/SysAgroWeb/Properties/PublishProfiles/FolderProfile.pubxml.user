@@ -14,11 +14,17 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/Antlr3.Runtime.pdb">
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
+    <File Include="bin/BouncyCastle.Crypto.dll">
+      <publishTime>10/19/2021 04:53:32</publishTime>
+    </File>
     <File Include="bin/ClsModSysAgro.dll">
-      <publishTime>08/28/2023 14:27:23</publishTime>
+      <publishTime>08/28/2023 20:11:56</publishTime>
     </File>
     <File Include="bin/ClsModSysAgro.pdb">
-      <publishTime>08/28/2023 14:27:23</publishTime>
+      <publishTime>08/28/2023 20:11:56</publishTime>
+    </File>
+    <File Include="bin/Dapper.dll">
+      <publishTime>08/17/2023 12:16:50</publishTime>
     </File>
     <File Include="bin/es/System.Web.Helpers.resources.dll">
       <publishTime>11/28/2018 06:04:36</publishTime>
@@ -41,11 +47,38 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/es/System.Web.WebPages.resources.dll">
       <publishTime>11/28/2018 06:04:36</publishTime>
     </File>
+    <File Include="bin/Google.Protobuf.dll">
+      <publishTime>10/26/2022 06:46:16</publishTime>
+    </File>
+    <File Include="bin/Google.Protobuf.pdb">
+      <publishTime>10/26/2022 11:42:16</publishTime>
+    </File>
+    <File Include="bin/K4os.Compression.LZ4.dll">
+      <publishTime>01/06/2023 10:16:10</publishTime>
+    </File>
+    <File Include="bin/K4os.Compression.LZ4.Streams.dll">
+      <publishTime>01/06/2023 10:16:12</publishTime>
+    </File>
+    <File Include="bin/K4os.Hash.xxHash.dll">
+      <publishTime>11/08/2022 11:08:14</publishTime>
+    </File>
+    <File Include="bin/MaSysAgro.dll">
+      <publishTime>08/28/2023 20:11:56</publishTime>
+    </File>
+    <File Include="bin/MaSysAgro.pdb">
+      <publishTime>08/28/2023 20:11:56</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Bcl.AsyncInterfaces.dll">
+      <publishTime>10/19/2020 11:40:36</publishTime>
+    </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>09/05/2018 16:10:50</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>07/25/2012 11:48:56</publishTime>
+    </File>
+    <File Include="bin/MySql.Data.dll">
+      <publishTime>07/11/2023 20:30:50</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>04/22/2019 01:06:16</publishTime>
@@ -198,10 +231,34 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/08/2018 12:18:16</publishTime>
     </File>
     <File Include="bin/SysAgroWeb.dll">
-      <publishTime>08/28/2023 17:43:32</publishTime>
+      <publishTime>08/29/2023 02:15:02</publishTime>
     </File>
     <File Include="bin/SysAgroWeb.pdb">
-      <publishTime>08/28/2023 17:43:32</publishTime>
+      <publishTime>08/29/2023 02:15:02</publishTime>
+    </File>
+    <File Include="bin/System.Buffers.dll">
+      <publishTime>02/19/2020 03:05:18</publishTime>
+    </File>
+    <File Include="bin/System.Configuration.ConfigurationManager.dll">
+      <publishTime>11/20/2017 11:09:04</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.DiagnosticSource.dll">
+      <publishTime>02/15/2023 17:55:30</publishTime>
+    </File>
+    <File Include="bin/System.IO.Pipelines.dll">
+      <publishTime>02/15/2022 10:10:38</publishTime>
+    </File>
+    <File Include="bin/System.Memory.dll">
+      <publishTime>05/07/2022 20:31:02</publishTime>
+    </File>
+    <File Include="bin/System.Numerics.Vectors.dll">
+      <publishTime>05/15/2018 06:29:44</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.CompilerServices.Unsafe.dll">
+      <publishTime>10/22/2021 16:40:18</publishTime>
+    </File>
+    <File Include="bin/System.Threading.Tasks.Extensions.dll">
+      <publishTime>02/19/2020 03:05:18</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>11/28/2018 13:04:24</publishTime>
@@ -229,6 +286,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 13:57:34</publishTime>
+    </File>
+    <File Include="bin/ZstdSharp.dll">
+      <publishTime>04/06/2023 05:25:30</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css">
       <publishTime>08/26/2023 09:36:58</publishTime>
@@ -858,16 +918,19 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/08/2023 16:55:56</publishTime>
     </File>
     <File Include="Scripts/js/Global.js">
-      <publishTime>08/28/2023 17:37:00</publishTime>
+      <publishTime>08/29/2023 02:01:25</publishTime>
     </File>
     <File Include="Scripts/js/Layout/Layout.js">
       <publishTime>08/28/2023 17:36:14</publishTime>
     </File>
     <File Include="Scripts/js/Login/LoginControllers.js">
-      <publishTime>08/28/2023 17:38:49</publishTime>
+      <publishTime>08/29/2023 02:10:37</publishTime>
     </File>
     <File Include="Scripts/js/Login/RecuperarControllers.js">
       <publishTime>08/28/2023 17:35:45</publishTime>
+    </File>
+    <File Include="Scripts/js/Login/RegistrateControllers.js">
+      <publishTime>08/29/2023 01:48:41</publishTime>
     </File>
     <File Include="Scripts/js/Perfil/PerfilControllers.js">
       <publishTime>08/28/2023 17:35:27</publishTime>
@@ -977,8 +1040,11 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Views/Home/Perfil.cshtml">
       <publishTime>08/28/2023 17:39:28</publishTime>
     </File>
+    <File Include="Views/Home/Registrate.cshtml">
+      <publishTime>08/29/2023 01:31:50</publishTime>
+    </File>
     <File Include="Views/Login/Login.cshtml">
-      <publishTime>08/28/2023 17:38:05</publishTime>
+      <publishTime>08/29/2023 01:19:45</publishTime>
     </File>
     <File Include="Views/Login/RecuperarPassword.cshtml">
       <publishTime>08/28/2023 17:39:03</publishTime>
@@ -996,7 +1062,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/26/2023 09:36:57</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/28/2023 17:43:32</publishTime>
+      <publishTime>08/29/2023 02:15:02</publishTime>
     </File>
   </ItemGroup>
 </Project>

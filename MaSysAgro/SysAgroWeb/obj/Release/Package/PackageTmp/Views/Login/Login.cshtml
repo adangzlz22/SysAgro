@@ -1,0 +1,95 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome-web/css/all.css" rel="stylesheet" />
+    <link href="/Content/img/icono-pest.ico" rel="icon" />
+    <script src="~/Scripts/sweetalert2.all.min.js"></script>
+</head>
+<body class="body1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <br /><br />
+                        <h1 class="logo">
+                            <img src="~/Content/img/Recurso 2@2x.png" style="width: 150px;" />
+                        </h1><br />
+
+                    </div>
+                </div>
+                <div class="card card-login">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <br />
+                                <h2 style="color:#7ab37f">Welcome</h2>
+                                <br />
+                            </div>
+                        </div>
+                        <div class="mb-3 padding1">
+                            <label for="email" class="form-label label-login">User:</label>
+                            <input id="txtUsuario" class="form-control form-login" type="text" name="name" value="" />
+                        </div>
+                        <div class="mb-3 mt-3 padding1">
+                            <label for="email" class="form-label label-login">Password:</label>
+                            <div class="input-group mb-3">
+                                <input id="txtPassword" class="form-control form-login" type="password" name="name" value="" />
+                                <span class="input-group-text contra2" style="background-color: #343433; border-color: #343433 "><i class="fa fa-eye-slash fs-5 showpwd" onclick="showPwd('txtPassword', this)" style="color: #fff;"></i></span>
+                            </div>
+                        </div>
+                            <div class="mb-3 mt-3 padding1">
+                                <button id="btnLogearse" class="btn btn-primary" type="button" name="name" value="">Login</button>
+                            </div>
+                            <div class="mb-3 mt-3 padding1 text-center">
+                                <p>Don't have a user? <a href="/Home/Registrate">Sign up</a></p>
+                                <p> <a href="/Login/RecuperarPassword">Forgot Password?</a></p> <br />
+                            </div>
+
+                        </div>
+                </div>
+            </div>
+            <div class="col-lg-3"></div>
+
+        </div>
+
+    </div>
+    <script src="~/Scripts/js/Global.js"></script>
+    <script src="~/Scripts/axios.js"></script>
+    <script src="~/Scripts/sweetalert2.all.min.js"></script>
+    <script src="~/Scripts/axios.min.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/js/Login/LoginControllers.js?v=1.0"></script>
+    <script type="text/javascript">
+        (function () {
+            var clsLoginControllers = new LoginControllers();
+            clsLoginControllers.Inicializar();
+        })();
+    </script>
+    <script>
+        function showPwd(id, el) {
+            let x = document.getElementById(id);
+            if (x.type === "password") {
+                x.type = "text";
+                el.className = 'fa fa-eye fs-5 showpwd';
+            } else {
+                x.type = "password";
+                el.className = 'fa fa-eye-slash fs-5 showpwd';
+            }
+        }
+
+    </script>
+</body>
+
+</html>
