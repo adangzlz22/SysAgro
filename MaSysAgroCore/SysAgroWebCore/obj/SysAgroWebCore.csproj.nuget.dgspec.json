@@ -1,29 +1,22 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\AdanGlez\\Documents\\PERSONAL\\SysAgro\\MaSysAgroCore\\SysAgroWebCore\\SysAgroWebCore.csproj": {}
+    "C:\\Users\\MariaParedes\\Desktop\\ProyectosMP\\SysAgro\\MaSysAgroCore\\SysAgroWebCore\\SysAgroWebCore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\AdanGlez\\Documents\\PERSONAL\\SysAgro\\MaSysAgroCore\\SysAgroWebCore\\SysAgroWebCore.csproj": {
+    "C:\\Users\\MariaParedes\\Desktop\\ProyectosMP\\SysAgro\\MaSysAgroCore\\SysAgroWebCore\\SysAgroWebCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AdanGlez\\Documents\\PERSONAL\\SysAgro\\MaSysAgroCore\\SysAgroWebCore\\SysAgroWebCore.csproj",
+        "projectUniqueName": "C:\\Users\\MariaParedes\\Desktop\\ProyectosMP\\SysAgro\\MaSysAgroCore\\SysAgroWebCore\\SysAgroWebCore.csproj",
         "projectName": "SysAgroWebCore",
-        "projectPath": "C:\\Users\\AdanGlez\\Documents\\PERSONAL\\SysAgro\\MaSysAgroCore\\SysAgroWebCore\\SysAgroWebCore.csproj",
-        "packagesPath": "C:\\Users\\AdanGlez\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AdanGlez\\Documents\\PERSONAL\\SysAgro\\MaSysAgroCore\\SysAgroWebCore\\obj\\",
+        "projectPath": "C:\\Users\\MariaParedes\\Desktop\\ProyectosMP\\SysAgro\\MaSysAgroCore\\SysAgroWebCore\\SysAgroWebCore.csproj",
+        "packagesPath": "C:\\Users\\MariaParedes\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\MariaParedes\\Desktop\\ProyectosMP\\SysAgro\\MaSysAgroCore\\SysAgroWebCore\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\AdanGlez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\MariaParedes\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.1.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net461"
@@ -81,7 +74,8 @@
               "target": "Package",
               "version": "[2.2.7, )"
             }
-          }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

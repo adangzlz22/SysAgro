@@ -233,7 +233,7 @@
                                                         <input type="file" ID="duImagenEmpresa" class="file-upload-input" onchange="readURL(this);" runat="server" accept="image/*" />
                                                         <div class="row text-center" style="align-content:center">
                                                             <div class="text-center">
-                                                                <img src="/Content/img/computacion-en-la-nube.png" style="width: 50px" />
+                                                                <img src="/css/Content/img/computacion-en-la-nube.png" style="width: 50px" />
                                                             </div>
 
 
@@ -367,7 +367,7 @@
                                                 <div class="input-group mb-3">
                                                     <input id="txtContraActual" type="password" name="fname" class="form-control form-control-lg form-control-solid  mb-lg-0" style="height:100%">
                                                     <span class="input-group-text contra2" style="background-color: #343433; border-color: #343433 ">
-                                                        <img src="~/Content/img/invisible.png" id="img1" class="showpwd" onclick="showPwd('txtContraActual', this)" style="width:20px" />
+                                                        <img src="/css/Content/img/invisible.png" id="img1" class="showpwd" onclick="showPwd('txtContraActual', this)" style="width:20px" />
                                                     </span>
 
                                                 </div>   <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -378,7 +378,7 @@
                                                 <div class="input-group mb-3">
                                                     <input ID="txtNuevaContraseña" type="password" runat="server" class="form-control form-control-lg form-control-solid  mb-lg-0" style="height:100%" />
                                                     <span class="input-group-text contra2" style="background-color: #343433; border-color: #343433 ">
-                                                        <img src="~/Content/img/invisible.png" id="img2" class="showpwd" onclick="showPwd2('txtNuevaContraseña', this)" style="width:20px" />
+                                                        <img src="/css/Content/img/invisible.png" id="img2" class="showpwd" onclick="showPwd2('txtNuevaContraseña', this)" style="width:20px" />
                                                     </span>
                                                 </div>
                                                 <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -391,7 +391,7 @@
                                                 <div class="input-group mb-3">
                                                     <input ID="txtConfirmarContraseña" type="password" runat="server" class="form-control form-control-lg form-control-solid  mb-lg-0" style="height:100%" />
                                                     <span class="input-group-text contra2" style="background-color: #343433; border-color: #343433 ">
-                                                        <img src="~/Content/img/invisible.png" id="img3" class="showpwd" onclick="showPwd3('txtConfirmarContraseña', this)" style="width:20px" />
+                                                        <img src="/css/Content/img/invisible.png" id="img3" class="showpwd" onclick="showPwd3('txtConfirmarContraseña', this)" style="width:20px" />
                                                     </span>
 
                                                 </div> <div class="fv-plugins-message-container invalid-feedback">
@@ -486,13 +486,13 @@
         if (x.type === "password") {
             x.type = "text";
             el.className = "showpwd";
-            document.getElementById("img1").src = '/Content/img/ojo.png';
+            document.getElementById("img1").src = '/css/Content/img/ojo.png';
 
 
         } else {
             x.type = "password";
             el.className = "showpwd";
-            document.getElementById("img1").src = '/Content/img/invisible.png';
+            document.getElementById("img1").src = '/css/Content/img/invisible.png';
 
 
         }
@@ -503,13 +503,13 @@
             x.type = "text";
             el.className = "showpwd";
 
-            document.getElementById("img2").src = '/Content/img/ojo.png';
+            document.getElementById("img2").src = '/css/Content/img/ojo.png';
 
         } else {
             x.type = "password";
             el.className = "showpwd";
 
-            document.getElementById("img2").src = '/Content/img/invisible.png';
+            document.getElementById("img2").src = '/css/Content/img/invisible.png';
 
         }
     }
@@ -519,13 +519,13 @@
             x.type = "text";
             el.className = "showpwd";
 
-            document.getElementById("img3").src = '/Content/img/ojo.png';
+            document.getElementById("img3").src = '/css/Content/img/ojo.png';
 
         } else {
             x.type = "password";
             el.className = "showpwd";
 
-            document.getElementById("img3").src = '/Content/img/invisible.png';
+            document.getElementById("img3").src = '/css/Content/img/invisible.png';
 
         }
     }

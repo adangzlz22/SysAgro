@@ -15,6 +15,14 @@
 #body-2{
     background:none
 }
+.btn .btn-primary {
+    width: 100%;
+    background-color: #7ab37f;
+    border: none;
+    padding: 10px;
+    font-size: 18px;
+}
+
 @media screen and (max-width: 600px) {
     .padding1 {
         padding-left: 10px !important;
@@ -74,20 +82,20 @@
         margin-top:45%
     }
 }
-#btnLogearse {
+.btn-primary {
     width: 100%;
     background-color: #7ab37f   ;
     border:none;
     padding:10px;
     font-size:18px
 }
-#btnLogearse:hover {
-    width: 100%;
-    background-color: #000;
-    border: none;
-    padding: 10px;
-    font-size: 18px
-}
+    .btn-primary:hover {
+        width: 100%;
+        background-color: #000!important;
+        border: none;
+        padding: 10px;
+        font-size: 18px
+    }
 #btnRecuperar {
     width: 100%;
     background-color: #7ab37f;
