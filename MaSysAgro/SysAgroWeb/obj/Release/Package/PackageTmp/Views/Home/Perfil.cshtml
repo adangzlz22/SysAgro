@@ -1,0 +1,532 @@
+﻿@*<div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                <br />
+                <br />
+                <br />
+                <h1 id="sitio">Sitio en Construcción</h1>
+                <img src="/Content/img/enconstruccion.png" style="width:90%" />
+            </div>
+        </div>
+    </div>*@
+<style>
+    .offcanvas-header {
+        color: #2f6997 !important
+    }
+
+    .offcanvas-body {
+        text-align: left
+    }
+
+        .offcanvas-body h3 {
+            color: #2f6997 !important
+        }
+
+        .offcanvas-body p {
+            font-size: 15px !important;
+            text-align: justify
+        }
+
+    .dxeButtonEdit_Material .dxeEditArea_Material {
+        background-color: #f5f8fa;
+    }
+
+    .dxeButtonEditButton_Material, .dxeCalendarButton_Material, .dxeSpinIncButton_Material, .dxeSpinDecButton_Material, .dxeSpinLargeIncButton_Material, .dxeSpinLargeDecButton_Material, .dxeColorEditButton_Material {
+        background-color: #f5f8fa;
+    }
+
+    .dxeListBoxItem_Material {
+        padding: 8px 10px 7px;
+        white-space: normal !important
+    }
+
+    .file-upload {
+        background-color: #ffffff;
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+        .file-upload:hover {
+            color: #ffffff !important;
+        }
+
+
+
+
+
+    .file-upload-content {
+        display: none;
+        text-align: center;
+    }
+
+    .file-upload-input {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .image-upload-wrap {
+        border: 1px dashed #7ab37f;
+        position: relative;
+        background-color: #7ab37f1a;
+        color: white;
+        border-radius: 10px;
+    }
+
+        .image-dropping,
+        .image-upload-wrap:hover {
+            background-color: #7ab37f1a;
+            border: 1px dashed #7ab37f;
+            border-radius: 10px
+        }
+
+    .image-title-wrap {
+        padding: 0 15px 15px 15px;
+        color: #222;
+    }
+
+    .drag-text {
+        text-align: center;
+    }
+
+        .drag-text h5 {
+            font-weight: 100;
+        }
+
+            .drag-text h5:hover {
+                font-weight: 100;
+                color: #fff;
+            }
+
+    .file-upload-image {
+        max-height: 400px;
+        max-width: 200px;
+        margin: auto;
+        padding: 5px;
+    }
+
+    .remove-image {
+        width: 100%;
+        margin: 0;
+        color: #ff0000;
+        background: none;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        transition: all .2s ease;
+        outline: none;
+    }
+
+        .remove-image:hover {
+            background: none;
+            color: #000;
+            transition: all .2s ease;
+            cursor: pointer;
+        }
+
+        .remove-image:active {
+            border: 0;
+            transition: all .2s ease;
+        }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="card mb-5 mb-xl-10">
+                <div class="card-body pt-9 pb-0">
+                    <!--card de informacion de usuario-->
+                    <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
+                        <div class="me-7 mb-4">
+                            <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+
+                                <img src="@ViewBag.ImagenPerfil" />
+                                <div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-white h-20px w-20px"></div>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                                <div class="d-flex flex-column">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <Label ID="lblNombreCompleto" Text="text" runat="server" class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1">@ViewBag.Nombre1 @ViewBag.ApellidoPaterno @ViewBag.ApellidoMaterno</Label>
+                                    </div>
+                                    <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
+                                        <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
+                                            <i class="fa fa-user-circle" aria-hidden="true" style="padding-right: 2px; font-size:18px"></i>
+
+                                            <span ID="lblNombreUsuario" style="font-size:18px">@ViewBag.Usuario</span>
+                                        </a>
+                                        <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
+                                            <i class="fa fa-envelope" aria-hidden="true" style="padding-right: 2px; font-size:18px"></i>
+
+                                            <span ID="lblCorreo" style="font-size:18px">@ViewBag.Email</span>
+                                        </a>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <!--final card de informacion de usuario-->
+                    <!--navs para navegacion de los formularios de información-->
+                    <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder">
+                        <!--Nav item-->
+                        <li class="nav-item mt-2">
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5 active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Personal information</a>
+                        </li>
+
+
+
+
+                        <!--Nav item-->
+                        <li class="nav-item mt-2">
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5" id="nav-menu3-tab" data-bs-toggle="tab" data-bs-target="#nav-menu3" role="tab" aria-controls="nav-menu3" aria-selected="false">Change Password</a>
+                        </li>
+                    </ul>
+
+
+                </div>
+            </div>
+            <!--Contenedor de los nav items-->
+            <div class="col-lg-12 col-md-12 col-sm-12">
+
+
+                <!--tab content-->
+                <div class="tab-content" id="myTabContent">
+                    <!--tab content home-->
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="card mb-5 mb-xl-10">
+                            <!--Card header-->
+                            <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
+                                <div class="card-title m-0">
+                                    <h2 class="d-flex align-items-center">
+                                        Personal information
+
+                                    </h2>
+
+                                </div>
+                            </div>
+                            <div class="collapse show">
+                                <div class="form fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
+                                    <!--Card body-->
+                                    <div class="card-body border-top p-9">
+                                        <div class="row mb-6">
+                                            <div class="col-lg-4 fv-row fv-plugins-icon-container">
+                                                <input ID="txtIdOculto" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="IdOculto" style="display:none" value="@ViewBag.Id" />
+                                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-6">
+
+                                            <label class="col-lg-4 col-form-label fw-bold fs-6">Profile Picture</label>
+                                            <div class="col-lg-4">
+                                                <div class="file file-upload">
+                                                    <div id="divSinImagen" runat="server" class="image-upload-wrap  w-135px h-135px">
+                                                        <input type="file" ID="duImagenEmpresa" class="file-upload-input" onchange="readURL(this);" runat="server" accept="image/*" />
+                                                        <div class="row text-center" style="align-content:center">
+                                                            <div class="text-center">
+                                                                <img src="/Content/img/computacion-en-la-nube.png" style="width: 50px" />
+                                                            </div>
+
+
+
+                                                            <h3>Upload Image</h3>
+
+                                                        </div>
+                                                        @*<div class="drag-text" style="z-index:0">
+                                                                <br />
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <img src="/Content/img/computacion-en-la-nube.png" style="width: 40px" />
+                                                                    </div>
+                                                                    <div class="col-lg-12">
+
+                                                                        <h3>Subir imagen</h3>
+                                                                    </div>
+                                                                </div>
+                                                                <br />
+                                                            </div>*@
+                                                    </div>
+                                                    <div id="divConImagen" runat="server" class="file-upload-content">
+                                                        <img ID="imgEntrenador" class="file-upload-image" runat="server" alt="your image" />
+                                                        <div class="image-title-wrap">
+                                                            <button type="button" onclick="removeUpload()" class="remove-image" style="font-size:1.075rem !important">Eliminar imagen <i class="fa fa-minus-circle" aria-hidden="true" style="color:red"></i> @*<span class="image-title">Uploaded Image</span>*@</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--subir imagen-->
+
+                                                <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-6">
+                                            <!--teléfono-->
+                                            <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                                <span class="required">User</span>
+                                            </label>
+                                            <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                                <input ID="txtUsuario" class="form-control form-control-lg form-control-solid" placeholder="User" value="@ViewBag.Usuario" readonly />
+
+                                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-6">
+                                            <!--nombre-->
+                                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Full Name</label>
+                                            <div class="col-lg-8">
+                                                <div class="row">
+                                                    <div class="col-lg-4 fv-row fv-plugins-icon-container">
+                                                        <input ID="txtNombreUsuario" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="Name" value="@ViewBag.Nombre1" />
+                                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                                    </div>
+                                                    <div class="col-lg-4 fv-row fv-plugins-icon-container">
+                                                        <input ID="txtApePaternoUsuario" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="last name P" value="@ViewBag.ApellidoPaterno" />
+                                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                                    </div>
+                                                    <div class="col-lg-4 fv-row fv-plugins-icon-container">
+                                                        <input ID="txtApeMaternoUsuario" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="last name M" value="@ViewBag.ApellidoMaterno" />
+                                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--<div class="row mb-6">-->
+                                        <!--teléfono-->
+                                        <!--<label class="col-lg-4 col-form-label fw-bold fs-6">
+                                                <span class="required">ID Único</span>
+                                            </label>
+                                            <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                                <input ID="txtIdUnico" class="form-control form-control-lg form-control-solid" placeholder="ID Único" />
+                                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                                            </div>
+                                        </div>-->
+                                        <div class="row mb-6">
+                                            <!--teléfono-->
+                                            <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                                <span class="required">Phone</span>
+                                            </label>
+                                            <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                                <input ID="txtTelefono" class="form-control form-control-lg form-control-solid" placeholder="Phone" value="@ViewBag.Telefono" />
+                                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row mb-6">
+                                            <!--correo-->
+                                            <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                                <span class="required">Email</span>
+                                            </label>
+                                            <div class="col-lg-8 fv-row">
+                                                <input ID="txtCorreoElectronico" class="form-control form-control-lg form-control-solid" placeholder="Email " value="@ViewBag.Email" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!--final card-body-->
+                                    <!--card-footer-->
+
+                                    <input type="hidden"><div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--final del container home-->
+                    <!--inicio del container menu3-->
+                    <div class="tab-pane fade" id="nav-menu3" role="tabpanel" aria-labelledby="menu3-tab">
+                        <!--Card-->
+                        <div class="card mb-5 mb-xl-10">
+                            <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
+                                <!--Card title-->
+                                <div class="card-title m-0">
+                                    <h2 class="d-flex align-items-center">
+                                        Change Password
+
+                                    </h2>
+
+                                </div>
+                            </div>
+                            <div class="collapse show">
+                                <div class="form fv-plugins-bootstrap5 fv-plugins-framework">
+                                    <!--Card body-->
+                                    <div class="card-body border-top p-9">
+
+                                        <div class="row mb-6">
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <!--Contraseña actual-->
+                                                <label class="col-form-label required fw-bold fs-6">Current password</label>
+                                                <div class="input-group mb-3">
+                                                    <input id="txtContraActual" type="password" name="fname" class="form-control form-control-lg form-control-solid  mb-lg-0" style="height:100%">
+                                                    <span class="input-group-text contra2" style="background-color: #343433; border-color: #343433 ">
+                                                        <img src="~/Content/img/invisible.png" id="img1" class="showpwd" onclick="showPwd('txtContraActual', this)" style="width:20px" />
+                                                    </span>
+
+                                                </div>   <div class="fv-plugins-message-container invalid-feedback"></div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <!--nueva contraseña-->
+                                                <label class="col-form-label required fw-bold fs-6">New Password</label>
+                                                <div class="input-group mb-3">
+                                                    <input ID="txtNuevaContraseña" type="password" runat="server" class="form-control form-control-lg form-control-solid  mb-lg-0" style="height:100%" />
+                                                    <span class="input-group-text contra2" style="background-color: #343433; border-color: #343433 ">
+                                                        <img src="~/Content/img/invisible.png" id="img2" class="showpwd" onclick="showPwd2('txtNuevaContraseña', this)" style="width:20px" />
+                                                    </span>
+                                                </div>
+                                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <!--confirmar contraseña-->
+                                                <label class="col-form-label required fw-bold fs-6">
+                                                    Confirm Password
+                                                </label>
+                                                <div class="input-group mb-3">
+                                                    <input ID="txtConfirmarContraseña" type="password" runat="server" class="form-control form-control-lg form-control-solid  mb-lg-0" style="height:100%" />
+                                                    <span class="input-group-text contra2" style="background-color: #343433; border-color: #343433 ">
+                                                        <img src="~/Content/img/invisible.png" id="img3" class="showpwd" onclick="showPwd3('txtConfirmarContraseña', this)" style="width:20px" />
+                                                    </span>
+
+                                                </div> <div class="fv-plugins-message-container invalid-feedback">
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--final Card body-->
+                                    <!--card-footer-->
+
+                                    <input type="hidden"><div></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class=" d-flex justify-content-end py-6 px-9">
+                        @*<button type="reset" class="btn btn-light btn-active-light-primary me-2" style="background-color:#dddddd">Cancelar</button>*@
+                        <Button ID="btnGuardarPerfil" Text="Guardar" class="btn btn-primary">
+                            Save
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+
+<script src="~/Scripts/js/Global.js"></script>
+<script src="~/Scripts/sweetalert2.all.min.js"></script>
+<script src="~/Scripts/axios.js"></script>
+<script src="~/Scripts/axios.min.js"></script>
+<script src="~/Scripts/jquery.min.js"></script>
+@*<script src="~/Scripts/bootstrap.bundle.min.js"></script>*@
+<script src="~/Scripts/js/Perfil/PerfilControllers.js?v=1.0"></script>
+<script type="text/javascript">
+    (function () {
+        var clsPerfilControllers = new PerfilControllers();
+        clsPerfilControllers.Inicializar();
+    })();
+</script>
+
+<script>
+    function pruebita() {
+        $('.image-upload-wrap').hide();
+        $('.file-upload-content').show();
+    }
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.image-upload-wrap').hide();
+
+                $('.file-upload-image').attr('src', e.target.result);
+                $('.file-upload-content').show();
+
+                $('.image-title').html(input.files[0].name);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+
+        } else {
+            removeUpload();
+        }
+    }
+
+    function removeUpload() {
+        $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+        $('.file-upload-content').hide();
+        $('.image-upload-wrap').show();
+    }
+    $('.image-upload-wrap').bind('dragover', function () {
+        $('.image-upload-wrap').addClass('image-dropping');
+    });
+    $('.image-upload-wrap').bind('dragleave', function () {
+        $('.image-upload-wrap').removeClass('image-dropping');
+    });
+    // Initialize tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+    function showPwd(id, el, img) {
+        let x = document.getElementById(id);
+        if (x.type === "password") {
+            x.type = "text";
+            el.className = "showpwd";
+            document.getElementById("img1").src = '/Content/img/ojo.png';
+
+
+        } else {
+            x.type = "password";
+            el.className = "showpwd";
+            document.getElementById("img1").src = '/Content/img/invisible.png';
+
+
+        }
+    }
+    function showPwd2(id, el, img) {
+        let x = document.getElementById(id);
+        if (x.type === "password") {
+            x.type = "text";
+            el.className = "showpwd";
+
+            document.getElementById("img2").src = '/Content/img/ojo.png';
+
+        } else {
+            x.type = "password";
+            el.className = "showpwd";
+
+            document.getElementById("img2").src = '/Content/img/invisible.png';
+
+        }
+    }
+    function showPwd3(id, el, img) {
+        let x = document.getElementById(id);
+        if (x.type === "password") {
+            x.type = "text";
+            el.className = "showpwd";
+
+            document.getElementById("img3").src = '/Content/img/ojo.png';
+
+        } else {
+            x.type = "password";
+            el.className = "showpwd";
+
+            document.getElementById("img3").src = '/Content/img/invisible.png';
+
+        }
+    }
+</script>
