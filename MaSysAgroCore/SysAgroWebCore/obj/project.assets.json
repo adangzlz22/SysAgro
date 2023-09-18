@@ -3276,9 +3276,6 @@
       },
       "Microsoft.DiaSymReader.Native/1.7.0": {
         "type": "package",
-        "native": {
-          "runtimes/win-x86/native/Microsoft.DiaSymReader.Native.x86.dll": {}
-        },
         "build": {
           "build/_._": {}
         }
@@ -3764,7 +3761,7 @@
           "ref/net461/Microsoft.Win32.Registry.dll": {}
         },
         "runtime": {
-          "runtimes/win/lib/net461/Microsoft.Win32.Registry.dll": {}
+          "lib/net461/Microsoft.Win32.Registry.dll": {}
         }
       },
       "MySqlConnector/2.2.7": {
@@ -3924,7 +3921,7 @@
           "ref/net46/_._": {}
         },
         "runtime": {
-          "runtimes/win/lib/net46/System.Diagnostics.FileVersionInfo.dll": {}
+          "lib/net46/System.Diagnostics.FileVersionInfo.dll": {}
         }
       },
       "System.Diagnostics.StackTrace/4.3.0": {
@@ -3982,7 +3979,7 @@
           "ref/net46/System.IO.Compression.dll": {}
         },
         "runtime": {
-          "runtimes/win/lib/net46/System.IO.Compression.dll": {}
+          "lib/net46/System.IO.Compression.dll": {}
         }
       },
       "System.IO.FileSystem/4.3.0": {
@@ -4168,7 +4165,7 @@
           "ref/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
         },
         "runtime": {
-          "runtimes/win/lib/net45/System.Runtime.InteropServices.RuntimeInformation.dll": {}
+          "lib/net45/System.Runtime.InteropServices.RuntimeInformation.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -4195,7 +4192,7 @@
           "ref/net461/System.Security.AccessControl.dll": {}
         },
         "runtime": {
-          "runtimes/win/lib/net461/System.Security.AccessControl.dll": {}
+          "lib/net461/System.Security.AccessControl.dll": {}
         }
       },
       "System.Security.Cryptography.Algorithms/4.3.0": {
@@ -4211,7 +4208,7 @@
           "ref/net461/System.Security.Cryptography.Algorithms.dll": {}
         },
         "runtime": {
-          "runtimes/win/lib/net461/System.Security.Cryptography.Algorithms.dll": {}
+          "lib/net461/System.Security.Cryptography.Algorithms.dll": {}
         }
       },
       "System.Security.Cryptography.Cng/4.5.0": {
@@ -4224,7 +4221,7 @@
           "ref/net461/System.Security.Cryptography.Cng.dll": {}
         },
         "runtime": {
-          "runtimes/win/lib/net461/System.Security.Cryptography.Cng.dll": {}
+          "lib/net461/System.Security.Cryptography.Cng.dll": {}
         }
       },
       "System.Security.Cryptography.Encoding/4.3.0": {
@@ -4237,7 +4234,7 @@
           "ref/net46/System.Security.Cryptography.Encoding.dll": {}
         },
         "runtime": {
-          "runtimes/win/lib/net46/System.Security.Cryptography.Encoding.dll": {}
+          "lib/net46/System.Security.Cryptography.Encoding.dll": {}
         }
       },
       "System.Security.Cryptography.Primitives/4.3.0": {
@@ -4267,7 +4264,7 @@
           "ref/net461/System.Security.Cryptography.X509Certificates.dll": {}
         },
         "runtime": {
-          "runtimes/win/lib/net461/System.Security.Cryptography.X509Certificates.dll": {}
+          "lib/net461/System.Security.Cryptography.X509Certificates.dll": {}
         }
       },
       "System.Security.Cryptography.Xml/4.5.0": {
@@ -4320,7 +4317,7 @@
           "ref/net461/System.Security.Principal.Windows.dll": {}
         },
         "runtime": {
-          "runtimes/win/lib/net461/System.Security.Principal.Windows.dll": {}
+          "lib/net461/System.Security.Principal.Windows.dll": {}
         }
       },
       "System.Text.Encoding/4.3.0": {
@@ -4338,7 +4335,7 @@
           "ref/netstandard1.3/_._": {}
         },
         "runtime": {
-          "runtimes/win/lib/netstandard1.3/System.Text.Encoding.CodePages.dll": {}
+          "lib/net46/System.Text.Encoding.CodePages.dll": {}
         }
       },
       "System.Text.Encoding.Extensions/4.3.0": {
@@ -8913,21 +8910,31 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\MariaParedes\\.nuget\\packages\\": {}
+    "C:\\Users\\AdanGlez\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MariaParedes\\Desktop\\ProyectosMP\\SysAgro\\MaSysAgroCore\\SysAgroWebCore\\SysAgroWebCore.csproj",
+      "projectUniqueName": "C:\\Users\\AdanGlez\\Documents\\PERSONAL\\SysAgro\\MaSysAgroCore\\SysAgroWebCore\\SysAgroWebCore.csproj",
       "projectName": "SysAgroWebCore",
-      "projectPath": "C:\\Users\\MariaParedes\\Desktop\\ProyectosMP\\SysAgro\\MaSysAgroCore\\SysAgroWebCore\\SysAgroWebCore.csproj",
-      "packagesPath": "C:\\Users\\MariaParedes\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MariaParedes\\Desktop\\ProyectosMP\\SysAgro\\MaSysAgroCore\\SysAgroWebCore\\obj\\",
+      "projectPath": "C:\\Users\\AdanGlez\\Documents\\PERSONAL\\SysAgro\\MaSysAgroCore\\SysAgroWebCore\\SysAgroWebCore.csproj",
+      "packagesPath": "C:\\Users\\AdanGlez\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\AdanGlez\\Documents\\PERSONAL\\SysAgro\\MaSysAgroCore\\SysAgroWebCore\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\MariaParedes\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\AdanGlez\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.1.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net461"
@@ -8985,8 +8992,7 @@
             "target": "Package",
             "version": "[2.2.7, )"
           }
-        },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+        }
       }
     },
     "runtimes": {
