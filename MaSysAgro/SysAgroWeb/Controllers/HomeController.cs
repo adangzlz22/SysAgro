@@ -30,6 +30,48 @@ namespace SysAgroWeb.Controllers
                 return Redirect("/Login/Login");
             }
         }
+        public ActionResult Project()
+        {
+            if (vSesiones.sesionUsuarioDTO != null)
+            {
+                ViewBag.Nombre = vSesiones.sesionUsuarioDTO.Nombre + " " + vSesiones.sesionUsuarioDTO.ApellidoPaterno + " " + vSesiones.sesionUsuarioDTO.ApellidoMaterno;
+                ViewBag.Id = vSesiones.sesionUsuarioDTO.Id;
+                ViewBag.Nombre1 = vSesiones.sesionUsuarioDTO.Nombre;
+                ViewBag.ApellidoPaterno = vSesiones.sesionUsuarioDTO.ApellidoPaterno;
+                ViewBag.ApellidoMaterno = vSesiones.sesionUsuarioDTO.ApellidoMaterno;
+                ViewBag.Telefono = vSesiones.sesionUsuarioDTO.Telefono;
+                ViewBag.Email = vSesiones.sesionUsuarioDTO.Email;
+                ViewBag.Usuario = vSesiones.sesionUsuarioDTO.Usuario;
+                ViewBag.ImagenPerfil = vSesiones.sesionUsuarioDTO.ImagenPerfil;
+
+                return View();
+            }
+            else
+            {
+                return Redirect("/Login/Login");
+            }
+        }
+        public ActionResult Devices()
+        {
+            if (vSesiones.sesionUsuarioDTO != null)
+            {
+                ViewBag.Nombre = vSesiones.sesionUsuarioDTO.Nombre + " " + vSesiones.sesionUsuarioDTO.ApellidoPaterno + " " + vSesiones.sesionUsuarioDTO.ApellidoMaterno;
+                ViewBag.Id = vSesiones.sesionUsuarioDTO.Id;
+                ViewBag.Nombre1 = vSesiones.sesionUsuarioDTO.Nombre;
+                ViewBag.ApellidoPaterno = vSesiones.sesionUsuarioDTO.ApellidoPaterno;
+                ViewBag.ApellidoMaterno = vSesiones.sesionUsuarioDTO.ApellidoMaterno;
+                ViewBag.Telefono = vSesiones.sesionUsuarioDTO.Telefono;
+                ViewBag.Email = vSesiones.sesionUsuarioDTO.Email;
+                ViewBag.Usuario = vSesiones.sesionUsuarioDTO.Usuario;
+                ViewBag.ImagenPerfil = vSesiones.sesionUsuarioDTO.ImagenPerfil;
+
+                return View();
+            }
+            else
+            {
+                return Redirect("/Login/Login");
+            }
+        }
 
         public ActionResult About()
         {

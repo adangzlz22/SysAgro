@@ -9,3 +9,9 @@ C:\Users\AdanGlez\Documents\PERSONAL\MaSysAgro\ClsModSysAgro\bin\Debug\ClsModSys
 C:\Users\AdanGlez\Documents\PERSONAL\MaSysAgro\ClsModSysAgro\obj\Debug\ClsModSysAgro.csproj.CoreCompileInputs.cache
 C:\Users\AdanGlez\Documents\PERSONAL\MaSysAgro\ClsModSysAgro\obj\Debug\ClsModSysAgro.dll
 C:\Users\AdanGlez\Documents\PERSONAL\MaSysAgro\ClsModSysAgro\obj\Debug\ClsModSysAgro.pdb
+C:\Users\MariaParedes\Desktop\ProyectosMP\SysAgro\MaSysAgro\ClsModSysAgro\bin\Debug\ClsModSysAgro.dll
+C:\Users\MariaParedes\Desktop\ProyectosMP\SysAgro\MaSysAgro\ClsModSysAgro\bin\Debug\ClsModSysAgro.pdb
+C:\Users\MariaParedes\Desktop\ProyectosMP\SysAgro\MaSysAgro\ClsModSysAgro\obj\Debug\ClsModSysAgro.csprojAssemblyReference.cache
+C:\Users\MariaParedes\Desktop\ProyectosMP\SysAgro\MaSysAgro\ClsModSysAgro\obj\Debug\ClsModSysAgro.csproj.CoreCompileInputs.cache
+C:\Users\MariaParedes\Desktop\ProyectosMP\SysAgro\MaSysAgro\ClsModSysAgro\obj\Debug\ClsModSysAgro.dll
+C:\Users\MariaParedes\Desktop\ProyectosMP\SysAgro\MaSysAgro\ClsModSysAgro\obj\Debug\ClsModSysAgro.pdb
