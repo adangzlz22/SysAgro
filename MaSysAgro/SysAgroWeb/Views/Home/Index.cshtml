@@ -1,5 +1,12 @@
 ﻿
-
+<style>
+    .box {
+        box-shadow: 0 0.1rem 1rem 0.25rem rgba(0,0,0,.05)
+    }
+        .box:hover {
+            box-shadow: 0 0 11px rgb(122 179 127 / 58%);
+        }
+</style>
 
 <div class="container">
     <div class="row" style="justify-content:center">
@@ -8,13 +15,54 @@
             <br>
             <!-- <h1 class="construction" style="text-transform:uppercase">under <span style="color:#7ab37f">construction</span></h1>
             <img src="~/content/img/enconstruccion2.png" style="width:80%"> -->
-            <div id="ContenedorYaEresCliente">
-                <h1>Ya eres cliente?</h1>
-                <h1>Si ya eres cliente busca un dispositivo</h1>
-                <input type="txtDispositivo" name="name" value="" />
+            <div id="ContenedorYaEresCliente" class="mb-5">
+                <div class="row" style="justify-content:center">
+                    <div class="col-lg-7 col-sm-12 col-md-12">
+                        <div class="card box" style=" border: 1px solid #7ab37f;">
+                            <div class="card-body mt-5 mb-5">
+                                <img src="~/Content/img/cliente2.png" style="width:100px" />
+                                @*<i class="fa-solid fa-users" style="font-size: 65px; color: #7ab37f"></i>*@<br />
+                                <h1 style="color:#7ab37f; font-size:35px">Already a customer?</h1>
+                                <h3>If you are already a customer looking for a device</h3>
+                                <div class="input-group mt-5" style="padding-left:3%; padding-right:3%">
+                                    <input class="form-control form-control-lg form-control-solid" type="txtDispositivo" name="name" value="" style="height:100%">
+                                    <button class="input-group-text" style="background-color: #7ab37f" ><i class="fas fa-search" style="color:white"></i></button>
+                                </div>
+                              <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
             </div>
-            <div id="ContenedorMenu">
+            <div id="ContenedorMenu" class="mb-5">
                 <!--AQUI VAS A PONER LO NUEVO DEL MENU-->
+                <div class="row" style="justify-content:center">
+                    <div class="col-lg-3 col-sm-12 col-md-4 mb-3">
+                        <div class="card box" style=" border: 1px solid #7ab37f;">
+                            <div class="card-body mt-5 mb-5 text-left">
+                                <img src="~/Content/img/ubicacion.png" style="width:50px" class="mb-3" />
+                                @*<i class="fa-solid fa-users" style="font-size: 65px; color: #7ab37f"></i>*@<br />
+                                <h2 style="color:#7ab37f; font-size:30px"><a href="Project">Project</a></h2>
+                                <h4>In this section you will find the projects currently available</h4>
+
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-12 col-md-4 mb-3">
+                        <div class="card box" style=" border: 1px solid #7ab37f;">
+                            <div class="card-body mt-5 mb-5 text-left">
+                                <img src="~/Content/img/dispositivos.png" style="width:50px" class="mb-3" />
+                                @*<i class="fa-solid fa-users" style="font-size: 65px; color: #7ab37f"></i>*@<br />
+                                <h2 style="color:#7ab37f; font-size:30px"><a href="Devices">Devices</a></h2>
+                                <h4>In this section you will find the available devices</h4>
+
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!--<div class="col-lg-6 mb-5">

@@ -87,7 +87,7 @@ a {
 }
 
     a:hover {
-        color: #006dab;
+        color: #000!important;
         text-decoration: underline
     }
 .card-imp {
