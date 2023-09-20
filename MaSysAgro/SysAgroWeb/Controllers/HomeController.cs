@@ -150,6 +150,11 @@ namespace SysAgroWeb.Controllers
             return View();
         }
 
+        public ActionResult Mapa()
+        {
+            return View();
+        }
+
         //15;
         //        ;
 
