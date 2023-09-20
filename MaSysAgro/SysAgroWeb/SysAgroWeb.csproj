@@ -398,6 +398,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jszip.js" />
     <Content Include="Scripts\js\Global.js" />
+    <Content Include="Scripts\js\Home\IndexController.js" />
+    <Content Include="Scripts\js\Home\MapaController.js" />
     <Content Include="Scripts\js\Layout\Layout.js" />
     <Content Include="Scripts\js\Login\LoginControllers.js" />
     <Content Include="Scripts\js\Login\RecuperarControllers.js" />
@@ -455,6 +457,7 @@
     <Content Include="Views\Home\Registrate.cshtml" />
     <Content Include="Views\Home\Project.cshtml" />
     <Content Include="Views\Home\Devices.cshtml" />
+    <Content Include="Views\Home\Mapa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
