@@ -164,12 +164,12 @@
                             </div>
                         </div>
                         <!--subir imagen-->
-                        <input class="form-control form-control-lg form-control-solid mb-2" type="text" placeholder="Devices's name" id="agregarinputTitulo" />
+                        <input class="form-control form-control-lg form-control-solid mb-2" type="text" placeholder="Device name" id="agregarinputTitulo" />
                         <input class="form-control form-control-lg form-control-solid mb-2" type="text" placeholder="Short Device description" id="agregarinputDescription" />
                         <div class="d-flex justify-content-between align-items-center">
 
                             <small class="text-body-secondary"></small> <div class="btn-group">
-                                <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnSave"> <i class="fa-solid fa-floppy-disk"></i></button>
+                                <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnSave" data-bs-toggle="modal" data-bs-target="#myModal"> <i class="fa-solid fa-plus"></i></button>
                             </div>
                         </div>
                     </div>
@@ -226,7 +226,7 @@
                         <div class="d-flex justify-content-between align-items-center">
 
                             <small class="text-body-secondary"></small> <div class="btn-group">
-                                <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnGo"> <i class="fa-solid fa-caret-right"></i></button>
+                                <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnGo" data-bs-toggle="modal" data-bs-target="#myModal"> <i class="fa-solid fa-caret-right"></i></button>
                             </div>
                         </div>
                     </div>
@@ -243,7 +243,7 @@
                         <div class="d-flex justify-content-between align-items-center">
 
                             <small class="text-body-secondary"></small> <div class="btn-group">
-                                <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnGo"> <i class="fa-solid fa-caret-right"></i></button>
+                                <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnGo" data-bs-toggle="modal" data-bs-target="#myModal"> <i class="fa-solid fa-caret-right"></i></button>
                             </div>
                         </div>
 
@@ -251,6 +251,47 @@
                 </div>
             </div>
 
+
+        </div>
+    </div>
+</div>
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Device description</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="mb-3 mt-3">
+                    <label class="form-label">Device Name:</label>
+                    <input type="text" class="form-control form-control-lg form-control-solid" id="txtNombredispositivo">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label class="form-label">
+                        Serial number:
+                    </label>
+                    <input type="text" class="form-control form-control-lg form-control-solid" id="txtnumeroSerie">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label class="form-label">
+                       Date of purchase:
+                    </label>
+                    <input type="text" class="form-control form-control-lg form-control-solid" id="txtFechaCompra">
+                </div>
+               
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Save</button>
+                <a href="Devices" class="btn btn-primary">Continue</a>
+            </div>
 
         </div>
     </div>
