@@ -395,6 +395,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jszip.js" />
     <Content Include="Scripts\js\Global.js" />
+    <Content Include="Scripts\js\Home\IndexController.js" />
     <Content Include="Scripts\js\Layout\Layout.js" />
     <Content Include="Scripts\js\Login\LoginControllers.js" />
     <Content Include="Scripts\js\Login\RecuperarControllers.js" />
