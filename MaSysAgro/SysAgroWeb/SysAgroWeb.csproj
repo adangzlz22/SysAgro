@@ -458,6 +458,7 @@
     <Content Include="Views\Home\Project.cshtml" />
     <Content Include="Views\Home\Devices.cshtml" />
     <Content Include="Views\Home\Mapa.cshtml" />
+    <Content Include="Views\Home\Usuarios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

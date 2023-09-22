@@ -1,4 +1,6 @@
-﻿using ClsModSysAgro.Project;
+﻿using ClsModSysAgro.Dispositivos;
+using ClsModSysAgro.menu;
+using ClsModSysAgro.Project;
 using Dapper;
 using MaSysAgro;
 using MySql.Data.MySqlClient;
@@ -31,6 +33,7 @@ namespace SysAgroWeb.Controllers
                 ViewBag.Email = vSesiones.sesionUsuarioDTO.Email;
                 ViewBag.Usuario = vSesiones.sesionUsuarioDTO.Usuario;
                 ViewBag.ImagenPerfil = vSesiones.sesionUsuarioDTO.ImagenPerfil;
+                ViewBag.IdRol = vSesiones.sesionUsuarioDTO.IdRol;
 
                 return View();
             }
@@ -52,6 +55,7 @@ namespace SysAgroWeb.Controllers
                 ViewBag.Email = vSesiones.sesionUsuarioDTO.Email;
                 ViewBag.Usuario = vSesiones.sesionUsuarioDTO.Usuario;
                 ViewBag.ImagenPerfil = vSesiones.sesionUsuarioDTO.ImagenPerfil;
+                ViewBag.IdRol = vSesiones.sesionUsuarioDTO.IdRol;
 
                 return View();
             }
@@ -73,6 +77,29 @@ namespace SysAgroWeb.Controllers
                 ViewBag.Email = vSesiones.sesionUsuarioDTO.Email;
                 ViewBag.Usuario = vSesiones.sesionUsuarioDTO.Usuario;
                 ViewBag.ImagenPerfil = vSesiones.sesionUsuarioDTO.ImagenPerfil;
+                ViewBag.IdRol = vSesiones.sesionUsuarioDTO.IdRol;
+
+                return View();
+            }
+            else
+            {
+                return Redirect("/Login/Login");
+            }
+        }
+        public ActionResult Usuarios()
+        {
+            if (vSesiones.sesionUsuarioDTO != null)
+            {
+                ViewBag.Nombre = vSesiones.sesionUsuarioDTO.Nombre + " " + vSesiones.sesionUsuarioDTO.ApellidoPaterno + " " + vSesiones.sesionUsuarioDTO.ApellidoMaterno;
+                ViewBag.Id = vSesiones.sesionUsuarioDTO.Id;
+                ViewBag.Nombre1 = vSesiones.sesionUsuarioDTO.Nombre;
+                ViewBag.ApellidoPaterno = vSesiones.sesionUsuarioDTO.ApellidoPaterno;
+                ViewBag.ApellidoMaterno = vSesiones.sesionUsuarioDTO.ApellidoMaterno;
+                ViewBag.Telefono = vSesiones.sesionUsuarioDTO.Telefono;
+                ViewBag.Email = vSesiones.sesionUsuarioDTO.Email;
+                ViewBag.Usuario = vSesiones.sesionUsuarioDTO.Usuario;
+                ViewBag.ImagenPerfil = vSesiones.sesionUsuarioDTO.ImagenPerfil;
+                ViewBag.IdRol = vSesiones.sesionUsuarioDTO.IdRol;
 
                 return View();
             }
@@ -94,6 +121,7 @@ namespace SysAgroWeb.Controllers
                 ViewBag.Email = vSesiones.sesionUsuarioDTO.Email;
                 ViewBag.Usuario = vSesiones.sesionUsuarioDTO.Usuario;
                 ViewBag.ImagenPerfil = vSesiones.sesionUsuarioDTO.ImagenPerfil;
+                ViewBag.IdRol = vSesiones.sesionUsuarioDTO.IdRol;
 
                 return View();
             }
@@ -115,6 +143,7 @@ namespace SysAgroWeb.Controllers
                 ViewBag.Email = vSesiones.sesionUsuarioDTO.Email;
                 ViewBag.Usuario = vSesiones.sesionUsuarioDTO.Usuario;
                 ViewBag.ImagenPerfil = vSesiones.sesionUsuarioDTO.ImagenPerfil;
+                ViewBag.IdRol = vSesiones.sesionUsuarioDTO.IdRol;
 
                 return View();
             }
@@ -136,6 +165,7 @@ namespace SysAgroWeb.Controllers
                 ViewBag.Email = vSesiones.sesionUsuarioDTO.Email;
                 ViewBag.Usuario = vSesiones.sesionUsuarioDTO.Usuario;
                 ViewBag.ImagenPerfil = vSesiones.sesionUsuarioDTO.ImagenPerfil;
+                ViewBag.IdRol = vSesiones.sesionUsuarioDTO.IdRol;
 
 
                 return View();
@@ -191,7 +221,7 @@ namespace SysAgroWeb.Controllers
 
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult postObtenerDispositivos(paramsProject paramsProject)
+        public ActionResult postObtenerDispositivosPorProjecto(paramsProject paramsProject)
         {
             objResponse = new ClsModResponse();
             paramss = new DynamicParameters();
@@ -226,18 +256,53 @@ namespace SysAgroWeb.Controllers
 
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult postObtenerDispositivos(paramsProject paramsProject)
+        {
+            objResponse = new ClsModResponse();
+            paramss = new DynamicParameters();
+            try
+            {
+                string consulta = "SELECT * FROM player_data WHERE ClientID = {0}";
+                using (var ctx = new MySqlConnection(conexion))
+                {
+                    ctx.Open();
+                    var objProject = ctx.Query<devices>(string.Format(consulta, vSesiones.sesionUsuarioDTO.Id, paramsProject.ProjectID), paramss, null, true, 300).ToList();
+                    if (objProject.Count() != 0)
+                    {
+                        objResponse.ITEMS = objProject;
+                        objResponse.MESSAGE = "";
+                        objResponse.SUCCESS = true;
+                    }
+                    else
+                    {
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "this a problem whit db";
+                        objResponse.SUCCESS = false;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = ex.Message;
+                objResponse.SUCCESS = false;
+            }
+
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult postObtenerMenu()
         {
             objResponse = new ClsModResponse();
             paramss = new DynamicParameters();
             try
             {
-                string consulta = "SELECT * FROM genmenu";
+                string consulta = "SELECT * FROM genmenu WHERE Activo=1";
                 using (var ctx = new MySqlConnection(conexion))
                 {
                     ctx.Open();
-                    var objProject = ctx.Query<dynamic>(consulta, paramss, null, true, 300).ToList();
-                    if (objProject == null)
+                    var objProject = ctx.Query<genmenu>(consulta, paramss, null, true, 300).ToList();
+                    if (objProject.Count() > 0)
                     {
                         objResponse.ITEMS = objProject;
                         objResponse.MESSAGE = "";

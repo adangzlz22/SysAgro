@@ -25,5 +25,6 @@ namespace ClsModSysAgro.Usuarios
         public string ImagenPerfil { get; set; }
         public string IDUnico { get; set; }
         public string TelefonoContacto { get; set; }
+        public int IdRol { get; set; }
     }
 }
