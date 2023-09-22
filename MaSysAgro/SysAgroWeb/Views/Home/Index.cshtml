@@ -3,13 +3,14 @@
     .box {
         box-shadow: 0 0.1rem 1rem 0.25rem rgba(0,0,0,.05)
     }
+
         .box:hover {
             box-shadow: 0 0 11px rgb(122 179 127 / 58%);
         }
+
     a:hover {
         color: #000 !important
     }
-
 </style>
 
 <div class="container">
@@ -29,17 +30,17 @@
                                 <h1 style="color:#7ab37f; font-size:35px">Already a customer?</h1>
                                 <h3>If you are already a customer looking for a device</h3>
                                 <div class="input-group mt-5" style="padding-left:3%; padding-right:3%">
-                                    <input class="form-control form-control-lg form-control-solid" type="txtDispositivo" name="name" value="" style="height:100%">
-                                    <button class="input-group-text" style="background-color: #7ab37f" ><i class="fas fa-search" style="color:white"></i></button>
+                                    <input class="form-control form-control-lg form-control-solid" type="text" name="name" value="" style="height:100%" id="txtDispositivo">
+                                    <button class="input-group-text" style="background-color: #7ab37f" id="btnBuscarDispotivo"><i class="fas fa-search" style="color:white"></i></button>
                                 </div>
-                              <br />
+                                <br />
                             </div>
                         </div>
                     </div>
                 </div>
-               
+
             </div>
-            <div id="ContenedorMenu" class="mb-5">
+            <div id="ContenedorMenu" class="mb-5" style="display:none;">
                 <!--AQUI VAS A PONER LO NUEVO DEL MENU-->
                 <div class="row" style="justify-content:center">
                     <div class="col-lg-3 col-sm-12 col-md-4 mb-3">
@@ -72,11 +73,10 @@
             <!--<div class="col-lg-6 mb-5">
                 <div class="card shadow-sm">
                     <img class="card-img-top" src="~/Content/img/Project.jpeg"  style="height:380px" id="imagen" />-->
-                  
-                    @*<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>*@
-                    <!--<div class="card-body">
+            @*<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>*@
+            <!--<div class="card-body">
                         <h1 class="card-text" style="color:#7ab37f" id="lbltitulo">Project</h1>
-                      
+
                         <div class="d-flex justify-content-between align-items-center">
 
                             <small class="text-body-secondary"></small>
@@ -90,8 +90,8 @@
             <div class="col-lg-6 mb-5">
                 <div class="card shadow-sm">
                     <img class="card-img-top" src="~/Content/img/Devices.jpg"  style="height:380px" />-->
-                    @*<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>*@
-                    <!--<div class="card-body">
+            @*<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>*@
+            <!--<div class="card-body">
                         <h1 class="card-text" style="color:#7ab37f">Devices</h1>
                         <div class="d-flex justify-content-between align-items-center">
 
@@ -112,3 +112,16 @@
 
 <br>
 <br>
+<script src="~/Scripts/js/Global.js"></script>
+<script src="~/Scripts/axios.js"></script>
+<script src="~/Scripts/sweetalert2.all.min.js"></script>
+<script src="~/Scripts/axios.min.js"></script>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.bundle.min.js"></script>
+<script src="~/Scripts/js/Home/IndexController.js?v=1.0"></script>
+<script type="text/javascript">
+    (function () {
+        var clsIndexControllers = new IndexControllers(@ViewBag.Id);
+        clsIndexControllers.Inicializar();
+    })();
+</script>

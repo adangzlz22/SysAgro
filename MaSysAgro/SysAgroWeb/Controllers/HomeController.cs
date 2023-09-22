@@ -155,9 +155,6 @@ namespace SysAgroWeb.Controllers
             return View();
         }
 
-        //15;
-        //        ;
-
         //SELECT* FROM player_data WHERE ClientID IN(SELECT ClientID FROM player_data WHERE Chip_ID = 18923812);
         public ActionResult postObtenerProjectos()
         {
@@ -165,7 +162,7 @@ namespace SysAgroWeb.Controllers
             paramss = new DynamicParameters();
             try
             {
-                string consulta = "SELECT* FROM projects WHERE ClientID={0}";
+                string consulta = "SELECT * FROM projects WHERE ClientID={0}";
                 using (var ctx = new MySqlConnection(conexion))
                 {
                     ctx.Open();
@@ -264,6 +261,37 @@ namespace SysAgroWeb.Controllers
 
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult postBuscarDispositivo(paramsProject paramsProject)
+        {
+            objResponse = new ClsModResponse();
+            paramss = new DynamicParameters();
+
+            try
+            {
+                string consulta = "UPDATE player_data SET ClientID={0} WHERE Chip_ID='{1}'";
+                consulta = string.Format(consulta, paramsProject.ClientID, paramsProject.Chip_ID);
+                using (var ctx = new MySqlConnection(conexion))
+                {
+                    ctx.Open();
+                    var objProject = ctx.Query<dynamic>(consulta, paramss, null, true, 300).FirstOrDefault();
+
+                    objResponse.ITEMS = objProject;
+                    objResponse.MESSAGE = "Device added successfully.";
+                    objResponse.SUCCESS = true;
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+           
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = "this a problem whit db. "+ ex.ToString();
+                objResponse.SUCCESS = false;
+            }
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
+
 
 
 
