@@ -38,7 +38,7 @@
         const options = url + '/Home/postBuscarDispositivo';
         axios.post(options, parametros).then(function (response) {
             const result = response.data;
-
+            postObtenerDispositivos();
 
         }).catch(function (error) {
             console.error(error);
