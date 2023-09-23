@@ -16,8 +16,9 @@
 <style>
     #map {
         min-height: 600px;
-        height:100vh
+        height: 100vh
     }
+
     .leaflet-bar a {
         background-color: #7ab37f !important;
         border-bottom: 1px solid #ccc;
@@ -29,8 +30,6 @@
         text-decoration: none;
         color: white;
     }
-   
-   
 </style>
 
 
@@ -55,8 +54,8 @@
 
                         <div class="card shadow-sm">
                             @*<div class="card-header">
-            Proyecto 1
-        </div>*@
+                                    Proyecto 1
+                                </div>*@
                             <div class="card-body mt-5 mb-5">
                                 <h3 class="mb-5">Project 1</h3>
                                 <ul class="list-group list-group-flush">
@@ -64,13 +63,13 @@
                                     <li class="list-group-item">Second element</li>
                                     <li class="list-group-item">Third element</li>
                                 </ul>
-                            </div> <a href="#">
-    <div class="card-body text-center" style="border-top: 1px dashed #7ab37f">
+                            </div> <a href="#" data-bs-toggle="modal" data-bs-target="#myModal">
+                                <div class="card-body text-center" style="border-top: 1px dashed #7ab37f">
 
-        <i class="fa fa-plus"></i> add device
+                                    <i class="fa fa-plus"></i> add device
 
-    </div>
-</a>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-sm-12 mb-4">
@@ -84,11 +83,13 @@
                                     <li class="list-group-item">Third element</li>
                                 </ul>
                             </div>
-                            <div class="card-body text-center" style="border-top: 1px dashed #7ab37f">
-                                <a class="#">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#myModal">
+                                <div class="card-body text-center" style="border-top: 1px dashed #7ab37f">
+
                                     <i class="fa fa-plus"></i> add device
-                                </a>
-                            </div>
+
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -102,19 +103,59 @@
                 </nav>
                 <div class="card">
 
-                   
 
 
 
-                        <div id="map" style="border-radius:5px"></div>
-                   
+
+                    <div id="map" style="border-radius:5px"></div>
+
                 </div>
             </div>
         </div>
     </div>
 </main>
 <br />
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
 
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Add Device</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="mb-3 mt-3">
+                    <label class="form-label">Device Name:</label>
+                    <input type="text" class="form-control form-control-lg form-control-solid" id="txtNombredispositivo">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label class="form-label">
+                        Serial number:
+                    </label>
+                    <input type="text" class="form-control form-control-lg form-control-solid" id="txtnumeroSerie">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label class="form-label">
+                        Date of purchase:
+                    </label>
+                    <input type="text" class="form-control form-control-lg form-control-solid" id="txtFechaCompra">
+                </div>
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="#" class="btn btn-primary">Save</a>
+            </div>
+
+        </div>
+    </div>
+</div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
 
