@@ -367,7 +367,6 @@ C:\Users\MariaParedes\Desktop\ProyectosMP\SysAgro\MaSysAgro\SysAgroWeb\bin\Syste
 C:\Users\MariaParedes\Desktop\ProyectosMP\SysAgro\MaSysAgro\SysAgroWeb\bin\System.Numerics.Vectors.xml
 C:\Users\MariaParedes\Desktop\ProyectosMP\SysAgro\MaSysAgro\SysAgroWeb\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\MariaParedes\Desktop\ProyectosMP\SysAgro\MaSysAgro\SysAgroWeb\bin\System.Threading.Tasks.Extensions.xml
-C:\Users\MariaParedes\Desktop\ProyectosMP\SysAgro\MaSysAgro\SysAgroWeb\obj\Debug\SysAgroWeb.csprojAssemblyReference.cache
 C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\SysAgroWeb\bin\SysAgroWeb.dll.config
 C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\SysAgroWeb\bin\SysAgroWeb.dll
 C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\SysAgroWeb\bin\SysAgroWeb.pdb
@@ -491,3 +490,4 @@ C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\SysAgroWeb\obj\Debug\SysAgr
 C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\SysAgroWeb\obj\Debug\SysAgroWeb.csproj.CopyComplete
 C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\SysAgroWeb\obj\Debug\SysAgroWeb.dll
 C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\SysAgroWeb\obj\Debug\SysAgroWeb.pdb
+C:\Users\MariaParedes\Desktop\ProyectosMP\SysAgro\MaSysAgro\SysAgroWeb\obj\Debug\SysAgroWeb.csproj.AssemblyReference.cache
