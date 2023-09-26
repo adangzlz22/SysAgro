@@ -218,8 +218,8 @@ namespace SysAgroWeb.Controllers
                 using (var ctx = new MySqlConnection(conexion))
                 {
                     ctx.Open();
-                    var objProject = ctx.Query<dynamic>(string.Format(consulta, vSesiones.sesionUsuarioDTO.Id), paramss, null, true, 300).ToList();
-                    if (objProject == null)
+                    var objProject = ctx.Query<resultProject>(string.Format(consulta, vSesiones.sesionUsuarioDTO.Id), paramss, null, true, 300).ToList();
+                    if (objProject.Count() != 0)
                     {
                         objResponse.ITEMS = objProject;
                         objResponse.MESSAGE = "";
@@ -231,7 +231,6 @@ namespace SysAgroWeb.Controllers
                         objResponse.MESSAGE = "this a problem whit db";
                         objResponse.SUCCESS = false;
                     }
-
                 }
             }
             catch (Exception ex)
@@ -253,8 +252,8 @@ namespace SysAgroWeb.Controllers
                 using (var ctx = new MySqlConnection(conexion))
                 {
                     ctx.Open();
-                    var objProject = ctx.Query<dynamic>(string.Format(consulta, vSesiones.sesionUsuarioDTO.Id, paramsProject.ProjectID), paramss, null, true, 300).ToList();
-                    if (objProject == null)
+                    var objProject = ctx.Query<devices>(string.Format(consulta, vSesiones.sesionUsuarioDTO.Id, paramsProject.ProjectID), paramss, null, true, 300).ToList();
+                    if (objProject.Count() != 0)
                     {
                         objResponse.ITEMS = objProject;
                         objResponse.MESSAGE = "";
@@ -266,7 +265,6 @@ namespace SysAgroWeb.Controllers
                         objResponse.MESSAGE = "this a problem whit db";
                         objResponse.SUCCESS = false;
                     }
-
                 }
             }
             catch (Exception ex)
@@ -365,8 +363,6 @@ namespace SysAgroWeb.Controllers
                     objResponse.ITEMS = objProject;
                     objResponse.MESSAGE = "Device added successfully.";
                     objResponse.SUCCESS = true;
-
-
                 }
             }
             catch (Exception ex)
@@ -379,8 +375,33 @@ namespace SysAgroWeb.Controllers
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }
 
+        /*public ActionResult setDeviceDesignation(devices paramsDevice)
+        {
+            objResponse = new ClsModResponse();
+            paramss = new DynamicParameters();
 
+            try
+            {
+                string consulta = "UPDATE player_data SET Longitud={0} and Latitud={1} WHERE ProjectID='{2}'";
+                consulta = string.Format(consulta, paramsDevice.Longitud, paramsDevice.Latitud, paramsDevice.ProjectID);
+                using (var ctx = new MySqlConnection(conexion))
+                {
+                    ctx.Open();
+                    var objProject = ctx.Query<dynamic>(consulta, paramss, null, true, 300).FirstOrDefault();
 
+                    objResponse.ITEMS = objProject;
+                    objResponse.MESSAGE = "Device added successfully.";
+                    objResponse.SUCCESS = true;
+                }
+            }
+            catch (Exception ex)
+            {
 
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = "this a problem whit db. " + ex.ToString();
+                objResponse.SUCCESS = false;
+            }
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }*/
     }
 }

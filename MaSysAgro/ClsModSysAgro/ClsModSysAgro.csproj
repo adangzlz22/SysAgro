@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dispositivos\devices.cs" />
+    <Compile Include="Dispositivos\paramsDevice.cs" />
     <Compile Include="menu\genmenu.cs" />
     <Compile Include="Project\paramsProject.cs" />
+    <Compile Include="Project\resultProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Usuarios\paramsUsuarioDTO.cs" />
     <Compile Include="Usuarios\UsuarioDTO.cs" />
