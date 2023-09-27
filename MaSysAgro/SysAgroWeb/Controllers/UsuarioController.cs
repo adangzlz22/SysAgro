@@ -35,9 +35,18 @@ namespace SysAgroWeb.Controllers
                     var objUsuario = ctx.Query<paramsUsuarioDTO>(string.Format(consultaGenUsuarios, parametros.Usuario, contrasena), paramss, null, true, 300).FirstOrDefault();
                     if (objUsuario != null)
                     {
-                        objResponse.ITEMS = objUsuario;
-                        objResponse.MESSAGE = "";
-                        objResponse.SUCCESS = true;
+                        if (objUsuario.Activo == true)
+                        {
+                            objResponse.ITEMS = objUsuario;
+                            objResponse.MESSAGE = "";
+                            objResponse.SUCCESS = true;
+                        }
+                        else
+                        {
+                            objResponse.ITEMS = null;
+                            objResponse.MESSAGE = "This user is deactivated.";
+                            objResponse.SUCCESS = false;
+                        }
                     }
                     else
                     {
