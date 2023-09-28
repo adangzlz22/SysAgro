@@ -1,8 +1,3 @@
-C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\MaSysAgro\bin\Debug\MaSysAgro.dll
-C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\MaSysAgro\bin\Debug\MaSysAgro.pdb
-C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\MaSysAgro\obj\Debug\Utilerias.csproj.CoreCompileInputs.cache
-C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\MaSysAgro\obj\Debug\MaSysAgro.dll
-C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\MaSysAgro\obj\Debug\MaSysAgro.pdb
 C:\Users\MariaParedes\Desktop\ProyectosMP\SysAgro\MaSysAgro\MaSysAgro\bin\Debug\MaSysAgro.dll
 C:\Users\MariaParedes\Desktop\ProyectosMP\SysAgro\MaSysAgro\MaSysAgro\bin\Debug\MaSysAgro.pdb
 C:\Users\MariaParedes\Desktop\ProyectosMP\SysAgro\MaSysAgro\MaSysAgro\obj\Debug\Utilerias.csprojAssemblyReference.cache
@@ -26,3 +21,9 @@ C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\MaSysAgro\obj\Debug\
 C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\MaSysAgro\obj\Debug\Utilerias.csproj.CoreCompileInputs.cache
 C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\MaSysAgro\obj\Debug\MaSysAgro.dll
 C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\MaSysAgro\obj\Debug\MaSysAgro.pdb
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\MaSysAgro\bin\Debug\MaSysAgro.dll
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\MaSysAgro\bin\Debug\MaSysAgro.pdb
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\MaSysAgro\obj\Debug\Utilerias.csproj.AssemblyReference.cache
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\MaSysAgro\obj\Debug\Utilerias.csproj.CoreCompileInputs.cache
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\MaSysAgro\obj\Debug\MaSysAgro.dll
+C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\MaSysAgro\obj\Debug\MaSysAgro.pdb

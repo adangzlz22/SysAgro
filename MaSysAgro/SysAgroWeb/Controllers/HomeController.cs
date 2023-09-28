@@ -17,9 +17,12 @@ namespace SysAgroWeb.Controllers
 {
     public class HomeController : Controller
     {
+        #region VARIABLES
         ClsModResponse objResponse = new ClsModResponse();
         string conexion = ConfigurationManager.ConnectionStrings["SysAgroEntities"].ToString();
         DynamicParameters paramss = new DynamicParameters();
+        #endregion
+
         #region VISTAS
         public ActionResult Index()
         {
@@ -207,6 +210,7 @@ namespace SysAgroWeb.Controllers
             return View();
         }
         #endregion
+
         #region PROJECT
         public ActionResult postObtenerProjectos(paramsProject parametros)
         {
@@ -466,8 +470,8 @@ namespace SysAgroWeb.Controllers
 
             try
             {
-                string consulta = "UPDATE player_data SET ClientID={0} WHERE Chip_ID='{1}'";
-                consulta = string.Format(consulta, paramsProject.ClientID, paramsProject.Chip_ID);
+                string consulta = "UPDATE player_data SET ClientID={0} WHERE player_id='{1}'";
+                consulta = string.Format(consulta, paramsProject.ClientID, paramsProject.player_id);
                 using (var ctx = new MySqlConnection(conexion))
                 {
                     ctx.Open();
