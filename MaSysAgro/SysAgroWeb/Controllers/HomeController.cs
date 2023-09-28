@@ -416,11 +416,12 @@ namespace SysAgroWeb.Controllers
             paramss = new DynamicParameters();
             try
             {
-                string consulta = "SELECT * FROM player_data WHERE ClientID = {0}";
+                string consulta = "SELECT * FROM player_data WHERE ClientID = {0} AND Activo = {1}";
                 using (var ctx = new MySqlConnection(conexion))
                 {
+                    consulta = string.Format(consulta, vSesiones.sesionUsuarioDTO.Id, paramsProject.Activo);
                     ctx.Open();
-                    var objProject = ctx.Query<devices>(string.Format(consulta, vSesiones.sesionUsuarioDTO.Id, paramsProject.ProjectID), paramss, null, true, 300).ToList();
+                    var objProject = ctx.Query<devices>(consulta, paramss, null, true, 300).ToList();
                     if (objProject.Count() != 0)
                     {
                         objResponse.ITEMS = objProject;
@@ -445,8 +446,80 @@ namespace SysAgroWeb.Controllers
 
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }
-      
-        
+        public ActionResult postObtenerDispositivosMenu(paramsProject paramsProject)
+        {
+            objResponse = new ClsModResponse();
+            paramss = new DynamicParameters();
+            try
+            {
+                string consulta = "SELECT * FROM player_data WHERE ClientID = {0}";
+                using (var ctx = new MySqlConnection(conexion))
+                {
+                    consulta = string.Format(consulta, vSesiones.sesionUsuarioDTO.Id);
+                    ctx.Open();
+                    var objProject = ctx.Query<devices>(consulta, paramss, null, true, 300).ToList();
+                    if (objProject.Count() != 0)
+                    {
+                        objResponse.ITEMS = objProject;
+                        objResponse.MESSAGE = "";
+                        objResponse.SUCCESS = true;
+                    }
+                    else
+                    {
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "this a problem whit db";
+                        objResponse.SUCCESS = false;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = ex.Message;
+                objResponse.SUCCESS = false;
+            }
+
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult postUpdateDispositivos(paramsProject paramsProject)
+        {
+            objResponse = new ClsModResponse();
+            paramss = new DynamicParameters();
+            try
+            {
+                string consulta = "UPDATE player_data SET Activo = {0} WHERE player_id = {1}";
+                using (var ctx = new MySqlConnection(conexion))
+                {
+                    consulta = string.Format(consulta, vSesiones.sesionUsuarioDTO.Id, paramsProject.ProjectID);
+                    ctx.Open();
+                    var objProject = ctx.Query<devices>(consulta, paramss, null, true, 300).FirstOrDefault();
+                    if (objProject != null)
+                    {
+                        objResponse.ITEMS = objProject;
+                        objResponse.MESSAGE = "";
+                        objResponse.SUCCESS = true;
+                    }
+                    else
+                    {
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "this a problem whit db";
+                        objResponse.SUCCESS = false;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = ex.Message;
+                objResponse.SUCCESS = false;
+            }
+
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
+
+
         public ActionResult postObtenerMenu()
         {
             objResponse = new ClsModResponse();

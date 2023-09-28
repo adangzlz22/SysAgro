@@ -107,8 +107,10 @@
     <div class="row" style="text-align:right">
         <div class="col">
             <a href="index" class="btn btn-secondary" style="padding: .5rem 1rem;font-size:20px"><i class="fa-solid fa-arrow-left"></i></a>
-            <a href="#" class="btn btn-primary" style="padding: .5rem 1rem;font-size:20px" onclick="ejecutaEventoOnclick()"><i class="fa-solid fa-pen-to-square"></i></a>
-            <a href="#" class="btn btn-danger" style="padding: .5rem 1rem;font-size:20px"><i class="fa-solid fa-trash-can"></i></a>
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+            <a href="#" id="btnActivar" class="btn btn-warning" style="padding: .5rem 1rem;font-size:20px;display:none;" ><i class="fa-solid fa-check"></i></a>
+            <a href="#" id="btnEliminar" class="btn btn-danger" style="padding: .5rem 1rem;font-size:20px" ><i class="fa-solid fa-trash-can"></i></a>
+
         </div>
 
     </div>
@@ -120,25 +122,25 @@
         <div class="col-lg-12 text-center">
             <br>
             <br>
-   
-            <div id="contenedorDevice">
-                <div class="col-lg-3 col-md-4 col-sm-12 mb-5">
-                    <div class="card shadow-sm" style="height: 100%; border: 1px dashed #7ab37f;">
+            <div class="col-lg-3 col-md-4 col-sm-12 mb-5">
+                <div class="card shadow-sm" style="height: 100%; border: 1px dashed #7ab37f;">
 
 
-                        <div class="card-body mt-5 mb-5">
-                            <!--subir imagen-->
-                            <input class="form-control form-control-lg form-control-solid mb-2" type="text" placeholder="Search device" id="agregarinputTitulo" />
-                            <div class="d-flex justify-content-between align-items-center">
+                    <div class="card-body mt-5 mb-5">
+                        <!--subir imagen-->
+                        <input class="form-control form-control-lg form-control-solid mb-2" type="text" placeholder="Search device" id="agregarinputTitulo" />
+                        <div class="d-flex justify-content-between align-items-center">
 
-                                <small class="text-body-secondary"></small> <div class="btn-group">
-                                    <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnSave"> <i class="fa-solid fa-plus"></i></button>
-                                </div>
+                            <small class="text-body-secondary"></small> <div class="btn-group">
+                                <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnSave"> <i class="fa-solid fa-plus"></i></button>
                             </div>
                         </div>
-
                     </div>
+
                 </div>
+            </div>
+            <div id="contenedorDevice">
+
 
             </div>
 
@@ -162,48 +164,50 @@
                                     <h3>Upload Image</h3>
 
                                 </div>
-                          
+
                             </div>
                             <div id="divConImagen" runat="server" class="file-upload-content">
                                 <img ID="imgEntrenador" class="file-upload-image" runat="server" alt="your image" />
                                 <div class="image-title-wrap">
-                                    <button type="button" onclick="removeUpload()" class="remove-image" style="font-size:1.075rem !important">Eliminar imagen <i class="fa fa-minus-circle" aria-hidden="true" style="color:red"></i>--> @*<span class="image-title">Uploaded Image</span>*@<!--</button>
-                                </div>
-                            </div>
-                        </div>-->
-                        <!--subir imagen-->
-                        <!--<h2 style="color:#7ab37f; font-size:30px" id="lbltitulo">Device Name</h2>
-                        <input class="form-control form-control-lg form-control-solid mb-3" type="text" placeholder="Device" style="display:none" id="inputTitulo" />
-                        <h4 id="lblDescription">Short description of the device</h4>
-                        <input class="form-control form-control-lg form-control-solid mb-3" type="text" placeholder="Device" style="display:none" id="inputDescription" />
-                        <div class="d-flex justify-content-between align-items-center">
+                                    <button type="button" onclick="removeUpload()" class="remove-image" style="font-size:1.075rem !important">Eliminar imagen <i class="fa fa-minus-circle" aria-hidden="true" style="color:red"></i>-->
+            @*<span class="image-title">Uploaded Image</span>*@
+            <!--</button>
+            </div>
+        </div>
+    </div>-->
+            <!--subir imagen-->
+            <!--<h2 style="color:#7ab37f; font-size:30px" id="lbltitulo">Device Name</h2>
+                <input class="form-control form-control-lg form-control-solid mb-3" type="text" placeholder="Device" style="display:none" id="inputTitulo" />
+                <h4 id="lblDescription">Short description of the device</h4>
+                <input class="form-control form-control-lg form-control-solid mb-3" type="text" placeholder="Device" style="display:none" id="inputDescription" />
+                <div class="d-flex justify-content-between align-items-center">
 
-                            <small class="text-body-secondary"></small> <div class="btn-group">
-                                <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnGo" data-bs-toggle="modal" data-bs-target="#myModal"> <i class="fa-solid fa-caret-right"></i></button>
-                            </div>
-                        </div>
+                    <small class="text-body-secondary"></small> <div class="btn-group">
+                        <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnGo" data-bs-toggle="modal" data-bs-target="#myModal"> <i class="fa-solid fa-caret-right"></i></button>
                     </div>
-
                 </div>
             </div>
 
-            <div class="col-lg-3 col-sm-12 col-md-4 mb-3">
-                <div class="card box" style=" border: 1px solid #7ab37f;">
-                    <div class="card-body mt-5 mb-5 text-left">
-                        <img src="~/Content/img/dispositivos.png" style="width:50px" class="mb-3" />
-                     
-                        <h2 style="color:#7ab37f; font-size:30px"><a href="Project">Device Name</a></h2>
-                        <h4>Short description of the device</h4>
-                        <div class="d-flex justify-content-between align-items-center">
+        </div>
+    </div>
 
-                            <small class="text-body-secondary"></small> <div class="btn-group">
-                                <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnGo" data-bs-toggle="modal" data-bs-target="#myModal"> <i class="fa-solid fa-caret-right"></i></button>
-                            </div>
-                        </div>
+    <div class="col-lg-3 col-sm-12 col-md-4 mb-3">
+        <div class="card box" style=" border: 1px solid #7ab37f;">
+            <div class="card-body mt-5 mb-5 text-left">
+                <img src="~/Content/img/dispositivos.png" style="width:50px" class="mb-3" />
 
+                <h2 style="color:#7ab37f; font-size:30px"><a href="Project">Device Name</a></h2>
+                <h4>Short description of the device</h4>
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <small class="text-body-secondary"></small> <div class="btn-group">
+                        <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnGo" data-bs-toggle="modal" data-bs-target="#myModal"> <i class="fa-solid fa-caret-right"></i></button>
                     </div>
                 </div>
-            </div>-->
+
+            </div>
+        </div>
+    </div>-->
 
 
         </div>
