@@ -10,8 +10,10 @@
       crossorigin="" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"
-      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
       crossorigin="" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/MarkerCluster.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/MarkerCluster.Default.css" />
 
 <style>
     #map {
@@ -44,52 +46,14 @@
                         <h2 class="mb-5">Your projects</h2>
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
-                        <button type="button" class="btn btn-primary btn-sm float-end">
+                        <button type="button" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#myModalProject">
                             <i class="fa fa-plus"></i> new project
                         </button>
                     </div>
 
-
-                    <div class="col-sm-12 mb-4">
-
-                        <div class="card shadow-sm">
-                            @*<div class="card-header">
-                                    Proyecto 1
-                                </div>*@
-                            <div class="card-body mt-5 mb-5">
-                                <h3 class="mb-5">Project 1</h3>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">First element</li>
-                                    <li class="list-group-item">Second element</li>
-                                    <li class="list-group-item">Third element</li>
-                                </ul>
-                            </div> <a href="#" data-bs-toggle="modal" data-bs-target="#myModal">
-                                <div class="card-body text-center" style="border-top: 1px dashed #7ab37f">
-
-                                    <i class="fa fa-plus"></i> add device
-
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 mb-4">
-                        <div class="card">
-
-                            <div class="card-body mt-5 mb-5">
-                                <h3 class="mb-5">Project 2</h3>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">First element</li>
-                                    <li class="list-group-item">Second element</li>
-                                    <li class="list-group-item">Third element</li>
-                                </ul>
-                            </div>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#myModal">
-                                <div class="card-body text-center" style="border-top: 1px dashed #7ab37f">
-
-                                    <i class="fa fa-plus"></i> add device
-
-                                </div>
-                            </a>
+                    <div id="lista_proyectos">
+                        <div class="alert alert-info" role="alert">
+                            Cargando...
                         </div>
                     </div>
                 </div>
@@ -104,23 +68,17 @@
                     </form>
                 </nav>
                 <div class="card">
-
-
-
-
-
                     <div id="map" style="border-radius:5px"></div>
-
                 </div>
             </div>
         </div>
     </div>
 </main>
-<br />
+
 <!-- The Modal -->
 <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
+        <form class="modal-content">
 
             <!-- Modal Header -->
             <div class="modal-header">
@@ -146,7 +104,6 @@
                     </label>
                     <input type="text" class="form-control form-control-lg form-control-solid" id="txtFechaCompra">
                 </div>
-
             </div>
 
             <!-- Modal footer -->
@@ -154,12 +111,36 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <a href="#" class="btn btn-primary">Save</a>
             </div>
-
-        </div>
+        </form>
     </div>
 </div>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModalProject">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <form class="modal-content" id="form-project">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Project</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3 mt-3">
+                    <label class="form-label">Project Name:</label>
+                    <input type="text" class="form-control form-control-lg form-control-solid" id="txtNombredispositivo">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/leaflet.markercluster.js"></script>
 
 
 <script src="~/Scripts/js/Global.js"></script>
@@ -173,6 +154,7 @@
     (function () {
         var clsMapaControllers = new MapaController();
         clsMapaControllers.Inicializar();
+        clsMapaControllers.SelectDevice();
     })();
 </script>
 <script>

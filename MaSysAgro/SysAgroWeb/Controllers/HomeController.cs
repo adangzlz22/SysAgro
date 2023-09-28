@@ -222,8 +222,8 @@ namespace SysAgroWeb.Controllers
                 using (var ctx = new MySqlConnection(conexion))
                 {
                     ctx.Open();
-                    var objProject = ctx.Query<dynamic>(string.Format(consulta, vSesiones.sesionUsuarioDTO.Id, parametros.Activo), paramss, null, true, 300).ToList();
-                    if (objProject == null)
+                    var objProject = ctx.Query<resultProject>(string.Format(consulta, vSesiones.sesionUsuarioDTO.Id), paramss, null, true, 300).ToList();
+                    if (objProject.Count() != 0)
                     {
                         objResponse.ITEMS = objProject;
                         objResponse.MESSAGE = "";
@@ -235,7 +235,6 @@ namespace SysAgroWeb.Controllers
                         objResponse.MESSAGE = "this a problem whit db";
                         objResponse.SUCCESS = false;
                     }
-
                 }
             }
             catch (Exception ex)
@@ -368,8 +367,8 @@ namespace SysAgroWeb.Controllers
                 using (var ctx = new MySqlConnection(conexion))
                 {
                     ctx.Open();
-                    var objProject = ctx.Query<dynamic>(string.Format(consulta, vSesiones.sesionUsuarioDTO.Id, paramsProject.ProjectID), paramss, null, true, 300).ToList();
-                    if (objProject == null)
+                    var objProject = ctx.Query<devices>(string.Format(consulta, vSesiones.sesionUsuarioDTO.Id, paramsProject.ProjectID), paramss, null, true, 300).ToList();
+                    if (objProject.Count() != 0)
                     {
                         objResponse.ITEMS = objProject;
                         objResponse.MESSAGE = "";
@@ -381,7 +380,6 @@ namespace SysAgroWeb.Controllers
                         objResponse.MESSAGE = "this a problem whit db";
                         objResponse.SUCCESS = false;
                     }
-
                 }
             }
             catch (Exception ex)
@@ -482,8 +480,6 @@ namespace SysAgroWeb.Controllers
                     objResponse.ITEMS = objProject;
                     objResponse.MESSAGE = "Device added successfully.";
                     objResponse.SUCCESS = true;
-
-
                 }
             }
             catch (Exception ex)
