@@ -1,0 +1,355 @@
+﻿<style>
+
+    .file-upload {
+        background-color: #ffffff;
+        width: 100%;
+        margin: 0 auto;
+        padding: 8px;
+    }
+
+        .file-upload:hover {
+            color: #ffffff !important;
+        }
+
+
+
+
+
+    .file-upload-content {
+        display: none;
+        text-align: center;
+    }
+
+    .file-upload-input {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .image-upload-wrap {
+        border: 1px dashed #7ab37f;
+        position: relative;
+        background-color: #7ab37f1a;
+        color: white;
+        border-radius: 10px;
+    }
+
+        .image-dropping,
+        .image-upload-wrap:hover {
+            background-color: #7ab37f1a;
+            border: 1px dashed #7ab37f;
+            border-radius: 10px
+        }
+
+    .image-title-wrap {
+        padding: 0 15px 15px 15px;
+        color: #222;
+    }
+
+    .drag-text {
+        text-align: center;
+    }
+
+        .drag-text h5 {
+            font-weight: 100;
+        }
+
+            .drag-text h5:hover {
+                font-weight: 100;
+                color: #fff;
+            }
+
+    .file-upload-image {
+        max-height: 400px;
+        max-width: 200px;
+        margin: auto;
+        padding: 5px;
+    }
+
+    .remove-image {
+        width: 100%;
+        margin: 0;
+        color: #ff0000;
+        background: none;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        transition: all .2s ease;
+        outline: none;
+    }
+
+        .remove-image:hover {
+            background: none;
+            color: #000;
+            transition: all .2s ease;
+            cursor: pointer;
+        }
+
+        .remove-image:active {
+            border: 0;
+            transition: all .2s ease;
+        }
+
+    .box {
+        box-shadow: 0 0.1rem 1rem 0.25rem rgba(0,0,0,.05)
+    }
+
+        .box:hover {
+            box-shadow: 0 0 11px rgb(122 179 127 / 58%);
+        }
+</style>
+<div class="container-fluid">
+    <div class="row" style="text-align:right">
+        <div class="col">
+            <a href="index" class="btn btn-secondary" style="padding: .5rem 1rem;font-size:20px"><i class="fa-solid fa-arrow-left"></i></a>
+            <a href="#" class="btn btn-primary" style="padding: .5rem 1rem;font-size:20px" onclick="ejecutaEventoOnclick()"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a href="#" class="btn btn-danger" style="padding: .5rem 1rem;font-size:20px"><i class="fa-solid fa-trash-can"></i></a>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row" style="justify-content:center">
+        <div class="col-lg-12 text-center">
+            <br>
+            <br>
+            <!-- <h1 class="construction" style="text-transform:uppercase">under <span style="color:#7ab37f">construction</span></h1>
+            <img src="~/content/img/enconstruccion2.png" style="width:80%"> -->
+            <div class="col-lg-3 col-md-4 col-sm-12 mb-5">
+                <div class="card shadow-sm" style="height: 100%; border: 1px dashed #7ab37f;">
+
+
+                    @*<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>*@
+                    <div class="card-body mt-5 mb-5">
+                        <div class="file file-upload" id="agregarimagen" style="border-top-left-radius: calc(0.75rem - 1px);
+    border-top-right-radius: calc(0.75rem - 1px);">
+                            <div id="divSinImagen" runat="server" class="image-upload-wrap  w-135px h-135px p-5">
+                                <input type="file" ID="duImagenEmpresa" class="file-upload-input" onchange="readURL(this);" runat="server" accept="image/*" />
+                                <div class="row text-center" style="align-content:center">
+                                    <div class="text-center">
+                                        <img src="/Content/img/computacion-en-la-nube.png" style="width: 40px" />
+                                    </div>
+
+
+
+                                    <h3>Upload Image</h3>
+
+                                </div>
+                                @*<div class="drag-text" style="z-index:0">
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <img src="/Content/img/computacion-en-la-nube.png" style="width: 40px" />
+                                            </div>
+                                            <div class="col-lg-12">
+
+                                                <h3>Subir imagen</h3>
+                                            </div>
+                                        </div>
+                                        <br />
+                                    </div>*@
+                            </div>
+                            <div id="divConImagen" runat="server" class="file-upload-content">
+                                <img ID="imgEntrenador" class="file-upload-image" runat="server" alt="your image" />
+                                <div class="image-title-wrap">
+                                    <button type="button" onclick="removeUpload()" class="remove-image" style="font-size:1.075rem !important">Eliminar imagen <i class="fa fa-minus-circle" aria-hidden="true" style="color:red"></i> @*<span class="image-title">Uploaded Image</span>*@</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--subir imagen-->
+                        <input class="form-control form-control-lg form-control-solid mb-2" type="text" placeholder="Device name" id="agregarinputTitulo" />
+                        <input class="form-control form-control-lg form-control-solid mb-2" type="text" placeholder="Short Device description" id="agregarinputDescription" />
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <small class="text-body-secondary"></small> <div class="btn-group">
+                                <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnSave" data-bs-toggle="modal" data-bs-target="#myModal"> <i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-12 mb-5">
+                <div class="card box text-left" style=" border: 1px solid #7ab37f;" id="cardEdit">
+
+                    @*<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>*@
+                    <div class="card-body mt-5 mb-5 text-left">
+                        <img src="~/Content/img/dispositivos.png" style="width:50px" class="mb-3" id="imagen" />
+
+                        <div class="file file-upload" id="editimagen" style="display:none;border-top-left-radius: calc(0.75rem - 1px);
+    border-top-right-radius: calc(0.75rem - 1px);">
+                            <div id="divSinImagen" runat="server" class="image-upload-wrap  w-135px h-135px p-5">
+                                <input type="file" ID="duImagenEmpresa" class="file-upload-input" onchange="readURL(this);" runat="server" accept="image/*" />
+                                <div class="row text-center" style="align-content:center">
+                                    <div class="text-center">
+                                        <img src="/Content/img/computacion-en-la-nube.png" style="width: 40px; " />
+                                    </div>
+
+
+
+                                    <h3>Upload Image</h3>
+
+                                </div>
+                                @*<div class="drag-text" style="z-index:0">
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <img src="/Content/img/computacion-en-la-nube.png" style="width: 40px" />
+                                            </div>
+                                            <div class="col-lg-12">
+
+                                                <h3>Subir imagen</h3>
+                                            </div>
+                                        </div>
+                                        <br />
+                                    </div>*@
+                            </div>
+                            <div id="divConImagen" runat="server" class="file-upload-content">
+                                <img ID="imgEntrenador" class="file-upload-image" runat="server" alt="your image" />
+                                <div class="image-title-wrap">
+                                    <button type="button" onclick="removeUpload()" class="remove-image" style="font-size:1.075rem !important">Eliminar imagen <i class="fa fa-minus-circle" aria-hidden="true" style="color:red"></i> @*<span class="image-title">Uploaded Image</span>*@</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--subir imagen-->
+                        <h2 style="color:#7ab37f; font-size:30px" id="lbltitulo">Device Name</h2>
+                        <input class="form-control form-control-lg form-control-solid mb-3" type="text" placeholder="Device" style="display:none" id="inputTitulo" />
+                        <h4 id="lblDescription">Short description of the device</h4>
+                        <input class="form-control form-control-lg form-control-solid mb-3" type="text" placeholder="Device" style="display:none" id="inputDescription" />
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <small class="text-body-secondary"></small> <div class="btn-group">
+                                <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnGo" data-bs-toggle="modal" data-bs-target="#myModal"> <i class="fa-solid fa-caret-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-12 col-md-4 mb-3">
+                <div class="card box" style=" border: 1px solid #7ab37f;">
+                    <div class="card-body mt-5 mb-5 text-left">
+                        <img src="~/Content/img/dispositivos.png" style="width:50px" class="mb-3" />
+                        @*<i class="fa-solid fa-users" style="font-size: 65px; color: #7ab37f"></i>*@<br />
+                        <h2 style="color:#7ab37f; font-size:30px"><a href="Project">Device Name</a></h2>
+                        <h4>Short description of the device</h4>
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <small class="text-body-secondary"></small> <div class="btn-group">
+                                <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnGo" data-bs-toggle="modal" data-bs-target="#myModal"> <i class="fa-solid fa-caret-right"></i></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Device description</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="mb-3 mt-3">
+                    <label class="form-label">Device Name:</label>
+                    <input type="text" class="form-control form-control-lg form-control-solid" id="txtNombredispositivo">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label class="form-label">
+                        Serial number:
+                    </label>
+                    <input type="text" class="form-control form-control-lg form-control-solid" id="txtnumeroSerie">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label class="form-label">
+                       Date of purchase:
+                    </label>
+                    <input type="text" class="form-control form-control-lg form-control-solid" id="txtFechaCompra">
+                </div>
+               
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Save</button>
+                <a href="Devices" class="btn btn-primary">Continue</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    function pruebita() {
+        $('.image-upload-wrap').hide();
+        $('.file-upload-content').show();
+    }
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.image-upload-wrap').hide();
+
+                $('.file-upload-image').attr('src', e.target.result);
+                $('.file-upload-content').show();
+
+                $('.image-title').html(input.files[0].name);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+
+        } else {
+            removeUpload();
+        }
+    }
+
+    function removeUpload() {
+        $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+        $('.file-upload-content').hide();
+        $('.image-upload-wrap').show();
+    }
+    $('.image-upload-wrap').bind('dragover', function () {
+        $('.image-upload-wrap').addClass('image-dropping');
+    });
+    $('.image-upload-wrap').bind('dragleave', function () {
+        $('.image-upload-wrap').removeClass('image-dropping');
+    });
+
+
+    function ejecutaEventoOnclick() {
+
+        document.getElementById('imagen').style.display = 'none';
+        document.getElementById('editimagen').style.display = 'block';
+        document.getElementById('lbltitulo').style.display = 'none';
+        document.getElementById('lblDescription').style.display = 'none';
+        document.getElementById('inputTitulo').style.display = 'block';
+        document.getElementById('inputDescription').style.display = 'block';
+        document.getElementById('btnGo').style.backgroundColor = 'red';
+        document.getElementById('btnGo').style.borderColor = 'red';
+        document.getElementById('cardEdit').style.border = '1px dashed #7ab37f';
+        document.getElementById('btnGo').innerHTML = "<i class='fa-solid fa-floppy-disk'></i>";
+    }
+
+</script>
+
+<br>
+<br>

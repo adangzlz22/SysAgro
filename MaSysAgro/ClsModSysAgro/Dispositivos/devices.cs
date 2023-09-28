@@ -22,6 +22,7 @@ namespace ClsModSysAgro.Dispositivos
         public int ClientID { get; set; }
         public decimal Longitud { get; set; }
         public decimal Latitud { get; set; }
+        public int Activo { get; set; }
 
     }
 }

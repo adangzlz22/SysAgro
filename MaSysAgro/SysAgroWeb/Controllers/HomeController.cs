@@ -1,6 +1,7 @@
 ﻿using ClsModSysAgro.Dispositivos;
 using ClsModSysAgro.menu;
 using ClsModSysAgro.Project;
+using ClsModSysAgro.Usuarios;
 using Dapper;
 using MaSysAgro;
 using MySql.Data.MySqlClient;
@@ -19,7 +20,7 @@ namespace SysAgroWeb.Controllers
         ClsModResponse objResponse = new ClsModResponse();
         string conexion = ConfigurationManager.ConnectionStrings["SysAgroEntities"].ToString();
         DynamicParameters paramss = new DynamicParameters();
-
+        #region VISTAS
         public ActionResult Index()
         {
             if (vSesiones.sesionUsuarioDTO != null)
@@ -201,20 +202,19 @@ namespace SysAgroWeb.Controllers
         {
             return View();
         }
-
         public ActionResult Mapa()
         {
             return View();
         }
-
-        //SELECT* FROM player_data WHERE ClientID IN(SELECT ClientID FROM player_data WHERE Chip_ID = 18923812);
-        public ActionResult postObtenerProjectos()
+        #endregion
+        #region PROJECT
+        public ActionResult postObtenerProjectos(paramsProject parametros)
         {
             objResponse = new ClsModResponse();
             paramss = new DynamicParameters();
             try
             {
-                string consulta = "SELECT * FROM projects WHERE ClientID={0}";
+                string consulta = "SELECT * FROM projects WHERE ClientID={0} AND Activo={1}";
                 using (var ctx = new MySqlConnection(conexion))
                 {
                     ctx.Open();
@@ -242,6 +242,117 @@ namespace SysAgroWeb.Controllers
 
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult postAddProjectos(paramsProject parametros)
+        {
+            objResponse = new ClsModResponse();
+            paramss = new DynamicParameters();
+            try
+            {
+                string consulta = @"INSERT INTO projects (ProjectName, ClientID, Longitud_1,Latitud_1, Longitud_2, Latitud_2,Activo) 
+                                    VALUES ('{0}',{1},0.0, 0.0, 0.0, 0.0,1);";
+                string Existe = @"SELECT * FROM projects WHERE ProjectName = {0};";
+
+                using (var ctx = new MySqlConnection(conexion))
+                {
+                    consulta = string.Format(consulta, parametros.ProjectName, parametros.ClientID);
+
+                    Existe = string.Format(Existe, parametros.ProjectName);
+                    ctx.Open();
+                    var objExiste = ctx.Query<dynamic>(Existe, paramss, null, true, 300).FirstOrDefault();
+                    if (objExiste == null)
+                    {
+                        var objProject = ctx.Query<dynamic>(consulta, paramss, null, true, 300).FirstOrDefault();
+                        if (objProject != null)
+                        {
+                            objResponse.ITEMS = objProject;
+                            objResponse.MESSAGE = "project added successfully.";
+                            objResponse.SUCCESS = true;
+                        }
+                        else
+                        {
+                            objResponse.ITEMS = null;
+                            objResponse.MESSAGE = "this a problem whit db.";
+                            objResponse.SUCCESS = false;
+                        }
+                    }
+                    else
+                    {
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "this project already exists in the database.";
+                        objResponse.SUCCESS = false;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = ex.Message;
+                objResponse.SUCCESS = false;
+            }
+
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult postUpdateProjectos(paramsProject parametros)
+        {
+            objResponse = new ClsModResponse();
+            paramss = new DynamicParameters();
+            try
+            {
+                string consulta = @"UPDATE projects SET
+                                    ProjectName = '{0}', 
+                                    ClientID = {1}, 
+                                    Longitud_1 = {2},
+                                    Latitud_1 = {3}, 
+                                    Longitud_2 = {4}, 
+                                    Latitud_2 = {5} ,
+                                    Activo = {6}
+                                    WHERE ProjectID = {7};";
+                string Existe = @"SELECT * FROM projects WHERE ProjectName = {0};";
+
+                using (var ctx = new MySqlConnection(conexion))
+                {
+                    consulta = string.Format(consulta, parametros.ProjectName, parametros.ClientID, parametros.Longitud_1, parametros.Latitud_1, parametros.Longitud_2, parametros.Latitud_2, parametros.Activo, parametros.ProjectID);
+
+                    Existe = string.Format(Existe, parametros.ProjectName);
+                    ctx.Open();
+                    var objExiste = ctx.Query<dynamic>(Existe, paramss, null, true, 300).FirstOrDefault();
+                    if (objExiste == null)
+                    {
+                        var objProject = ctx.Query<dynamic>(consulta, paramss, null, true, 300).FirstOrDefault();
+                        if (objProject != null)
+                        {
+                            objResponse.ITEMS = objProject;
+                            objResponse.MESSAGE = "project added successfully.";
+                            objResponse.SUCCESS = true;
+                        }
+                        else
+                        {
+                            objResponse.ITEMS = null;
+                            objResponse.MESSAGE = "this a problem whit db.";
+                            objResponse.SUCCESS = false;
+                        }
+                    }
+                    else
+                    {
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "this project already exists in the database.";
+                        objResponse.SUCCESS = false;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = ex.Message;
+                objResponse.SUCCESS = false;
+            }
+
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
         public ActionResult postObtenerDispositivosPorProjecto(paramsProject paramsProject)
         {
             objResponse = new ClsModResponse();
@@ -311,6 +422,8 @@ namespace SysAgroWeb.Controllers
 
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }
+      
+        
         public ActionResult postObtenerMenu()
         {
             objResponse = new ClsModResponse();
@@ -367,12 +480,49 @@ namespace SysAgroWeb.Controllers
             }
             catch (Exception ex)
             {
-           
+
                 objResponse.ITEMS = null;
-                objResponse.MESSAGE = "this a problem whit db. "+ ex.ToString();
+                objResponse.MESSAGE = "this a problem whit db. " + ex.ToString();
                 objResponse.SUCCESS = false;
             }
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult postObtenerUsuarios()
+        {
+            objResponse = new ClsModResponse();
+            paramss = new DynamicParameters();
+            try
+            {
+                string consulta = "SELECT * FROM genusuarios WHERE IdRol!=1";
+                using (var ctx = new MySqlConnection(conexion))
+                {
+                    ctx.Open();
+                    var objProject = ctx.Query<genUsuarios>(consulta, paramss, null, true, 300).ToList();
+                    if (objProject.Count() > 0)
+                    {
+                        objResponse.ITEMS = objProject;
+                        objResponse.MESSAGE = "";
+                        objResponse.SUCCESS = true;
+                    }
+                    else
+                    {
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "this a problem whit db";
+                        objResponse.SUCCESS = false;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = ex.Message;
+                objResponse.SUCCESS = false;
+            }
+
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
+
+
     }
 }
