@@ -17,7 +17,6 @@ C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\MaSysAgro\obj\Debug\MaSysAg
 C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\MaSysAgro\obj\Debug\MaSysAgro.pdb
 C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\MaSysAgro\bin\Debug\MaSysAgro.dll
 C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\MaSysAgro\bin\Debug\MaSysAgro.pdb
-C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\MaSysAgro\obj\Debug\Utilerias.csproj.AssemblyReference.cache
 C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\MaSysAgro\obj\Debug\Utilerias.csproj.CoreCompileInputs.cache
 C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\MaSysAgro\obj\Debug\MaSysAgro.dll
 C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\MaSysAgro\obj\Debug\MaSysAgro.pdb

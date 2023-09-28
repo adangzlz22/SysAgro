@@ -1,4 +1,4 @@
-﻿var MapaController = function () {
+﻿var MapaController = function (ClientID) {
     const url = urlGlobal;
     var arrProject = [];
     var arrDevice = [];
@@ -117,9 +117,13 @@
     }
 
     const getProyects = function () {
-
+        let parametros = {
+            //ProjectID : txtDispositivo.val(),
+            ClientID: ClientID,
+            Activo: 1,
+        }
         const options = url + '/Home/postObtenerProjectos';
-        axios.post(options).then(function (response) {
+        axios.post(options, parametros).then(function (response) {
             const result = response.data;
             const items = [], divProyectos = $("#lista_proyectos").empty();
 
@@ -255,8 +259,6 @@
 
         form.addEventListener("submit", async (event) => {
             event.preventDefault();
-
-            alert("asdasd");
 
             const formData = new FormData(form);
 

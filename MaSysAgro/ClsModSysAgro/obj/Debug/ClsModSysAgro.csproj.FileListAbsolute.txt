@@ -17,7 +17,6 @@ C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\ClsModSysAgro\obj\Debug\Cls
 C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\ClsModSysAgro\obj\Debug\ClsModSysAgro.pdb
 C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsModSysAgro\bin\Debug\ClsModSysAgro.dll
 C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsModSysAgro\bin\Debug\ClsModSysAgro.pdb
-C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsModSysAgro\obj\Debug\ClsModSysAgro.csproj.AssemblyReference.cache
 C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsModSysAgro\obj\Debug\ClsModSysAgro.csproj.CoreCompileInputs.cache
 C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsModSysAgro\obj\Debug\ClsModSysAgro.dll
 C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsModSysAgro\obj\Debug\ClsModSysAgro.pdb
