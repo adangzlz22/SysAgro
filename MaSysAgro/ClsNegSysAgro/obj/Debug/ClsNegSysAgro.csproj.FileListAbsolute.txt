@@ -57,3 +57,46 @@ C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\K
 C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\System.IO.Pipelines.xml
 C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\K4os.Hash.xxHash.xml
 C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\ClsNegSysAgro.dll.config
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\ClsNegSysAgro.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\ClsNegSysAgro.pdb
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\ClsDatSysAgro.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\ClsModSysAgro.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\MaSysAgro.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\Dapper.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\MySql.Data.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\Google.Protobuf.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\ZstdSharp.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\System.Memory.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\System.Buffers.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\System.IO.Pipelines.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\ClsDatSysAgro.pdb
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\ClsDatSysAgro.dll.config
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\ClsModSysAgro.pdb
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\MaSysAgro.pdb
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\Dapper.xml
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\MySql.Data.xml
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\Google.Protobuf.pdb
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\Google.Protobuf.xml
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\BouncyCastle.Crypto.xml
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\System.Memory.xml
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\System.Buffers.xml
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\System.IO.Pipelines.xml
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\obj\Debug\ClsNegSysAgro.csproj.AssemblyReference.cache
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\obj\Debug\ClsNegSysAgro.csproj.CoreCompileInputs.cache
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\obj\Debug\ClsNegSysAgro.csproj.CopyComplete
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\obj\Debug\ClsNegSysAgro.dll
+C:\Users\Luis Rouzaud\Documents\16.- ADAN\SysAgro\MaSysAgro\ClsNegSysAgro\obj\Debug\ClsNegSysAgro.pdb
