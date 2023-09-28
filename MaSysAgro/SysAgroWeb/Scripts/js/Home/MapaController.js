@@ -5,6 +5,7 @@
     var player_id = null;
     var longitud = 41.991751465614946;
     var latitud = 0.15312031851124058;
+    var markerDeviceGroup = null;
 
     var map = L.map('map').setView([longitud, latitud], 10.3);// 41.2919797826564050, 1.8535724466127812
 
@@ -18,6 +19,7 @@
         getDeviceForProject();
         showDeviceInMap();
         setDeviceForProject();
+        newProject();
     }
 
     const init_map = function () {
@@ -170,13 +172,15 @@
         $('#lista_proyectos').on('click', '.project-device', function (e) {
             e.preventDefault();
 
+            clearDeviceInMap();
+
             let order = $(this).data('order');
             let project = arrProject[order];
 
             latitud = project.Latitud_1;
             longitud = project.Longitud_1;
 
-            map.flyTo([latitud, longitud], 8, {
+            map.flyTo([latitud, longitud], 15, {
                 animate: true,
                 duration: 2 // in seconds
             });
@@ -194,8 +198,6 @@
                     if (result.ITEMS.length > 0) {
 
                         arrDevice = result.ITEMS;
-
-                        console.log(arrDevice);
 
                         arrDevice.filter(element => { return element.Longitud === 0 }).map((v, index) => {
                             items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${index}">Device ${v.player_id}</button>`);
@@ -217,11 +219,22 @@
     }
 
     const showDeviceInMap = function () {
-        var arrDevicesAsignados = arrDevice.filter(element => { return element.Longitud > 0 });
+        // Filtrar dispositivos con Longitud y Latitud válidas
+        var arrDevicesAsignados = arrDevice.filter(element => element.Longitud !== 0 && element.Latitud !== 0);
+        var markerClusterGroup = L.markerClusterGroup();
 
-        arrDevicesAsignados.map((x) => {
-            L.marker([x.Latitud, x.Longitud]).addTo(map);
+        arrDevicesAsignados.forEach(device => {
+            var marker = L.marker([device.Latitud, device.Longitud]);
+            marker.bindPopup(`Dispositivo ${device.player_id}`);
+            markerClusterGroup.addLayer(marker);
         });
+
+        map.addLayer(markerClusterGroup);
+        markerDeviceGroup = markerClusterGroup;
+    }
+
+    const clearDeviceInMap = function () {
+        markerDeviceGroup.clearLayers();
     }
 
     const setDeviceForProject = function () {
@@ -229,6 +242,37 @@
             e.preventDefault();
             const order = $(this).val();
             player_id = arrDevice[order].player_id;
+        });
+    }
+
+    const newProject = function () {
+        const form = document.querySelector("#form-project");
+
+        if (!form) {
+            console.error("Form not found");
+            return;
+        }
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            alert("asdasd");
+
+            const formData = new FormData(form);
+
+            try {
+                const options = {
+                    method: "POST",
+                    url: `${url}/Home/postInsertarProjectos`,
+                    data: formData,
+                };
+
+                const response = await axios(options);
+
+                console.log(response);
+            } catch (error) {
+                console.error(error);
+            }
         });
     }
 
