@@ -32,7 +32,7 @@
     const obtener = function () {
         let parametros = {
             //ProjectID : txtDispositivo.val(),
-            Chip_ID: txtDispositivo.val(),
+            player_id: txtDispositivo.val(),
             ClientID: Client_ID,
         }
         const options = url + '/Home/postBuscarDispositivo';
