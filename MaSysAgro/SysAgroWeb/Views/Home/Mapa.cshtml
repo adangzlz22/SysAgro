@@ -78,15 +78,11 @@
 <!-- The Modal -->
 <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <form class="modal-content">
-
-            <!-- Modal Header -->
+        <form class="modal-content" id="form-device">
             <div class="modal-header">
                 <h4 class="modal-title">Add Device</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-
-            <!-- Modal body -->
             <div class="modal-body">
                 <div class="mb-3 mt-3">
                     <label class="form-label">Device Name:</label>
@@ -105,8 +101,6 @@
                     <input type="text" class="form-control form-control-lg form-control-solid" id="txtFechaCompra">
                 </div>
             </div>
-
-            <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <a href="#" class="btn btn-primary">Save</a>
@@ -126,9 +120,8 @@
             <div class="modal-body">
                 <div class="mb-3 mt-3">
                     <label class="form-label">Project Name:</label>
-                    <input type="text" class="form-control form-control-lg form-control-solid" id="txtNombredispositivo">
+                    <input type="text" class="form-control form-control-lg form-control-solid" name="ProjectName" id="ProjectName" />
                 </div>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -160,7 +153,6 @@
     var card1 = document.getElementById('cardDatos');
     var card2 = document.getElementById('cardMapa');
     function mapaGrande() {
-
         if (card1.style.order = '1') {
             card2.className = 'col-lg-12 col-md-12 col-sm-12 col-12';
             card2.style.order = '1';
@@ -172,11 +164,9 @@
             //card2.style.order = '2';
             //card1.style.order = '1';
         }
-
-
     }
-    function mapaChico() {
 
+    function mapaChico() {
         if (card1.style.order = '2') {
             card2.className = 'col-lg-9 col-md-8 col-sm-8 col-12';
             card2.style.order = '2';
@@ -188,10 +178,7 @@
             //card2.style.order = '2';
             //card1.style.order = '1';
         }
-
-
     }
-
 </script>
 
 
@@ -204,7 +191,7 @@
 <script src="~/Scripts/js/Home/MapaController.js?v=1.0"></script>
 <script type="text/javascript">
     (function () {
-        var clsMapaControllers = new MapaController();
+        var clsMapaControllers = new MapaController(@ViewBag.Id)
         clsMapaControllers.Inicializar();
     })();
 </script>

@@ -273,6 +273,7 @@ namespace SysAgroWeb.Controllers
             {
                 string consulta = @"INSERT INTO projects (ProjectName, ClientID, Longitud_1,Latitud_1, Longitud_2, Latitud_2,Activo) 
                                     VALUES ('{0}',{1},0.0, 0.0, 0.0, 0.0,1);";
+
                 string Existe = @"SELECT * FROM projects WHERE ProjectName = {0};";
 
                 using (var ctx = new MySqlConnection(conexion))
