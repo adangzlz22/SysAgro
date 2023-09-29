@@ -15,8 +15,8 @@
                     <div class="card-body mt-5 mb-5 text-left">
                         <img src="/Content/img/dispositivos.png" style="width:50px" class="mb-3" />
 
-                        <h2 style="color:#7ab37f; font-size:30px"><a href="Project">Device Name</a></h2>
-                        <h6>Player : {0}</h6>
+                     
+                        <h2 style="color:#7ab37f; font-size:28px">Player : {0}</h2>
                         <h6>Chip : {1}</h6>
                         <h6>Date reaction : {2}</h6>
                         <div class="d-flex justify-content-between align-items-center">
@@ -60,10 +60,10 @@
         });
         flexSwitchCheckChecked.change(function () {
             console.log(flexSwitchCheckChecked.prop('checked'));
-            btnActivar.css('padding', '.5rem 1rem');
-            btnActivar.css('font-size', '20px');
-            btnEliminar.css('padding', '.5rem 1rem');
-            btnEliminar.css('font-size', '20px');
+            btnActivar.css('padding', '.3rem .9rem');
+            btnActivar.css('font-size', '18px');
+            btnEliminar.css('padding', '.3rem .9rem');
+            btnEliminar.css('font-size', '18px');
 
             if (flexSwitchCheckChecked.prop('checked') == true) {
                 btnActivar.css('display', 'none');
