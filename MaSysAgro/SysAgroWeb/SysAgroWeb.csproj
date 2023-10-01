@@ -401,6 +401,7 @@
     <Content Include="Scripts\js\Home\DevicesControllers.js" />
     <Content Include="Scripts\js\Home\IndexController.js" />
     <Content Include="Scripts\js\Home\MapaController.js" />
+    <Content Include="Scripts\js\Home\ProjectController.js" />
     <Content Include="Scripts\js\Layout\Layout.js" />
     <Content Include="Scripts\js\Login\LoginControllers.js" />
     <Content Include="Scripts\js\Login\RecuperarControllers.js" />

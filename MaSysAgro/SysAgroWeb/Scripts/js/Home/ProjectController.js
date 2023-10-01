@@ -2,19 +2,20 @@
     const url = urlGlobal;
 
     var arrProject = [];
+    var agregarinputTitulo = $('#sagregarinputTitulo');
   
     var Inicializar = function () {
         console.log(url);
-        console.log('hola soy MapaControllers');
-        getProyects();
+        console.log('hola soy ProjectControllers');
+        getProyects(1);
 
     }
 
-    const getProyects = function () {
+    const getProyects = function (Activo) {
         let parametros = {
             //ProjectID : txtDispositivo.val(),
             ClientID: ClientID,
-            Activo: 1,
+            Activo: Activo,
         }
         const options = url + '/Home/postObtenerProjectos';
         axios.post(options, parametros).then(function (response) {
@@ -35,7 +36,7 @@
                                             <img src="/Content/img/ubicacion.png" style="width:50px" class="mb-3" />
                                             <br />
                                             <h2 style="color:#7ab37f; font-size:30px">${v.ProjectName}</h2>
-                                            <h4>Short project description</h4>
+                                            <!--<h4>Short project description</h4>-->
                                         </div>
                                     </div>
                                 </a>
