@@ -53496,13 +53496,13 @@ thead tr:nth-child(3) th {
 
 
 
-.toggle-button-cover {
+/*.toggle-button-cover {
     display: table-cell;
     position: relative;
     width: 200px;
     height: 140px;
     box-sizing: border-box;
-}
+}*/
 
 .button-cover {
     height: 100px;
@@ -53537,8 +53537,8 @@ thead tr:nth-child(3) th {
 
 .button {
     position: relative;
-    top: 50%;
-    width: 74px;
+    
+    width: 120px;
     height: 39px;
     
     overflow: hidden;
@@ -53601,13 +53601,13 @@ thead tr:nth-child(3) th {
 }
 
 #button-14 .knobs:before {
-    content: "ON";
-    left:1px;
+    content: "Enabled";
+    left: 1px;
 }
 
 #button-14 .knobs:after {
-    content: "OFF";
-    right: 12px;
+    content: "Disabled";
+    right: 35px;
 }
 
 #button-14 .knobs span {
@@ -53626,14 +53626,14 @@ thead tr:nth-child(3) th {
 
     #button-14 .knobs span:after {
         top: 10px;
-        left: 39px;
+        left: 66px;
         background-color: #ffc700;
     }
 
     #button-14 .knobs span:before,
     #button-14 .knobs span:after {
         content: "";
-        width: 30px;
+        width: 45px;
         z-index: 2;
     }
 
