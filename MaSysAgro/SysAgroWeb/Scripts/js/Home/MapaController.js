@@ -21,7 +21,7 @@
         //showDeviceInMap();
         //setDeviceForProject();
         //newProject();
-        assignDeviceToProject();
+        handleAssignDeviceToProject();
     }
 
     const init_map = function () {
@@ -325,27 +325,33 @@
         });
     }
 
-    const assignDeviceToProject = function (form) {
+    const handleAssignDeviceToProject = () => {
         $("#form-device").submit(function (form) {
             form.preventDefault();
+
+            const message = document.getElementById("message-modal-device");
 
             var formData = $(this).serializeArray().reduce(function (obj, item) {
                 obj[item.name] = item.value;
                 return obj;
             }, {});
 
-            const options = url + '/Home/postAddProjectos';
-
+            const options = url + '/Home/postBuscarDispositivo';
             formData.ClientID = ClientID;
-
             axios.post(options, formData).then(function (response) {
-                console.log(response);
-                /*const result = response.data;
+                const result = response.data;
                 if (result.SUCCESS == true) {
-                   
+                    type = "success ";
                 } else {
-                    console.log("Ocurrio un error");
-                }*/
+                    type = "warning";
+                }
+
+                message.innerHTML = `
+                <div class="alert alert-${type}" role="alert">
+                    PLAYER ${formData.player_id}: ${result.MESSAGE}
+                </div>`;
+
+                $("#player_id").val("");
             }).catch(function (error) {
                 console.error(error);
             });
@@ -356,4 +362,3 @@
         Inicializar: Inicializar,
     }
 };
-
