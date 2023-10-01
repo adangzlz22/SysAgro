@@ -20,7 +20,7 @@
         handleDeviceForProject();
         //showDeviceInMap();
         //setDeviceForProject();
-        //newProject();
+        newProject();
         handleAssignDeviceToProject();
     }
 
