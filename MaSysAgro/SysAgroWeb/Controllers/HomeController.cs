@@ -242,7 +242,8 @@ namespace SysAgroWeb.Controllers
                 using (var ctx = new MySqlConnection(conexion))
                 {
                     ctx.Open();
-                    var objProject = ctx.Query<resultProject>(string.Format(consulta, vSesiones.sesionUsuarioDTO.Id,parametros.Activo), paramss, null, true, 300).ToList();
+                    consulta = string.Format(consulta, vSesiones.sesionUsuarioDTO.Id, parametros.Activo);
+                    var objProject = ctx.Query<resultProject>(consulta, paramss, null, true, 300).ToList();
                     if (objProject.Count() != 0)
                     {
                         objResponse.ITEMS = objProject;
@@ -493,13 +494,25 @@ namespace SysAgroWeb.Controllers
                 string consulta = "UPDATE player_data SET Activo = {0} WHERE player_id = {1}";
                 using (var ctx = new MySqlConnection(conexion))
                 {
-                    consulta = string.Format(consulta, vSesiones.sesionUsuarioDTO.Id, paramsProject.ProjectID);
+                    consulta = string.Format(consulta, paramsProject.Activo, paramsProject.player_id);
                     ctx.Open();
                     var objProject = ctx.Query<devices>(consulta, paramss, null, true, 300).FirstOrDefault();
-                    if (objProject != null)
+                    consulta = "SELECT * FROM player_data WHERE player_id = {0}";
+                    consulta = string.Format(consulta,  paramsProject.player_id);
+                    var Device = ctx.Query<devices>(consulta, paramss, null, true, 300).FirstOrDefault();
+                    if (Device != null)
                     {
-                        objResponse.ITEMS = objProject;
-                        objResponse.MESSAGE = "";
+                        string message = "{0} device with output";
+                        if (paramsProject.Activo == 1)
+                        {
+                           message = string.Format(message, "enabled");
+                        }
+                        else
+                        {
+                            message = string.Format(message, "disabled");
+                        }
+                        objResponse.ITEMS = Device;
+                        objResponse.MESSAGE = message;
                         objResponse.SUCCESS = true;
                     }
                     else
@@ -565,15 +578,37 @@ namespace SysAgroWeb.Controllers
             try
             {
                 string consulta = "UPDATE player_data SET ClientID={0} WHERE player_id='{1}'";
+                string consulta2 = "SELECT * FROM player_data WHERE player_id='{1}'";
                 consulta = string.Format(consulta, paramsProject.ClientID, paramsProject.player_id);
+                consulta2 = string.Format(consulta,  paramsProject.player_id);
                 using (var ctx = new MySqlConnection(conexion))
                 {
                     ctx.Open();
-                    var objProject = ctx.Query<dynamic>(consulta, paramss, null, true, 300).FirstOrDefault();
+                    var objProject2 = ctx.Query<devices>(consulta2, paramss, null, true, 300).FirstOrDefault();
+                    if (objProject2 != null)
+                    {
+                        if (objProject2.ClientID == 0)
+                        {
+                            var objProject = ctx.Query<dynamic>(consulta, paramss, null, true, 300).FirstOrDefault();
 
-                    objResponse.ITEMS = objProject;
-                    objResponse.MESSAGE = "Device added successfully.";
-                    objResponse.SUCCESS = true;
+                            objResponse.ITEMS = objProject;
+                            objResponse.MESSAGE = "Device added successfully.";
+                            objResponse.SUCCESS = true;
+                        }
+                        else
+                        {
+                            objResponse.ITEMS = null;
+                            objResponse.MESSAGE = "This device is already associated with another client.";
+                            objResponse.SUCCESS = false;
+                            
+                        }
+                    }
+                    else
+                    {
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "Device not found.";
+                        objResponse.SUCCESS = false;
+                    }
                 }
             }
             catch (Exception ex)

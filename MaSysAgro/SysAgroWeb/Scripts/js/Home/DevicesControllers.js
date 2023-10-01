@@ -11,7 +11,12 @@
 
     const Card = `       <div class="col-lg-3 col-sm-12 col-md-4 mb-3">
                 <div class="card box" style=" border: 1px solid #7ab37f;">
-                <button style="display:none;" data-tipo="1" class="btn btn-danger text-right CloseButton" id="btnEliminar{0}"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12" style="text-align:right">
+<button style="display:none;" data-tipo="1" class="btn btn-danger CloseButton" id="btnEliminar{0}"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+</div>
+</div>
+                
                     <div class="card-body mt-5 mb-5 text-left">
                         <img src="/Content/img/dispositivos.png" style="width:50px" class="mb-3" />
 
@@ -37,8 +42,16 @@
         console.log(url)
         btnEliminar.click(function () {
             if ($('.CloseButton').attr('data-tipo') == 1) {
-                $('.CloseButton').css('display', 'block');
+                $('.CloseButton').css('display', 'inline');
+                $('.CloseButton').css('width', '30px');
+                $('.CloseButton').css('padding', '2px 7px');
+                $('.CloseButton').css('border-radius', '20px');
+                $('.CloseButton').css('top', '-9px');
+                $('.CloseButton').css('position', 'relative');
+                $('.CloseButton').css('left', '10px');
                 $('.CloseButton').attr('data-tipo', 2);
+                $('.CloseButton').addClass('btn-danger');
+                $('.CloseButton').removeClass('btn-success');
             } else {
                 $('.CloseButton').css('display', 'none');
                 $('.CloseButton').attr('data-tipo', 1);
@@ -46,8 +59,16 @@
         })
         btnActivar.click(function () {
             if ($('.CloseButton').attr('data-tipo') == 1) {
-                $('.CloseButton').css('display', 'block');
+                $('.CloseButton').css('display', 'inline');
+                $('.CloseButton').css('width', '30px');
+                $('.CloseButton').css('padding', '2px 7px');
+                $('.CloseButton').css('border-radius', '20px');
+                $('.CloseButton').css('top', '-9px');
+                $('.CloseButton').css('position', 'relative');
+                $('.CloseButton').css('left', '10px');
                 $('.CloseButton').attr('data-tipo', 2);
+                $('.CloseButton').removeClass('btn-danger');
+                $('.CloseButton').addClass('btn-success');
             } else {
                 $('.CloseButton').css('display', 'none');
                 $('.CloseButton').attr('data-tipo', 1);
@@ -67,11 +88,13 @@
 
             if (flexSwitchCheckChecked.prop('checked') == true) {
                 btnActivar.css('display', 'none');
-                btnEliminar.css('display','');
+                btnEliminar.css('display', '');
+                btnEliminar.attr('data-Activo',1)
                 postObtenerDispositivos(1);
             } else {
                 btnActivar.css('display', '');
                 btnEliminar.css('display', 'none');
+                btnActivar.attr('data-Activo', 2)
                 postObtenerDispositivos(2)
             }
         })
@@ -116,7 +139,11 @@
                     for (var i = 0; i < result.ITEMS.length; i++) {
                         let player = result.ITEMS[i].player_id;
                         $('#btnEliminar' + player).click(function () {
-                            console.log('click' + player );
+
+                            let Activo = flexSwitchCheckChecked.prop('checked') == true ? 1 : 2;
+                            console.log(player, Activo);
+
+                            postActivarDesactivar(player, Activo);
                         });
                     }
                 }
@@ -128,7 +155,21 @@
         });
     }
 
+    const postActivarDesactivar = function (player_id, Activo) {
+        let parametros = {
+            //ProjectID : txtDispositivo.val(),
+            player_id: player_id,
+            Activo: Activo == 1 ? 2 : 1
+        }
+        const options = url + '/Home/postUpdateDispositivos';
+        axios.post(options, parametros).then(function (response) {
+            const result = response.data;
+            postObtenerDispositivos(Activo);
 
+        }).catch(function (error) {
+            console.error(error);
+        });
+    }
 
     String.prototype.format = function () {
         var args = arguments;
