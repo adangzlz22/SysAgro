@@ -159,7 +159,7 @@
 <script src="~/Scripts/js/Home/MapaController.js?v=1.0"></script>
 <script type="text/javascript">
     (function () {
-        var clsMapaControllers = new MapaController(@ViewBag.Id);
+        var clsMapaControllers = new MapaController(@ViewBag.Id,@ViewBag.projectId);
         clsMapaControllers.Inicializar();
     })();
 </script>

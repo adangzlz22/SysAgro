@@ -205,7 +205,7 @@ namespace SysAgroWeb.Controllers
         {
             return View();
         }
-        public ActionResult Mapa()
+        public ActionResult Mapa(int projectId)
         {
             if (vSesiones.sesionUsuarioDTO != null)
             {
@@ -219,6 +219,7 @@ namespace SysAgroWeb.Controllers
                 ViewBag.Usuario = vSesiones.sesionUsuarioDTO.Usuario;
                 ViewBag.ImagenPerfil = vSesiones.sesionUsuarioDTO.ImagenPerfil;
                 ViewBag.IdRol = vSesiones.sesionUsuarioDTO.IdRol;
+                ViewBag.projectId = projectId;
 
 
                 return View();

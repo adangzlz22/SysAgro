@@ -1,4 +1,4 @@
-﻿var MapaController = function (ClientID) {
+﻿var MapaController = function (ClientID, projectId) {
     const url = urlGlobal;
     var arrProject = [];
     var arrDevice = [];
@@ -10,6 +10,7 @@
     var map = L.map('map').setView([longitud, latitud], 10.3);// 41.2919797826564050, 1.8535724466127812
 
     var Inicializar = function () {
+        console.log(projectId)
         console.log(url);
         console.log('hola soy MapaControllers');
         init_map();
