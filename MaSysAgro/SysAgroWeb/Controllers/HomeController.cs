@@ -232,7 +232,7 @@ namespace SysAgroWeb.Controllers
         #endregion
 
         #region PROJECT
- 
+
         public ActionResult postObtenerProjectos(paramsProject parametros)
         {
             objResponse = new ClsModResponse();
@@ -277,38 +277,40 @@ namespace SysAgroWeb.Controllers
                 string consulta = @"INSERT INTO projects (ProjectName, ClientID, Longitud_1,Latitud_1, Longitud_2, Latitud_2,Activo) 
                                     VALUES ('{0}',{1},0.0, 0.0, 0.0, 0.0,1);";
 
-                string Existe = @"SELECT * FROM projects WHERE ProjectName = {0};";
+                string Existe = @"SELECT * FROM projects WHERE ProjectName = '{0}';";
 
                 using (var ctx = new MySqlConnection(conexion))
                 {
-                    consulta = string.Format(consulta, parametros.ProjectName, parametros.ClientID);
-
-                    Existe = string.Format(Existe, parametros.ProjectName);
-                    ctx.Open();
-                    var objExiste = ctx.Query<dynamic>(Existe, paramss, null, true, 300).FirstOrDefault();
-                    if (objExiste == null)
+                    if (parametros.ProjectName != "" && parametros.ProjectName != null)
                     {
-                        var objProject = ctx.Query<dynamic>(consulta, paramss, null, true, 300).FirstOrDefault();
-                        if (objProject != null)
+                        consulta = string.Format(consulta, parametros.ProjectName, parametros.ClientID);
+
+                        Existe = string.Format(Existe, parametros.ProjectName);
+                        ctx.Open();
+                        var objExiste = ctx.Query<dynamic>(Existe, paramss, null, true, 300).FirstOrDefault();
+                        if (objExiste == null)
                         {
+                            var objProject = ctx.Query<dynamic>(consulta, paramss, null, true, 300).FirstOrDefault();
+
                             objResponse.ITEMS = objProject;
                             objResponse.MESSAGE = "project added successfully.";
                             objResponse.SUCCESS = true;
+
                         }
                         else
                         {
                             objResponse.ITEMS = null;
-                            objResponse.MESSAGE = "this a problem whit db.";
+                            objResponse.MESSAGE = "this project already exists in the database.";
                             objResponse.SUCCESS = false;
                         }
+
                     }
                     else
                     {
                         objResponse.ITEMS = null;
-                        objResponse.MESSAGE = "this project already exists in the database.";
+                        objResponse.MESSAGE = "You cannot add a property with empty text.";
                         objResponse.SUCCESS = false;
                     }
-
                 }
             }
             catch (Exception ex)
@@ -499,14 +501,14 @@ namespace SysAgroWeb.Controllers
                     ctx.Open();
                     var objProject = ctx.Query<devices>(consulta, paramss, null, true, 300).FirstOrDefault();
                     consulta = "SELECT * FROM player_data WHERE player_id = {0}";
-                    consulta = string.Format(consulta,  paramsProject.player_id);
+                    consulta = string.Format(consulta, paramsProject.player_id);
                     var Device = ctx.Query<devices>(consulta, paramss, null, true, 300).FirstOrDefault();
                     if (Device != null)
                     {
                         string message = "{0} device with output";
                         if (paramsProject.Activo == 1)
                         {
-                           message = string.Format(message, "enabled");
+                            message = string.Format(message, "enabled");
                         }
                         else
                         {
@@ -581,7 +583,7 @@ namespace SysAgroWeb.Controllers
                 string consulta = "UPDATE player_data SET ClientID={0} WHERE player_id={1}";
                 string consulta2 = "SELECT * FROM player_data WHERE player_id={0}";
                 consulta = string.Format(consulta, paramsProject.ClientID, paramsProject.player_id);
-                consulta2 = string.Format(consulta2,  paramsProject.player_id);
+                consulta2 = string.Format(consulta2, paramsProject.player_id);
                 using (var ctx = new MySqlConnection(conexion))
                 {
                     ctx.Open();
@@ -601,7 +603,7 @@ namespace SysAgroWeb.Controllers
                             objResponse.ITEMS = null;
                             objResponse.MESSAGE = "This device is already associated with another client.";
                             objResponse.SUCCESS = false;
-                            
+
                         }
                     }
                     else
