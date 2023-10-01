@@ -31,7 +31,7 @@
                         items.push(
                             `<div class="col-lg-3 col-sm-12 col-md-4 mb-3" style="height:100%">
                                 <a href="Mapa?projectId=${v.ProjectID}">
-                                    <div class="card box" style="border: 1px solid #7ab37f; height:230px;">
+                                    <div class="card box" style="border: 1px solid #7ab37f; height:200px;">
                                         <div class="card-body mt-5 mb-5 text-left">
                                             <img src="/Content/img/ubicacion.png" style="width:50px" class="mb-3" />
                                             <br />
