@@ -7,7 +7,7 @@
     var latitud = 0.15312031851124058;
     var markerDeviceGroup = null;
 
-    var map = L.map('map').setView([longitud, latitud], 10.3);// 41.2919797826564050, 1.8535724466127812
+    var map = L.map('map').setView([longitud, latitud], 10.3);
 
     var Inicializar = function () {
         console.log(projectId)
@@ -16,15 +16,16 @@
         init_map();
         config();
         //campos();
-        getProyects();
-        getDeviceForProject();
-        showDeviceInMap();
-        setDeviceForProject();
-        newProject();
+        getProjects();
+        handleDeviceForProject();
+        //showDeviceInMap();
+        //setDeviceForProject();
+        //newProject();
         assignDeviceToProject();
     }
 
     const init_map = function () {
+        
         /*L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -118,110 +119,154 @@
         }*/
     }
 
-    const getProyects = function () {
-        let parametros = {
-            //ProjectID : txtDispositivo.val(),
-            ClientID: ClientID,
-            Activo: 1,
-        }
-        const options = url + '/Home/postObtenerProjectos';
-        axios.post(options, parametros).then(function (response) {
+    const getProjects = async () => {
+        try {
+            const parametros = {
+                ClientID: ClientID,
+                Activo: 1,
+            };
+            const options = `${url}/Home/postObtenerProjectos`;
+            const response = await axios.post(options, parametros);
             const result = response.data;
-            const items = [], divProyectos = $("#lista_proyectos").empty();
+            const divProyectos = document.getElementById("lista_proyectos");
 
-            if (result.SUCCESS == true) {
-                if (result.ITEMS.length > 0) {
+            if (result.SUCCESS && result.ITEMS.length > 0) {
+                arrProject = result.ITEMS;
 
-                    arrProject = result.ITEMS;
-
-                    arrProject.map((v, index) => {
-                        items.push(
-                            `<div href="#" class="col-sm-12 mb-4">
+                const items = sortItems(arrProject).map((v, index) => {
+                    return `<div href="#" class="col-sm-12 mb-4">
                             <div class="card shadow-sm">
-                                <div class="card-body mt-5 mb-5 project-device" data-order="${index}">
-                                    <h3 class="mb-5">${v.ProjectName} ${v.ProjectID}</h3>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">First element</li>
-                                        <li class="list-group-item">Second element</li>
-                                        <li class="list-group-item">Third element</li>
-                                    </ul>
+                              <div class="card-body mt-5 mb-5 cursor-pointer project-device" data-order="${index}">
+                                <h3 class="mb-5">${v.ProjectName}</h3>
+                                <ul class="list-group list-group-flush" id="card-device-${v.ProjectID}">
+                                </ul>
+                              </div>
+                              <a href="#" data-bs-toggle="modal" data-bs-target="#myModal">
+                                <div class="card-body text-center" style="border-top: 1px dashed #7ab37f">
+                                  <i class="fa fa-plus"></i> add device
                                 </div>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#myModal">
-                                    <div class="card-body text-center" style="border-top: 1px dashed #7ab37f">
-                                        <i class="fa fa-plus"></i> add device
-                                    </div>
-                                </a>
+                              </a>
                             </div>
-                        </div>`);
-                    });
+                          </div>`;
+                });
 
-                    divProyectos.append(items.join(''));
-                } else {
-
-                    divProyectos.append(
-                        `<div class="alert alert-warning" role="alert">
-                            No se encontraron proyectos registrados
-                        </div>`
-                    );
-                }
+                divProyectos.innerHTML = items.join('');
+                getDeveceForProjectDefault();
             } else {
-
+                divProyectos.innerHTML = `
+                    <div class="alert alert-warning" role="alert">
+                      No se encontraron proyectos registrados
+                    </div>`;
             }
-
-        }).catch(function (error) {
+        } catch (error) {
             console.error(error);
-        });
+        }
+    };
+
+    const sortItems = (items) => {
+        const index = items.findIndex(item => item.ProjectID === projectId);
+
+        if (index !== -1) {
+            const elementToMove = items.splice(index, 1)[0];
+            items.unshift(elementToMove);
+        }
+
+        return items;
     }
 
-    const getDeviceForProject = function () {
-
-        $('#lista_proyectos').on('click', '.project-device', function (e) {
+    const handleDeviceForProject = () => {
+        document.getElementById("lista_proyectos").addEventListener('click', async (e) => {
             e.preventDefault();
 
             clearDeviceInMap();
 
-            let order = $(this).data('order');
-            let project = arrProject[order];
+            const order = e.target.closest('.project-device').dataset.order;
+            const project = arrProject[order];
 
             latitud = project.Latitud_1;
             longitud = project.Longitud_1;
 
             map.flyTo([latitud, longitud], 15, {
                 animate: true,
-                duration: 2 // in seconds
+                duration: 2
             });
 
-            const options = url + `/Home/postObtenerDispositivosPorProjecto`;
-            var parametros = {
+            const options = `${url}/Home/postObtenerDispositivosPorProjecto`;
+            const parametros = {
                 ProjectID: project.ProjectID
             };
 
-            axios.post(options, parametros).then(function (response) {
+            try {
+                const response = await axios.post(options, parametros);
                 const result = response.data;
-                const items = [], divDispositivos = $("#lista-dispositivos").empty();
 
-                if (result.SUCCESS == true) {
-                    if (result.ITEMS.length > 0) {
-
-                        arrDevice = result.ITEMS;
-
-                        arrDevice.filter(element => { return element.Longitud === 0 }).map((v, index) => {
-                            items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${index}">Device ${v.player_id}</button>`);
-                        });
-
-                        divDispositivos.append(items.join(''));
-
-                        showDeviceInMap();
-                    } else {
-                        console.log("No se encontraron dispositivos");
-                    }
+                if (result.SUCCESS && result.ITEMS.length > 0) {
+                    arrDevice = result.ITEMS;
+                    showDeviceForAssign();
+                    showDeviceAssigned(project.ProjectID);
                 } else {
-
+                    console.log("No se encontraron dispositivos");
                 }
-            }).catch(function (error) {
+            } catch (error) {
                 console.error(error);
-            });
+            }
         });
+    };
+
+    const getDeveceForProjectDefault = async () => {
+        const order = 0;
+        const project = arrProject[order];
+
+        latitud = project.Latitud_1;
+        longitud = project.Longitud_1;
+
+        map.flyTo([latitud, longitud], 15, {
+            animate: true,
+            duration: 2
+        });
+
+        const options = `${url}/Home/postObtenerDispositivosPorProjecto`;
+        const parametros = {
+            ProjectID: project.ProjectID
+        };
+
+        try {
+            const response = await axios.post(options, parametros);
+            const result = response.data;
+
+            if (result.SUCCESS && result.ITEMS.length > 0) {
+                arrDevice = result.ITEMS;
+                showDeviceForAssign();
+                showDeviceAssigned(project.ProjectID);
+            } else {
+                console.log("No se encontraron dispositivos");
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const showDeviceAssigned = (ProjectID) => {
+        const divDispositivos = document.getElementById(`card-device-${ProjectID}`);
+        if (divDispositivos) {
+            const items = arrDevice
+                .filter(element => element.Longitud !== 0)
+                .map((v, index) => `<li class="list-group-item">Device ${v.player_id}</li>`);
+
+            divDispositivos.innerHTML = items.join('');
+        } else {
+            console.log(`Element with id "card-device-${ProjectID}" not found.`);
+        }
+    };
+
+    const showDeviceForAssign = function () {
+        var items = [], divDispositivos = $("#lista-dispositivos").empty();
+        arrDevice.filter(element => { return element.Longitud === 0 }).map((v, index) => {
+            items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${index}">Device ${v.player_id}</button>`);
+        });
+
+        divDispositivos.append(items.join(''));
+        showDeviceInMap();
     }
 
     const showDeviceInMap = function () {
@@ -240,7 +285,9 @@
     }
 
     const clearDeviceInMap = function () {
-        markerDeviceGroup.clearLayers();
+        if (markerDeviceGroup != null) {
+            markerDeviceGroup.clearLayers();
+        }
     }
 
     const setDeviceForProject = function () {
