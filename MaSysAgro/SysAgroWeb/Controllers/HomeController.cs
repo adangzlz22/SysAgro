@@ -578,10 +578,10 @@ namespace SysAgroWeb.Controllers
 
             try
             {
-                string consulta = "UPDATE player_data SET ClientID={0} WHERE player_id='{1}'";
-                string consulta2 = "SELECT * FROM player_data WHERE player_id='{1}'";
+                string consulta = "UPDATE player_data SET ClientID={0} WHERE player_id={1}";
+                string consulta2 = "SELECT * FROM player_data WHERE player_id={0}";
                 consulta = string.Format(consulta, paramsProject.ClientID, paramsProject.player_id);
-                consulta2 = string.Format(consulta,  paramsProject.player_id);
+                consulta2 = string.Format(consulta2,  paramsProject.player_id);
                 using (var ctx = new MySqlConnection(conexion))
                 {
                     ctx.Open();
