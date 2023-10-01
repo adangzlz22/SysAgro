@@ -102,17 +102,69 @@
         .box:hover {
             box-shadow: 0 0 11px rgb(122 179 127 / 58%);
         }
+    .form-check-input {
+        clear: left;
+    }
+
+    .form-switch.form-switch-sm {
+        margin-bottom: 0.5rem; /* JUST FOR STYLING PURPOSE */
+    }
+
+       .form-switch.form-switch-lg .form-check-input {
+    height: 2.5rem;
+    width: calc(3rem + 0.75rem);
+    border-radius: 0.3rem;
+}
+    
+
+        .form-switch.form-switch-md .form-check-input {
+            height: 1.5rem;
+            width: calc(2rem + 0.75rem);
+            border-radius: 3rem;
+        }
+
+    /*.form-switch.form-switch-lg {
+        margin-bottom: 1.5rem;*/ /* JUST FOR STYLING PURPOSE */
+    /*}*/
+
+    .form-switch.form-switch-lg .form-check-input {
+        height: 2.5rem;
+        width: calc(3rem + 0.75rem);
+        border-radius: 0.3rem;
+    }
+
+    .form-switch.form-switch-xl {
+        margin-bottom: 2rem; /* JUST FOR STYLING PURPOSE */
+    }
+
+        .form-switch.form-switch-xl .form-check-input {
+            height: 2.5rem;
+            width: calc(4rem + 0.75rem);
+            border-radius: 5rem;
+        }
+
 </style>
 <br />
 <div class="container-fluid" style="padding-left: 3%; padding-right: 3%">
+   
+  
     <div class="row">
         <div class="col-lg-8">@*<h1 class="h3 mb-0 text-gray-800  mb-3"><b>My Devices</b></h1>*@</div>
         <div class="col-lg-4">
             <div class="d-sm-flex align-items-center justify-content-end mb-4">
 
                 <a href="index" class="btn btn-secondary" style="padding: .3rem .9rem;font-size:20px; margin:5px"><i class="fa-solid fa-arrow-left"></i></a>
-                <input class="form-check-input" type="checkbox" role="switch" style="padding: 1.3rem 1.4rem !important; outline: none; font-size: 15px; margin: 5px; border-radius: .75rem " id="flexSwitchCheckChecked" checked>
+                @*<div class="form-check form-switch form-switch-lg">
+                    <input class="form-check-input" type="checkbox" >
 
+                </div>*@
+                <div class="button b2" id="button-14" style="margin-right:10px; margin-left:10px">
+                    <input type="checkbox" class="checkbox" id="flexSwitchCheckChecked" checked/>
+                    <div class="knobs">
+                        <span></span>
+                    </div>
+                    <div class="layer"></div>
+                </div>
                 <a href="#" id="btnActivar" class="btn btn-warning" style="padding: .3rem .9rem; font-size: 18px; display: none; font-weight:800"><b><i class="fa-solid fa-check"></i></b></a>
                 <a href="#" id="btnEliminar" class="btn btn-danger" style="padding: .3rem .9rem;font-size:18px; margin:5px"><i class="fa-solid fa-trash-can"></i></a>
 
@@ -310,6 +362,7 @@
 <script src="~/Scripts/sweetalert2.all.min.js"></script>
 <script src="~/Scripts/axios.min.js"></script>
 <script src="~/Scripts/jquery.min.js"></script>
+
 <script src="~/Scripts/js/Home/DevicesControllers.js?v=1.0"></script>
 <script type="text/javascript">
     (function () {
