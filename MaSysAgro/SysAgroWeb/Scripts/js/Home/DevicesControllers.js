@@ -11,7 +11,12 @@
 
     const Card = `       <div class="col-lg-3 col-sm-12 col-md-4 mb-3">
                 <div class="card box" style=" border: 1px solid #7ab37f;">
-                <button style="display:none;" data-tipo="1" class="btn btn-danger text-right CloseButton" id="btnEliminar{0}"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12" style="text-align:right">
+<button style="display:none;" data-tipo="1" class="btn btn-danger CloseButton" id="btnEliminar{0}"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+</div>
+</div>
+                
                     <div class="card-body mt-5 mb-5 text-left">
                         <img src="/Content/img/dispositivos.png" style="width:50px" class="mb-3" />
 
@@ -37,7 +42,13 @@
         console.log(url)
         btnEliminar.click(function () {
             if ($('.CloseButton').attr('data-tipo') == 1) {
-                $('.CloseButton').css('display', 'block');
+                $('.CloseButton').css('display', 'inline');
+                $('.CloseButton').css('width', '30px');
+                $('.CloseButton').css('padding', '2px 7px');
+                $('.CloseButton').css('border-radius', '20px');
+                $('.CloseButton').css('top', '-9px');
+                $('.CloseButton').css('position', 'relative');
+                $('.CloseButton').css('left', '10px');
                 $('.CloseButton').attr('data-tipo', 2);
                 $('.CloseButton').addClass('btn-danger');
                 $('.CloseButton').removeClass('btn-success');
@@ -48,7 +59,13 @@
         })
         btnActivar.click(function () {
             if ($('.CloseButton').attr('data-tipo') == 1) {
-                $('.CloseButton').css('display', 'block');
+                $('.CloseButton').css('display', 'inline');
+                $('.CloseButton').css('width', '30px');
+                $('.CloseButton').css('padding', '2px 7px');
+                $('.CloseButton').css('border-radius', '20px');
+                $('.CloseButton').css('top', '-9px');
+                $('.CloseButton').css('position', 'relative');
+                $('.CloseButton').css('left', '10px');
                 $('.CloseButton').attr('data-tipo', 2);
                 $('.CloseButton').removeClass('btn-danger');
                 $('.CloseButton').addClass('btn-success');
