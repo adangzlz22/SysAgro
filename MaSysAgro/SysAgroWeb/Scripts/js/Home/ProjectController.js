@@ -2,13 +2,16 @@
     const url = urlGlobal;
 
     var arrProject = [];
-    var agregarinputTitulo = $('#sagregarinputTitulo');
-  
+    var agregarinputTitulo = $('#agregarinputTitulo');
+    var btnSave = $('#btnSave');
+    
     var Inicializar = function () {
         console.log(url);
         console.log('hola soy ProjectControllers');
         getProyects(1);
-
+        btnSave.click(function () {
+            newProject();
+        });
     }
 
     const getProyects = function (Activo) {
@@ -139,31 +142,23 @@
         });
     }
 
-    const newProject = function (form) {
-        $("#form-project").submit(function (form) {
-            form.preventDefault();
-
-            var formData = $(this).serializeArray().reduce(function (obj, item) {
-                obj[item.name] = item.value;
-                return obj;
-            }, {});
-
+    const newProject = function () {
+        let parametros = {
+            ProjectName: agregarinputTitulo.val(),
+            ClientID: ClientID
+        };
             const options = url + '/Home/postAddProjectos';
 
-            formData.ClientID = ClientID;
-
-            axios.post(options, formData).then(function (response) {
-                console.log(response);
-                /*const result = response.data;
+            axios.post(options, parametros).then(function (response) {
+                const result = response.data;
                 if (result.SUCCESS == true) {
-                   
+                    getProyects(1);
                 } else {
                     console.log("Ocurrio un error");
-                }*/
+                }
             }).catch(function (error) {
                 console.error(error);
             });
-        });
     }
 
     const assignDeviceToProject = function (form) {
