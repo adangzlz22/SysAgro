@@ -22,8 +22,8 @@
 
                      
                         <h2 style="color:#7ab37f; font-size:28px">Player : {0}</h2>
-                        <h6>Chip : {1}</h6>
-                        <h6>Date reaction : {2}</h6>
+                        <h7><b>Chip : {1}</b></h7><br>
+                        <h7><b>Date reaction : {2}</b></h7>
                         <div class="d-flex justify-content-between align-items-center">
 
                             <small  class="text-body-secondary"></small> <div class="btn-group">

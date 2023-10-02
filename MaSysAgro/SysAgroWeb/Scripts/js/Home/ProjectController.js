@@ -38,7 +38,7 @@
                                         <div class="card-body mt-5 mb-5 text-left">
                                             <img src="/Content/img/ubicacion.png" style="width:50px" class="mb-3" />
                                             <br />
-                                            <h2 style="color:#7ab37f; font-size:30px">${v.ProjectName}</h2>
+                                            <h2 style="color:#7ab37f; font-size:25px">${v.ProjectName}</h2>
                                             <!--<h4>Short project description</h4>-->
                                         </div>
                                     </div>
