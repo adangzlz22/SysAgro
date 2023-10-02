@@ -135,18 +135,20 @@
 
                 const items = sortItems(arrProject).map((v, index) => {
                     return `<div href="#" class="col-sm-12 mb-4">
-                            <div class="card shadow-sm">
-                              <div class="card-body mt-5 mb-5 cursor-pointer project-device" data-order="${index}">
-                                <h3 class="mb-5">${v.ProjectName}</h3>
-                                <ul class="list-group list-group-flush" id="card-device-${v.ProjectID}">
-                                </ul>
-                              </div>
-                              <a href="#" data-bs-toggle="modal" data-bs-target="#myModal">
-                                <div class="card-body text-center" style="border-top: 1px dashed #7ab37f">
-                                  <i class="fa fa-plus"></i> add device
+                                <div class="card shadow-sm">
+                                      <div class="card-body mt-5 mb-5 cursor-pointer project-device" data-order="${index}">
+                                            <h3 class="mb-5">${v.ProjectName}</h3>
+                                                <ul class="list-group list-group-flush" id="card-device-${v.ProjectID}">
+                                            </ul>
+                                      </div>
+                                      ${(v.ProjectID === projectId ? 
+                                            `<a href="#" data-bs-toggle="modal" data-bs-target="#myModal">
+                                                <div class="card-body text-center" style="border-top: 1px dashed #7ab37f">
+                                                    <i class="fa fa-plus"></i> add device
+                                                </div>
+                                            </a>` : ''
+                                      )}
                                 </div>
-                              </a>
-                            </div>
                           </div>`;
                 });
 
@@ -302,6 +304,8 @@
         $("#form-project").submit(function (form) {
             form.preventDefault();
 
+            const message = document.getElementById("message-modal-project");
+
             var formData = $(this).serializeArray().reduce(function (obj, item) {
                 obj[item.name] = item.value;
                 return obj;
@@ -313,12 +317,23 @@
 
             axios.post(options, formData).then(function (response) {
                 console.log(response);
-                /*const result = response.data;
+                const result = response.data;
                 if (result.SUCCESS == true) {
                    
                 } else {
                     console.log("Ocurrio un error");
-                }*/
+                }
+
+                message.innerHTML = `
+                <div class="alert alert-${type}" role="alert">
+                    PLAYER ${formData.player_id}: ${result.MESSAGE}
+                </div>`;
+
+                $("#ProjectName").val("");
+
+                setTimeout(() => {
+                    $('#myModalProject').modal('hide');
+                }, 2000);
             }).catch(function (error) {
                 console.error(error);
             });
@@ -336,12 +351,16 @@
                 return obj;
             }, {});
 
-            const options = url + '/Home/postBuscarDispositivo';
+            const options = url + '/Home/postBuscarDispositivoPorProyecto';
+
             formData.ClientID = ClientID;
+            formData.ProjectID = projectId;
+
             axios.post(options, formData).then(function (response) {
                 const result = response.data;
                 if (result.SUCCESS == true) {
                     type = "success ";
+                    getDeveceForProjectDefault();
                 } else {
                     type = "warning";
                 }
@@ -352,6 +371,11 @@
                 </div>`;
 
                 $("#player_id").val("");
+
+                setTimeout(() => {
+                    $('#myModal').modal('hide');
+                }, 2000);
+                
             }).catch(function (error) {
                 console.error(error);
             });

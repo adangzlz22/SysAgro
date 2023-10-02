@@ -623,6 +623,57 @@ namespace SysAgroWeb.Controllers
             }
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult postBuscarDispositivoPorProyecto(paramsProject paramsProject)
+        {
+            objResponse = new ClsModResponse();
+            paramss = new DynamicParameters();
+
+            try
+            {
+                string consulta = "UPDATE player_data SET ClientID={0}, ProjectID={2} WHERE player_id={1}";
+                string consulta2 = "SELECT * FROM player_data WHERE player_id={0}";
+                consulta = string.Format(consulta, paramsProject.ClientID, paramsProject.player_id, paramsProject.ProjectID);
+                consulta2 = string.Format(consulta2, paramsProject.player_id);
+                using (var ctx = new MySqlConnection(conexion))
+                {
+                    ctx.Open();
+                    var objProject2 = ctx.Query<devices>(consulta2, paramss, null, true, 300).FirstOrDefault();
+                    if (objProject2 != null)
+                    {
+                        if (objProject2.ClientID == 0)
+                        {
+                            var objProject = ctx.Query<dynamic>(consulta, paramss, null, true, 300).FirstOrDefault();
+
+                            objResponse.ITEMS = objProject;
+                            objResponse.MESSAGE = "Device added successfully.";
+                            objResponse.SUCCESS = true;
+                        }
+                        else
+                        {
+                            objResponse.ITEMS = null;
+                            objResponse.MESSAGE = "This device is already associated with another client.";
+                            objResponse.SUCCESS = false;
+
+                        }
+                    }
+                    else
+                    {
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "Device not found.";
+                        objResponse.SUCCESS = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = "this a problem whit db. " + ex.ToString();
+                objResponse.SUCCESS = false;
+            }
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult postObtenerUsuarios()
         {
             objResponse = new ClsModResponse();
@@ -658,7 +709,5 @@ namespace SysAgroWeb.Controllers
 
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }
-
-
     }
 }
