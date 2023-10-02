@@ -329,38 +329,23 @@ namespace SysAgroWeb.Controllers
             try
             {
                 string consulta = @"UPDATE projects SET
-                                    ProjectName = '{0}', 
-                                    ClientID = {1}, 
-                                    Longitud_1 = {2},
-                                    Latitud_1 = {3}, 
-                                    Longitud_2 = {4}, 
-                                    Latitud_2 = {5} ,
-                                    Activo = {6}
-                                    WHERE ProjectID = {7};";
-                string Existe = @"SELECT * FROM projects WHERE ProjectName = {0};";
+                                    ProjectName = '{0}' 
+                                    WHERE ProjectID = {1};";
+                string Existe = @"SELECT * FROM projects WHERE ProjectName = '{0}';";
 
                 using (var ctx = new MySqlConnection(conexion))
                 {
-                    consulta = string.Format(consulta, parametros.ProjectName, parametros.ClientID, parametros.Longitud_1, parametros.Latitud_1, parametros.Longitud_2, parametros.Latitud_2, parametros.Activo, parametros.ProjectID);
+                    consulta = string.Format(consulta, parametros.ProjectName, parametros.ProjectID);
 
                     Existe = string.Format(Existe, parametros.ProjectName);
                     ctx.Open();
-                    var objExiste = ctx.Query<dynamic>(Existe, paramss, null, true, 300).FirstOrDefault();
+                    var objExiste = ctx.Query<resultProject>(Existe, paramss, null, true, 300).FirstOrDefault();
                     if (objExiste == null)
                     {
                         var objProject = ctx.Query<dynamic>(consulta, paramss, null, true, 300).FirstOrDefault();
-                        if (objProject != null)
-                        {
-                            objResponse.ITEMS = objProject;
-                            objResponse.MESSAGE = "project added successfully.";
-                            objResponse.SUCCESS = true;
-                        }
-                        else
-                        {
-                            objResponse.ITEMS = null;
-                            objResponse.MESSAGE = "this a problem whit db.";
-                            objResponse.SUCCESS = false;
-                        }
+                        objResponse.ITEMS = objProject;
+                        objResponse.MESSAGE = "project update successfully.";
+                        objResponse.SUCCESS = true;
                     }
                     else
                     {
@@ -370,6 +355,59 @@ namespace SysAgroWeb.Controllers
                     }
 
                 }
+            }
+            catch (Exception ex)
+            {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = ex.Message;
+                objResponse.SUCCESS = false;
+            }
+
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult postActivarDesProjectos(paramsProject parametros)
+        {
+            objResponse = new ClsModResponse();
+            paramss = new DynamicParameters();
+            try
+            {
+                string consulta = @"UPDATE projects SET
+                                    Activo = {0} 
+                                    WHERE ProjectID = {1};";
+                string Existe = @"SELECT * FROM projects WHERE ProjectID = {0};";
+
+                using (var ctx = new MySqlConnection(conexion))
+                {
+                    consulta = string.Format(consulta, parametros.Activo, parametros.ProjectID);
+
+                    Existe = string.Format(Existe, parametros.ProjectID);
+                    ctx.Open();
+                    var objProject = ctx.Query<resultProject>(consulta, paramss, null, true, 300).FirstOrDefault();
+                    var objExiste = ctx.Query<resultProject>(Existe, paramss, null, true, 300).FirstOrDefault();
+                    if (objExiste != null)
+                    {
+                        string message = "{0} project with output";
+                        if (objExiste.Activo == 1)
+                        {
+                            message = string.Format(message, "enabled");
+                        }
+                        else
+                        {
+                            message = string.Format(message, "disabled");
+                        }
+                        objResponse.ITEMS = objExiste;
+                        objResponse.MESSAGE = message;
+                        objResponse.SUCCESS = true;
+                    }
+                    else
+                    {
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "this a problem whit db";
+                        objResponse.SUCCESS = false;
+                    }
+                }
+
+
             }
             catch (Exception ex)
             {
