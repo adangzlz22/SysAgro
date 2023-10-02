@@ -20,7 +20,7 @@
         handleDeviceForProject();
         //showDeviceInMap();
         //setDeviceForProject();
-        newProject();
+        handleAddProject();
         handleAssignDeviceToProject();
     }
 
@@ -300,7 +300,7 @@
         });
     }
 
-    const newProject = function (form) {
+    const handleAddProject = function (form) {
         $("#form-project").submit(function (form) {
             form.preventDefault();
 
@@ -319,9 +319,10 @@
                 console.log(response);
                 const result = response.data;
                 if (result.SUCCESS == true) {
-                   
+                    type = "success ";
+                    getProjects();
                 } else {
-                    console.log("Ocurrio un error");
+                    type = "warning";
                 }
 
                 message.innerHTML = `
