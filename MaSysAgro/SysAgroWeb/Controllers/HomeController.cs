@@ -674,6 +674,46 @@ namespace SysAgroWeb.Controllers
             }
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult postAsignarDispositivoLocalizacion(paramsProject paramsProject)
+        {
+            objResponse = new ClsModResponse();
+            paramss = new DynamicParameters();
+
+            try {
+                string consulta = "UPDATE player_data SET ClientID={0}, ProjectID={1}, Longitud='{2}', Latitud='{3}' WHERE player_id={4}";
+                string consulta2 = "SELECT * FROM player_data WHERE ClientID={0} and player_id={1}";
+                
+                consulta = string.Format(consulta, paramsProject.ClientID, paramsProject.ProjectID, paramsProject.Longitud_1, paramsProject.Latitud_1, paramsProject.player_id);
+                consulta2 = string.Format(consulta2, paramsProject.ClientID, paramsProject.player_id);
+                
+                using (var ctx = new MySqlConnection(conexion)) {
+                    ctx.Open();
+                    var objProject2 = ctx.Query<devices>(consulta2, paramss, null, true, 300).FirstOrDefault();
+                    if (objProject2 != null) {
+                        var objProject = ctx.Query<dynamic>(consulta, paramss, null, true, 300).FirstOrDefault();
+                        if (objProject == null) {
+                            objResponse.ITEMS = objProject;
+                            objResponse.MESSAGE = "Device added successfully.";
+                            objResponse.SUCCESS = true;
+                        } else {
+                            //objResponse.MESSAGE = "An error occurred while trying to perform this process.";
+                            objResponse.MESSAGE = consulta;
+                            objResponse.SUCCESS = false;
+                        }    
+                    } else {
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "Device not found.";
+                        objResponse.SUCCESS = false;
+                    }
+                }
+            } catch (Exception ex) {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = "this a problem whit db. " + ex.ToString();
+                objResponse.SUCCESS = false;
+            }
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult postObtenerUsuarios()
         {
             objResponse = new ClsModResponse();

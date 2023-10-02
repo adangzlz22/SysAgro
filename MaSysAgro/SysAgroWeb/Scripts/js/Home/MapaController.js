@@ -6,6 +6,7 @@
     var longitud = 41.991751465614946;
     var latitud = 0.15312031851124058;
     var markerDeviceGroup = null;
+    var markers = [];
 
     var map = L.map('map').setView([longitud, latitud], 10.3);
 
@@ -19,8 +20,8 @@
         getProjects();
         handleDeviceForProject();
         //showDeviceInMap();
-        //setDeviceForProject();
-        newProject();
+        handleDeviceForProjectInMap();
+        handleAddProject();
         handleAssignDeviceToProject();
     }
 
@@ -64,43 +65,7 @@
          });*/
 
         // Manejador de eventos para agregar marcadores al hacer clic en el mapa
-        var markers = [];
-
-        map.on('click', function (e) {
-            if (player_id != null) {
-                var newMarker = L.marker(e.latlng).addTo(map);
-                newMarker.bindPopup('Nuevo Marcador').openPopup();
-                // Agrega el nuevo marcador al array
-
-                var lat = newMarker._latlng.lat;
-                var lng = newMarker._latlng.lng;
-
-                const options = url + `/Home/setDeviceDesignation`;
-                const parametros = {
-                    ProjectID: id,
-                    Longitud: lng,
-                    Latitud: lat
-                }
-
-                axios.post(options, parametros).then(function (response) {
-                    const result = response.data;
-
-                    if (result.SUCCESS == true) {
-                        markers.push(newMarker);
-                        // Agrega un botón para ocultar el marcador individualmente
-                        newMarker.bindPopup('Nuevo Marcador <button onclick="toggleMarker(' + (markers.length - 1) + ')">Mostrar/Ocultar</button>').openPopup();
-                    } else {
-                        console.log("Ocurrio un error");
-                    }
-                }).catch(function (error) {
-                    console.error(error);
-                });
-
-
-            } else {
-                console.log("Debe seleccionar un dispositivo");
-            }
-        });
+        
     }
 
     const campos = function () {
@@ -180,7 +145,14 @@
         document.getElementById("lista_proyectos").addEventListener('click', async (e) => {
             e.preventDefault();
 
-            clearDeviceInMap();
+            const order = e.target.closest('.project-device').dataset.order;
+            const project = arrProject[order];
+
+            if (project.ProjectID != projectId) {
+                location.href = `Mapa?projectId=${project.ProjectID}`;
+            }
+           
+            /*clearDeviceInMap();
 
             const order = e.target.closest('.project-device').dataset.order;
             const project = arrProject[order];
@@ -211,7 +183,7 @@
                 }
             } catch (error) {
                 console.error(error);
-            }
+            }*/
         });
     };
 
@@ -264,7 +236,7 @@
     const showDeviceForAssign = function () {
         var items = [], divDispositivos = $("#lista-dispositivos").empty();
         arrDevice.filter(element => { return element.Longitud === 0 }).map((v, index) => {
-            items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${index}">Device ${v.player_id}</button>`);
+            items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}">Device ${v.player_id}</button>`);
         });
 
         divDispositivos.append(items.join(''));
@@ -292,15 +264,56 @@
         }
     }
 
-    const setDeviceForProject = function () {
+    const handleDeviceForProjectInMap = function () {
+        
         $('#lista-dispositivos').on('click', '.selecction-device', function (e) {
             e.preventDefault();
-            const order = $(this).val();
-            player_id = arrDevice[order].player_id;
+            const value = $(this).val();
+            player_id = value;
+        });
+
+        map.on('click', function (e) {
+            if (player_id != null) {
+                var newMarker = L.marker(e.latlng);
+                newMarker.bindPopup(`Device ${player_id}`).openPopup().addTo(map);
+                // Agrega el nuevo marcador al array
+
+                var lat = newMarker._latlng.lat;
+                var lng = newMarker._latlng.lng;
+
+                const options = url + `/Home/postAsignarDispositivoLocalizacion`;
+                const parametros = {
+                    player_id: player_id,
+                    ClientID: ClientID,
+                    ProjectID: projectId,
+                    Longitud_1: lng,
+                    Latitud_1: lat
+                }
+
+                axios.post(options, parametros).then(function (response) {
+                    const result = response.data;
+
+                    if (result.SUCCESS == true) {
+                        markers.push(newMarker);
+                        // Agrega un botón para ocultar el marcador individualmente
+                        //newMarker.bindPopup(`Device ${player_id}`).openPopup().addTo(map);
+                        location.reload();
+                        //newMarker.bindPopup('Device ${player_id} <button onclick="toggleMarker(' + (markers.length - 1) + ')">Mostrar/Ocultar</button>').openPopup();
+                    } else {
+                        console.log("Ocurrio un error");
+                    }
+                }).catch(function (error) {
+                    console.error(error);
+                });
+
+                player_id = null;
+            } else {
+                console.log("Debe seleccionar un dispositivo");
+            }
         });
     }
 
-    const newProject = function (form) {
+    const handleAddProject = function (form) {
         $("#form-project").submit(function (form) {
             form.preventDefault();
 
@@ -319,9 +332,10 @@
                 console.log(response);
                 const result = response.data;
                 if (result.SUCCESS == true) {
-                   
+                    type = "success";
+                    handleAddProject();
                 } else {
-                    console.log("Ocurrio un error");
+                    type = "warning";
                 }
 
                 message.innerHTML = `
