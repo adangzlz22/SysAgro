@@ -193,7 +193,7 @@
                 duration: 2
             });
 
-            const options = `${url}/Home/postObtenerDispositivosPorProjecto`;
+            const options = `${url}/Home/postObtenerDispositivosPorCliente`;
             const parametros = {
                 ProjectID: project.ProjectID
             };
@@ -227,7 +227,7 @@
             duration: 2
         });
 
-        const options = `${url}/Home/postObtenerDispositivosPorProjecto`;
+        const options = `${url}/Home/postObtenerDispositivosPorCliente`;
         const parametros = {
             ProjectID: project.ProjectID
         };
