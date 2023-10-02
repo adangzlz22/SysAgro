@@ -39,9 +39,10 @@
                 $('.CloseButton').css('width', '30px');
                 $('.CloseButton').css('padding', '2px 7px');
                 $('.CloseButton').css('border-radius', '20px');
-                $('.CloseButton').css('top', '-9px');
+                $('.CloseButton').css('top', '16px');
                 $('.CloseButton').css('position', 'relative');
                 $('.CloseButton').css('left', '10px');
+                $('.CloseButton').css('z-index', '1');
                 $('.CloseButton').attr('data-tipo', 2);
                 $('.CloseButton').addClass('btn-danger');
                 $('.CloseButton').removeClass('btn-success');
@@ -56,7 +57,8 @@
                 $('.CloseButton').css('width', '30px');
                 $('.CloseButton').css('padding', '2px 7px');
                 $('.CloseButton').css('border-radius', '20px');
-                $('.CloseButton').css('top', '-9px');
+                $('.CloseButton').css('top', '16px');
+                $('.CloseButton').css('z-index', '1');
                 $('.CloseButton').css('position', 'relative');
                 $('.CloseButton').css('left', '10px');
                 $('.CloseButton').attr('data-tipo', 2);
