@@ -4,3 +4,9 @@ C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsModSysAgro\obj\Release
 C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsModSysAgro\obj\Release\ClsModSysAgro.dll
 C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsModSysAgro\obj\Release\ClsModSysAgro.pdb
 C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsModSysAgro\obj\Release\ClsModSysAgro.csproj.AssemblyReference.cache
+C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\ClsModSysAgro\bin\Release\ClsModSysAgro.dll
+C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\ClsModSysAgro\bin\Release\ClsModSysAgro.pdb
+C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\ClsModSysAgro\obj\Release\ClsModSysAgro.csproj.AssemblyReference.cache
+C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\ClsModSysAgro\obj\Release\ClsModSysAgro.csproj.CoreCompileInputs.cache
+C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\ClsModSysAgro\obj\Release\ClsModSysAgro.dll
+C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\ClsModSysAgro\obj\Release\ClsModSysAgro.pdb

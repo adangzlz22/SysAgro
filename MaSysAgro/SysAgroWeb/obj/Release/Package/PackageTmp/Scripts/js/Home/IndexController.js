@@ -32,7 +32,7 @@
     const obtener = function () {
         let parametros = {
             //ProjectID : txtDispositivo.val(),
-            Chip_ID: txtDispositivo.val(),
+            player_id: txtDispositivo.val(),
             ClientID: Client_ID,
         }
         const options = url + '/Home/postBuscarDispositivo';
@@ -50,7 +50,7 @@
             //Chip_ID: txtDispositivo.val(),
             ClientID: Client_ID,
         }
-        const options = url + '/Home/postObtenerDispositivos';
+        const options = url + '/Home/postObtenerDispositivosMenu';
         axios.post(options, parametros).then(function (response) {
             const result = response.data;
             console.log(result)

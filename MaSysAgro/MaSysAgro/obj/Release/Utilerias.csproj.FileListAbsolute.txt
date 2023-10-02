@@ -4,3 +4,9 @@ C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\MaSysAgro\obj\Release\Uti
 C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\MaSysAgro\obj\Release\MaSysAgro.dll
 C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\MaSysAgro\obj\Release\MaSysAgro.pdb
 C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\MaSysAgro\obj\Release\Utilerias.csproj.AssemblyReference.cache
+C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\MaSysAgro\bin\Release\MaSysAgro.dll
+C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\MaSysAgro\bin\Release\MaSysAgro.pdb
+C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\MaSysAgro\obj\Release\Utilerias.csproj.AssemblyReference.cache
+C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\MaSysAgro\obj\Release\Utilerias.csproj.CoreCompileInputs.cache
+C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\MaSysAgro\obj\Release\MaSysAgro.dll
+C:\Users\AdanGlez2\Documents\AMSys\SysAgro\MaSysAgro\MaSysAgro\obj\Release\MaSysAgro.pdb

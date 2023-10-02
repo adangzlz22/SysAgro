@@ -10,13 +10,15 @@
       crossorigin="" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"
-      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
       crossorigin="" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/MarkerCluster.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/MarkerCluster.Default.css" />
 
 <style>
     #map {
         min-height: 600px;
-        height: 100vh
+        height: 100%
     }
 
     .leaflet-bar a {
@@ -36,128 +38,103 @@
 <main>
     <div class="container-fluid" style="padding-right:0px!important">
         <div class="row">
-            <div class="col-lg-3 col-mb-4 col-sm-4 col-12">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                @*<h2 class="mb-5">Your projects</h2>*@
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-mb-4 col-sm-4 col-12" style="order:1" id="cardDatos">
                 <br />
                 <br />
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
-                        <h2 class="mb-5">Your projects</h2>
+
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
-                        <button type="button" class="btn btn-primary btn-sm float-end">
-                            <i class="fa fa-plus"></i> new project
+                        <button type="button" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#myModalProject">
+                            <i class="fa fa-plus"></i> Add Project
                         </button>
                     </div>
 
-
-                    <div class="col-sm-12 mb-4">
-
-                        <div class="card shadow-sm">
-                            @*<div class="card-header">
-                                    Proyecto 1
-                                </div>*@
-                            <div class="card-body mt-5 mb-5">
-                                <h3 class="mb-5">Project 1</h3>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">First element</li>
-                                    <li class="list-group-item">Second element</li>
-                                    <li class="list-group-item">Third element</li>
-                                </ul>
-                            </div> <a href="#" data-bs-toggle="modal" data-bs-target="#myModal">
-                                <div class="card-body text-center" style="border-top: 1px dashed #7ab37f">
-
-                                    <i class="fa fa-plus"></i> add device
-
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 mb-4">
-                        <div class="card">
-
-                            <div class="card-body mt-5 mb-5">
-                                <h3 class="mb-5">Project 2</h3>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">First element</li>
-                                    <li class="list-group-item">Second element</li>
-                                    <li class="list-group-item">Third element</li>
-                                </ul>
-                            </div>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#myModal">
-                                <div class="card-body text-center" style="border-top: 1px dashed #7ab37f">
-
-                                    <i class="fa fa-plus"></i> add device
-
-                                </div>
-                            </a>
+                    <div id="lista_proyectos">
+                        <div class="alert alert-info" role="alert">
+                            Cargando...
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9 col-md-8 col-sm-8 col-12">
+            <div class="col-lg-9 col-md-8 col-sm-8 col-12" style="order:2" id="cardMapa">
                 <nav class="navbar navbar-light bg-light mb-2 ">
                     <form class="container-fluid justify-content-end gap-1">
-                        <button class="btn btn-sm btn-secondary px-2" type="button">device 1</button>
-                        <button class="btn btn-sm btn-secondary" type="button">device 2</button>
+                        <div id="lista-dispositivos">
+                        </div>
+                        <button class="btn btn-sm btn-secondary px-2" type="button" style="font-size:20px; padding:5px 10px; display:block" onclick="mapaGrande()" id="btnGrande"><i class="fas fa-expand"></i></button>
                     </form>
                 </nav>
-                <div class="card">
-
-
-
-
-
+                <div class="card" style="height:94%; background-color:white" id="cardMapaModal">
+                    <div class="row" id="botonChico" style="display:none">
+                        <div class="col-lg-12 col-md-12 col-sm-12 text-right" style="text-align:right;">
+                            <button class="btn btn-sm btn-primary px-2" type="button" style="font-size: 20px; padding: 0.3rem 1rem; display: none" onclick="mapaChico()" id="btnChico"><i class="fas fa-x"></i></button>
+                        </div>
+                    </div>
                     <div id="map" style="border-radius:5px"></div>
-
                 </div>
             </div>
         </div>
     </div>
 </main>
-<br />
+
 <!-- The Modal -->
 <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
+        <form class="modal-content" id="form-device">
             <div class="modal-header">
                 <h4 class="modal-title">Add Device</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-
-            <!-- Modal body -->
             <div class="modal-body">
                 <div class="mb-3 mt-3">
-                    <label class="form-label">Device Name:</label>
-                    <input type="text" class="form-control form-control-lg form-control-solid" id="txtNombredispositivo">
+                    <label class="form-label">Player Data:</label>
+                    <input type="text" class="form-control form-control-lg form-control-solid" name="player_id" id="player_id" />
                 </div>
-                <div class="mb-3 mt-3">
-                    <label class="form-label">
-                        Serial number:
-                    </label>
-                    <input type="text" class="form-control form-control-lg form-control-solid" id="txtnumeroSerie">
+                <div id="message-modal-device">
                 </div>
-                <div class="mb-3 mt-3">
-                    <label class="form-label">
-                        Date of purchase:
-                    </label>
-                    <input type="text" class="form-control form-control-lg form-control-solid" id="txtFechaCompra">
-                </div>
-
             </div>
-
-            <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <a href="#" class="btn btn-primary">Save</a>
+                <button type="submit" class="btn btn-primary">Save</button>
             </div>
-
-        </div>
+        </form>
     </div>
 </div>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModalProject">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <form class="modal-content" id="form-project">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Project</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3 mt-3">
+                    <label class="form-label">Project Name:</label>
+                    <input type="text" class="form-control form-control-lg form-control-solid" name="ProjectName" id="ProjectName" />
+                </div>
+                <div id="message-modal-project">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/leaflet.markercluster.js"></script>
 
 
 <script src="~/Scripts/js/Global.js"></script>
@@ -165,11 +142,73 @@
 <script src="~/Scripts/sweetalert2.all.min.js"></script>
 <script src="~/Scripts/axios.min.js"></script>
 <script src="~/Scripts/jquery.min.js"></script>
-<script src="~/Scripts/bootstrap.bundle.min.js"></script>
+@*<script src="~/Scripts/bootstrap.bundle.min.js"></script>*@
 <script src="~/Scripts/js/Home/MapaController.js?v=1.0"></script>
 <script type="text/javascript">
     (function () {
-        var clsMapaControllers = new MapaController();
+        var clsMapaControllers = new MapaController(@ViewBag.Id,@ViewBag.projectId);
+        clsMapaControllers.Inicializar();
+    })();
+</script>
+
+<script>
+    var card1 = document.getElementById('cardDatos');
+    var card2 = document.getElementById('cardMapa');
+    var card3 = document.getElementById('cardMapaModal');
+
+    var btnChico2 = document.getElementById('botonChico');
+    function mapaGrande() {
+        if (card1.style.order = '1') {
+            card2.className = 'col-lg-12 col-md-12 col-sm-12 col-12';
+            card2.style.order = '1';
+         /*   card2.style.display = 'none';*/
+            card1.style.order = '2';
+            card3.className = 'modal fade show';
+           
+            card3.style.height = '100%';
+            btnChico2.style = 'font-size:20px; padding:5px 10px;  margin-top:10px; margin-bottom:10px;display:block';
+            document.getElementById('btnGrande').style = 'display:none';
+            document.getElementById('btnChico').style = 'display:inline;padding: 0.3rem 1rem';
+           
+        } else {
+            //card2.className = 'col-lg-9 col-md-8 col-sm-8 col-12';
+            //card2.style.order = '2';
+            //card1.style.order = '1';
+        }
+    }
+
+    function mapaChico() {
+        if (card1.style.order = '2') {
+            card2.className = 'col-lg-9 col-md-8 col-sm-12 col-12';
+            card2.style.order = '2';
+            /*   card2.style.display = 'none';*/
+            card1.style.order = '1';
+            card3.className = 'card';
+           
+            card3.style.height = '94%';
+            btnChico2.style = 'font-size:20px; padding:5px 10px;  margin-top:10px; margin-bottom:10px; display:none';
+            document.getElementById('btnGrande').style = 'display:block';
+            document.getElementById('btnChico').style = 'display:none';
+
+        } else {
+            //card2.className = 'col-lg-9 col-md-8 col-sm-8 col-12';
+            //card2.style.order = '2';
+            //card1.style.order = '1';
+        }
+    }
+</script>
+
+
+<script src="~/Scripts/js/Global.js"></script>
+<script src="~/Scripts/axios.js"></script>
+<script src="~/Scripts/sweetalert2.all.min.js"></script>
+<script src="~/Scripts/axios.min.js"></script>
+<script src="~/Scripts/jquery.min.js"></script>
+@*<script src="~/Scripts/bootstrap.bundle.min.js"></script>*@
+<script src="~/Scripts/js/Home/MapaController.js?v=1.0"></script>
+<script type="text/javascript">
+    (function () {
+        var clsMapaControllers = new MapaController(@ViewBag.Id)
         clsMapaControllers.Inicializar();
     })();
 </script>
