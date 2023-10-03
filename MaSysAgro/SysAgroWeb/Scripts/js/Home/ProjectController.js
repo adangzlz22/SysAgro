@@ -108,7 +108,7 @@
 
                     arrProject.map((v, index) => {
                         items.push(
-                            `<div class="col-lg-3 col-sm-12 col-md-4 mb-3" style="height:100%">
+                            `<div class="col-lg-3 col-sm-12 col-md-4 mb-3">
 <div class="row">
 <div class="col-lg-12 col-md-12 col-sm-12" style="text-align:right">
 <button style="display:none;" data-tipo="1" class="btn btn-danger CloseButton" id="btnEliminar${v.ProjectID}"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
@@ -121,7 +121,7 @@
                                             <img src="/Content/img/ubicacion.png" style="width:50px" class="mb-3" />
                                 </a>
                                             <br />
-                                            <h2 style="color:#7ab37f; font-size:30px" class='projectNameText'>${v.ProjectName}</h2>
+                                            <h2 style="color:#7ab37f; font-size:25px" class='projectNameText'>${v.ProjectName}</h2>
                                             <input id="txtProjectName${v.ProjectID}" type='text' class='form-control projectName' value='${v.ProjectName}' style='display:none;'>
 <a href="#" id="btnCambiarNombre${v.ProjectID}" class="btn btn-success btnprojectName" style="padding: .3rem .9rem; font-size: 18px; display: none; font-weight:800"><b><i class="fa-solid fa-save"></i></b></a>
                                           
