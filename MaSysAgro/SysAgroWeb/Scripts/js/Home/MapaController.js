@@ -212,6 +212,7 @@
                 arrDevice = result.ITEMS;
                 showDeviceForAssign();
                 showDeviceAssigned(project.ProjectID);
+                showDeviceInMap(project.ProjectID);
             } else {
                 console.log("No se encontraron dispositivos");
             }
@@ -224,7 +225,7 @@
         const divDispositivos = document.getElementById(`card-device-${ProjectID}`);
         if (divDispositivos) {
             const items = arrDevice
-                .filter(element => element.Longitud !== 0)
+                .filter(element => element.Longitud !== 0 && element.ProjectID == ProjectID)
                 .map((v, index) => `<li class="list-group-item">Device ${v.player_id}</li>`);
 
             divDispositivos.innerHTML = items.join('');
@@ -235,27 +236,49 @@
 
     const showDeviceForAssign = function () {
         var items = [], divDispositivos = $("#lista-dispositivos").empty();
-        arrDevice.filter(element => { return element.Longitud === 0 }).map((v, index) => {
+        arrDevice.filter(element => { return element.Longitud === 0 && element.ProjectID === 0 }).map((v, index) => {
             items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}">Device ${v.player_id}</button>`);
         });
 
         divDispositivos.append(items.join(''));
-        showDeviceInMap();
     }
 
-    const showDeviceInMap = function () {
+    const showDeviceInMap = function (ProjectID) {
         // Filtrar dispositivos con Longitud y Latitud válidas
-        var arrDevicesAsignados = arrDevice.filter(element => element.Longitud !== 0 && element.Latitud !== 0);
-        var markerClusterGroup = L.markerClusterGroup();
+        //var arrDevicesAsignados = arrDevice.filter(element => element.Longitud !== 0 && element.Latitud !== 0 && element.ProjectID == ProjectID);
+        //var markerClusterGroup = L.markerClusterGroup();
 
-        arrDevicesAsignados.forEach(device => {
+        /*arrDevicesAsignados.forEach(device => {
             var marker = L.marker([device.Latitud, device.Longitud]);
             marker.bindPopup(`Dispositivo ${device.player_id}`);
             markerClusterGroup.addLayer(marker);
         });
 
         map.addLayer(markerClusterGroup);
-        markerDeviceGroup = markerClusterGroup;
+        markerDeviceGroup = markerClusterGroup;*/
+
+        arrDevice.forEach(function (markerData) {
+            var marker = L.marker([markerData.Latitud, markerData.Longitud]).addTo(map);
+            marker.bindPopup(`Dispositivo ${markerData.player_id}`);
+
+            // Habilitar la funcionalidad de arrastre para el marcador
+            marker.dragging.enable();
+
+            // Agregar un manejador de eventos para actualizar la posición cuando se arrastra
+            marker.on('dragend', function (event) {
+                var marker = event.target;
+                var newLatLng = marker.getLatLng();
+
+                // Actualizar la posición en el objeto de datos
+                markerData.Latitud = newLatLng.lat;
+                markerData.Longitud = newLatLng.lng;
+
+                // Aquí puedes enviar la nueva posición del marcador al servidor si es necesario
+                // Debes implementar la lógica de actualización en tu servidor
+
+                console.log(`Marcador ${markerData.player_id} reposicionado en Latitud: ${newLatLng.lat}, Longitud: ${newLatLng.lng}`);
+            });
+        });
     }
 
     const clearDeviceInMap = function () {

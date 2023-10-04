@@ -531,7 +531,7 @@ namespace SysAgroWeb.Controllers
             paramss = new DynamicParameters();
             try
             {
-                string consulta = "SELECT * FROM player_data WHERE ClientID = {0}";
+                string consulta = "SELECT * FROM player_data WHERE ClientID = {0} and Activo = 1;";
                 using (var ctx = new MySqlConnection(conexion))
                 {
                     consulta = string.Format(consulta, vSesiones.sesionUsuarioDTO.Id);
