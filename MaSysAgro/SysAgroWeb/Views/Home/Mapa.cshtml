@@ -54,10 +54,6 @@
                         <button type="button" class="btn btn-primary btn-sm float-end" id="my_map" data-bs-toggle="modal" data-bs-target="#myModalProject">
                             <i class="fa fa-plus"></i> Add Project
                         </button>
-
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mapModal">
-                            Abrir Mapa
-                        </button>
                     </div>
 
                     <div id="lista_proyectos">
@@ -125,8 +121,6 @@
                     <label class="form-label">Project Name:</label>
                     <input type="text" class="form-control form-control-lg form-control-solid" name="ProjectName" id="ProjectName" />
                 </div>
-
-
                 <div id="message-modal-project">
                 </div>
             </div>
@@ -135,26 +129,6 @@
                 <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </form>
-    </div>
-</div>
-
-<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="mapModalLabel">Mapa</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Aquí se cargará el mapa -->
-                <div id="mapm" style="height: 400px;"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -222,39 +196,4 @@
             //card1.style.order = '1';
         }
     }
-</script>
-
-
-<script src="~/Scripts/js/Global.js"></script>
-<script src="~/Scripts/axios.js"></script>
-<script src="~/Scripts/sweetalert2.all.min.js"></script>
-<script src="~/Scripts/axios.min.js"></script>
-<script src="~/Scripts/jquery.min.js"></script>
-@*<script src="~/Scripts/bootstrap.bundle.min.js"></script>*@
-<script src="~/Scripts/js/Home/MapaController.js?v=1.0"></script>
-<script type="text/javascript">
-    (function () {
-        var clsMapaControllers = new MapaController(@ViewBag.Id)
-        clsMapaControllers.Inicializar();
-    })();
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        // Inicializar el mapa
-        var mapm = L.map('mapm').setView([51.505, -0.09], 13);
-
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(mapm);
-
-        // Agregar marcadores u otras capas al mapa si es necesario
-
-        // Manejar el evento de apertura del modal
-        $('#mapModal').on('shown.bs.modal', function () {
-            // Actualizar el mapa cuando se muestra el modal (por ejemplo, ajustar el tamaño del mapa)
-            mapm.invalidateSize();
-        });
-    });
 </script>

@@ -11,9 +11,6 @@
     var map = L.map('map').setView([longitud, latitud], 10.3);
 
     var Inicializar = function () {
-        console.log(projectId)
-        console.log(url);
-        console.log('hola soy MapaControllers');
         init_map();
         config();
         //campos();
@@ -23,10 +20,12 @@
         handleDeviceForProjectInMap();
         handleAddProject();
         handleAssignDeviceToProject();
+
+        toggleMarker();
     }
 
     const init_map = function () {
-        
+
         /*L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -65,7 +64,7 @@
          });*/
 
         // Manejador de eventos para agregar marcadores al hacer clic en el mapa
-        
+
     }
 
     const campos = function () {
@@ -74,14 +73,6 @@
             [51.503, -0.06],
             [51.51, -0.047]
         ]).addTo(map);*/
-    }
-
-    const toggleMarker = function (index) {
-        /*if (map.hasLayer(markers[index])) {
-            map.removeLayer(markers[index]);
-        } else {
-            map.addLayer(markers[index]);
-        }*/
     }
 
     const getProjects = async () => {
@@ -106,13 +97,13 @@
                                                 <ul class="list-group list-group-flush" id="card-device-${v.ProjectID}">
                                             </ul>
                                       </div>
-                                      ${(v.ProjectID === projectId ? 
-                                            `<a href="#" data-bs-toggle="modal" data-bs-target="#myModal">
+                                      ${(v.ProjectID === projectId ?
+                            `<a href="#" data-bs-toggle="modal" data-bs-target="#myModal">
                                                 <div class="card-body text-center" style="border-top: 1px dashed #7ab37f">
                                                     <i class="fa fa-plus"></i> add device
                                                 </div>
                                             </a>` : ''
-                                      )}
+                        )}
                                 </div>
                           </div>`;
                 });
@@ -151,7 +142,7 @@
             if (project.ProjectID != projectId) {
                 location.href = `Mapa?projectId=${project.ProjectID}`;
             }
-           
+
             /*clearDeviceInMap();
 
             const order = e.target.closest('.project-device').dataset.order;
@@ -217,7 +208,7 @@
                 console.log("No se encontraron dispositivos");
             }
         } catch (error) {
-            console.error(error);
+            console.log(error);
         }
     }
 
@@ -243,42 +234,70 @@
         divDispositivos.append(items.join(''));
     }
 
-    const showDeviceInMap = function (ProjectID) {
+    /*const showDeviceInMap = function (ProjectID) {
         // Filtrar dispositivos con Longitud y Latitud válidas
-        //var arrDevicesAsignados = arrDevice.filter(element => element.Longitud !== 0 && element.Latitud !== 0 && element.ProjectID == ProjectID);
-        //var markerClusterGroup = L.markerClusterGroup();
+        var arrDevicesAsignados = arrDevice.filter(element => element.Longitud !== 0 && element.Latitud !== 0 && element.ProjectID == ProjectID);
+        // var markerClusterGroup = L.markerClusterGroup();
 
-        /*arrDevicesAsignados.forEach(device => {
-            var marker = L.marker([device.Latitud, device.Longitud]);
-            marker.bindPopup(`Dispositivo ${device.player_id}`);
-            markerClusterGroup.addLayer(marker);
-        });
 
-        map.addLayer(markerClusterGroup);
-        markerDeviceGroup = markerClusterGroup;*/
+        arrDevicesAsignados.forEach(device => {
+            //markers.push(newMarker);
+            //var marker = L.marker([device.Latitud, device.Longitud]);
+            //marker.bindPopup(`<button onClick="${toggleMarker(device.player_id)}">Mostrar/Ocultar</button> Dispositivo ${device.player_id}`).openPopup();
+            //markerClusterGroup.addLayer(marker);
 
-        arrDevice.forEach(function (markerData) {
-            var marker = L.marker([markerData.Latitud, markerData.Longitud]).addTo(map);
-            marker.bindPopup(`Dispositivo ${markerData.player_id}`);
+            var newMarker = L.marker([device.Latitud, device.Longitud]);
+            newMarker.bindPopup(`<button class="miboton" id="device-${device.player_id}" value="${device.player_id}" onClick="() => toggleMarker()">Mostrar/Ocultar</button> Device ${device.player_id} ${(markers.length - 1 == -1 ? 0 : markers.length - 1)}`).openPopup().addTo(map);
+            newMarker.player_id = device.player_id;
+            markers.push(newMarker);
 
-            // Habilitar la funcionalidad de arrastre para el marcador
-            marker.dragging.enable();
-
-            // Agregar un manejador de eventos para actualizar la posición cuando se arrastra
-            marker.on('dragend', function (event) {
-                var marker = event.target;
-                var newLatLng = marker.getLatLng();
-
-                // Actualizar la posición en el objeto de datos
-                markerData.Latitud = newLatLng.lat;
-                markerData.Longitud = newLatLng.lng;
-
-                // Aquí puedes enviar la nueva posición del marcador al servidor si es necesario
-                // Debes implementar la lógica de actualización en tu servidor
-
-                console.log(`Marcador ${markerData.player_id} reposicionado en Latitud: ${newLatLng.lat}, Longitud: ${newLatLng.lng}`);
+            var button = document.getElementById(`device-${device.player_id}`);
+            button.addEventListener('click', function () {
+                toggleMarker(newMarker);
             });
         });
+       
+        //map.addLayer(markerClusterGroup);
+        //markerDeviceGroup = markerClusterGroup;
+
+        // console.log(markerDeviceGroup);
+        //var markerToRemove = markers[1];
+        //removeMarker(markerToRemove);
+    }*/
+
+    const showDeviceInMap = function (ProjectID) {
+        // Filtrar dispositivos con Longitud y Latitud válidas
+        var arrDevicesAsignados = arrDevice.filter(element => element.Longitud !== 0 && element.Latitud !== 0 && element.ProjectID == ProjectID);
+
+        arrDevicesAsignados.forEach(device => {
+            var newMarker = L.marker([device.Latitud, device.Longitud]);
+            newMarker.bindPopup(`<button class="miboton" id="device-${device.player_id}" value="${device.player_id}">Mostrar/Ocultar</button> Device ${device.player_id}`).addTo(map);
+            newMarker.player_id = device.player_id;
+            markers.push(newMarker);
+
+            // Agregar un evento click al botón para mostrar/ocultar el marcador
+            var button = document.getElementById(`device-${device.player_id}`);
+            button.addEventListener('click', function () {
+                toggleMarker(newMarker);
+            });
+        });
+    }
+
+    const toggleMarker = (marker) => {
+        if (map.hasLayer(marker)) {
+            map.removeLayer(marker);
+        } else {
+            map.addLayer(marker);
+        }
+    }
+  
+    function removeMarker(marker) {
+        //console.log(marker);
+        map.removeLayer(marker); // Quita el marcador del mapa
+        var index = markers.indexOf(marker); // Encuentra el índice del marcador en el array
+        if (index !== -1) {
+            markers.splice(index, 1); // Elimina el marcador del array
+        }
     }
 
     const clearDeviceInMap = function () {
@@ -298,7 +317,7 @@
         map.on('click', function (e) {
             if (player_id != null) {
                 var newMarker = L.marker(e.latlng);
-                newMarker.bindPopup(`Device ${player_id}`).openPopup().addTo(map);
+                newMarker.bindPopup(`<button>Mostrar/Ocultar</button> Device ${player_id}`).openPopup().addTo(map);
                 // Agrega el nuevo marcador al array
 
                 var lat = newMarker._latlng.lat;
@@ -320,7 +339,7 @@
                         markers.push(newMarker);
                         // Agrega un botón para ocultar el marcador individualmente
                         //newMarker.bindPopup(`Device ${player_id}`).openPopup().addTo(map);
-                        location.reload();
+                        //location.reload();
                         //newMarker.bindPopup('Device ${player_id} <button onclick="toggleMarker(' + (markers.length - 1) + ')">Mostrar/Ocultar</button>').openPopup();
                     } else {
                         console.log("Ocurrio un error");
