@@ -27,16 +27,16 @@
 
     const init_map = function () {
         
-        /*L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);*/
+        }).addTo(map);
 
         //google satellite
-        googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-            maxZoom: 30,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        }).addTo(map);
+        //googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        //    maxZoom: 30,
+        //    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        //}).addTo(map);
     }
 
     const config = function () {

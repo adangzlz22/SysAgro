@@ -15,7 +15,13 @@
                 <a href="#" class="d-sm-inline-block btn btn-sm btn-primary" data-bs-placement="bottom" title="Add user" data-bs-toggle="modal" data-bs-target="#myModal" style="padding: .3rem .9rem;font-size:20px; margin:10px" id="btnNuevo">
                     <i class="fas fa-plus text-white" style="font-size:20px!important"></i>
                 </a>
-
+                <div class="button b2" id="button-14" style="margin: 1px">
+                    <input type="checkbox" class="checkbox" id="flexSwitchCheckChecked" checked />
+                    <div class="knobs">
+                        <span></span>
+                    </div>
+                    <div class="layer"></div>
+                </div>
                 <a href="Index" class=" d-sm-inline-block btn btn-sm btn btn-secondary" style="padding: .3rem .9rem;font-size:20px; margin:10px">
                     <i class="fas fa-arrow-circle-left text-white" style="font-size:20px!important"></i>
                 </a>
@@ -24,7 +30,7 @@
         </div>
 
     </div>
-    </div>
+</div>
 
 <style>
     thead th {
@@ -32,7 +38,7 @@
     }
 </style>
 <div class="container-fluid" style="padding-left: 3%; padding-right: 3%">
-  
+
     <br />
     <div class="row">
 
@@ -50,10 +56,69 @@
 
 </div>
 
+<div class="modal fade" id="MProject">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
 
+            <!-- Modal Header -->
+            <div class="modal-header" style="background-color: #ffc700">
+                <h4 class="modal-title">Project</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="table-responsive" style="border:none">
+                        <table id="tblProject" class="table table-hover" style="width:100%"></table>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="MDevice">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header" style="background-color: #ffc700">
+                <h4 class="modal-title">Device</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="table-responsive" style="border:none">
+                        <table id="tblDevice" class="table table-hover" style="width:100%"></table>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <!-- The Modal -->
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="myUser">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
 
@@ -244,6 +309,44 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="MActivate">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header" style="background-color: #ffc700">
+                <h4 class="modal-title">Activate User</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12 fv-row">
+
+                        <p>Are you sure you want to activate this user?</p>
+                    </div>
+
+
+
+                </div>
+
+
+
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="#" class="btn btn-warning" style="color:white!important">Activate</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 
 <script src="~/Scripts/js/Global.js"></script>
 <script src="~/Scripts/axios.js"></script>
@@ -255,7 +358,7 @@
 <script src="~/Scripts/js/Home/AdminController.js?v=1.0"></script>
 <script type="text/javascript">
     (function () {
-        var clsAdminControllers  = new AdminControllers  ();
+        var clsAdminControllers = new AdminControllers();
         clsAdminControllers.Inicializar();
     })();
 </script>
