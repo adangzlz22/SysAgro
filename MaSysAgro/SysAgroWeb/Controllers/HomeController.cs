@@ -1,6 +1,7 @@
 ﻿using ClsModSysAgro.Dispositivos;
 using ClsModSysAgro.menu;
 using ClsModSysAgro.Project;
+using ClsModSysAgro.Ubicacion;
 using ClsModSysAgro.Usuarios;
 using Dapper;
 using MaSysAgro;
@@ -876,6 +877,42 @@ namespace SysAgroWeb.Controllers
         }
 
 
+        public ActionResult postObtenerPaises(paramsUbicacion parametros)
+        {
+            objResponse = new ClsModResponse();
+            paramss = new DynamicParameters();
+            try
+            {
+                string consulta = "SELECT* FROM paises WHERE descripcion LIKE'%{0}%';";
+                using (var ctx = new MySqlConnection(conexion))
+                {
+                    consulta = string.Format(consulta, parametros.Descripcion);
+                    ctx.Open();
+                    var lstPaises = ctx.Query<genUsuarios>(consulta, paramss, null, true, 300).ToList();
+                    if (lstPaises.Count() > 0)
+                    {
+                        objResponse.ITEMS = lstPaises;
+                        objResponse.MESSAGE = "";
+                        objResponse.SUCCESS = true;
+                    }
+                    else
+                    {
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "this a problem whit db";
+                        objResponse.SUCCESS = false;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = ex.Message;
+                objResponse.SUCCESS = false;
+            }
+
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
 
 
     }
