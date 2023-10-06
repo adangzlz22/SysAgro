@@ -17,7 +17,7 @@
 
 <style>
     #map {
-        min-height: 600px;
+        min-height: 550px;
         height: 100%
     }
 
@@ -51,12 +51,12 @@
 
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
-                        <button type="button" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#myModalProject">
+                        <button type="button" class="btn btn-primary btn-sm float-end" id="my_map" data-bs-toggle="modal" data-bs-target="#myModalProject">
                             <i class="fa fa-plus"></i> Add Project
                         </button>
                     </div>
 
-                    <div id="lista_proyectos">
+                    <div class="list-group" id="lista_proyectos">
                         <div class="alert alert-info" role="alert">
                             Cargando...
                         </div>
@@ -161,15 +161,15 @@
         if (card1.style.order = '1') {
             card2.className = 'col-lg-12 col-md-12 col-sm-12 col-12';
             card2.style.order = '1';
-         /*   card2.style.display = 'none';*/
+            /*   card2.style.display = 'none';*/
             card1.style.order = '2';
             card3.className = 'modal fade show';
-           
+
             card3.style.height = '100%';
             btnChico2.style = 'font-size:20px; padding:5px 10px;  margin-top:10px; margin-bottom:10px;display:block';
             document.getElementById('btnGrande').style = 'display:none';
             document.getElementById('btnChico').style = 'display:inline;padding: 0.3rem 1rem';
-           
+
         } else {
             //card2.className = 'col-lg-9 col-md-8 col-sm-8 col-12';
             //card2.style.order = '2';
@@ -184,7 +184,7 @@
             /*   card2.style.display = 'none';*/
             card1.style.order = '1';
             card3.className = 'card';
-           
+
             card3.style.height = '94%';
             btnChico2.style = 'font-size:20px; padding:5px 10px;  margin-top:10px; margin-bottom:10px; display:none';
             document.getElementById('btnGrande').style = 'display:block';
@@ -197,5 +197,3 @@
         }
     }
 </script>
-
-
