@@ -292,6 +292,8 @@ namespace SysAgroWeb.Controllers
                         if (objExiste == null)
                         {
                             var objProject = ctx.Query<dynamic>(consulta, paramss, null, true, 300).FirstOrDefault();
+                            consulta = @"select * from projects where ProjectName = '"+ parametros.ProjectName + @"';";
+                            objProject = ctx.Query<resultProject>(consulta, paramss, null, true, 300).FirstOrDefault();
 
                             objResponse.ITEMS = objProject;
                             objResponse.MESSAGE = "project added successfully.";

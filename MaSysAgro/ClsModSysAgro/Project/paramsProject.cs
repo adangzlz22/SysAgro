@@ -17,6 +17,7 @@ namespace ClsModSysAgro.Project
         public decimal Latitud_1 { get; set; }
         public decimal Longitud_2 { get; set; }
         public decimal Latitud_2 { get; set; }
-        public int Activo { get; set; } 
+        public int Activo { get; set; }
+        public string Cordenadas { get; set; }
     }
 }

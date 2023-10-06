@@ -3,8 +3,8 @@
     var arrProject = [];
     var arrDevice = [];
     var player_id = null;
-    var longitud = 41.991751465614946;
-    var latitud = 0.15312031851124058;
+    var longitud = -3.742641;
+    var latitud = 40.320973;
     var markerDeviceGroup = null;
     var markers = [];
 
@@ -54,7 +54,6 @@
         });
 
         map.addControl(drawControl);
-
             //Manejadores de eventos para guardar el polígono dibujado
         map.on(L.Draw.Event.CREATED, async (event) => {
             const layer = event.layer;
@@ -77,8 +76,8 @@
                    const response = await axios.post(options, parametros);
                    const result = response.data;
 
-                   if (result.SUCCESS && result.ITEMS.length > 0) {
-                         
+                   if (result.SUCCESS) {
+                       getProjects();
                    } else {
                          
                    }
@@ -111,7 +110,7 @@
                                                 <ul class="list-group list-group-flush" id="card-device-${v.ProjectID}">
                                             </ul>
                                       </div>
-                                      ${(v.ProjectID === projectId ?
+                                      ${(v.ProjectID === projectId && v.Cordenadas != null ?
                                             `<a href="#" data-bs-toggle="modal" data-bs-target="#myModal">
                                                 <div class="card-body text-center" style="border-top: 1px dashed #7ab37f">
                                                     <i class="fa fa-plus"></i> add device
@@ -124,7 +123,6 @@
 
                 divProyectos.innerHTML = items.join('');
 
-                
                 getDeveceForProjectDefault();
                 agregarPoligonoExistente();      
             } else {
@@ -139,21 +137,18 @@
     };
 
     const agregarPoligonoExistente = function () {
-
         var _default = arrProject.filter(x => x.ProjectID == projectId);
-        var project = _default[0];
-        var Cordenadas = JSON.parse(project.Cordenadas);
 
-        const coordenadas = Cordenadas.map(item => {
-            return {
-                "lat": item.lat,
-                "lng": item.lng
-            };
-        });
+        if (_default[0].Latitud_1 != 0 && _default[0].Longitud_1 != 0) {
+            var project = _default[0];
+            var Cordenadas = JSON.parse(project.Cordenadas);
 
-        // Verifica que las coordenadas no estén vacías
-        if (coordenadas && coordenadas.length > 0) {
-            
+            const coordenadas = Cordenadas.map(item => {
+                return {
+                    "lat": item.lat,
+                    "lng": item.lng
+                };
+            });
             // Crea una capa de polígono utilizando las coordenadas
             const polygonLayer = L.polygon(coordenadas, {
                 //color: 'blue', // Color del borde del polígono
@@ -164,8 +159,7 @@
             polygonLayer.bindPopup(project.ProjectName).openPopup();
         } else {
             polygon();
-            alert("Nuevo campo, debes agregar el poligono del campo");
-            console.log('Las coordenadas del polígono están vacías o son inválidas.');
+            confirm(_default[0].ProjectName ,"Nuevo campo, debes agregar el poligono del campo");
         }
     };
 
@@ -197,10 +191,10 @@
         const order = 0;
         const project = arrProject[order];
 
-        latitud = project.Latitud_1;
-        longitud = project.Longitud_1;
+        _latitud = (project.Latitud_1 == 0 ? latitud : project.Latitud_1);
+        _longitud = (project.Longitud_1 == 0 ? longitud : project.Longitud_1);
 
-        map.flyTo([latitud, longitud], 15, {
+        map.flyTo([_latitud, _longitud], (project.Latitud_1 == 0 ? 6:15), {
             animate: true,
             duration: 2
         });
@@ -410,8 +404,6 @@
         $("#form-project").submit(function (form) {
             form.preventDefault();
 
-            const message = document.getElementById("message-modal-project");
-
             var formData = $(this).serializeArray().reduce(function (obj, item) {
                 obj[item.name] = item.value;
                 return obj;
@@ -420,27 +412,15 @@
             const options = url + '/Home/postAddProjectos';
 
             formData.ClientID = ClientID;
-
             axios.post(options, formData).then(function (response) {
-                console.log(response);
-                const result = response.data;
-                if (result.SUCCESS == true) {
-                    type = "success";
-                    handleAddProject();
+                 if (response.data.SUCCESS == true) {
+                     console.log(response.data.ITEMS.ProjectID);
+                     var _ProjectID = response.data.ITEMS.ProjectID;
+                    
+                    location.href = `Mapa?projectId=${_ProjectID}`;
                 } else {
-                    type = "warning";
-                }
-
-                message.innerHTML = `
-                <div class="alert alert-${type}" role="alert">
-                    PLAYER ${formData.player_id}: ${result.MESSAGE}
-                </div>`;
-
-                $("#ProjectName").val("");
-
-                setTimeout(() => {
-                    $('#myModalProject').modal('hide');
-                }, 2000);
+                   
+                } 
             }).catch(function (error) {
                 console.error(error);
             });
@@ -513,6 +493,14 @@
             if (result.dismiss === Swal.DismissReason.timer) {
             }
         })
+    }
+
+    const confirm = function (title, text) {
+        Swal.fire(
+            title,
+            text,
+            'success'
+        )
     }
 
     return {
