@@ -107,7 +107,7 @@
     }
 
     const postObtenerUsuarios = function () {
-        funesperar(0, 'Porfavor espere unos segundos.');
+        funesperar(0, 'Please wait a few seconds.');
 
             let parametros = {
             }
