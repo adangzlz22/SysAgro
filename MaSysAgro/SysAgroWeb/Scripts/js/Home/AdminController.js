@@ -47,22 +47,22 @@
                     title: 'Acciones', render: function (data, type, row) {
                         let btnEliminar = '';
                         let btnMdlMenu = '';
-
-
-                        btnMdlMenu = `<button class='btn-EditProject btn btn-primary EditProject' data-id='${row.Id}'>` +
-                            `<i class='fas fa-bars' style='font-size:18px'></i></button> `;
-                        btnMdlMenu += `<button class='btn-EditDevice btn btn-primary EditDevice' data-id='${row.Id}'>` +
-                            `<i class='fas fa-bars' style='font-size:18px'></i></button> `;
+                       
+                        
+                        btnMdlMenu = `<button class='btn-EditProject btn btn-primary EditProject' style='padding:0.3rem 0.8rem' data-id='${row.Id}'>` +
+                            `<i class='fa-solid fa-map-location-dot' style='font-size:18px'></i></button> `;
+                        btnMdlMenu += `<button class='btn-EditDevice btn btn-primary EditDevice' style='padding:0.3rem 0.8rem' data-id='${row.Id}'>` +
+                            `<i class='fa-solid fa-tablet-screen-button' style='font-size:18px'></i></button> `;
 
 
                         if (row.Activo == 1) {
-                            btnEliminar = `<button class='btn-eliminar btn btn-danger eliminarUsuarios' data-id='${row.Id}'>` +
+                            btnEliminar = `<button class='btn-eliminar btn btn-danger eliminarUsuarios' style='padding:0.3rem 0.8rem' data-id='${row.Id}'>` +
                                 `<i class='fas fa-toggle-on' style='font-size:18px'></i></button> `;
                         } else {
-                            btnEliminar = `<button class='btn-eliminar btn btn-warning ActivarUsuarios' data-id='${row.Id}'>` +
+                            btnEliminar = `<button class='btn-eliminar btn btn-warning ActivarUsuarios' style='padding:0.3rem 0.8rem' data-id='${row.Id}'>` +
                                 `<i class='fas fa-toggle-on' style='font-size:18px'></i></button> `;
                         }
-                        btnMdlMenu += `<button class='btn-editar btn btn-primary editarUsuarios' data-id='${row.Id}'>` +
+                        btnMdlMenu += `<button class='btn-editar btn btn-primary editarUsuarios' style='padding:0.3rem 0.8rem' data-id='${row.Id}'>` +
                             `<i class='fas fa-pencil-alt' style='font-size:18px'></i>` +
                             `</button> ` + btnEliminar;
      
