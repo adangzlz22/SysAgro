@@ -19,21 +19,22 @@
         handleDeviceForProjectInMap();
         handleAddProject();
         handleAssignDeviceToProject();
+        AsignarListadoDePaises();
         handleSearch();
     }
 
     const init_map = function () {
-        
+
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
         //google satellite
-       /* googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-            maxZoom: 30,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        }).addTo(map);*/
+        /* googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+             maxZoom: 30,
+             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+         }).addTo(map);*/
     }
 
     const polygon = () => {
@@ -55,10 +56,10 @@
         });
 
         map.addControl(drawControl);
-            //Manejadores de eventos para guardar el polígono dibujado
+        //Manejadores de eventos para guardar el polígono dibujado
         map.on(L.Draw.Event.CREATED, async (event) => {
             const layer = event.layer;
-                drawnItems.addLayer(layer);
+            drawnItems.addLayer(layer);
 
             const coordenadas = layer._latlngs[0];
             const primeraLatitud = coordenadas[0].lat;
@@ -66,27 +67,27 @@
 
             const options = `${url}/Home/postUpdateProjectosCoodenadas`;
             const parametros = {
-                Cordenadas:  JSON.stringify(coordenadas),
+                Cordenadas: JSON.stringify(coordenadas),
                 ProjectID: projectId,
                 Longitud_1: primeraLongitud,
                 Latitud_1: primeraLatitud
             };
-                
-            try {
-                   funesperar(0, 'Please wait a few seconds.');
-                   const response = await axios.post(options, parametros);
-                   const result = response.data;
 
-                   if (result.SUCCESS) {
-                       getProjects();
-                   } else {
-                         
-                   }
-                   funesperar(1, '');
-                } catch (error) {
-                    console.log(error);
+            try {
+                funesperar(0, 'Please wait a few seconds.');
+                const response = await axios.post(options, parametros);
+                const result = response.data;
+
+                if (result.SUCCESS) {
+                    getProjects();
+                } else {
+
                 }
-            });
+                funesperar(1, '');
+            } catch (error) {
+                console.log(error);
+            }
+        });
     }
 
     const getProjects = async () => {
@@ -102,7 +103,7 @@
 
             if (result.SUCCESS && result.ITEMS.length > 0) {
                 arrProject = result.ITEMS;
-               
+
                 const items = sortItems(arrProject).map((v, index) => {
                     return `<div href="#" class="col-sm-12 mb-4">
                                 <div class="card shadow-sm">
@@ -112,7 +113,7 @@
                                             </ul>
                                       </div>
                                       ${(v.ProjectID === projectId && v.Cordenadas != null ?
-                                            `<a href="#" data-bs-toggle="modal" data-bs-target="#myModal">
+                            `<a href="#" data-bs-toggle="modal" data-bs-target="#myModal">
                                                 <div class="card-body text-center" style="border-top: 1px dashed #7ab37f">
                                                     <i class="fa fa-plus"></i> add device
                                                 </div>
@@ -125,7 +126,7 @@
                 divProyectos.innerHTML = items.join('');
 
                 getDeveceForProjectDefault();
-                agregarPoligonoExistente();      
+                agregarPoligonoExistente();
             } else {
                 divProyectos.innerHTML = `
                     <div class="alert alert-warning" role="alert">
@@ -160,7 +161,7 @@
             polygonLayer.bindPopup(project.ProjectName).openPopup();
         } else {
             polygon();
-            confirm(_default[0].ProjectName ,"Nuevo campo, debes agregar el poligono del campo");
+            confirm(_default[0].ProjectName, "Nuevo campo, debes agregar el poligono del campo");
         }
     };
 
@@ -195,7 +196,7 @@
         _latitud = (project.Latitud_1 == 0 ? latitud : project.Latitud_1);
         _longitud = (project.Longitud_1 == 0 ? longitud : project.Longitud_1);
 
-        map.flyTo([_latitud, _longitud], (project.Latitud_1 == 0 ? 6:15), {
+        map.flyTo([_latitud, _longitud], (project.Latitud_1 == 0 ? 6 : 15), {
             animate: true,
             duration: 2
         });
@@ -243,7 +244,7 @@
     };
 
     const handleDeviceForDeleteInProject = () => {
-        
+
         document.getElementById(`card-device-${projectId}`).addEventListener('click', async (e) => {
             e.preventDefault();
 
@@ -328,7 +329,7 @@
             // Agregar un evento click al botón para mostrar/ocultar el marcador
             //var button = document.getElementById(`device-${device.player_id}`);
             //button.addEventListener('click', function () {
-              //  toggleMarker(newMarker);
+            //  toggleMarker(newMarker);
             //});
         });
 
@@ -351,7 +352,7 @@
     }
 
     const handleDeviceForProjectInMap = function () {
-        
+
         $('#lista-dispositivos').on('click', '.selecction-device', function (e) {
             e.preventDefault();
             const value = $(this).val();
@@ -414,20 +415,44 @@
 
             formData.ClientID = ClientID;
             axios.post(options, formData).then(function (response) {
-                 if (response.data.SUCCESS == true) {
-                     console.log(response.data.ITEMS.ProjectID);
-                     var _ProjectID = response.data.ITEMS.ProjectID;
-                    
+                if (response.data.SUCCESS == true) {
+                    console.log(response.data.ITEMS.ProjectID);
+                    var _ProjectID = response.data.ITEMS.ProjectID;
+
                     location.href = `Mapa?projectId=${_ProjectID}`;
                 } else {
-                   
-                } 
+
+                }
             }).catch(function (error) {
                 console.error(error);
             });
         });
     }
+    const AsignarListadoDePaises = function () {
+        let parametros = {
+            Descripcion: ''
+        }
+        const options = url + '/Home/postObtenerPaises';
+        axios.post(options, parametros).then(function (response) {
+            const result = response.data;
+            if (result.SUCCESS == true) {
+                console.log(result.ITEMS)
+                $('#cityDatalist').find('option').remove();
+                let html = '';
+                for (var i = 0; i < result.ITEMS.length; i++) {
+                    html += '<option value="' + result.ITEMS[i].Descripcion + '" data-coodenadas="' + result.ITEMS[i].Latitud + ', ' + result.ITEMS[i].Longitud + '">'
 
+                }
+
+                $('#cityDatalist').append(html);
+
+            } else {
+            }
+
+        }).catch(function (error) {
+            console.error(error);
+        });
+    }
     const handleSearch = function (form) {
         var dropdown = document.getElementById('cityInput');
         dropdown.addEventListener('change', function (event) {
@@ -442,7 +467,7 @@
                     const _latitud = coordenadasArray[0].trim(); // Latitud
                     const _longitud = coordenadasArray[1].trim(); // Longitud
 
-                    map.flyTo([_latitud, _longitud], 10, {
+                    map.flyTo([_latitud, _longitud], 5, {
                         animate: true,
                         duration: 2
                     });
@@ -489,7 +514,7 @@
                 setTimeout(() => {
                     $('#myModal').modal('hide');
                 }, 2000);
-                
+
             }).catch(function (error) {
                 console.error(error);
             });

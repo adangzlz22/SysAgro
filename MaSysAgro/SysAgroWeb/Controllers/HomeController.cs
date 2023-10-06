@@ -890,7 +890,7 @@ namespace SysAgroWeb.Controllers
                 {
                     consulta = string.Format(consulta, parametros.Descripcion);
                     ctx.Open();
-                    var lstPaises = ctx.Query<genUsuarios>(consulta, paramss, null, true, 300).ToList();
+                    var lstPaises = ctx.Query<resultPaises>(consulta, paramss, null, true, 300).ToList();
                     if (lstPaises.Count() > 0)
                     {
                         objResponse.ITEMS = lstPaises;
