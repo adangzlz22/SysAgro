@@ -14,7 +14,7 @@
                 <a href="Index" class=" d-sm-inline-block btn btn-sm btn btn-secondary" style="padding: .3rem .9rem;font-size:20px; margin:10px">
                     <i class="fa-solid fa-arrow-left" style="font-size:20px!important"></i>
                 </a>
-                <a href="#" class="d-sm-inline-block btn btn-sm btn-primary" data-bs-placement="bottom" title="Add user" data-bs-toggle="modal" data-bs-target="#myModal" style="padding: .3rem .9rem;font-size:20px; margin:10px" id="btnNuevo">
+                <a href="#" class="d-sm-inline-block btn btn-sm btn-primary" data-bs-placement="bottom" title="Add user"  style="padding: .3rem .9rem;font-size:20px; margin:10px" id="btnNuevo">
                     <i class="fas fa-plus text-white" style="font-size:20px!important"></i>
                 </a>
                 <div class="button b2" id="button-14" style="margin: 1px">
@@ -145,11 +145,11 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Add User</h4>
+                <h4 class="modal-title" id='titleUSer'>Add User</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-
-            <!-- Modal body -->
+    <input id="inpId" style="display:none;">   
+             <!-- Modal body -->
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-6 fv-row">
@@ -198,8 +198,8 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Save</button>
-                <a href="#" class="btn btn-primary">Continue</a>
+               <button type="button" class="btn btn-secondary" id="btnCancelar">Cancelar</button>
+                <a href="#" class="btn btn-primary" style="background-color: #343433; border-color: #343433; color:white!important" id="btnSave">Save</a>
             </div>
 
         </div>
@@ -284,10 +284,11 @@
 
             </div>
 
+           
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Save</button>
-                <a href="#" class="btn btn-primary" style="background-color: #343433; border-color: #343433; color:white!important ">Continue</a>
+                <button type="button" class="btn btn-secondary" id="btnCancelarDis">Cancelar</button>
+                <a href="#" class="btn btn-primary" style="background-color: #343433; border-color: #343433; color:white!important" id="btnSaveDis">Save</a>
             </div>
 
         </div>
@@ -316,15 +317,14 @@
 
                 </div>
 
-
-
+             
 
             </div>
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <a href="#" class="btn btn-warning" style="color:white!important">Deactivate</a>
+                <button type="button" class="btn btn-secondary" id="btnCancelarDesc">Cancel</button>
+                <a href="#" class="btn btn-warning" style="color:white!important" id="btnDesactivar">Deactivate</a>
             </div>
 
         </div>
@@ -353,14 +353,12 @@
                 </div>
 
 
-
-
             </div>
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <a href="#" class="btn btn-warning" style="color:white!important">Activate</a>
+                <button type="button" class="btn btn-secondary" id="btnCancelarAct">Cancel</button>
+                <a href="#" class="btn btn-warning" style="color:white!important" id="btnActivate">Activate</a>
             </div>
 
         </div>

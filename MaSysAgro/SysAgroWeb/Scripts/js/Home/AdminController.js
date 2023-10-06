@@ -7,8 +7,30 @@
     const tblDevice = $('#tblDevice');
     let dtDevice;
     const flexSwitchCheckChecked = $('#flexSwitchCheckChecked');
-  
 
+    const btnCancelarDesc = $('#btnCancelarDesc');
+    const btnDesactivar = $('#btnDesactivar');
+    const btnCancelarAct = $('#btnCancelarAct');
+    const btnActivate = $('#btnActivate');
+    const btnCancelar = $('#btnCancelar');
+    const btnSave = $('#btnSave');
+    
+    const btnCancelarDis = $('#btnCancelarDis');
+    const btnSaveDis = $('#btnSaveDis');
+    
+    
+    const txtUser = $('#txtUser'); 
+    const txtPass = $('#txtPass'); 
+    const txtfirstname = $('#txtfirstname'); 
+    const txtlastname = $('#txtlastname'); 
+    const txtphone = $('#txtphone'); 
+    const txtEmail = $('#txtEmail'); 
+    const inpId = $('#inpId'); 
+    
+    const btnNuevo = $('#btnNuevo'); 
+    const titleUSer = $('#titleUSer'); 
+    
+    
     var Inicializar = function () {
         console.log('admin controller')
         functionListar();
@@ -21,6 +43,43 @@
         postObtenerUsuarios();
         flexSwitchCheckChecked.change(function () {
             postObtenerUsuarios();
+        })
+        btnCancelarDesc.click(function () {
+            $('#MDelete').modal('hide')
+            
+        });
+        btnDesactivar.click(function () {
+            
+        });
+        btnCancelarAct.click(function () {
+            $('#MActivate').modal('hide')
+            
+        });
+        btnActivate.click(function () {
+            
+        });
+        btnCancelar.click(function () {
+            $('#myUser').modal('hide')
+        });
+        btnSave.click(function () {
+            
+        });
+        btnCancelarDis.click(function () {
+            $('#btnCancelarDis').modal('hide')
+            
+        });
+        btnSaveDis.click(function () {
+            
+        });
+        btnNuevo.click(function () {
+            $('#myUser').modal('show');
+            inpId.val(0);
+            txtUser.val('');
+            txtPass.val('');
+            txtfirstname.val('');
+            txtlastname.val('');
+            txtphone.val('');
+            txtEmail.val('');
         })
     }
     
@@ -92,11 +151,21 @@
                 });
                 tblUsuarios.on('click', '.EditDevice', function () {
                     const rowData = dtUsuarios.row($(this).closest('tr')).data();
+               
+
                     $('#MDevice').modal('show');
                 });
                 tblUsuarios.on('click', '.editarUsuarios', function () {
                     const rowData = dtUsuarios.row($(this).closest('tr')).data();
                     $('#myUser').modal('show');
+                    inpId.val(rowData.Id);
+                    txtUser.val(rowData.Usuario);
+                    txtPass.val(rowData.Contrasena);
+                    txtfirstname.val(rowData.Nombre);
+                    txtlastname.val(rowData.ApellidoPaterno);
+                    txtphone.val(rowData.Telefono);
+                    txtEmail.val(rowData.Email);
+                    titleUSer.text('Edit User');
                 });
                 
             }
@@ -332,6 +401,7 @@
             axios.post(options, parametros).then(function (response) {
                 const result = response.data;
                 if (result.SUCCESS == true) {
+                    console.log(result.ITEMS)
                     dtUsuarios.clear();
                     dtUsuarios.rows.add(result.ITEMS);
                     dtUsuarios.draw();

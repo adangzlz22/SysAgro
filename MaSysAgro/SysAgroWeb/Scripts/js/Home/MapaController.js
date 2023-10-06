@@ -141,7 +141,8 @@
     const agregarPoligonoExistente = function () {
         var _default = arrProject.filter(x => x.ProjectID == projectId);
         //alert((_default[0].Latitud_1) + " " + (_default[0].Longitud_1));
-        if (_default[0].Latitud_1 == 0 && _default[0].Longitud_1 == 0) {
+        console.log(_default)
+        if (_default[0].Cordenadas != '' && _default[0].Cordenadas != null) {
             var project = _default[0];
             var Cordenadas = JSON.parse(project.Cordenadas);
 
