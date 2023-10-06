@@ -329,13 +329,58 @@ namespace SysAgroWeb.Controllers
             try
             {
                 string consulta = @"UPDATE projects SET
-                                    ProjectName = '{0}' 
+                                    ProjectName = '{0}',
                                     WHERE ProjectID = {1};";
                 string Existe = @"SELECT * FROM projects WHERE ProjectName = '{0}';";
 
                 using (var ctx = new MySqlConnection(conexion))
                 {
                     consulta = string.Format(consulta, parametros.ProjectName, parametros.ProjectID);
+
+                    Existe = string.Format(Existe, parametros.ProjectName);
+                    ctx.Open();
+                    var objExiste = ctx.Query<resultProject>(Existe, paramss, null, true, 300).FirstOrDefault();
+                    if (objExiste == null)
+                    {
+                        var objProject = ctx.Query<dynamic>(consulta, paramss, null, true, 300).FirstOrDefault();
+                        objResponse.ITEMS = objProject;
+                        objResponse.MESSAGE = "project update successfully.";
+                        objResponse.SUCCESS = true;
+                    }
+                    else
+                    {
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "this project already exists in the database.";
+                        objResponse.SUCCESS = false;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = ex.Message;
+                objResponse.SUCCESS = false;
+            }
+
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult postUpdateProjectosCoodenadas(paramsProject parametros)
+        {
+            objResponse = new ClsModResponse();
+            paramss = new DynamicParameters();
+            try
+            {
+                string consulta = @"UPDATE projects SET
+                                    Cordenadas = '{0}',
+                                    Longitud_1 = '{2}',
+                                    Latitud_1 = '{3}'
+                                    WHERE ProjectID = {1};";
+                string Existe = @"SELECT * FROM projects WHERE ProjectID = '{0}';";
+
+                using (var ctx = new MySqlConnection(conexion))
+                {
+                    consulta = string.Format(consulta, parametros.Cordenadas, parametros.ProjectID, parametros.Longitud_1, parametros.Latitud_1);
 
                     Existe = string.Format(Existe, parametros.ProjectName);
                     ctx.Open();
@@ -488,7 +533,6 @@ namespace SysAgroWeb.Controllers
 
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }
-
         public ActionResult postObtenerDispositivos(paramsProject paramsProject)
         {
             objResponse = new ClsModResponse();
@@ -531,7 +575,7 @@ namespace SysAgroWeb.Controllers
             paramss = new DynamicParameters();
             try
             {
-                string consulta = "SELECT * FROM player_data WHERE ClientID = {0}";
+                string consulta = "SELECT * FROM player_data WHERE ClientID = {0} and Activo = 1;";
                 using (var ctx = new MySqlConnection(conexion))
                 {
                     consulta = string.Format(consulta, vSesiones.sesionUsuarioDTO.Id);
@@ -696,7 +740,6 @@ namespace SysAgroWeb.Controllers
             }
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }
-
         public ActionResult postBuscarDispositivoPorProyecto(paramsProject paramsProject)
         {
             objResponse = new ClsModResponse();
@@ -714,7 +757,7 @@ namespace SysAgroWeb.Controllers
                     var objProject2 = ctx.Query<devices>(consulta2, paramss, null, true, 300).FirstOrDefault();
                     if (objProject2 != null)
                     {
-                        if (objProject2.ClientID == 0)
+                        if (objProject2.ClientID == 0 || objProject2.ClientID == paramsProject.ClientID)
                         {
                             var objProject = ctx.Query<dynamic>(consulta, paramss, null, true, 300).FirstOrDefault();
 
@@ -747,53 +790,62 @@ namespace SysAgroWeb.Controllers
             }
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }
-
         public ActionResult postAsignarDispositivoLocalizacion(paramsProject paramsProject)
         {
             objResponse = new ClsModResponse();
             paramss = new DynamicParameters();
 
-            try {
+            try
+            {
                 string consulta = "UPDATE player_data SET ClientID={0}, ProjectID={1}, Longitud='{2}', Latitud='{3}' WHERE player_id={4}";
                 string consulta2 = "SELECT * FROM player_data WHERE ClientID={0} and player_id={1}";
-                
+
                 consulta = string.Format(consulta, paramsProject.ClientID, paramsProject.ProjectID, paramsProject.Longitud_1, paramsProject.Latitud_1, paramsProject.player_id);
                 consulta2 = string.Format(consulta2, paramsProject.ClientID, paramsProject.player_id);
-                
-                using (var ctx = new MySqlConnection(conexion)) {
+
+                using (var ctx = new MySqlConnection(conexion))
+                {
                     ctx.Open();
                     var objProject2 = ctx.Query<devices>(consulta2, paramss, null, true, 300).FirstOrDefault();
-                    if (objProject2 != null) {
+                    if (objProject2 != null)
+                    {
                         var objProject = ctx.Query<dynamic>(consulta, paramss, null, true, 300).FirstOrDefault();
-                        if (objProject == null) {
+                        if (objProject == null)
+                        {
                             objResponse.ITEMS = objProject;
                             objResponse.MESSAGE = "Device added successfully.";
                             objResponse.SUCCESS = true;
-                        } else {
+                        }
+                        else
+                        {
                             //objResponse.MESSAGE = "An error occurred while trying to perform this process.";
                             objResponse.MESSAGE = consulta;
                             objResponse.SUCCESS = false;
-                        }    
-                    } else {
+                        }
+                    }
+                    else
+                    {
                         objResponse.ITEMS = null;
                         objResponse.MESSAGE = "Device not found.";
                         objResponse.SUCCESS = false;
                     }
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 objResponse.ITEMS = null;
                 objResponse.MESSAGE = "this a problem whit db. " + ex.ToString();
                 objResponse.SUCCESS = false;
             }
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult postObtenerUsuarios()
+        public ActionResult postObtenerUsuarios(genUsuarios parametros)
         {
             objResponse = new ClsModResponse();
             paramss = new DynamicParameters();
             try
             {
-                string consulta = "SELECT * FROM genusuarios WHERE IdRol!=1";
+                string consulta = "SELECT * FROM genusuarios WHERE IdRol!=1 AND Activo=" + parametros.Activo;
                 using (var ctx = new MySqlConnection(conexion))
                 {
                     ctx.Open();
@@ -822,5 +874,9 @@ namespace SysAgroWeb.Controllers
 
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }
+
+
+
+
     }
 }

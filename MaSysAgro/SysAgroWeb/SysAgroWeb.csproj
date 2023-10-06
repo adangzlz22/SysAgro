@@ -398,6 +398,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jszip.js" />
     <Content Include="Scripts\js\Global.js" />
+    <Content Include="Scripts\js\Home\AdminController.js" />
     <Content Include="Scripts\js\Home\DevicesControllers.js" />
     <Content Include="Scripts\js\Home\IndexController.js" />
     <Content Include="Scripts\js\Home\MapaController.js" />

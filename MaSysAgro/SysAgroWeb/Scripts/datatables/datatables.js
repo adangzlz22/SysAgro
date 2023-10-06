@@ -11225,23 +11225,23 @@
 		 *  @name DataTable.defaults.language
 		 */
 		"oLanguage": {
-		    "sProcessing": "Procesando...",
-		    "sLengthMenu": "Mostrar _MENU_ registros",
-		    "sZeroRecords": "No se encontraron resultados",
-		    "sEmptyTable": "Ningun dato disponible en esta tabla",
-		    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-		    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+			"sProcessing": "Processing...",
+			"sLengthMenu": "Show _MENU_ records",
+			"sZeroRecords": "No results found",
+			"sEmptyTable": "No data available in this table",
+			"sInfo": "Showing records from _START_ to _END_ from a total of _TOTAL_ records",
+			"sInfoEmpty": "Showing records from 0 to 0 out of a total of 0 records",
 		    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
 		    "sInfoPostFix": "",
             "sSearch": "  <i class='fa fa-search' aria-hidden='true'></i>",
 		    "sUrl": "",
 		    "sInfoThousands": ",",
-		    "sLoadingRecords": "Cargando...",
+		    "sLoadingRecords": "Loading*9...",
 		    "oPaginate": {
 		        "sFirst": "Primero",
 		        "sLast": "Ãšltimo",
-                "sNext": "<i class='fa fa-angle-double-right' aria-hidden='true'></i>",
-                "sPrevious": "<i class='fa fa-angle-double-left' aria-hidden='true'></i>"
+                "sNext": "<i class='fa fa-angle-right' aria-hidden='true'></i>",
+                "sPrevious": "<i class='fa fa-angle-left' aria-hidden='true'></i>"
 		    },
 		    "oAria": {
 		        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
