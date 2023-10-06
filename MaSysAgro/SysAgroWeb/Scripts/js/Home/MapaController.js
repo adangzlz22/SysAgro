@@ -19,6 +19,7 @@
         handleDeviceForProjectInMap();
         handleAddProject();
         handleAssignDeviceToProject();
+        handleSearch();
     }
 
     const init_map = function () {
@@ -138,8 +139,8 @@
 
     const agregarPoligonoExistente = function () {
         var _default = arrProject.filter(x => x.ProjectID == projectId);
-
-        if (_default[0].Latitud_1 != 0 && _default[0].Longitud_1 != 0) {
+        //alert((_default[0].Latitud_1) + " " + (_default[0].Longitud_1));
+        if (_default[0].Latitud_1 == 0 && _default[0].Longitud_1 == 0) {
             var project = _default[0];
             var Cordenadas = JSON.parse(project.Cordenadas);
 
@@ -424,6 +425,32 @@
             }).catch(function (error) {
                 console.error(error);
             });
+        });
+    }
+
+    const handleSearch = function (form) {
+        var dropdown = document.getElementById('cityInput');
+        dropdown.addEventListener('change', function (event) {
+            const selectedValue = event.target.value;
+            const selectedOption = document.querySelector(`#cityDatalist option[value="${selectedValue}"]`);
+
+            if (selectedOption) {
+                const coordenadas = selectedOption.getAttribute('data-coodenadas');
+                const coordenadasArray = coordenadas.split(',');
+
+                if (coordenadasArray.length === 2) {
+                    const _latitud = coordenadasArray[0].trim(); // Latitud
+                    const _longitud = coordenadasArray[1].trim(); // Longitud
+
+                    map.flyTo([_latitud, _longitud], 10, {
+                        animate: true,
+                        duration: 2
+                    });
+                } else {
+                    console.error('Formato de coordenadas incorrecto.');
+                }
+
+            }
         });
     }
 
