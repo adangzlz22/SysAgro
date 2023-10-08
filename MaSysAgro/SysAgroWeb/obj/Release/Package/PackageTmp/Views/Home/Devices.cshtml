@@ -110,51 +110,32 @@
 
 </style>
 <br />
-<div class="container-fluid" style="padding-left: 3%; padding-right: 3%">
-   
-  
-    <div class="row">
-        <div class="col-lg-6">@*<h1 class="h3 mb-0 text-gray-800  mb-3"><b>My Devices</b></h1>*@</div>
-        <div class="col-lg-6 col-md-12 col-sm-12 mb-5">
-           
-            <div class="row" style="justify-content:end">
-                <div class="col-3 col-sm-2 col-md-2 col-lg-2 text-center">
-                    <a href="index" class="btn btn-secondary" style="padding: .3rem .9rem;font-size:20px; margin:5px"><i class="fa-solid fa-arrow-left"></i></a>
-                    @*<div class="form-check form-switch form-switch-lg">
-                <input class="form-check-input" type="checkbox" >
-
-            </div>*@
+<div class="row">
+    <div class="col-lg-8"></div>
+    <div class="col-lg-4">
+        <div class="d-sm-flex align-items-center justify-content-end mb-4" style="display:flex">
+            <a href="index" class="d-sm-inline-block btn btn-sm btn btn-secondary" style="padding: .3rem .9rem;font-size:20px; margin:3px"><i class="fa-solid fa-arrow-left"></i></a>
+            <div class="button b2" id="button-14" style="margin: 1px">
+                <input type="checkbox" class="checkbox" id="flexSwitchCheckChecked" checked />
+                <div class="knobs">
+                    <span></span>
                 </div>
-                <div class="col-6 col-sm-3 col-md-3 col-lg-4 text-center" style="display:contents" >
-                    <div class="button b2" id="button-14" style="margin-top:5px">
-                        <input type="checkbox" class="checkbox" id="flexSwitchCheckChecked" checked />
-                        <div class="knobs">
-                            <span></span>
-                        </div>
-                        <div class="layer"></div>
-                    </div>
-                </div>
-                <div class="col-3 col-sm-2 col-md-2 col-lg-2 text-center">
-                    <a href="#" id="btnActivar" class="btn btn-warning" style="padding: .3rem .9rem; font-size: 18px; display: none; font-weight:800"><b><i class="fa-solid fa-check"></i></b></a>
-                    <a href="#" id="btnEliminar" class="btn btn-danger" style="padding: .3rem .9rem;font-size:18px; margin:5px"><i class="fa-solid fa-trash-can"></i></a>
-                </div>
-
-
-                   
-
-                </div>
+                <div class="layer"></div>
             </div>
 
+            <a href="#" id="btnActivar" class="btn btn-warning" style="padding: .3rem .9rem; font-size: 18px; display: none; font-weight: 800; margin: 3px "><b><i class="fa-solid fa-check"></i></b></a>
+            <a href="#" id="btnEliminar" class="btn btn-danger" style="padding: .3rem .9rem; font-size: 18px; margin: 5px; margin: 3px "><i class="fa-solid fa-trash-can"></i></a>
+        </div>
     </div>
 </div>
 
 
 
-<div class="container">
+
     <div class="row">
         <div class="col-lg-6 col-md-8 col-sm-12">
             <div class="input-group mb-3">
-                <input class="form-control form-control-lg " type="text" placeholder="Search device" id="agregarinputTitulo" />
+                <input class="form-control form-control-lg " type="text" placeholder="Search device" id="agregarinputTitulo"  style=" border: 1px dashed #7ab37f;"/>
                 <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnSave"> <i class="fa-solid fa-search"></i></button>
             </div>
            
@@ -164,7 +145,7 @@
         <div class="col-lg-12 text-center">
             <br>
           
-            <div id="contenedorDevice">
+            <div class="row" id="contenedorDevice">
 
 
             </div>
@@ -237,7 +218,7 @@
 
         </div>
     </div>
-</div>
+
 <!-- The Modal -->
 <!--<div class="modal fade" id="myModal">
     <div class="modal-dialog modal-lg modal-dialog-centered">
