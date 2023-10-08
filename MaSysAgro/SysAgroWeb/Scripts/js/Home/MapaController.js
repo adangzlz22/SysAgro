@@ -7,8 +7,12 @@
     var latitud = 40.320973;
     var markerDeviceGroup = null;
     var markers = [];
+    var coordenadas = null;
+    var drawControl = null;
 
-    var map = L.map('map').setView([longitud, latitud], 10.3);
+    var map = L.map('map').setView([latitud, longitud], 10.3);
+
+    var map2 = L.map('map-modal').setView([latitud, longitud], 7);
 
     var Inicializar = function () {
         init_map();
@@ -21,6 +25,21 @@
         handleAssignDeviceToProject();
         AsignarListadoDePaises();
         handleSearch();
+        handleModalMapProject();
+    }
+
+    const handleModalMapProject = () => {
+        $('#button-modal-map-project').on('click', function () {
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map2);
+           
+            $("#myModalProjectMap").modal("show");
+
+            setTimeout(function () {
+                console.log("invalidateSize");
+                map2.invalidateSize();
+                addPolygonToProject();
+            }, 900);
+        });
     }
 
     const init_map = function () {
@@ -35,59 +54,56 @@
              maxZoom: 30,
              subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
          }).addTo(map);*/
+
+       
     }
 
-    const polygon = () => {
+    const addPolygonToProject = () => {
 
         var drawnItems = new L.FeatureGroup();
-        map.addLayer(drawnItems);
+        map2.addLayer(drawnItems);
 
-        var drawControl = new L.Control.Draw({
-            edit: {
-                featureGroup: drawnItems
-            },
-            draw: {
-                polygon: true,
-                marker: false,
-                polyline: false,
-                rectangle: false,
-                circle: false
-            }
-        });
-
-        map.addControl(drawControl);
+        if (drawControl == null) {
+            drawControl = new L.Control.Draw({
+                edit: {
+                    featureGroup: drawnItems
+                },
+                draw: {
+                    polygon: true,
+                    marker: false,
+                    polyline: false,
+                    rectangle: false,
+                    circle: false
+                }
+            });
+        }
+            
+        map2.addControl(drawControl);
         //Manejadores de eventos para guardar el polígono dibujado
-        map.on(L.Draw.Event.CREATED, async (event) => {
+        map2.on(L.Draw.Event.CREATED, (event) => {
             const layer = event.layer;
             drawnItems.addLayer(layer);
+            const coordinates = layer._latlngs[0];
 
-            const coordenadas = layer._latlngs[0];
-            const primeraLatitud = coordenadas[0].lat;
-            const primeraLongitud = coordenadas[0].lng;
+            coordenadas = coordinates;
 
-            const options = `${url}/Home/postUpdateProjectosCoodenadas`;
-            const parametros = {
-                Cordenadas: JSON.stringify(coordenadas),
-                ProjectID: projectId,
-                Longitud_1: primeraLongitud,
-                Latitud_1: primeraLatitud
-            };
-
-            try {
-                funesperar(0, 'Please wait a few seconds.');
-                const response = await axios.post(options, parametros);
-                const result = response.data;
-
-                if (result.SUCCESS) {
-                    getProjects();
-                } else {
-
-                }
-                funesperar(1, '');
-            } catch (error) {
-                console.log(error);
-            }
+            $("#myModalProjectMap").modal("show");
         });
+    }
+
+    const calculateCenterCoordinates = (coordenadas) => {
+        var sumLat = 0;
+        var sumLng = 0;
+
+        for (var i = 0; i < coordenadas.length; i++) {
+            sumLat += coordenadas[i].lat; // Sumar las latitudes
+            sumLng += coordenadas[i].lng; // Sumar las longitudes
+        }
+
+        var centroLat = sumLat / coordenadas.length; // Calcular el promedio de latitudes
+        var centroLng = sumLng / coordenadas.length; // Calcular el promedio de longitudes
+
+        return { lat: centroLat, lng: centroLng };
     }
 
     const getProjects = async () => {
@@ -126,7 +142,7 @@
                 divProyectos.innerHTML = items.join('');
 
                 getDeveceForProjectDefault();
-                agregarPoligonoExistente();
+                addExistingPolygonIntoMap();
             } else {
                 divProyectos.innerHTML = `
                     <div class="alert alert-warning" role="alert">
@@ -138,10 +154,8 @@
         }
     };
 
-    const agregarPoligonoExistente = function () {
+    const addExistingPolygonIntoMap = function () {
         var _default = arrProject.filter(x => x.ProjectID == projectId);
-        //alert((_default[0].Latitud_1) + " " + (_default[0].Longitud_1));
-        console.log(_default)
         if (_default[0].Cordenadas != '' && _default[0].Cordenadas != null) {
             var project = _default[0];
             var Cordenadas = JSON.parse(project.Cordenadas);
@@ -161,8 +175,12 @@
             polygonLayer.addTo(map);
             polygonLayer.bindPopup(project.ProjectName).openPopup();
         } else {
+<<<<<<< HEAD
             polygon();
             confirm(_default[0].ProjectName, "New field, you must add the field polygon");
+=======
+            //addPolygonToProject();
+>>>>>>> modal-poligono
         }
     };
 
@@ -333,8 +351,6 @@
             //  toggleMarker(newMarker);
             //});
         });
-
-
     }
 
     function removeMarker(marker) {
@@ -407,26 +423,39 @@
         $("#form-project").submit(function (form) {
             form.preventDefault();
 
-            var formData = $(this).serializeArray().reduce(function (obj, item) {
-                obj[item.name] = item.value;
-                return obj;
-            }, {});
+            var ProjectName = $("#ProjectName").val();
 
-            const options = url + '/Home/postAddProjectos';
+            if (coordenadas != null && ProjectName.length > 0) {
+                var formData = $(this).serializeArray().reduce(function (obj, item) {
+                    obj[item.name] = item.value;
+                    return obj;
+                }, {});
 
-            formData.ClientID = ClientID;
-            axios.post(options, formData).then(function (response) {
-                if (response.data.SUCCESS == true) {
-                    console.log(response.data.ITEMS.ProjectID);
-                    var _ProjectID = response.data.ITEMS.ProjectID;
+                const options = url + '/Home/postAddProjectos';
+                const center = calculateCenterCoordinates(coordenadas);
 
-                    location.href = `Mapa?projectId=${_ProjectID}`;
-                } else {
+                const primeraLatitud = center.lat;
+                const primeraLongitud = center.lng;
 
-                }
-            }).catch(function (error) {
-                console.error(error);
-            });
+                formData.ClientID = ClientID;
+                formData.Cordenadas = JSON.stringify(coordenadas);
+                formData.Longitud_1 = primeraLongitud;
+                formData.Latitud_1 = primeraLatitud;
+
+                axios.post(options, formData).then(function (response) {
+                    if (response.data.SUCCESS == true) {
+                        var _ProjectID = response.data.ITEMS.ProjectID;
+
+                        location.href = `Mapa?projectId=${_ProjectID}`;
+                    } else {
+                        confirm("System Messages", "(Connection error) An error occurred while trying to carry out this processo", "error");
+                    }
+                }).catch(function (error) {
+                    confirm("System Messages", error, "error");
+                });
+            } else {
+                confirm("System Messages", "The Project Name field is required, select the project polygon.", "warning");
+            }  
         });
     }
     const AsignarListadoDePaises = function () {
@@ -437,19 +466,14 @@
         axios.post(options, parametros).then(function (response) {
             const result = response.data;
             if (result.SUCCESS == true) {
-                console.log(result.ITEMS)
                 $('#cityDatalist').find('option').remove();
                 let html = '';
                 for (var i = 0; i < result.ITEMS.length; i++) {
                     html += '<option value="' + result.ITEMS[i].Descripcion + '" data-coodenadas="' + result.ITEMS[i].Latitud + ', ' + result.ITEMS[i].Longitud + '">'
-
                 }
-
                 $('#cityDatalist').append(html);
-
             } else {
             }
-
         }).catch(function (error) {
             console.error(error);
         });
@@ -548,12 +572,8 @@
         })
     }
 
-    const confirm = function (title, text) {
-        Swal.fire(
-            title,
-            text,
-            'success'
-        )
+    const confirm = function (title = "System Messages", text, type = 'success') {
+        Swal.fire(title, text, type);
     }
 
     return {

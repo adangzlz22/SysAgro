@@ -273,10 +273,11 @@ namespace SysAgroWeb.Controllers
         {
             objResponse = new ClsModResponse();
             paramss = new DynamicParameters();
+
             try
             {
-                string consulta = @"INSERT INTO projects (ProjectName, ClientID, Longitud_1,Latitud_1, Longitud_2, Latitud_2,Activo) 
-                                    VALUES ('{0}',{1},0.0, 0.0, 0.0, 0.0,1);";
+                string consulta = @"INSERT INTO projects (ProjectName, ClientID, Longitud_1, Latitud_1, Longitud_2, Latitud_2, Cordenadas, Activo) 
+                                    VALUES ('{0}',{1}, '{2}', '{3}', 0.0, 0.0, '{4}', 1);";
 
                 string Existe = @"SELECT * FROM projects WHERE ProjectName = '{0}';";
 
@@ -284,7 +285,7 @@ namespace SysAgroWeb.Controllers
                 {
                     if (parametros.ProjectName != "" && parametros.ProjectName != null)
                     {
-                        consulta = string.Format(consulta, parametros.ProjectName, parametros.ClientID);
+                        consulta = string.Format(consulta, parametros.ProjectName, parametros.ClientID, parametros.Longitud_1, parametros.Latitud_1, parametros.Cordenadas);
 
                         Existe = string.Format(Existe, parametros.ProjectName);
                         ctx.Open();
@@ -298,7 +299,6 @@ namespace SysAgroWeb.Controllers
                             objResponse.ITEMS = objProject;
                             objResponse.MESSAGE = "project added successfully.";
                             objResponse.SUCCESS = true;
-
                         }
                         else
                         {
@@ -306,7 +306,6 @@ namespace SysAgroWeb.Controllers
                             objResponse.MESSAGE = "this project already exists in the database.";
                             objResponse.SUCCESS = false;
                         }
-
                     }
                     else
                     {
