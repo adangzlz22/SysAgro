@@ -31,7 +31,7 @@
     const handleModalMapProject = () => {
         $('#button-modal-map-project').on('click', function () {
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map2);
-           
+
             $("#myModalProjectMap").modal("show");
 
             setTimeout(function () {
@@ -55,7 +55,7 @@
              subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
          }).addTo(map);*/
 
-       
+
     }
 
     const addPolygonToProject = () => {
@@ -77,7 +77,7 @@
                 }
             });
         }
-            
+
         map2.addControl(drawControl);
         //Manejadores de eventos para guardar el polígono dibujado
         map2.on(L.Draw.Event.CREATED, (event) => {
@@ -173,7 +173,7 @@
                 fillOpacity: 0.5, // Opacidad del relleno
             });
             polygonLayer.addTo(map);
-            polygonLayer.bindPopup(project.ProjectName).openPopup();
+            //polygonLayer.bindPopup(project.ProjectName).openPopup();
         } else {
             polygon();
             confirm(_default[0].ProjectName, "New field, you must add the field polygon");
@@ -244,12 +244,23 @@
         if (divDispositivos) {
             const items = arrDevice
                 .filter(element => element.Longitud !== 0 && element.ProjectID == ProjectID)
-                .map((v, index) => `<li class="list-group-item d-flex justify-content-between align-items-center mb-2" key="${index}">
-                                        <div>
-                                            <span class="text-900 font-medium mr-2 mb-1 md:mb-0">Device ${v.player_id}</span>
-                                        </div>
-                                        <i role="button" class="fa fa-times mr-2 device-delete" data-player_id="${v.player_id}"></i>
-                                    </li>`);
+                .map((v, index) => {
+                    let texto = '';
+                    if (v.Model.trim() == 'PLAYER') {
+                        texto = `<i style='color:green;font-size: 20px;' class="fa-solid fa-location-dot"></i>`;
+                    } else if (v.Model.trim() == 'MASTER') {
+                        texto = `<i style='color:red;font-size: 20px;' class="fa-solid fa-location-dot"></i>`;
+                    } else if (v.Model.trim() == 'SONDA') {
+                        texto = `<i style='color:yellow;font-size: 20px;' class="fa-solid fa-location-dot"></i>`;
+                    }
+                   return  `<li class="list-group-item d-flex justify-content-between align-items-center mb-2" key="${index}">
+                                                    <div>
+                                                        ${texto}
+                                                        <span class="text-900 font-medium mr-2 mb-1 md:mb-0">Device ${v.player_id}</span>
+                                                    </div>
+                                                    <i role="button" class="fa fa-times mr-2 device-delete" data-player_id="${v.player_id}"></i>
+                                                </li>`
+                });
 
             divDispositivos.innerHTML = items.join('');
 
@@ -269,7 +280,7 @@
             const parametros = {
                 player_id: player_id,
                 ClientID: ClientID,
-                ProjectID: 0,
+                ProjectID: projectId,
                 Longitud_1: 0,
                 Latitud_1: 0
             }
@@ -278,7 +289,7 @@
                 const result = response.data;
 
                 if (result.SUCCESS == true) {
-                    getDeveceForProjectDefault();
+                    window.location.href = '/Home/Mapa?projectId=' + projectId;
                 } else {
                     console.log("Ocurrio un error");
                 }
@@ -292,7 +303,13 @@
     const showDeviceForAssign = function () {
         var items = [], divDispositivos = $("#lista-dispositivos").empty();
         arrDevice.filter(element => { return element.Longitud === 0 && element.Latitud === 0 && element.ProjectID === projectId }).map((v, index) => {
-            items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}"><i class="fa-solid fa-location-dot"></i>  ${v.player_id}</button>`);
+            if (v.Model.trim() == 'PLAYER') {
+                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}" data-bs-toggle="tooltip" title="Device ${v.player_id}"><i style='color:green' class="fa-solid fa-location-dot"></i></button> `);
+            } else if (v.Model.trim() == 'MASTER') {
+                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}" data-bs-toggle="tooltip" title="Device ${v.player_id}"><i style='color:red' class="fa-solid fa-location-dot"></i></button> `);
+            } else if (v.Model.trim() == 'SONDA') {
+                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}" data-bs-toggle="tooltip" title="Device ${v.player_id}"><i style='color:yellow' class="fa-solid fa-location-dot"></i></button> `);
+            }
         });
 
         divDispositivos.append(items.join(''));
@@ -302,19 +319,19 @@
         // Filtrar dispositivos con Longitud y Latitud válidas
         var arrDevicesAsignados = arrDevice.filter(element => element.Longitud !== 0 && element.Latitud !== 0 && element.ProjectID == ProjectID);
         // var markerClusterGroup = L.markerClusterGroup();
-
-
+    
+    
         arrDevicesAsignados.forEach(device => {
             //markers.push(newMarker);
             //var marker = L.marker([device.Latitud, device.Longitud]);
             //marker.bindPopup(`<button onClick="${toggleMarker(device.player_id)}">Mostrar/Ocultar</button> Dispositivo ${device.player_id}`).openPopup();
             //markerClusterGroup.addLayer(marker);
-
+    
             var newMarker = L.marker([device.Latitud, device.Longitud]);
             newMarker.bindPopup(`<button class="miboton" id="device-${device.player_id}" value="${device.player_id}" onClick="() => toggleMarker()">Mostrar/Ocultar</button> Device ${device.player_id} ${(markers.length - 1 == -1 ? 0 : markers.length - 1)}`).openPopup().addTo(map);
             newMarker.player_id = device.player_id;
             markers.push(newMarker);
-
+    
             var button = document.getElementById(`device-${device.player_id}`);
             button.addEventListener('click', function () {
                 toggleMarker(newMarker);
@@ -323,7 +340,7 @@
        
         //map.addLayer(markerClusterGroup);
         //markerDeviceGroup = markerClusterGroup;
-
+    
         // console.log(markerDeviceGroup);
         //var markerToRemove = markers[1];
         //removeMarker(markerToRemove);
@@ -452,7 +469,7 @@
                 });
             } else {
                 confirm("System Messages", "The Project Name field is required, select the project polygon.", "warning");
-            }  
+            }
         });
     }
     const AsignarListadoDePaises = function () {
