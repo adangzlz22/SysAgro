@@ -175,12 +175,9 @@
             polygonLayer.addTo(map);
             polygonLayer.bindPopup(project.ProjectName).openPopup();
         } else {
-<<<<<<< HEAD
             polygon();
             confirm(_default[0].ProjectName, "New field, you must add the field polygon");
-=======
             //addPolygonToProject();
->>>>>>> modal-poligono
         }
     };
 
