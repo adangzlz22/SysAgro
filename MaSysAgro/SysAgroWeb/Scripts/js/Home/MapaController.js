@@ -130,7 +130,7 @@
             } else {
                 divProyectos.innerHTML = `
                     <div class="alert alert-warning" role="alert">
-                      No se encontraron proyectos registrados
+                     No registered projects found
                     </div>`;
             }
         } catch (error) {
@@ -162,7 +162,7 @@
             polygonLayer.bindPopup(project.ProjectName).openPopup();
         } else {
             polygon();
-            confirm(_default[0].ProjectName, "Nuevo campo, debes agregar el poligono del campo");
+            confirm(_default[0].ProjectName, "New field, you must add the field polygon");
         }
     };
 
@@ -217,7 +217,7 @@
                 showDeviceAssigned(project.ProjectID);
                 showDeviceInMap(project.ProjectID);
             } else {
-                console.log("No se encontraron dispositivos");
+                console.log("No devices found");
             }
         } catch (error) {
             console.log(error);
@@ -277,7 +277,7 @@
     const showDeviceForAssign = function () {
         var items = [], divDispositivos = $("#lista-dispositivos").empty();
         arrDevice.filter(element => { return element.Longitud === 0 && element.Latitud === 0 && element.ProjectID === projectId }).map((v, index) => {
-            items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}">Device ${v.player_id}</button>`);
+            items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}"><i class="fa-solid fa-location-dot"></i>  ${v.player_id}</button>`);
         });
 
         divDispositivos.append(items.join(''));
@@ -363,7 +363,7 @@
         map.on('click', function (e) {
             if (player_id != null) {
                 var newMarker = L.marker(e.latlng);
-                newMarker.bindPopup(`<button>Mostrar/Ocultar</button> Device ${player_id}`).openPopup().addTo(map);
+                newMarker.bindPopup(`<button>Show/Hider</button> Device ${player_id}`).openPopup().addTo(map);
                 // Agrega el nuevo marcador al array
 
                 var lat = newMarker._latlng.lat;
@@ -389,7 +389,7 @@
                         //location.reload();
                         //newMarker.bindPopup('Device ${player_id} <button onclick="toggleMarker(' + (markers.length - 1) + ')">Mostrar/Ocultar</button>').openPopup();
                     } else {
-                        console.log("Ocurrio un error");
+                        console.log("An error occurred");
                     }
                     funesperar(1, '');
                 }).catch(function (error) {
@@ -398,7 +398,7 @@
 
                 player_id = null;
             } else {
-                console.log("Debe seleccionar un dispositivo");
+                console.log("You must select a device");
             }
         });
     }
@@ -473,7 +473,7 @@
                         duration: 2
                     });
                 } else {
-                    console.error('Formato de coordenadas incorrecto.');
+                    console.error('Incorrect coordinate format.');
                 }
 
             }
@@ -525,7 +525,7 @@
     const funesperar = function (timer, texto) {
         let timerInterval
         Swal.fire({
-            title: 'Alerta!',
+            title: 'Alert!',
             text: texto,
             icon: 'info',
             timer: timer,
