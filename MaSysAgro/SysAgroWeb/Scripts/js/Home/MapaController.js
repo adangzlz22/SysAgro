@@ -289,7 +289,7 @@
                     const parametros = {
                         player_id: player_id,
                         ClientID: ClientID,
-                        ProjectID: projectId,
+                        ProjectID: 0,
                         Longitud_1: 0,
                         Latitud_1: 0
                     }

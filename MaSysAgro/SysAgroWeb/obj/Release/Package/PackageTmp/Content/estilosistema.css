@@ -53649,3 +53649,23 @@ thead tr:nth-child(3) th {
     background-color: #7ab37f2e;
 }
 
+@media screen and (min-width: 576px) {
+
+    #map {
+        min-height: 847px;
+        height: 100%
+    }
+}
+@media screen and (max-width: 575px) {
+    #cardDatos {
+        order:2;
+    }
+    #cardMapa {
+        order: 1;
+    }
+    #map {
+        height: 450px!important;
+     
+    }
+}
+

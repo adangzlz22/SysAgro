@@ -114,21 +114,24 @@
 <button style="display:none;" data-tipo="1" class="btn btn-danger CloseButton" id="btnEliminar${v.ProjectID}"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
 </div>
 </div>
-
+                                 <a href="Mapa?projectId=${v.ProjectID}">
                                     <div class="card box" style="border: 1px solid #7ab37f; height:200px;">
                                         <div class="card-body mt-5 mb-5 text-left">
-                                <a href="Mapa?projectId=${v.ProjectID}">
+                               
                                             <img src="/Content/img/ubicacion.png" style="width:50px" class="mb-3" />
-                                </a>
+                              
                                             <br />
                                             <h2 style="color:#7ab37f; font-size:25px" class='projectNameText'>${v.ProjectName}</h2>
-                                            <input id="txtProjectName${v.ProjectID}" type='text' class='form-control projectName' value='${v.ProjectName}' style='display:none;'>
-<a href="#" id="btnCambiarNombre${v.ProjectID}" class="btn btn-success btnprojectName" style="padding: .3rem .9rem; font-size: 18px; display: none; font-weight:800"><b><i class="fa-solid fa-save"></i></b></a>
+                                            <input id="txtProjectName${v.ProjectID}" type='text' class='form-control projectName mb-3' value='${v.ProjectName}' style='display:none;'>
+                                        <div class='text-right'>
+<buttom id="btnCambiarNombre${v.ProjectID}" class="btn btn-primary btnprojectName" style="padding: .3rem .9rem; font-size: 18px; display: none; font-weight:800"><b><i class="fa-solid fa-save"></i></b></buttom>
+</div>
+
                                           
                                             <!--<h4>Short project description</h4>-->
                                         </div>
-                                    </div>
-                            </div>`);
+                                    </div></a>
+                            </div>  `);
                     });
 
                     divProyectos.append(items.join(''));
