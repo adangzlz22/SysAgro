@@ -175,8 +175,7 @@
             polygonLayer.addTo(map);
             //polygonLayer.bindPopup(project.ProjectName).openPopup();
         } else {
-            polygon();
-            confirm(_default[0].ProjectName, "New field, you must add the field polygon");
+            //info(_default[0].ProjectName, "New field, you must add the field polygon");
             //addPolygonToProject();
         }
     };
@@ -253,13 +252,13 @@
                     } else if (v.Model.trim() == 'SONDA') {
                         texto = `<i style='color:yellow;font-size: 20px;' class="fa-solid fa-location-dot"></i>`;
                     }
-                   return  `<li class="list-group-item d-flex justify-content-between align-items-center mb-2" key="${index}">
-                                                    <div>
-                                                        ${texto}
-                                                        <span class="text-900 font-medium mr-2 mb-1 md:mb-0">Device ${v.player_id}</span>
-                                                    </div>
-                                                    <i role="button" class="fa fa-times mr-2 device-delete" data-player_id="${v.player_id}"></i>
-                                                </li>`
+                    return  `<li class="list-group-item d-flex justify-content-between align-items-center mb-2" key="${index}">
+                                <div>
+                                    ${texto}
+                                    <span class="text-900 font-medium mr-2 mb-1 md:mb-0">Device ${v.player_id}</span>
+                                </div>
+                                <i role="button" class="fa fa-times mr-2 device-delete" data-player_id="${v.player_id}"></i>
+                            </li>`
                 });
 
             divDispositivos.innerHTML = items.join('');
@@ -275,28 +274,40 @@
         document.getElementById(`card-device-${projectId}`).addEventListener('click', async (e) => {
             e.preventDefault();
 
-            const player_id = e.target.closest('.device-delete').dataset.player_id;
-            const options = url + `/Home/postAsignarDispositivoLocalizacion`;
-            const parametros = {
-                player_id: player_id,
-                ClientID: ClientID,
-                ProjectID: projectId,
-                Longitud_1: 0,
-                Latitud_1: 0
-            }
-            funesperar(0, 'Please wait a few seconds.');
-            axios.post(options, parametros).then(function (response) {
-                const result = response.data;
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const player_id = e.target.closest('.device-delete').dataset.player_id;
+                    const options = url + `/Home/postAsignarDispositivoLocalizacion`;
+                    const parametros = {
+                        player_id: player_id,
+                        ClientID: ClientID,
+                        ProjectID: projectId,
+                        Longitud_1: 0,
+                        Latitud_1: 0
+                    }
+                    funesperar(0, 'Please wait a few seconds.');
+                    axios.post(options, parametros).then(function (response) {
+                        const result = response.data;
 
-                if (result.SUCCESS == true) {
-                    window.location.href = '/Home/Mapa?projectId=' + projectId;
-                } else {
-                    console.log("Ocurrio un error");
-                }
-                funesperar(1, '');
-            }).catch(function (error) {
-                console.error(error);
-            });
+                        if (result.SUCCESS == true) {
+                            window.location.href = '/Home/Mapa?projectId=' + projectId;
+                        } else {
+                            console.log("Ocurrio un error");
+                        }
+                        funesperar(1, '');
+                    }).catch(function (error) {
+                        console.error(error);
+                    });
+                } 
+            }) 
         });
     };
 
@@ -318,28 +329,17 @@
     /*const showDeviceInMap = function (ProjectID) {
         // Filtrar dispositivos con Longitud y Latitud válidas
         var arrDevicesAsignados = arrDevice.filter(element => element.Longitud !== 0 && element.Latitud !== 0 && element.ProjectID == ProjectID);
-        // var markerClusterGroup = L.markerClusterGroup();
-    
-    
+        console.log(arrDevicesAsignados);
+        var markerClusterGroup = L.markerClusterGroup();
+   
         arrDevicesAsignados.forEach(device => {
-            //markers.push(newMarker);
-            //var marker = L.marker([device.Latitud, device.Longitud]);
-            //marker.bindPopup(`<button onClick="${toggleMarker(device.player_id)}">Mostrar/Ocultar</button> Dispositivo ${device.player_id}`).openPopup();
-            //markerClusterGroup.addLayer(marker);
-    
-            var newMarker = L.marker([device.Latitud, device.Longitud]);
-            newMarker.bindPopup(`<button class="miboton" id="device-${device.player_id}" value="${device.player_id}" onClick="() => toggleMarker()">Mostrar/Ocultar</button> Device ${device.player_id} ${(markers.length - 1 == -1 ? 0 : markers.length - 1)}`).openPopup().addTo(map);
-            newMarker.player_id = device.player_id;
             markers.push(newMarker);
-    
-            var button = document.getElementById(`device-${device.player_id}`);
-            button.addEventListener('click', function () {
-                toggleMarker(newMarker);
-            });
+            var marker = L.marker([device.Latitud, device.Longitud]);
+            marker.bindPopup(`Device ${device.player_id}`).openPopup();
+            markerClusterGroup.addLayer(marker);
         });
-       
-        //map.addLayer(markerClusterGroup);
-        //markerDeviceGroup = markerClusterGroup;
+        map.addLayer(markerClusterGroup);
+        markerDeviceGroup = markerClusterGroup;
     
         // console.log(markerDeviceGroup);
         //var markerToRemove = markers[1];
@@ -351,19 +351,30 @@
         var arrDevicesAsignados = arrDevice.filter(element => element.Longitud !== 0 && element.Latitud !== 0 && element.ProjectID == ProjectID);
 
         arrDevicesAsignados.forEach(device => {
-            var newMarker = L.marker([device.Latitud, device.Longitud]).addTo(map);
-            newMarker.bindPopup(`New Device`).openPopup();
-            markers.push(newMarker);
-            newMarker.bindPopup(`Device ${device.player_id}`).openPopup();
-            //newMarker.bindPopup(`<button class="miboton" id="device-${device.player_id}" onClick="toggleMarker(${device.player_id})" value="${device.player_id}">Mostrar/Ocultar</button> Device ${device.player_id}`).addTo(map);
-            //newMarker.player_id = device.player_id;
-            //markers.push(newMarker);
+            let iconColor = 'blue'; // Color predeterminado
 
-            // Agregar un evento click al botón para mostrar/ocultar el marcador
-            //var button = document.getElementById(`device-${device.player_id}`);
-            //button.addEventListener('click', function () {
-            //  toggleMarker(newMarker);
-            //});
+            // Asignar colores en función del valor de element.Model
+            if (device.Model.trim() === 'MASTER') {
+                iconColor = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png';
+            } else if (device.Model.trim() === 'PLAYER') {
+                iconColor = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png';
+            } else if (device.Model.trim() === 'SONDA') {
+                iconColor = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png';
+            }
+ 
+            var Icono = L.icon({
+                iconUrl: iconColor,
+                iconSize: [30, 40],
+                popupAnchor: [0, -40]
+            });
+
+            var newMarker = L.marker([device.Latitud, device.Longitud], {
+                draggable: true,
+                icon: Icono
+            }).addTo(map);
+
+            newMarker.bindPopup(`Device ${device.player_id}`).openPopup();
+            markers.push(newMarker);
         });
     }
 
@@ -472,6 +483,7 @@
             }
         });
     }
+
     const AsignarListadoDePaises = function () {
         let parametros = {
             Descripcion: ''
@@ -492,6 +504,7 @@
             console.error(error);
         });
     }
+
     const handleSearch = function (form) {
         var dropdown = document.getElementById('cityInput');
         dropdown.addEventListener('change', function (event) {
@@ -586,7 +599,7 @@
         })
     }
 
-    const confirm = function (title = "System Messages", text, type = 'success') {
+    const info = function (title = "System Messages", text, type = 'success') {
         Swal.fire(title, text, type);
     }
 
