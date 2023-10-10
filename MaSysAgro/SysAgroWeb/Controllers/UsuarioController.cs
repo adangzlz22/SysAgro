@@ -96,7 +96,7 @@ namespace SysAgroWeb.Controllers
                             ";
                             updateConsulta = string.Format(updateConsulta, parametros.Nombre, parametros.ApellidoPaterno, parametros.ApellidoMaterno, parametros.Telefono, parametros.Email, parametros.Id);
                             objUsuario = ctx.Query<paramsUsuarioDTO>(updateConsulta, paramss, null, true, 300).FirstOrDefault();
-                            if (parametros.ImagenPerfil != "")
+                            if (parametros.ImagenPerfil != "" && parametros.ImagenPerfil != null)
                             {
                                 updateConsulta = @"UPDATE GenUsuarios SET 
                                                                         ImagenPerfil='{0}' WHERE Id = {1}
