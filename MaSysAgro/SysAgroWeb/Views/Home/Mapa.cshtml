@@ -163,13 +163,14 @@
 
                         <div id="lista-dispositivos">
                         </div>
-                        <button class="btn btn-sm btn-secondary px-2" type="button" style="font-size:20px; padding:5px 10px; display:block" onclick="mapaGrande()" id="btnGrande"><i class="fas fa-expand"></i></button>
+                        <button class="btn btn-sm btn-secondary px-2" type="button" style="font-size:20px; padding:5px 10px" onclick="mapaGrande()" id="btnGrande"><i class="fas fa-expand"></i></button>
+                        <button class="btn btn-sm btn-primary px-2" type="button" style="font-size: 20px; padding: 0.3rem 1rem; display: none" onclick="mapaChico()" id="btnChico"><i class="fas fa-x"></i></button>
                     </form>
                 </nav>
                 <div class="card" style=" background-color:white" id="cardMapaModal">
                     <div class="row" id="botonChico" style="display:none">
                         <div class="col-lg-12 col-md-12 col-sm-12 text-right" style="text-align:right;">
-                            <button class="btn btn-sm btn-primary px-2" type="button" style="font-size: 20px; padding: 0.3rem 1rem; display: none" onclick="mapaChico()" id="btnChico"><i class="fas fa-x"></i></button>
+                           
                         </div>
                     </div>
                     <div id="map" style="border-radius:5px"></div>
@@ -250,46 +251,36 @@
     <script>
         var card1 = document.getElementById('cardDatos');
         var card2 = document.getElementById('cardMapa');
-        var card3 = document.getElementById('cardMapaModal');
+      
 
         var btnChico2 = document.getElementById('botonChico');
         function mapaGrande() {
             if (card1.className = 'col-lg-3 col-mb-4 col-sm-4 col-12 map1') {
-               /* card2.className = 'col-lg-12 col-md-12 col-sm-12 col-12';*/
-           /*     card2.style.order = '1';*/
-                /*   card2.style.display = 'none';*/
-               /* card1.style.order = '2';*/
-                card3.className = 'modal fade show';
-
-                card3.style.height = '98%';
-                btnChico2.style = 'font-size:20px; padding:5px 10px;  margin-top:10px; margin-bottom:10px;display:block';
+                card2.className = 'col-lg-12 col-md-12 col-sm-12 col-12 map2';
+                card2.style.order = '1';
+              
+                card1.style.order = '2';
+               
                 document.getElementById('btnGrande').style = 'display:none';
-                document.getElementById('btnChico').style = 'display:inline;padding: 0.3rem 1rem';
+                document.getElementById('btnChico').style = 'display:inline;font-size:20px; padding:5px 10px;';
 
             } else {
-                //card2.className = 'col-lg-9 col-md-8 col-sm-8 col-12';
-                //card2.style.order = '2';
-                //card1.style.order = '1';
+               
             }
         }
 
         function mapaChico() {
             if (card1.className = 'col-lg-3 col-mb-4 col-sm-4 col-12 map1') {
-               /* card2.className = 'col-lg-9 col-md-8 col-sm-12 col-12';*/
-                /*card2.style.order = '2';*/
-                /*   card2.style.display = 'none';*/
-               /* card1.style.order = '1';*/
-                card3.className = 'card';
-
-                card3.style.height = '94%';
-                btnChico2.style = 'font-size:20px; padding:5px 10px;  margin-top:10px; margin-bottom:10px; display:none';
-                document.getElementById('btnGrande').style = 'display:block';
+                card2.className = 'col-lg-9 col-md-8 col-sm-12 col-12 map2';
+                card2.style.order='2'
+               
+                card1.style.order = '1';
+               
+                document.getElementById('btnGrande').style = 'font-size:20px; padding:5px 10px; display:block';
                 document.getElementById('btnChico').style = 'display:none';
 
             } else {
-                //card2.className = 'col-lg-9 col-md-8 col-sm-8 col-12';
-                //card2.style.order = '2';
-                //card1.style.order = '1';
+                
             }
         }
     </script>

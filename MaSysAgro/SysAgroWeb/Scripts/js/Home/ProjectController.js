@@ -115,7 +115,7 @@
 </div>
 </div>
                                  <a href="Mapa?projectId=${v.ProjectID}">
-                                    <div class="card box" style="border: 1px solid #7ab37f; height:200px;">
+                                    <div class="card box" style="border: 1px solid #7ab37f; height:200px;text-align:left">
                                         <div class="card-body mt-5 mb-5 text-left">
                                
                                             <img src="/Content/img/ubicacion.png" style="width:50px" class="mb-3" />

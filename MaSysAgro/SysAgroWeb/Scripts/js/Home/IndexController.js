@@ -7,7 +7,7 @@
     const ContenedorMenu = $('#ContenedorMenu');
 
     const Card = `<div class="col-lg-3 col-sm-12 col-md-4 mb-3"><a href="{1}">
-                      <div class="card box" style=" border: 1px solid #7ab37f;">
+                      <div class="card box" style=" border: 1px solid #7ab37f; text-align: left;">
                           <div class="card-body mt-5 mb-5 text-left">
                               <img src="{0}" style="width:50px" class="mb-3"/>
                               <h2 style="color:#7ab37f; font-size:30px">{2}</h2>
