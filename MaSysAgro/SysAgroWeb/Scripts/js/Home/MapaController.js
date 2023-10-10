@@ -9,6 +9,7 @@
     var markers = [];
     var coordenadas = null;
     var drawControl = null;
+    var drawControl2 = null;
 
     var map = L.map('map').setView([latitud, longitud], 10.3);
 
@@ -46,19 +47,33 @@
     }
 
     const init_map = function () {
+        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 20,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        });
+        osm.addTo(map);
 
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
+        googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
 
-        //google satellite
-        /* googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-             maxZoom: 30,
-             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-         }).addTo(map);*/
+        googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
 
+        var baseMaps = {
+            "OSM": osm,
+            'Google Street': googleStreets,
+            "Google Satellite": googleSat,
+        };
 
+        var overlayMaps = {
+
+        };
+
+        L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
     }
 
     const addPolygonToProject = () => {
@@ -68,9 +83,7 @@
 
         if (drawControl == null) {
             drawControl = new L.Control.Draw({
-                edit: {
-                    featureGroup: drawnItems
-                },
+
                 draw: {
                     polygon: true,
                     marker: false,
@@ -82,6 +95,8 @@
         }
 
         map2.addControl(drawControl);
+
+        console.log(drawControl);
         //Manejadores de eventos para guardar el polígono dibujado
         map2.on(L.Draw.Event.CREATED, (event) => {
             const layer = event.layer;
@@ -99,8 +114,8 @@
         var drawnItems = new L.FeatureGroup();
         map.addLayer(drawnItems);
 
-        if (drawControl == null) {
-            drawControl = new L.Control.Draw({
+        if (drawControl2 == null) {
+            drawControl2 = new L.Control.Draw({
                 edit: {
                     featureGroup: drawnItems
                 },
@@ -114,7 +129,7 @@
             });
         }
 
-        map.addControl(drawControl);
+        map.addControl(drawControl2);
         //Manejadores de eventos para guardar el polígono dibujado
         map.on(L.Draw.Event.CREATED, (event) => {
             const layer = event.layer;
@@ -408,7 +423,7 @@
             });
 
             var newMarker = L.marker([device.Latitud, device.Longitud], {
-                draggable: true,
+                draggable: false,
                 icon: Icono
             }).addTo(map);
 
