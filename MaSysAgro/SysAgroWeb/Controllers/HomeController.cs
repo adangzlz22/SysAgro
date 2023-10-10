@@ -293,7 +293,7 @@ namespace SysAgroWeb.Controllers
                         if (objExiste == null)
                         {
                             var objProject = ctx.Query<dynamic>(consulta, paramss, null, true, 300).FirstOrDefault();
-                            consulta = @"select * from projects where ProjectName = '"+ parametros.ProjectName + @"';";
+                            consulta = @"select * from projects where ProjectName = '" + parametros.ProjectName + @"';";
                             objProject = ctx.Query<resultProject>(consulta, paramss, null, true, 300).FirstOrDefault();
 
                             objResponse.ITEMS = objProject;
@@ -841,41 +841,6 @@ namespace SysAgroWeb.Controllers
             }
             return Json(objResponse, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult postObtenerUsuarios(genUsuarios parametros)
-        {
-            objResponse = new ClsModResponse();
-            paramss = new DynamicParameters();
-            try
-            {
-                string consulta = "SELECT * FROM genusuarios WHERE IdRol!=1 AND Activo=" + parametros.Activo;
-                using (var ctx = new MySqlConnection(conexion))
-                {
-                    ctx.Open();
-                    var objProject = ctx.Query<genUsuarios>(consulta, paramss, null, true, 300).ToList();
-                    if (objProject.Count() > 0)
-                    {
-                        objResponse.ITEMS = objProject;
-                        objResponse.MESSAGE = "";
-                        objResponse.SUCCESS = true;
-                    }
-                    else
-                    {
-                        objResponse.ITEMS = null;
-                        objResponse.MESSAGE = "this a problem whit db";
-                        objResponse.SUCCESS = false;
-                    }
-
-                }
-            }
-            catch (Exception ex)
-            {
-                objResponse.ITEMS = null;
-                objResponse.MESSAGE = ex.Message;
-                objResponse.SUCCESS = false;
-            }
-
-            return Json(objResponse, JsonRequestBehavior.AllowGet);
-        }
 
 
         public ActionResult postObtenerPaises(paramsUbicacion parametros)
@@ -903,6 +868,150 @@ namespace SysAgroWeb.Controllers
                         objResponse.SUCCESS = false;
                     }
 
+                }
+            }
+            catch (Exception ex)
+            {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = ex.Message;
+                objResponse.SUCCESS = false;
+            }
+
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult postObtenerUsuarios(genUsuarios parametros)
+        {
+            objResponse = new ClsModResponse();
+            paramss = new DynamicParameters();
+            try
+            {
+                string consulta = "SELECT * FROM genusuarios WHERE IdRol!=1 AND Activo=" + parametros.Activo;
+                using (var ctx = new MySqlConnection(conexion))
+                {
+                    ctx.Open();
+                    var objProject = ctx.Query<genUsuarios>(consulta, paramss, null, true, 300).ToList();
+                    if (objProject.Count() >= 0)
+                    {
+                        foreach (var item in objProject)
+                        {
+                            item.Contrasena = Funciones.DesencriptarMD5(item.Contrasena);
+                        }
+                        objResponse.ITEMS = objProject;
+                        objResponse.MESSAGE = "";
+                        objResponse.SUCCESS = true;
+                    }
+                    else
+                    {
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "this a problem whit db";
+                        objResponse.SUCCESS = false;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = ex.Message;
+                objResponse.SUCCESS = false;
+            }
+
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult postEditarUsuarios(genUsuarios parametros)
+        {
+            objResponse = new ClsModResponse();
+            paramss = new DynamicParameters();
+            try
+            {
+                string consulta = @"UPDATE genusuarios SET
+                                            Usuario='{0}',                                           
+                                            Contrasena='{1}',
+                                            Nombre='{2}',                                         
+                                            ApellidoPaterno='{3}',
+                                            Telefono='{4}',
+                                            Email='{5}'
+                                    WHERE Id={6};";
+                string Clave = Funciones.EncriptarMD5(parametros.Contrasena);
+                consulta = string.Format(consulta, parametros.Usuario, Clave, parametros.Nombre, parametros.ApellidoPaterno, parametros.Telefono, parametros.Email, parametros.Id);
+                using (var ctx = new MySqlConnection(conexion))
+                {
+                    ctx.Open();
+                    var objProject = ctx.Query<genUsuarios>(consulta, paramss, null, true, 300).FirstOrDefault();
+
+                    objResponse.ITEMS = objProject;
+                    objResponse.MESSAGE = "Editado con exito.";
+                    objResponse.SUCCESS = true;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = ex.Message;
+                objResponse.SUCCESS = false;
+            }
+
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult postActDescUsuarios(genUsuarios parametros)
+        {
+            objResponse = new ClsModResponse();
+            paramss = new DynamicParameters();
+            try
+            {
+                string consulta = @"UPDATE genusuarios SET
+                                            Activo={0}                                          
+                                    WHERE Id={1};";
+                string Clave = Funciones.EncriptarMD5(parametros.Contrasena);
+                consulta = string.Format(consulta, parametros.Activo, parametros.Id);
+                using (var ctx = new MySqlConnection(conexion))
+                {
+                    ctx.Open();
+                    var objProject = ctx.Query<genUsuarios>(consulta, paramss, null, true, 300).FirstOrDefault();
+
+                    objResponse.ITEMS = objProject;
+                    objResponse.MESSAGE = "Editado con exito.";
+                    objResponse.SUCCESS = true;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = ex.Message;
+                objResponse.SUCCESS = false;
+            }
+
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult postObtenerProjectosUsuarios(paramsProject parametros)
+        {
+            objResponse = new ClsModResponse();
+            paramss = new DynamicParameters();
+            try
+            {
+                string consulta = "SELECT * FROM projects WHERE ClientID={0} AND Activo={1}";
+                using (var ctx = new MySqlConnection(conexion))
+                {
+                    ctx.Open();
+                    consulta = string.Format(consulta, parametros.ClientID, parametros.Activo);
+                    var objProject = ctx.Query<resultProject>(consulta, paramss, null, true, 300).ToList();
+                    if (objProject.Count() >= 0)
+                    {
+                        objResponse.ITEMS = objProject;
+                        objResponse.MESSAGE = "";
+                        objResponse.SUCCESS = true;
+                    }
+                    else
+                    {
+                        objResponse.ITEMS = null;
+                        objResponse.MESSAGE = "this a problem whit db";
+                        objResponse.SUCCESS = false;
+                    }
                 }
             }
             catch (Exception ex)
