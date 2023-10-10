@@ -27,8 +27,8 @@
         handleSearch();
         handleModalMapProject();
         editPolygonToProject();
-        bigMap();
-        mapaChico();
+       // bigMap();
+       // mapaChico();
     }
 
     const handleModalMapProject = () => {
@@ -635,47 +635,6 @@
 
     const info = function (title = "System Messages", text, type = 'success') {
         Swal.fire(title, text, type);
-    }
-
-    const bigMap = () => {
-        $("#btnGrande").click(function () {
-            var card1 = document.getElementById('cardDatos');
-            var card2 = document.getElementById('cardMapa');
-            var card3 = document.getElementById('cardMapaModal');
-
-            var btnChico2 = document.getElementById('botonChico');
-            if (card1.className = 'col-lg-3 col-mb-4 col-sm-4 col-12 map1') {
-                card3.className = 'modal fade show';
-
-                card3.style.height = '98%';
-                btnChico2.style = 'font-size:20px; padding:5px 10px;  margin-top:10px; margin-bottom:10px;display:block';
-                document.getElementById('btnGrande').style = 'display:none';
-                document.getElementById('btnChico').style = 'display:inline;padding: 0.3rem 1rem';
-
-                setTimeout(function () {
-                    map.invalidateSize();
-                }, 900);
-            }
-        }); 
-    }
-
-    const mapaChico = () => {
-        $("#btnChico").click(function () {
-            var card1 = document.getElementById('cardDatos');
-            var card2 = document.getElementById('cardMapa');
-            var card3 = document.getElementById('cardMapaModal');
-
-            var btnChico2 = document.getElementById('botonChico');
-            if (card1.className = 'col-lg-3 col-mb-4 col-sm-4 col-12 map1') {
-
-                card3.className = 'card';
-
-                card3.style.height = '94%';
-                btnChico2.style = 'font-size:20px; padding:5px 10px;  margin-top:10px; margin-bottom:10px; display:none';
-                document.getElementById('btnGrande').style = 'display:block';
-                document.getElementById('btnChico').style = 'display:none';
-            }
-        });
     }
         
     return {
