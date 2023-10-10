@@ -26,6 +26,9 @@
         AsignarListadoDePaises();
         handleSearch();
         handleModalMapProject();
+        editPolygonToProject();
+        bigMap();
+        mapaChico();
     }
 
     const handleModalMapProject = () => {
@@ -88,6 +91,62 @@
             coordenadas = coordinates;
 
             $("#myModalProjectMap").modal("show");
+        });
+    }
+
+    const editPolygonToProject = () => {
+
+        var drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+
+        if (drawControl == null) {
+            drawControl = new L.Control.Draw({
+                edit: {
+                    featureGroup: drawnItems
+                },
+                draw: {
+                    polygon: true,
+                    marker: false,
+                    polyline: false,
+                    rectangle: false,
+                    circle: false
+                }
+            });
+        }
+
+        map.addControl(drawControl);
+        //Manejadores de eventos para guardar el polígono dibujado
+        map.on(L.Draw.Event.CREATED, (event) => {
+            const layer = event.layer;
+            drawnItems.addLayer(layer);
+            const coordinates = layer._latlngs[0];
+
+            coordenadas = coordinates;
+
+            const options = url + '/Home/postUpdateProjectosCoodenadas';
+            const center = calculateCenterCoordinates(coordenadas);
+
+            const primeraLatitud = center.lat;
+            const primeraLongitud = center.lng;
+
+            const parametros = {
+                Cordenadas: JSON.stringify(coordenadas),
+                ProjectID: projectId,
+                Longitud_1: primeraLongitud,
+                Latitud_1: primeraLatitud
+            }
+            funesperar(0, 'Please wait a few seconds.');
+            axios.post(options, parametros).then(function (response) {
+                console.log(response.data.MESSAGE);
+                if (response.SUCCESS == true) {
+                    location.href = `Mapa?projectId=${projectId}`;
+                } else {
+                    info("System Messages", "(Connection error) An error occurred while trying to carry out this processo", "error");
+                }
+                funesperar(1, '');
+            }).catch(function (error) {
+                info("System Messages", error, "error");
+            });
         });
     }
 
@@ -326,26 +385,6 @@
         divDispositivos.append(items.join(''));
     }
 
-    /*const showDeviceInMap = function (ProjectID) {
-        // Filtrar dispositivos con Longitud y Latitud válidas
-        var arrDevicesAsignados = arrDevice.filter(element => element.Longitud !== 0 && element.Latitud !== 0 && element.ProjectID == ProjectID);
-        console.log(arrDevicesAsignados);
-        var markerClusterGroup = L.markerClusterGroup();
-   
-        arrDevicesAsignados.forEach(device => {
-            markers.push(newMarker);
-            var marker = L.marker([device.Latitud, device.Longitud]);
-            marker.bindPopup(`Device ${device.player_id}`).openPopup();
-            markerClusterGroup.addLayer(marker);
-        });
-        map.addLayer(markerClusterGroup);
-        markerDeviceGroup = markerClusterGroup;
-    
-        // console.log(markerDeviceGroup);
-        //var markerToRemove = markers[1];
-        //removeMarker(markerToRemove);
-    }*/
-
     const showDeviceInMap = function (ProjectID) {
         // Filtrar dispositivos con Longitud y Latitud válidas
         var arrDevicesAsignados = arrDevice.filter(element => element.Longitud !== 0 && element.Latitud !== 0 && element.ProjectID == ProjectID);
@@ -404,7 +443,7 @@
         map.on('click', function (e) {
             if (player_id != null) {
                 var newMarker = L.marker(e.latlng);
-                newMarker.bindPopup(`<button>Show/Hider</button> Device ${player_id}`).openPopup().addTo(map);
+                //newMarker.bindPopup(`<button>Show/Hider</button> Device ${player_id}`).openPopup().addTo(map);
                 // Agrega el nuevo marcador al array
 
                 var lat = newMarker._latlng.lat;
@@ -425,10 +464,6 @@
                     if (result.SUCCESS == true) {
                         markers.push(newMarker);
                         getDeveceForProjectDefault();
-                        // Agrega un botón para ocultar el marcador individualmente
-                        //newMarker.bindPopup(`Device ${player_id}`).openPopup().addTo(map);
-                        //location.reload();
-                        //newMarker.bindPopup('Device ${player_id} <button onclick="toggleMarker(' + (markers.length - 1) + ')">Mostrar/Ocultar</button>').openPopup();
                     } else {
                         console.log("An error occurred");
                     }
@@ -473,13 +508,13 @@
 
                         location.href = `Mapa?projectId=${_ProjectID}`;
                     } else {
-                        confirm("System Messages", "(Connection error) An error occurred while trying to carry out this processo", "error");
+                        info("System Messages", "(Connection error) An error occurred while trying to carry out this processo", "error");
                     }
                 }).catch(function (error) {
-                    confirm("System Messages", error, "error");
+                    info("System Messages", error, "error");
                 });
             } else {
-                confirm("System Messages", "The Project Name field is required, select the project polygon.", "warning");
+                info("System Messages", "The Project Name field is required, select the project polygon.", "warning");
             }
         });
     }
@@ -526,7 +561,6 @@
                 } else {
                     console.error('Incorrect coordinate format.');
                 }
-
             }
         });
     }
@@ -603,6 +637,47 @@
         Swal.fire(title, text, type);
     }
 
+    const bigMap = () => {
+        $("#btnGrande").click(function () {
+            var card1 = document.getElementById('cardDatos');
+            var card2 = document.getElementById('cardMapa');
+            var card3 = document.getElementById('cardMapaModal');
+
+            var btnChico2 = document.getElementById('botonChico');
+            if (card1.className = 'col-lg-3 col-mb-4 col-sm-4 col-12 map1') {
+                card3.className = 'modal fade show';
+
+                card3.style.height = '98%';
+                btnChico2.style = 'font-size:20px; padding:5px 10px;  margin-top:10px; margin-bottom:10px;display:block';
+                document.getElementById('btnGrande').style = 'display:none';
+                document.getElementById('btnChico').style = 'display:inline;padding: 0.3rem 1rem';
+
+                setTimeout(function () {
+                    map.invalidateSize();
+                }, 900);
+            }
+        }); 
+    }
+
+    const mapaChico = () => {
+        $("#btnChico").click(function () {
+            var card1 = document.getElementById('cardDatos');
+            var card2 = document.getElementById('cardMapa');
+            var card3 = document.getElementById('cardMapaModal');
+
+            var btnChico2 = document.getElementById('botonChico');
+            if (card1.className = 'col-lg-3 col-mb-4 col-sm-4 col-12 map1') {
+
+                card3.className = 'card';
+
+                card3.style.height = '94%';
+                btnChico2.style = 'font-size:20px; padding:5px 10px;  margin-top:10px; margin-bottom:10px; display:none';
+                document.getElementById('btnGrande').style = 'display:block';
+                document.getElementById('btnChico').style = 'display:none';
+            }
+        });
+    }
+        
     return {
         Inicializar: Inicializar,
     }
