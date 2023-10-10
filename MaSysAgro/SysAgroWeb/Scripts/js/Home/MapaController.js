@@ -14,7 +14,6 @@
     var map = L.map('map').setView([latitud, longitud], 10.3);
 
     var map2 = L.map('map-modal').setView([latitud, longitud], 7);
-
     var Inicializar = function () {
         init_map();
         getProjects();
@@ -496,6 +495,7 @@
 
     const handleAddProject = function (form) {
         $("#form-project").submit(function (form) {
+            console.log('soy submit')
             form.preventDefault();
 
             var ProjectName = $("#ProjectName").val();
