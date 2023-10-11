@@ -11,10 +11,16 @@
     var drawControl = null;
     var drawControl2 = null;
 
+    const btnGrande = $('#btnGrande');
+
+
     var map = L.map('map').setView([latitud, longitud], 10.3);
 
     var map2 = L.map('map-modal').setView([latitud, longitud], 7);
     var Inicializar = function () {
+        btnGrande.click(function () {
+                map.invalidateSize();
+        });
         init_map();
         getProjects();
         handleDeviceForProject();
@@ -155,9 +161,9 @@
 
         if (drawControl2 == null) {
             drawControl2 = new L.Control.Draw({
-                edit: {
-                    featureGroup: drawnItems
-                },
+                //edit: {
+                //    featureGroup: drawnItems
+                //},
                 draw: {
                     polygon: true,
                     marker: false,
@@ -191,12 +197,12 @@
             }
             funesperar(0, 'Please wait a few seconds.');
             axios.post(options, parametros).then(function (response) {
-                console.log(response.data.MESSAGE);
-                if (response.SUCCESS == true) {
-                    location.href = `Mapa?projectId=${projectId}`;
-                } else {
-                    info("System Messages", "(Connection error) An error occurred while trying to carry out this processo", "error");
-                }
+                //if (response.SUCCESS == true) {
+                //   window.location.href = `Mapa?projectId=${projectId}`;
+                //} else {
+                //    info("System Messages", "(Connection error) An error occurred while trying to carry out this processo", "error");
+                //}
+                window.location.href = `Mapa?projectId=${projectId}`;
                 funesperar(1, '');
             }).catch(function (error) {
                 info("System Messages", error, "error");
@@ -652,9 +658,7 @@
 
                 $("#player_id").val("");
 
-                setTimeout(() => {
-                    $('#myModal').modal('hide');
-                }, 2000);
+              
 
             }).catch(function (error) {
                 console.error(error);
