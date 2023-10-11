@@ -10,11 +10,15 @@
     var coordenadas = null;
     var drawControl = null;
     var drawControl2 = null;
+    const btnGrande = $('#btnGrande');
 
     var map = L.map('map').setView([latitud, longitud], 10.3);
 
     var map2 = L.map('map-modal').setView([latitud, longitud], 7);
     var Inicializar = function () {
+        btnGrande.click(function () {
+            init_map();
+        });
         init_map();
         getProjects();
         handleDeviceForProject();
