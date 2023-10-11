@@ -10,15 +10,11 @@
     var coordenadas = null;
     var drawControl = null;
     var drawControl2 = null;
-    const btnGrande = $('#btnGrande');
 
     var map = L.map('map').setView([latitud, longitud], 10.3);
 
     var map2 = L.map('map-modal').setView([latitud, longitud], 7);
     var Inicializar = function () {
-        btnGrande.click(function () {
-            init_map();
-        });
         init_map();
         getProjects();
         handleDeviceForProject();
@@ -36,13 +32,47 @@
     }
 
     const handleModalMapProject = () => {
+        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 20,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        });
+        osm.addTo(map2);
+
+        googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
+
+        googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
+
+        hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
+
+        var baseMaps = {
+            "OSM": osm,
+            'Google Street': googleStreets,
+            "Google Satellite": googleSat,
+            'Google hybrid': hybrid,
+        };
+        var overlayMaps = {
+
+        };
+
+        L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map2);
         $('#button-modal-map-project').on('click', function () {
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map2);
+            //L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map2);
+         
 
             $("#myModalProjectMap").modal("show");
 
             setTimeout(function () {
                 console.log("invalidateSize");
+              
                 map2.invalidateSize();
                 addPolygonToProject();
             }, 900);
@@ -66,10 +96,16 @@
             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
 
+        hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
+
         var baseMaps = {
             "OSM": osm,
             'Google Street': googleStreets,
             "Google Satellite": googleSat,
+            'Google hybrid': hybrid,
         };
 
         var overlayMaps = {
