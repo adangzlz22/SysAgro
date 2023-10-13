@@ -53667,5 +53667,11 @@ thead tr:nth-child(3) th {
         height: 450px!important;
      
     }
+    #btnGrande{
+        display:none!important
+    }
+    #btnChico {
+        display: none !important
+    }
 }
 

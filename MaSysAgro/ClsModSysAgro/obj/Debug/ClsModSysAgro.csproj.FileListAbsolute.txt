@@ -25,4 +25,3 @@ C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsModSysAgro\bin\Debug\C
 C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsModSysAgro\obj\Debug\ClsModSysAgro.csproj.CoreCompileInputs.cache
 C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsModSysAgro\obj\Debug\ClsModSysAgro.dll
 C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsModSysAgro\obj\Debug\ClsModSysAgro.pdb
-C:\Users\AdanGlez\Documents\PERSONAL\SysAgro\MaSysAgro\ClsModSysAgro\obj\Debug\ClsModSysAgro.csproj.AssemblyReference.cache

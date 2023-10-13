@@ -44,15 +44,15 @@
         });
         osm.addTo(map2);
 
-        googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-            maxZoom: 20,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        });
+        //googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        //    maxZoom: 20,
+        //    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        //});
 
-        googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-            maxZoom: 20,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        });
+        //googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        //    maxZoom: 20,
+        //    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        //});
 
         hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
             maxZoom: 20,
@@ -61,9 +61,9 @@
 
         var baseMaps = {
             "OSM": osm,
-            'Google Street': googleStreets,
-            "Google Satellite": googleSat,
-            'Google hybrid': hybrid,
+            //'Google Street': googleStreets,
+            //"Google Satellite": googleSat,
+            'Google Satellite': hybrid,
         };
         var overlayMaps = {
 
@@ -92,15 +92,15 @@
         });
         osm.addTo(map);
 
-        googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-            maxZoom: 20,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        });
+        //googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        //    maxZoom: 20,
+        //    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        //});
 
-        googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-            maxZoom: 20,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        });
+        //googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        //    maxZoom: 20,
+        //    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        //});
 
         hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
             maxZoom: 20,
@@ -109,9 +109,9 @@
 
         var baseMaps = {
             "OSM": osm,
-            'Google Street': googleStreets,
-            "Google Satellite": googleSat,
-            'Google hybrid': hybrid,
+            //'Google Street': googleStreets,
+            //"Google Satellite": googleSat,
+            'Google Satellite': hybrid,
         };
 
         var overlayMaps = {
@@ -138,8 +138,9 @@
                 }
             });
         }
-
+   
         map2.addControl(drawControl);
+
 
         console.log(drawControl);
         //Manejadores de eventos para guardar el polígono dibujado
@@ -148,6 +149,7 @@
             drawnItems.addLayer(layer);
             const coordinates = layer._latlngs[0];
 
+ 
             coordenadas = coordinates;
 
             $("#myModalProjectMap").modal("show");
@@ -287,9 +289,10 @@
             });
             // Crea una capa de polígono utilizando las coordenadas
             const polygonLayer = L.polygon(coordenadas, {
-                //color: 'blue', // Color del borde del polígono
+                color: 'white', // Color del borde del polígono
                 //fillColor: 'yellow', // Color de relleno del polígono
-                fillOpacity: 0.5, // Opacidad del relleno
+                fillOpacity: 0.1, // Opacidad del relleno
+                dashArray: '10',
             });
             polygonLayer.addTo(map);
             //polygonLayer.bindPopup(project.ProjectName).openPopup();
