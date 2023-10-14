@@ -53649,14 +53649,14 @@ thead tr:nth-child(3) th {
     background-color: #7ab37f2e;
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (min-width: 993px) {
 
     #map {
         min-height: 847px;
         height: 100%
     }
 }
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 992px) {
     #cardDatos {
         order:2;
     }
@@ -53664,7 +53664,7 @@ thead tr:nth-child(3) th {
         order: 1;
     }
     #map {
-        height: 450px!important;
+        height: 550px!important;
      
     }
     #btnGrande{
