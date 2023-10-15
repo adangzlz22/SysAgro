@@ -112,15 +112,36 @@
 <main>
     <div class="container-fluid" style="padding-right:0px!important;padding-left:0px!important">
         <div class="row">
+        
+            <div class="col-5">
+                <div class="form-group">
+                    <select class="input form-control form-control-lg form-select" id="cboProjects" style="height:45px; width:100%"></select>
+
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="form-group">
+                    <select class="input form-control form-control-lg form-select" id="cboDevice" style="height:45px; width:100%"></select>
+
+                </div>
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-primary btn-sm float-end" id="button-modal-map-project">
+                    <i class="fa fa-plus"></i> Add Project
+                </button>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 @*<h2 class="mb-5">Your projects</h2>*@
             </div>
         </div>
         <div class="row">
+
             <div class="col-lg-3 col-mb-4 col-sm-12 col-12 map1" id="cardDatos">
                 <br />
                 <br />
-                <div class="row">
+                @*<div class="row">
                     <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
 
                     </div>
@@ -135,26 +156,27 @@
                             Cargando...
                         </div>
                     </div>
-                </div>
+                </div>*@
             </div>
-            <div class="col-lg-9 col-md-12 col-sm-12 col-12 map2" id="cardMapa">
+            @*<div class="col-lg-9 col-md-12 col-sm-12 col-12 map2" id="cardMapa">*@
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 map2" id="cardMapa">
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-sm-12">
-                        <div class="form-group has-feedback">
-                            <i class="fa fa-search form-control-feedback" style="color: #70757a; font-size: 24px;"></i>
-                            <input type="text" class="form-control busq" id="cityInput" list="cityDatalist" placeholder="Write a country...">
-                            <datalist id="cityDatalist" style=" inset: 0px auto auto 0px;">
-                                <option value="San Francisco" data-coodenadas="40.420973, -3.752641">
-                                <option value="New York" data-coodenadas="40.320973, -3.742641">
-                                <option value="Seattle" data-coodenadas="40.430973, -3.742641">
-                                <option value="Los Angeles" data-coodenadas="41.360973, -3.742641">
-                                <option value="Chicago" data-coodenadas="40.310973, -3.532641">
-                            </datalist>
-                        </div>
+                        <!-- <div class="form-group has-feedback">
+                        <i class="fa fa-search form-control-feedback" style="color: #70757a; font-size: 24px;"></i>
+                        <input type="text" class="form-control busq" id="cityInput" list="cityDatalist" placeholder="Write a country...">
+                        <datalist id="cityDatalist" style=" inset: 0px auto auto 0px;">
+                            <option value="San Francisco" data-coodenadas="40.420973, -3.752641">
+                            <option value="New York" data-coodenadas="40.320973, -3.742641">
+                            <option value="Seattle" data-coodenadas="40.430973, -3.742641">
+                            <option value="Los Angeles" data-coodenadas="41.360973, -3.742641">
+                            <option value="Chicago" data-coodenadas="40.310973, -3.532641">
+                        </datalist>
+                    </div> -->
                     </div>
                 </div>
 
-                <nav class="navbar navbar-light bg-light mb-2 ">
+                <nav class="navbar navbar-light bg-light mb-2 " style="display:none;">
                     <form class="container-fluid justify-content-end gap-1">
 
                         <div id="lista-dispositivos">
@@ -212,6 +234,19 @@
                 <div class="mb-3 mt-3">
                     <label class="form-label">Project Name:</label>
                     <input type="text" class="form-control form-control-lg form-control-solid" name="ProjectName" id="ProjectName" />
+                </div>
+                <div class="row">
+                    <div class="form-group has-feedback">
+                        <i class="fa fa-search form-control-feedback" style="color: #70757a; font-size: 24px;"></i>
+                        <input type="text" class="form-control busq" id="cityInput" list="cityDatalist" placeholder="Write a country...">
+                        <datalist id="cityDatalist" style=" inset: 0px auto auto 0px;">
+                            <option value="San Francisco" data-coodenadas="40.420973, -3.752641">
+                            <option value="New York" data-coodenadas="40.320973, -3.742641">
+                            <option value="Seattle" data-coodenadas="40.430973, -3.742641">
+                            <option value="Los Angeles" data-coodenadas="41.360973, -3.742641">
+                            <option value="Chicago" data-coodenadas="40.310973, -3.532641">
+                        </datalist>
+                    </div>
                 </div>
                 <div id="map-modal" style="border-radius:5px"></div>
                 <div id="message-modal-project">

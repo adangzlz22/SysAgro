@@ -637,7 +637,7 @@
                     const _latitud = coordenadasArray[0].trim(); // Latitud
                     const _longitud = coordenadasArray[1].trim(); // Longitud
 
-                    map.flyTo([_latitud, _longitud], 5, {
+                    map2.flyTo([_latitud, _longitud], 5, {
                         animate: true,
                         duration: 2
                     });

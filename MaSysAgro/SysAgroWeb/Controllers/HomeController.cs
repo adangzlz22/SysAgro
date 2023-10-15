@@ -240,7 +240,7 @@ namespace SysAgroWeb.Controllers
             paramss = new DynamicParameters();
             try
             {
-                string consulta = "SELECT * FROM projects WHERE ClientID={0} AND Activo={1}";
+                string consulta = "SELECT * FROM projects WHERE ClientID={0} AND Activo={1} ORDER BY ProjectName ASC";
                 using (var ctx = new MySqlConnection(conexion))
                 {
                     ctx.Open();

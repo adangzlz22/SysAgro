@@ -13,10 +13,10 @@
 
     const btnGrande = $('#btnGrande');
 
-
     var map = L.map('map').setView([latitud, longitud], 10.3);
 
     var map2 = L.map('map-modal').setView([latitud, longitud], 7);
+
     var Inicializar = function () {
         btnGrande.click(function () {
                 map.invalidateSize();
@@ -33,8 +33,6 @@
         handleSearch();
         handleModalMapProject();
         editPolygonToProject();
-       // bigMap();
-       // mapaChico();
     }
 
     const handleModalMapProject = () => {
@@ -44,15 +42,15 @@
         });
         osm.addTo(map2);
 
-        googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-            maxZoom: 20,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        });
+        //googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        //    maxZoom: 20,
+        //    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        //});
 
-        googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-            maxZoom: 20,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        });
+        //googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        //    maxZoom: 20,
+        //    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        //});
 
         hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
             maxZoom: 20,
@@ -61,9 +59,9 @@
 
         var baseMaps = {
             "OSM": osm,
-            'Google Street': googleStreets,
-            "Google Satellite": googleSat,
-            'Google hybrid': hybrid,
+            //'Google Street': googleStreets,
+            //"Google Satellite": googleSat,
+            'Google Satellite': hybrid,
         };
         var overlayMaps = {
 
@@ -71,9 +69,6 @@
 
         L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map2);
         $('#button-modal-map-project').on('click', function () {
-            //L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map2);
-         
-
             $("#myModalProjectMap").modal("show");
 
             setTimeout(function () {
@@ -92,15 +87,15 @@
         });
         osm.addTo(map);
 
-        googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-            maxZoom: 20,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        });
+        //googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        //    maxZoom: 20,
+        //    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        //});
 
-        googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-            maxZoom: 20,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        });
+        //googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        //    maxZoom: 20,
+        //    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        //});
 
         hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
             maxZoom: 20,
@@ -109,9 +104,9 @@
 
         var baseMaps = {
             "OSM": osm,
-            'Google Street': googleStreets,
-            "Google Satellite": googleSat,
-            'Google hybrid': hybrid,
+            //'Google Street': googleStreets,
+            //"Google Satellite": googleSat,
+            'Google Satellite': hybrid,
         };
 
         var overlayMaps = {
@@ -128,20 +123,21 @@
 
         if (drawControl == null) {
             drawControl = new L.Control.Draw({
-
                 draw: {
                     polygon: true,
                     marker: false,
                     polyline: false,
                     rectangle: false,
-                    circle: false
+                    circle: false,
+                    polygon: {
+                        shapeOptions: { color: 'white', opacity: 0.5 },
+                        allowIntersection: false
+                    }
                 }
             });
         }
-
+   
         map2.addControl(drawControl);
-
-        console.log(drawControl);
         //Manejadores de eventos para guardar el polígono dibujado
         map2.on(L.Draw.Event.CREATED, (event) => {
             const layer = event.layer;
@@ -169,7 +165,11 @@
                     marker: false,
                     polyline: false,
                     rectangle: false,
-                    circle: false
+                    circle: false,
+                    polygon: {
+                        shapeOptions: { color: 'white', opacity: 0.5 },
+                        allowIntersection: false
+                    }
                 }
             });
         }
@@ -261,7 +261,8 @@
                 divProyectos.innerHTML = items.join('');
 
                 getDeveceForProjectDefault();
-                addExistingPolygonIntoMap();
+                //addExistingPolygonIntoMap();
+                addExistingAllPolygonIntoMap();
             } else {
                 divProyectos.innerHTML = `
                     <div class="alert alert-warning" role="alert">
@@ -287,16 +288,39 @@
             });
             // Crea una capa de polígono utilizando las coordenadas
             const polygonLayer = L.polygon(coordenadas, {
-                //color: 'blue', // Color del borde del polígono
+                color: 'white', // Color del borde del polígono
                 //fillColor: 'yellow', // Color de relleno del polígono
-                fillOpacity: 0.5, // Opacidad del relleno
+                fillOpacity: 0.1, // Opacidad del relleno
+                dashArray: '10',
             });
             polygonLayer.addTo(map);
-            //polygonLayer.bindPopup(project.ProjectName).openPopup();
         } else {
             //info(_default[0].ProjectName, "New field, you must add the field polygon");
             //addPolygonToProject();
         }
+    };
+
+    const addExistingAllPolygonIntoMap = function () {
+        arrProject.forEach(project => {
+            
+            if (project.Cordenadas && project.Cordenadas.length > 0) {
+                const coordinates = JSON.parse(project.Cordenadas);
+
+                const coordenadas = coordinates.map(item => {
+                    return {
+                        "lat": item.lat,
+                        "lng": item.lng
+                    };
+                });
+                // Crea una capa de polígono utilizando las coordenadas
+                const polygonLayer = L.polygon(coordenadas, {
+                    color: 'white', // Color del borde del polígono
+                    fillOpacity: 0.1, // Opacidad del relleno
+                    dashArray: '10',
+                });
+                polygonLayer.addTo(map);
+            }
+        });
     };
 
     const sortItems = (items) => {
@@ -478,7 +502,6 @@
     }
 
     function removeMarker(marker) {
-        //console.log(marker);
         map.removeLayer(marker); // Quita el marcador del mapa
         var index = markers.indexOf(marker); // Encuentra el índice del marcador en el array
         if (index !== -1) {
@@ -541,7 +564,6 @@
 
     const handleAddProject = function (form) {
         $("#form-project").submit(function (form) {
-            console.log('soy submit')
             form.preventDefault();
 
             var ProjectName = $("#ProjectName").val();
@@ -615,7 +637,7 @@
                     const _latitud = coordenadasArray[0].trim(); // Latitud
                     const _longitud = coordenadasArray[1].trim(); // Longitud
 
-                    map.flyTo([_latitud, _longitud], 5, {
+                    map2.flyTo([_latitud, _longitud], 5, {
                         animate: true,
                         duration: 2
                     });
@@ -657,9 +679,6 @@
                 </div>`;
 
                 $("#player_id").val("");
-
-              
-
             }).catch(function (error) {
                 console.error(error);
             });

@@ -9,19 +9,25 @@
     var btnEliminar = $('#btnEliminar');
     var btnEditar = $('#btnEditar');
     var idEstatus = 1;
-    
+    var cboProjects = $("#cboProjects");
+
     var Inicializar = function () {
         console.log(url);
         console.log('hola soy ProjectControllers');
         getProyects(1);
-
+        cboProjects.change(function () {
+            if (cboProjects.val() != "0") {
+                window.location.href = "Mapa?projectId=" + cboProjects.val();
+            }
+        });
+        cboProjects.select2();
         btnEditar.click(function () {
             if (idEstatus == 1) {
                 idEstatus = 2;
                 $('.projectName').css('display', '')
                 $('.projectNameText').css('display', 'none')
                 $('.btnprojectName').css('display', '')
-                
+
             } else {
                 $('.projectName').css('display', 'none')
                 $('.btnprojectName').css('display', 'none')
@@ -99,42 +105,45 @@
         const options = url + '/Home/postObtenerProjectos';
         axios.post(options, parametros).then(function (response) {
             const result = response.data;
-            const items = [], divProyectos = $("#lista_proyectos").empty();
+            const items = [], divProyectos = $("#cboProjects").empty();
 
             if (result.SUCCESS == true) {
                 if (result.ITEMS.length > 0) {
 
                     arrProject = result.ITEMS;
-
+                    items.push(`<option value="0">Select Project</option>`);
                     arrProject.map((v, index) => {
                         items.push(
-                            `<div class="col-lg-3 col-sm-12 col-md-4 mb-3">
-<div class="row">
-<div class="col-lg-12 col-md-12 col-sm-12" style="text-align:right">
-<button style="display:none;" data-tipo="1" class="btn btn-danger CloseButton" id="btnEliminar${v.ProjectID}"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-</div>
-</div>
-                                 <a href="Mapa?projectId=${v.ProjectID}">
-                                    <div class="card box" style="border: 1px solid #7ab37f; height:200px;text-align:left">
-                                        <div class="card-body mt-5 mb-5 text-left">
-                               
-                                            <img src="/Content/img/ubicacion.png" style="width:50px" class="mb-3" />
-                              
-                                            <br />
-                                            <h2 style="color:#7ab37f; font-size:25px" class='projectNameText'>${v.ProjectName}</h2>
-                                            <input id="txtProjectName${v.ProjectID}" type='text' class='form-control projectName mb-3' value='${v.ProjectName}' style='display:none;'>
-                                        <div class='text-right'>
-<buttom id="btnCambiarNombre${v.ProjectID}" class="btn btn-primary btnprojectName" style="padding: .3rem .9rem; font-size: 18px; display: none; font-weight:800"><b><i class="fa-solid fa-save"></i></b></buttom>
-</div>
+                            `<option value="${v.ProjectID}">${v.ProjectName}</option>`
+                            //                            `<div class="col-lg-3 col-sm-12 col-md-4 mb-3">
+                            //<div class="row">
+                            //<div class="col-lg-12 col-md-12 col-sm-12" style="text-align:right">
+                            //<button style="display:none;" data-tipo="1" class="btn btn-danger CloseButton" id="btnEliminar${v.ProjectID}"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                            //</div>
+                            //</div>
+                            //                                 <a href="Mapa?projectId=${v.ProjectID}">
+                            //                                    <div class="card box" style="border: 1px solid #7ab37f; height:200px;text-align:left">
+                            //                                        <div class="card-body mt-5 mb-5 text-left">
 
-                                          
-                                            <!--<h4>Short project description</h4>-->
-                                        </div>
-                                    </div></a>
-                            </div>  `);
+                            //                                            <img src="/Content/img/ubicacion.png" style="width:50px" class="mb-3" />
+
+                            //                                            <br />
+                            //                                            <h2 style="color:#7ab37f; font-size:25px" class='projectNameText'>${v.ProjectName}</h2>
+                            //                                            <input id="txtProjectName${v.ProjectID}" type='text' class='form-control projectName mb-3' value='${v.ProjectName}' style='display:none;'>
+                            //                                        <div class='text-right'>
+                            //<buttom id="btnCambiarNombre${v.ProjectID}" class="btn btn-primary btnprojectName" style="padding: .3rem .9rem; font-size: 18px; display: none; font-weight:800"><b><i class="fa-solid fa-save"></i></b></buttom>
+                            //</div>
+
+
+                            //                                            <!--<h4>Short project description</h4>-->
+                            //                                        </div>
+                            //                                    </div></a>
+                            //</div>  `
+                        );
                     });
 
                     divProyectos.append(items.join(''));
+
                     for (var i = 0; i < result.ITEMS.length; i++) {
                         let ProjectID = result.ITEMS[i].ProjectID;
                         $('#btnEliminar' + ProjectID).click(function () {
@@ -251,18 +260,18 @@
             ProjectName: agregarinputTitulo.val(),
             ClientID: ClientID
         };
-            const options = url + '/Home/postAddProjectos';
+        const options = url + '/Home/postAddProjectos';
 
-            axios.post(options, parametros).then(function (response) {
-                const result = response.data;
-                if (result.SUCCESS == true) {
-                    getProyects(1);
-                } else {
-                    console.log("Ocurrio un error");
-                }
-            }).catch(function (error) {
-                console.error(error);
-            });
+        axios.post(options, parametros).then(function (response) {
+            const result = response.data;
+            if (result.SUCCESS == true) {
+                getProyects(1);
+            } else {
+                console.log("Ocurrio un error");
+            }
+        }).catch(function (error) {
+            console.error(error);
+        });
     }
 
     const assignDeviceToProject = function (form) {
@@ -292,7 +301,7 @@
         });
     }
 
-    
+
     const postActivarDesProjectos = function (ProjectID, Activo) {
         let parametros = {
             //ProjectID : txtDispositivo.val(),
@@ -308,7 +317,7 @@
             console.error(error);
         });
     }
-    
+
     const postUpdateProjectos = function (ProjectID, ProjectName) {
         let parametros = {
             //ProjectID : txtDispositivo.val(),

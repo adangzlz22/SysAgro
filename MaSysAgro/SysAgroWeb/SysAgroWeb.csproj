@@ -2278,6 +2278,7 @@
     <Content Include="Content\fontawesome-web\svgs\solid\yen-sign.svg" />
     <Content Include="Content\fontawesome-web\svgs\solid\yin-yang.svg" />
     <Content Include="Content\fontawesome-web\svgs\solid\z.svg" />
+    <Content Include="Content\img\camioncito.jpg" />
     <Content Include="Content\img\card-dashboard.png" />
     <Content Include="Content\img\cards-2.png" />
     <Content Include="Content\img\cards.png" />

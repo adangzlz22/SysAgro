@@ -2,6 +2,7 @@
 using Dapper;
 using MaSysAgro;
 using MySql.Data.MySqlClient;
+using SysAgroWeb.Clase;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -72,13 +73,14 @@ namespace SysAgroWeb.Controllers
             try
             {
                 DynamicParameters paramss = new DynamicParameters();
-                string contraseñaActual = Funciones.EncriptarMD5(parametros.ContrasenaActual);
+                //string contraseñaActual = Funciones.EncriptarMD5(parametros.ContrasenaActual);
                 string updateConsulta = "";
+                string IDUsario = vSesiones.sesionUsuarioDTO.Id.ToString();
                 using (var ctx = new MySqlConnection(conexion))
                 {
                     ctx.Open();
-                    string consultaGenUsuarios = "SELECT * FROM GenUsuarios WHERE Usuario = '{0}' AND Contrasena = '{1}'";
-                    var objUsuarioLogeado = ctx.Query<paramsUsuarioDTO>(string.Format(consultaGenUsuarios, parametros.Usuario, contraseñaActual), paramss, null, true, 300).FirstOrDefault();
+                    string consultaGenUsuarios = "SELECT * FROM GenUsuarios WHERE id = {0}";
+                    var objUsuarioLogeado = ctx.Query<paramsUsuarioDTO>(string.Format(consultaGenUsuarios, IDUsario), paramss, null, true, 300).FirstOrDefault();
                     //var objUsuarioLogeado = db.GenUsuarios.Where(r => r.Usuario == parametros.Usuario && r.Contrasena == contraseñaActual).FirstOrDefault();
                     if (objUsuarioLogeado != null)
                     {
@@ -136,7 +138,7 @@ namespace SysAgroWeb.Controllers
                     else
                     {
                         objResponse.ITEMS = null;
-                        objResponse.MESSAGE = "The password could not be changed because it does not match the data";
+                        objResponse.MESSAGE = "No exist user.";
                         objResponse.SUCCESS = false;
                     }
                 }

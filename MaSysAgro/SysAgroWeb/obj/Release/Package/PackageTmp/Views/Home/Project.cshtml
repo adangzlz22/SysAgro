@@ -97,7 +97,10 @@
         .box:hover {
             box-shadow: 0 0 11px rgb(122 179 127 / 58%);
         }
+  
 </style>
+<link href="~/Content/select2.css" rel="stylesheet" />
+<link href="~/Content/select2.css" rel="stylesheet" />
 
 <br />
 <div class="row">
@@ -105,199 +108,215 @@
     <div class="col-lg-4">
         <div class="d-sm-flex align-items-center justify-content-end mb-4" style="display:flex">
             <a href="index" class="d-sm-inline-block btn btn-sm btn btn-secondary" style="padding: .3rem .9rem;font-size:20px; margin:3px"><i class="fa-solid fa-arrow-left"></i></a>
-            <div class="button b2  d-sm-inline-block" id="button-14" style="margin: 1px">
-                <input type="checkbox" class="checkbox" id="flexSwitchCheckChecked" checked />
-                <div class="knobs">
-                    <span></span>
-                </div>
-                <div class="layer"></div>
-            </div>
+            @*<div class="button b2  d-sm-inline-block" id="button-14" style="margin: 1px">
+                    <input type="checkbox" class="checkbox" id="flexSwitchCheckChecked" checked />
+                    <div class="knobs">
+                        <span></span>
+                    </div>
+                    <div class="layer"></div>
+                </div>*@
 
-            <a href="#" id="btnEditar" class="btn btn-primary" style="padding: .3rem .9rem; font-size: 18px; margin: 3px; color:white!important "><i class="fa-solid fa-pencil"></i></a>
-            <a href="#" id="btnActivar" class=" btn btn-warning" style="padding: .3rem .9rem; font-size: 18px; display: none; font-weight: 800; margin: 3px; color: white !important"><b><i class="fa-solid fa-check"></i></b></a>
-            <a href="#" id="btnEliminar" class="btn btn-danger" style="padding: .3rem .9rem; font-size: 18px; margin: 3px; color: white !important "><i class="fa-solid fa-trash-can"></i></a>
+            @*<a href="#" id="btnEditar" class="btn btn-primary" style="padding: .3rem .9rem; font-size: 18px; margin: 3px; color:white!important "><i class="fa-solid fa-pencil"></i></a>
+                <a href="#" id="btnActivar" class=" btn btn-warning" style="padding: .3rem .9rem; font-size: 18px; display: none; font-weight: 800; margin: 3px; color: white !important"><b><i class="fa-solid fa-check"></i></b></a>
+                <a href="#" id="btnEliminar" class="btn btn-danger" style="padding: .3rem .9rem; font-size: 18px; margin: 3px; color: white !important "><i class="fa-solid fa-trash-can"></i></a>*@
         </div>
     </div>
 </div>
 <div class="row">
-   
-        <div class="col-lg-6">
-            <div class="card shadow-sm" style=" border: 1px dashed #7ab37f; display:none">
-                <div class="card-body">
-                    <div class="file file-upload" id="agregarimagen" style="border-top-left-radius: calc(0.75rem - 1px);border-top-right-radius: calc(0.75rem - 1px);">
-                        <div id="divConImagen" runat="server" class="file-upload-content">
-                            <img ID="imgEntrenador" class="file-upload-image" runat="server" alt="your image" />
-                            <div class="image-title-wrap">
-                                <button type="button" onclick="removeUpload()" class="remove-image" style="font-size:1.075rem !important">Eliminar imagen <i class="fa fa-minus-circle" aria-hidden="true" style="color:red"></i> @*<span class="image-title">Uploaded Image</span>*@</button>
-                            </div>
+
+    <div class="col-lg-6">
+        <div class="card shadow-sm" style=" border: 1px dashed #7ab37f; display:none">
+            <div class="card-body">
+                <div class="file file-upload" id="agregarimagen" style="border-top-left-radius: calc(0.75rem - 1px);border-top-right-radius: calc(0.75rem - 1px);">
+                    <div id="divConImagen" runat="server" class="file-upload-content">
+                        <img ID="imgEntrenador" class="file-upload-image" runat="server" alt="your image" />
+                        <div class="image-title-wrap">
+                            <button type="button" onclick="removeUpload()" class="remove-image" style="font-size:1.075rem !important">Eliminar imagen <i class="fa fa-minus-circle" aria-hidden="true" style="color:red"></i> @*<span class="image-title">Uploaded Image</span>*@</button>
                         </div>
                     </div>
-                    <!--subir imagen-->
-                    @*<input class="form-control form-control-lg form-control-solid mb-2" type="text" placeholder="Short project description" id="agregarinputDescription" />*@
-
                 </div>
-            </div>
-            <div class="input-group mb-3">
-                <input class="form-control form-control-lg  " type="text" placeholder="Project's name" id="agregarinputTitulo" style=" border: 1px dashed #7ab37f;" />
-                <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnSave"> <i class="fa-solid fa-plus"></i></button>
+                <!--subir imagen-->
+                @*<input class="form-control form-control-lg form-control-solid mb-2" type="text" placeholder="Short project description" id="agregarinputDescription" />*@
+
             </div>
         </div>
-
+        <div class="input-group mb-3">
+            @*<input class="form-control form-control-lg  " type="text" placeholder="Project's name" id="agregarinputTitulo" style=" border: 1px dashed #7ab37f;" />
+                <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnSave"> <i class="fa-solid fa-plus"></i></button>*@
+            @*<input class="form-control form-control-lg  " type="text" placeholder="Project's name" id="lblBuscar" style=" border: 1px dashed #7ab37f;" />
+            <button type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnSave"> Search <i class="fa-solid fa-search"></i></button>*@
+        </div>
     </div>
-    @*<div class="container-fluid" style="padding-left: 3%; padding-right: 3%">
-            <div class="row">
-                <div class="col-lg-8"><h1 class="h3 mb-0 text-gray-800  mb-3"><b>My Projects</b></h1></div>
-                <div class="col-lg-4">
-                    <div class="d-sm-flex align-items-center justify-content-end mb-4">
 
-                        <a href="Index" class=" d-sm-inline-block btn btn-sm btn btn-secondary" style="padding: .3rem .9rem;font-size:20px; margin:5px">
-                            <i class="fa-solid fa-arrow-left" style="font-size:20px!important"></i>
-                        </a>
-                        <div class="button b2" id="button-14" style="margin-right:10px; margin-left:10px">
-                            <input type="checkbox" class="checkbox" id="flexSwitchCheckChecked" checked />
-                            <div class="knobs">
-                                <span></span>
-                            </div>
-                            <div class="layer"></div>
+</div>
+@*<div class="container-fluid" style="padding-left: 3%; padding-right: 3%">
+        <div class="row">
+            <div class="col-lg-8"><h1 class="h3 mb-0 text-gray-800  mb-3"><b>My Projects</b></h1></div>
+            <div class="col-lg-4">
+                <div class="d-sm-flex align-items-center justify-content-end mb-4">
+
+                    <a href="Index" class=" d-sm-inline-block btn btn-sm btn btn-secondary" style="padding: .3rem .9rem;font-size:20px; margin:5px">
+                        <i class="fa-solid fa-arrow-left" style="font-size:20px!important"></i>
+                    </a>
+                    <div class="button b2" id="button-14" style="margin-right:10px; margin-left:10px">
+                        <input type="checkbox" class="checkbox" id="flexSwitchCheckChecked" checked />
+                        <div class="knobs">
+                            <span></span>
                         </div>
-                        <a href="#" class="d-sm-inline-block btn btn-sm btn-primary" onclick="ejecutaEventoOnclick()" style="padding: .3rem .9rem;font-size:20px; margin:5px" id="btnNuevo">
-                            <i class="fas fa-pen-to-square text-white" style="font-size:20px!important"></i>
-                        </a>
-                        <a href="#" class="d-sm-inline-block btn btn-sm btn-danger" style="padding: .3rem .9rem;font-size:20px; margin:5px" id="btnNuevo">
-                            <i class="fas fa-trash-can text-white" style="font-size:20px!important"></i>
-                        </a>
-
+                        <div class="layer"></div>
                     </div>
+                    <a href="#" class="d-sm-inline-block btn btn-sm btn-primary" onclick="ejecutaEventoOnclick()" style="padding: .3rem .9rem;font-size:20px; margin:5px" id="btnNuevo">
+                        <i class="fas fa-pen-to-square text-white" style="font-size:20px!important"></i>
+                    </a>
+                    <a href="#" class="d-sm-inline-block btn btn-sm btn-danger" style="padding: .3rem .9rem;font-size:20px; margin:5px" id="btnNuevo">
+                        <i class="fas fa-trash-can text-white" style="font-size:20px!important"></i>
+                    </a>
+
                 </div>
             </div>
-        </div>*@
+        </div>
+    </div>*@
 
 
 
 
 
-    <br>
+<br>
 
-    <div class="row text-left" id="lista_proyectos">
+<div class="row">
+    <div class="col-12" style="text-align-last: center;">
+        <img src="~/Content/img/camioncito.jpg" alt="Alternate Text" style="width:20%"/>
+    </div>
+    <div class="col-12">
+        <div class="form-group">
+            <label for="Estaciones"><h1>Projects</h1></label>
+            <select class="input form-control form-control-lg form-select" id="cboProjects" style="height:45px; width:100%"></select>
+
+        </div>
+    </div>
+</div>
+
+@*<div class="row text-left" id="lista_proyectos">
         <div class="alert alert-info" role="alert">
             Cargando...
         </div>
-    </div>
+    </div>*@
 
 
 
 
-    <!-- The Modal -->
-    <div class="modal fade" id="myModal">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Project description</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="mb-3 mt-3">
-                        <label class="form-label">Project's name:</label>
-                        <input type="text" class="form-control form-control-lg form-control-solid" id="txtNombreProyecto">
-                    </div>
-                    <div class="mb-3 mt-3">
-                        <label class="form-label">Location:</label>
-                        <input type="text" class="form-control form-control-lg form-control-solid" id="txtubicacion">
-                    </div>
-                    <div class="mb-3 mt-3">
-                        <label class="form-label">
-                            Type of crop:
-                        </label>
-                        <input type="text" class="form-control form-control-lg form-control-solid" id="txttipoCultivo">
-                    </div>
-                    <div class="mb-3 mt-3">
-                        <label class="form-label">
-                            Access to limit your field on google
-                        </label>
-                        <input type="text" class="form-control form-control-lg form-control-solid" id="txttipoCultivo">
-                    </div>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <a href="#" class="btn btn-primary" style="color:white!important">Save</a>
-                </div>
-
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Project description</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="mb-3 mt-3">
+                    <label class="form-label">Project's name:</label>
+                    <input type="text" class="form-control form-control-lg form-control-solid" id="txtNombreProyecto">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label class="form-label">Location:</label>
+                    <input type="text" class="form-control form-control-lg form-control-solid" id="txtubicacion">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label class="form-label">
+                        Type of crop:
+                    </label>
+                    <input type="text" class="form-control form-control-lg form-control-solid" id="txttipoCultivo">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label class="form-label">
+                        Access to limit your field on google
+                    </label>
+                    <input type="text" class="form-control form-control-lg form-control-solid" id="txttipoCultivo">
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="#" class="btn btn-primary" style="color:white!important">Save</a>
+            </div>
+
         </div>
     </div>
+</div>
 
-    <script src="~/Scripts/js/Global.js"></script>
-    <script src="~/Scripts/axios.js"></script>
-    <script src="~/Scripts/sweetalert2.all.min.js"></script>
-    <script src="~/Scripts/axios.min.js"></script>
-    <script src="~/Scripts/jquery.min.js"></script>
-    <script src="~/Scripts/js/Home/ProjectController.js?v=1.0"></script>
-    <script type="text/javascript">
+<script src="~/Scripts/js/Global.js"></script>
+<script src="~/Scripts/axios.js"></script>
+<script src="~/Scripts/sweetalert2.all.min.js"></script>
+<script src="~/Scripts/axios.min.js"></script>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/select2.js"></script>
+<script src="~/Scripts/js/Home/ProjectController.js?v=1.0"></script>
+<script type="text/javascript">
     (function () {
         var clsProjectControllers = new ProjectController(@ViewBag.Id);
         clsProjectControllers.Inicializar();
     })();
-    </script>
+</script>
 
-    <script>
-        function pruebita() {
-            $('.image-upload-wrap').hide();
-            $('.file-upload-content').show();
+<script>
+    function pruebita() {
+        $('.image-upload-wrap').hide();
+        $('.file-upload-content').show();
+    }
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.image-upload-wrap').hide();
+
+                $('.file-upload-image').attr('src', e.target.result);
+                $('.file-upload-content').show();
+
+                $('.image-title').html(input.files[0].name);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+
+        } else {
+            removeUpload();
         }
-        function readURL(input) {
-            if (input.files && input.files[0]) {
+    }
 
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('.image-upload-wrap').hide();
-
-                    $('.file-upload-image').attr('src', e.target.result);
-                    $('.file-upload-content').show();
-
-                    $('.image-title').html(input.files[0].name);
-                };
-
-                reader.readAsDataURL(input.files[0]);
-
-            } else {
-                removeUpload();
-            }
-        }
-
-        function removeUpload() {
-            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-            $('.file-upload-content').hide();
-            $('.image-upload-wrap').show();
-        }
-        $('.image-upload-wrap').bind('dragover', function () {
-            $('.image-upload-wrap').addClass('image-dropping');
-        });
-        $('.image-upload-wrap').bind('dragleave', function () {
-            $('.image-upload-wrap').removeClass('image-dropping');
-        });
+    function removeUpload() {
+        $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+        $('.file-upload-content').hide();
+        $('.image-upload-wrap').show();
+    }
+    $('.image-upload-wrap').bind('dragover', function () {
+        $('.image-upload-wrap').addClass('image-dropping');
+    });
+    $('.image-upload-wrap').bind('dragleave', function () {
+        $('.image-upload-wrap').removeClass('image-dropping');
+    });
 
 
-        function ejecutaEventoOnclick() {
+    function ejecutaEventoOnclick() {
 
-            document.getElementById('imagen').style.display = 'none';
-            document.getElementById('editimagen').style.display = 'block';
+        document.getElementById('imagen').style.display = 'none';
+        document.getElementById('editimagen').style.display = 'block';
 
-            document.getElementById('lbltitulo').style.display = 'none';
-            document.getElementById('lblDescription').style.display = 'none';
-            document.getElementById('inputTitulo').style.display = 'block';
-            document.getElementById('inputDescription').style.display = 'block';
-            document.getElementById('btnGo').style.backgroundColor = 'red';
-            document.getElementById('btnGo').style.borderColor = 'red';
-            document.getElementById('cardEdit').style.border = '1px dashed #7ab37f';
-            document.getElementById('btnGo').innerHTML = "<i class='fa-solid fa-floppy-disk'></i>";
-            document.getElementById('btnGo').style.display = 'block';
-        }
+        document.getElementById('lbltitulo').style.display = 'none';
+        document.getElementById('lblDescription').style.display = 'none';
+        document.getElementById('inputTitulo').style.display = 'block';
+        document.getElementById('inputDescription').style.display = 'block';
+        document.getElementById('btnGo').style.backgroundColor = 'red';
+        document.getElementById('btnGo').style.borderColor = 'red';
+        document.getElementById('cardEdit').style.border = '1px dashed #7ab37f';
+        document.getElementById('btnGo').innerHTML = "<i class='fa-solid fa-floppy-disk'></i>";
+        document.getElementById('btnGo').style.display = 'block';
+    }
 
-    </script>
+</script>

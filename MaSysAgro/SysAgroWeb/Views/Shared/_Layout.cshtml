@@ -15,6 +15,7 @@
     <link href="~/Content/TemaMeba.css" rel="stylesheet" />
 
     <link href="/iconos/css/fontawesome.css" rel="stylesheet" />
+    <link href="~/Content/select2.css" rel="stylesheet" />
 
     <link href="~/iconos/css/regular.min.css" rel="stylesheet" />
     <link href="~/iconos/css/all.css" rel="stylesheet" />
@@ -30,8 +31,8 @@
 </head>
 <body>
     <div class="preloader">
-    <img src="~/Content/img/icono-pes.png" style="width:100px; height:100px" class="spinner-border text-success" />
-        </div>
+        <img src="~/Content/img/icono-pes.png" style="width:100px; height:100px" class="spinner-border text-success" />
+    </div>
     <style>
         .etiquetaCantidad {
             border-radius: 30%;
@@ -74,9 +75,11 @@
         .dropdown-toggle {
             color: rgba(0,0,0,.55);
         }
+
         .spinner-border {
             background-image: src("~/Content/img/icono-pes.png");
         }
+
         .preloader {
             position: fixed;
             left: 0px;
@@ -92,7 +95,7 @@
             align-items: center;
             justify-content: center;
         }
-       /* preloader img {
+        /* preloader img {
             width: 80px;
             -webkit-animation: spin .2s linear infinite;
             -moz-animation: spin .2s linear infinite;
@@ -107,7 +110,7 @@
             --bs-spinner-animation-name: spinner-border;
             border: var(--bs-spinner-border-width) solid currentcolor;
             border-right-color: transparent;
-            animation-duration: 1.3s!important;
+            animation-duration: 1.3s !important;
         }
     </style>
     <!-- Page Wrapper -->
@@ -389,6 +392,7 @@
     <script src="~/Scripts/jquery.easing.min.js"></script>
     <script src="~/Scripts/sb-admin2.js"></script>
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/select2.js"></script>
     <script src="~/Scripts/js/Layout/Layout.js?v=1.0"></script>
     <script type="text/javascript">
         (function () {
