@@ -19,7 +19,7 @@
 
 
     var Inicializar = function () {
-        //postObtenerMenu();
+        postObtenerMenu();
         postObtenerDispositivos();
         functionListar();
         console.log(url)
@@ -56,7 +56,7 @@
             console.log(result)
             if (result.SUCCESS == true) {
                 if (result.ITEMS.length > 0) {
-                    window.location.href = "/Home/Project";
+                    //window.location.href = "/Home/Project";
                     ContenedorMenu.css('display', 'block');
                     ContenedorYaEresCliente.css('display', 'none');
                 }
