@@ -22,8 +22,7 @@
 
                      
                         <h2 style="color:#7ab37f; font-size:28px">Player : {0}</h2>
-                        <h7><b>Chip : {1}</b></h7><br>
-                        <h7><b>Date reaction : {2}</b></h7>
+                        <h7><b>Date reaction : {1}</b></h7>
                         <div class="d-flex justify-content-between align-items-center">
 
                             <small  class="text-body-secondary"></small> <div class="btn-group">
@@ -132,7 +131,7 @@
                     contenedorDevice.find('div').remove();
                     let html = '';
                     for (var i = 0; i < result.ITEMS.length; i++) {
-                        html += Card.format(result.ITEMS[i].player_id, result.ITEMS[i].Chip_ID, result.ITEMS[i].Date_Creation);
+                        html += Card.format(result.ITEMS[i].player_id, result.ITEMS[i].Date_Creation);
                     }
                     html += '';
                     contenedorDevice.append(html);
