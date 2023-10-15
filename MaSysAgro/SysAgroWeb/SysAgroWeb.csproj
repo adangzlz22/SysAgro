@@ -2285,6 +2285,7 @@
     <Content Include="Content\img\cliente2.png" />
     <Content Include="Content\img\computacion-en-la-nube.png" />
     <Content Include="Content\img\Devices.jpg" />
+    <Content Include="Content\img\dispositivos-fondo.png" />
     <Content Include="Content\img\dispositivos.png" />
     <Content Include="Content\img\eliminar.png" />
     <Content Include="Content\img\enconstruccion.png" />
@@ -2315,6 +2316,7 @@
     <Content Include="Content\img\noprofile.png" />
     <Content Include="Content\img\ojo.png" />
     <Content Include="Content\img\Project.jpeg" />
+    <Content Include="Content\img\proyecto-Fondo.png" />
     <Content Include="Content\img\Recurso 1%402x.png" />
     <Content Include="Content\img\Recurso 2%402x.png" />
     <Content Include="Content\img\Recurso 3%402x.png" />
