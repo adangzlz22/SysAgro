@@ -108,7 +108,9 @@
         axios.post(options, parametros).then(function (response) {
             const result = response.data;
             postObtenerDispositivos(1);
-
+            if (result.SUCCESS == false) {
+                funesperar(5000, result.MESSAGE);
+            }
         }).catch(function (error) {
             console.error(error);
         });
@@ -177,6 +179,33 @@
             return typeof args[index] == 'undefined' ? match : args[index];
         });
     };
+
+    const funesperar = function (timer, texto) {
+        let timerInterval
+        Swal.fire({
+            title: 'Alert!',
+            text: texto,
+            icon: 'info',
+            timer: timer,
+            timerProgressBar: true,
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading()
+                const b = Swal.getHtmlContainer().querySelector('b')
+                timerInterval = setInterval(() => {
+                    //b.textContent = Swal.getTimerLeft()
+                }, 100)
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+            }
+        })
+    }
+
 
     return {
         Inicializar: Inicializar,
