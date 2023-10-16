@@ -394,7 +394,6 @@
             if (result.SUCCESS && result.ITEMS.length > 0) {
                 arrDevice = result.ITEMS;
 
-
                 showDeviceForAssign();
                 showDeviceAssigned(project.ProjectID);
                 showDeviceInMap(project.ProjectID);
@@ -439,9 +438,11 @@
 
     const handleDeviceForDeleteInProject = () => {
 
-        document.getElementById(`card-device-${projectId}`).addEventListener('click', async (e) => {
+        //document.getElementById(`card-device-${projectId}`).addEventListener('click', async (e) => {
+            //e.preventDefault();
+        $("#btnRemoveDevice").click(function (e) {
             e.preventDefault();
-
+            
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -452,7 +453,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    const player_id = e.target.closest('.device-delete').dataset.player_id;
+                    const player_id = $('#btnRemoveDevice').val();
                     const options = url + `/Home/postAsignarDispositivoLocalizacion`;
                     const parametros = {
                         player_id: player_id,
@@ -475,9 +476,10 @@
                         console.error(error);
                     });
                 }
-            })
+            });
         });
     };
+
     const showDeviceAsginados = function () {
         let parametros = {
             ProjectID: projectId
@@ -485,17 +487,15 @@
         const options = url + '/Home/postObtenerDispositivosPorProjectoAsignados';
         axios.post(options, parametros).then(function (response) {
             const result = response.data;
-            console.log(result.ITEMS)
             showDeviceAssign(result.ITEMS)
         }).catch(function (error) {
             console.error(error);
         });
-
     }
 
     const showDeviceAssign = function (lstDatos) {
         var items = [];
-        console.log(lstDatos)
+
         conDispositivos.find('button').remove();
         for (var f = 0; f < lstDatos.length; f++) {
             if (lstDatos[f].Model.trim() == 'PLAYER') {
@@ -521,9 +521,12 @@
                 lblModel.text(Model);
                 lblLatitud.text(Latitud);
                 lblLongitud.text(Longitud);
+
+                $("#btnRemoveDevice").val(device);
             });
         }
     }
+
     const showDeviceForAssign = function () {
         //var items = [], divDispositivos = $("#lista-dispositivos").empty();
         //arrDevice.filter(element => { return element.Longitud === 0 && element.Latitud === 0 && element.ProjectID === projectId }).map((v, index) => {
@@ -563,31 +566,67 @@
 
         arrDevicesAsignados.forEach(device => {
             let iconColor = 'blue'; // Color predeterminado
-
-            // Asignar colores en función del valor de element.Model
+            //iconColor = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png';
+    
             if (device.Model.trim() === 'MASTER') {
-                iconColor = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png';
+                iconColor = '/Content/img/Icono-mapa-2.png';
             } else if (device.Model.trim() === 'PLAYER') {
-                iconColor = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png';
+                iconColor = '/Content/img/Icono-mapa-1.png';
             } else if (device.Model.trim() === 'SONDA') {
-                iconColor = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png';
+                iconColor = '/Content/img/Icono-mapa-3.png';
             } else if (device.Model.trim() === 'PREUSER') {
-                iconColor = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png';
+                iconColor = '/Content/img/Icono-mapa-4.png';
             }
 
             var Icono = L.icon({
                 iconUrl: iconColor,
-                iconSize: [30, 40],
+                iconSize: [30, 30],
                 popupAnchor: [0, -40]
             });
 
             var newMarker = L.marker([device.Latitud, device.Longitud], {
-                draggable: false,
-                icon: Icono
+                draggable: true,
+                icon: Icono,
+                player_id: device.player_id
             }).addTo(map);
 
             newMarker.bindPopup(`Device ${device.player_id}`).openPopup();
             markers.push(newMarker);
+
+            newMarker.on('dragend', function (event) {
+                const marker = event.target;
+                const position = marker.getLatLng();
+                const lat = position.lat;
+                const lng = position.lng;
+
+                const popupContent = marker.getPopup().getContent();
+                const parts = popupContent.split(' ');
+                const player_id = parts[1];
+
+                const options = url + `/Home/postAsignarDispositivoLocalizacion`;
+                const parametros = {
+                    player_id: player_id,
+                    ClientID: ClientID,
+                    ProjectID: projectId,
+                    Longitud_1: lng,
+                    Latitud_1: lat
+                }
+
+                //funesperar(0, 'Please wait a few seconds.');
+                axios.post(options, parametros).then(function (response) {
+                    const result = response.data;
+
+                    if (result.SUCCESS == true) {
+                        console.log("Device coordinates updated successfully");
+                    } else {
+                        console.log("An error occurred");
+                    }
+                   // funesperar(1, '');
+                }).catch(function (error) {
+                    console.error(error);
+                });
+
+            });
         });
     }
 
@@ -615,7 +654,6 @@
         });
 
         map.on('click', function (e) {
-            console.log(player_id)
             if (player_id != "0" && player_id != null) {
                 var newMarker = L.marker(e.latlng);
                 //newMarker.bindPopup(`<button>Show/Hider</button> Device ${player_id}`).openPopup().addTo(map);
