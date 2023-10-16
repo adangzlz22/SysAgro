@@ -2300,6 +2300,10 @@
     <Content Include="Content\img\fondo-menu.png" />
     <Content Include="Content\img\icon2.png" />
     <Content Include="Content\img\icono-2.png" />
+    <Content Include="Content\img\Icono-mapa-1.png" />
+    <Content Include="Content\img\Icono-mapa-2.png" />
+    <Content Include="Content\img\Icono-mapa-3.png" />
+    <Content Include="Content\img\Icono-mapa-4.png" />
     <Content Include="Content\img\icono-p.ico" />
     <Content Include="Content\img\icono-p.png" />
     <Content Include="Content\img\icono-pe.ico" />
