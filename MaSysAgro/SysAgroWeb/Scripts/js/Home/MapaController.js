@@ -29,6 +29,25 @@
     var Inicializar = function () {
         cboProjects.select2();
         cboDevice.select2();
+        cboDevice.select2({
+            templateResult: function (e) {
+                console.log(e);
+                var $span = "";
+                $span = $(`<span value="0"><img src="${e.title}" style="width:50%;"> ${e.text} </span> `);
+                arrDevice.filter(element => { return element.Longitud === 0 && element.Latitud === 0 && element.ProjectID === projectId }).map((v, index) => {
+                    if (v.Model.trim() == 'PLAYER') {
+                        $span = $(`<span value="${v.player_id}"><img src="${e.title}" style="width:10%;"> ${e.text}</span> `);
+                    } else if (v.Model.trim() == 'MASTER') {
+                        $span = $(`<span value="${v.player_id}"><img src="${e.title}" style="width:10%;"> ${e.text}</span> `);
+                    } else if (v.Model.trim() == 'SONDA') {
+                        $span = $(`<span value="${v.player_id}"><img src="${e.title}" style="width:10%;"> ${e.text}</span> `);
+                    } else if (v.Model.trim() == 'PREUSER') {
+                        $span = $(`<span value="${v.player_id}"><img src="${e.title}" style="width:10%;"> ${e.text}</span> `);
+                    }
+                });
+                return $span;
+            }
+        });
         showDeviceAsginados();
         AddDevice.click(function () {
             $('#myModal').modal('show');
@@ -499,13 +518,13 @@
         conDispositivos.find('button').remove();
         for (var f = 0; f < lstDatos.length; f++) {
             if (lstDatos[f].Model.trim() == 'PLAYER') {
-                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}" id="btnDevice${lstDatos[f].player_id}"><i style='color:green' class="fa-solid fa-location-dot"></i></button> `);
+                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}" id="btnDevice${lstDatos[f].player_id}"><img src="/Content/img/Icono-mapa-1.png" style="width:50%;"></button> `);
             } else if (lstDatos[f].Model.trim() == 'MASTER') {
-                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}" id="btnDevice${lstDatos[f].player_id}"><i style='color:red' class="fa-solid fa-location-dot"></i></button> `);
+                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}" id="btnDevice${lstDatos[f].player_id}"><img src="/Content/img/Icono-mapa-2.png" style="width:50%;"></button> `);
             } else if (lstDatos[f].Model.trim() == 'SONDA') {
-                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}"  id="btnDevice${lstDatos[f].player_id}"><i style='color:yellow' class="fa-solid fa-location-dot"></i></button> `);
+                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}"  id="btnDevice${lstDatos[f].player_id}"><img src="/Content/img/Icono-mapa-3.png" style="width:50%;"></button> `);
             } else if (lstDatos[f].Model.trim() == 'PREUSER') {
-                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}"  id="btnDevice${lstDatos[f].player_id}"><i style='color:yellow' class="fa-solid fa-location-dot"></i></button> `);
+                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}"  id="btnDevice${lstDatos[f].player_id}"><img src="/Content/img/Icono-mapa-4.png" style="width:50%;"></button> `);
             }
         }
    
@@ -543,16 +562,16 @@
 
         var items2 = [];
         cboDevice.find('option').remove();
-        items2.push(`<option value="0">Select device</option>`)
+        items2.push(`<option value="0" title="/Content/img/IconoDispositivos.png">Select device</option>`)
         arrDevice.filter(element => { return element.Longitud === 0 && element.Latitud === 0 && element.ProjectID === projectId }).map((v, index) => {
             if (v.Model.trim() == 'PLAYER') {
-                items2.push(`<option value="${v.player_id}"><i style='color:green' class="fa-solid fa-location-dot"></i> Device ${v.player_id}</option> `);
+                items2.push(`<option value="${v.player_id}" title="/Content/img/Icono-mapa-1.png"><img src="/Content/img/Icono-mapa-1.png" style="width:50%;"> Device ${v.player_id}</option> `);
             } else if (v.Model.trim() == 'MASTER') {
-                items2.push(`<option value="${v.player_id}"><i style='color:red' class="fa-solid fa-location-dot"></i> Device ${v.player_id}</option> `);
+                items2.push(`<option value="${v.player_id}" title="/Content/img/Icono-mapa-2.png"><img src="/Content/img/Icono-mapa-2.png" style="width:50%;"> Device ${v.player_id}</option> `);
             } else if (v.Model.trim() == 'SONDA') {
-                items2.push(`<option value="${v.player_id}"><i style='color:yellow' class="fa-solid fa-location-dot"></i>  Device ${v.player_id}</option> `);
+                items2.push(`<option value="${v.player_id}" title="/Content/img/Icono-mapa-3.png"><img src="/Content/img/Icono-mapa-3.png" style="width:50%;"> Device ${v.player_id}</option> `);
             } else if (v.Model.trim() == 'PREUSER') {
-                items2.push(`<option value="${v.player_id}"><i style='color:yellow' class="fa-solid fa-location-dot"></i>  Device ${v.player_id}</option> `);
+                items2.push(`<option value="${v.player_id}" title="/Content/img/Icono-mapa-4.png"><img src="/Content/img/Icono-mapa-4.png" style="width:50%;">  Device ${v.player_id}</option> `);
             }
         });
 

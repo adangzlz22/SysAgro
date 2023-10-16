@@ -745,8 +745,8 @@ namespace SysAgroWeb.Controllers
                     var objProject2 = ctx.Query<devices>(consulta2, paramss, null, true, 300).FirstOrDefault();
                     if (objProject2 != null)
                     {
-                        if (objProject2.ClientID == 0)
-                        {
+                        if (objProject2.ClientID == 0 || objProject2.ClientID == paramsProject.ClientID)
+                            {
                             var objProject = ctx.Query<dynamic>(consulta, paramss, null, true, 300).FirstOrDefault();
 
                             objResponse.ITEMS = objProject;

@@ -53649,11 +53649,23 @@ thead tr:nth-child(3) th {
     background-color: #7ab37f2e;
 }
 
+/*#content {
+    background-size: 30%;
+    background-position: center;
+    background-repeat: no-repeat
+}*/
 @media screen and (min-width: 993px) {
 
     #map {
         min-height: 847px;
         height: 100%
+    }
+    #content {
+        background-size: 30%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: center
     }
 }
 @media screen and (max-width: 992px) {
@@ -53672,6 +53684,13 @@ thead tr:nth-child(3) th {
     }
     #btnChico {
         display: none !important
+    }
+    #content {
+        background-size: 70%;
+        background-position: center;
+        background-repeat: no-repeat;
+       background-position-x:center;
+       background-position-y:center
     }
 }
 

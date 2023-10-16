@@ -22,8 +22,7 @@
 
                      
                         <h2 style="color:#7ab37f; font-size:28px">Player : {0}</h2>
-                        <h7><b>Chip : {1}</b></h7><br>
-                        <h7><b>Date reaction : {2}</b></h7>
+                        <h7><b>Date reaction : {1}</b></h7>
                         <div class="d-flex justify-content-between align-items-center">
 
                             <small  class="text-body-secondary"></small> <div class="btn-group">
@@ -109,7 +108,9 @@
         axios.post(options, parametros).then(function (response) {
             const result = response.data;
             postObtenerDispositivos(1);
-
+            if (result.SUCCESS == false) {
+                funesperar(5000, result.MESSAGE);
+            }
         }).catch(function (error) {
             console.error(error);
         });
@@ -132,7 +133,7 @@
                     contenedorDevice.find('div').remove();
                     let html = '';
                     for (var i = 0; i < result.ITEMS.length; i++) {
-                        html += Card.format(result.ITEMS[i].player_id, result.ITEMS[i].Chip_ID, result.ITEMS[i].Date_Creation);
+                        html += Card.format(result.ITEMS[i].player_id, result.ITEMS[i].Date_Creation);
                     }
                     html += '';
                     contenedorDevice.append(html);
@@ -178,6 +179,33 @@
             return typeof args[index] == 'undefined' ? match : args[index];
         });
     };
+
+    const funesperar = function (timer, texto) {
+        let timerInterval
+        Swal.fire({
+            title: 'Alert!',
+            text: texto,
+            icon: 'info',
+            timer: timer,
+            timerProgressBar: true,
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading()
+                const b = Swal.getHtmlContainer().querySelector('b')
+                timerInterval = setInterval(() => {
+                    //b.textContent = Swal.getTimerLeft()
+                }, 100)
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+            }
+        })
+    }
+
 
     return {
         Inicializar: Inicializar,
