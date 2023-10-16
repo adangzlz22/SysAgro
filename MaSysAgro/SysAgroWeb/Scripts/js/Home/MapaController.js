@@ -12,14 +12,32 @@
     var drawControl2 = null;
 
     const btnGrande = $('#btnGrande');
+    const cboProjects = $('#cboProjects');
+    const cboDevice = $('#cboDevice');
+    const AddDevice = $('#AddDevice');
+    const conDispositivos = $("#divdispositivos");
+    const lblPlayerId = $("#lblPlayerId");
+    
+    const lblModel = $("#lblModel");
+    const lblLatitud = $("#lblLatitud");
+    const lblLongitud = $("#lblLongitud");
 
     var map = L.map('map').setView([latitud, longitud], 10.3);
 
     var map2 = L.map('map-modal').setView([latitud, longitud], 7);
 
     var Inicializar = function () {
+        cboProjects.select2();
+        cboDevice.select2();
+        showDeviceAsginados();
+        AddDevice.click(function () {
+            $('#myModal').modal('show');
+        });
+        cboProjects.change(function () {
+            window.location.href = "/Home/Mapa?projectId=" + cboProjects.val();
+        });
         btnGrande.click(function () {
-                map.invalidateSize();
+            map.invalidateSize();
         });
         init_map();
         getProjects();
@@ -73,7 +91,7 @@
 
             setTimeout(function () {
                 console.log("invalidateSize");
-              
+
                 map2.invalidateSize();
                 addPolygonToProject();
             }, 900);
@@ -136,7 +154,7 @@
                 }
             });
         }
-   
+
         map2.addControl(drawControl);
         //Manejadores de eventos para guardar el polígono dibujado
         map2.on(L.Draw.Event.CREATED, (event) => {
@@ -258,6 +276,11 @@
                           </div>`;
                 });
 
+                const items2 = sortItems(arrProject).map((v, index) => {
+                    return `<option value="${v.ProjectID}">${v.ProjectName}</option>`;
+                });
+                cboProjects.append(items2);
+
                 divProyectos.innerHTML = items.join('');
 
                 getDeveceForProjectDefault();
@@ -302,7 +325,7 @@
 
     const addExistingAllPolygonIntoMap = function () {
         arrProject.forEach(project => {
-            
+
             if (project.Cordenadas && project.Cordenadas.length > 0) {
                 const coordinates = JSON.parse(project.Cordenadas);
 
@@ -370,6 +393,8 @@
 
             if (result.SUCCESS && result.ITEMS.length > 0) {
                 arrDevice = result.ITEMS;
+
+
                 showDeviceForAssign();
                 showDeviceAssigned(project.ProjectID);
                 showDeviceInMap(project.ProjectID);
@@ -395,7 +420,7 @@
                     } else if (v.Model.trim() == 'SONDA') {
                         texto = `<i style='color:yellow;font-size: 20px;' class="fa-solid fa-location-dot"></i>`;
                     }
-                    return  `<li class="list-group-item d-flex justify-content-between align-items-center mb-2" key="${index}">
+                    return `<li class="list-group-item d-flex justify-content-between align-items-center mb-2" key="${index}">
                                 <div>
                                     ${texto}
                                     <span class="text-900 font-medium mr-2 mb-1 md:mb-0">Device ${v.player_id}</span>
@@ -449,24 +474,87 @@
                     }).catch(function (error) {
                         console.error(error);
                     });
-                } 
-            }) 
+                }
+            })
         });
     };
+    const showDeviceAsginados = function () {
+        let parametros = {
+            ProjectID: projectId
+        }
+        const options = url + '/Home/postObtenerDispositivosPorProjectoAsignados';
+        axios.post(options, parametros).then(function (response) {
+            const result = response.data;
+            console.log(result.ITEMS)
+            showDeviceAssign(result.ITEMS)
+        }).catch(function (error) {
+            console.error(error);
+        });
 
+    }
+
+    const showDeviceAssign = function (lstDatos) {
+        var items = [];
+        console.log(lstDatos)
+        conDispositivos.find('button').remove();
+        for (var f = 0; f < lstDatos.length; f++) {
+            if (lstDatos[f].Model.trim() == 'PLAYER') {
+                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}" id="btnDevice${lstDatos[f].player_id}"><i style='color:green' class="fa-solid fa-location-dot"></i></button> `);
+            } else if (lstDatos[f].Model.trim() == 'MASTER') {
+                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}" id="btnDevice${lstDatos[f].player_id}"><i style='color:red' class="fa-solid fa-location-dot"></i></button> `);
+            } else if (lstDatos[f].Model.trim() == 'SONDA') {
+                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}"  id="btnDevice${lstDatos[f].player_id}"><i style='color:yellow' class="fa-solid fa-location-dot"></i></button> `);
+            } else if (lstDatos[f].Model.trim() == 'PREUSER') {
+                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}"  id="btnDevice${lstDatos[f].player_id}"><i style='color:yellow' class="fa-solid fa-location-dot"></i></button> `);
+            }
+        }
+   
+        conDispositivos.append(items);
+        for (var f = 0; f < lstDatos.length; f++) {
+            let device = lstDatos[f].player_id;
+            let Model = lstDatos[f].Model;
+            let Latitud = lstDatos[f].Latitud;
+            let Longitud = lstDatos[f].Longitud;
+            $('#btnDevice' + lstDatos[f].player_id).click(function () {
+                $('#myModalInformation').modal('show');
+                lblPlayerId.text(device);
+                lblModel.text(Model);
+                lblLatitud.text(Latitud);
+                lblLongitud.text(Longitud);
+            });
+        }
+    }
     const showDeviceForAssign = function () {
-        var items = [], divDispositivos = $("#lista-dispositivos").empty();
+        //var items = [], divDispositivos = $("#lista-dispositivos").empty();
+        //arrDevice.filter(element => { return element.Longitud === 0 && element.Latitud === 0 && element.ProjectID === projectId }).map((v, index) => {
+        //    if (v.Model.trim() == 'PLAYER') {
+        //        items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}" data-bs-toggle="tooltip" title="Device ${v.player_id}"><i style='color:green' class="fa-solid fa-location-dot"></i></button> `);
+        //    } else if (v.Model.trim() == 'MASTER') {
+        //        items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}" data-bs-toggle="tooltip" title="Device ${v.player_id}"><i style='color:red' class="fa-solid fa-location-dot"></i></button> `);
+        //    } else if (v.Model.trim() == 'SONDA') {
+        //        items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}" data-bs-toggle="tooltip" title="Device ${v.player_id}"><i style='color:yellow' class="fa-solid fa-location-dot"></i></button> `);
+        //    } else if (v.Model.trim() == 'PREUSER') {
+        //        items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}" data-bs-toggle="tooltip" title="Device ${v.player_id}"><i style='color:yellow' class="fa-solid fa-location-dot"></i></button> `);
+        //    }
+        //});
+
+        var items2 = [];
+        cboDevice.find('option').remove();
+        items2.push(`<option value="0">Select device</option>`)
         arrDevice.filter(element => { return element.Longitud === 0 && element.Latitud === 0 && element.ProjectID === projectId }).map((v, index) => {
             if (v.Model.trim() == 'PLAYER') {
-                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}" data-bs-toggle="tooltip" title="Device ${v.player_id}"><i style='color:green' class="fa-solid fa-location-dot"></i></button> `);
+                items2.push(`<option value="${v.player_id}"><i style='color:green' class="fa-solid fa-location-dot"></i> Device ${v.player_id}</option> `);
             } else if (v.Model.trim() == 'MASTER') {
-                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}" data-bs-toggle="tooltip" title="Device ${v.player_id}"><i style='color:red' class="fa-solid fa-location-dot"></i></button> `);
+                items2.push(`<option value="${v.player_id}"><i style='color:red' class="fa-solid fa-location-dot"></i> Device ${v.player_id}</option> `);
             } else if (v.Model.trim() == 'SONDA') {
-                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}" data-bs-toggle="tooltip" title="Device ${v.player_id}"><i style='color:yellow' class="fa-solid fa-location-dot"></i></button> `);
+                items2.push(`<option value="${v.player_id}"><i style='color:yellow' class="fa-solid fa-location-dot"></i>  Device ${v.player_id}</option> `);
+            } else if (v.Model.trim() == 'PREUSER') {
+                items2.push(`<option value="${v.player_id}"><i style='color:yellow' class="fa-solid fa-location-dot"></i>  Device ${v.player_id}</option> `);
             }
         });
 
-        divDispositivos.append(items.join(''));
+        cboDevice.append(items2);
+        //divDispositivos.append(items.join(''));
     }
 
     const showDeviceInMap = function (ProjectID) {
@@ -483,8 +571,10 @@
                 iconColor = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png';
             } else if (device.Model.trim() === 'SONDA') {
                 iconColor = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png';
+            } else if (device.Model.trim() === 'PREUSER') {
+                iconColor = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png';
             }
- 
+
             var Icono = L.icon({
                 iconUrl: iconColor,
                 iconSize: [30, 40],
@@ -517,14 +607,16 @@
 
     const handleDeviceForProjectInMap = function () {
 
-        $('#lista-dispositivos').on('click', '.selecction-device', function (e) {
+        cboDevice.change(function (e) {
+            //$('#lista-dispositivos').on('click', '.selecction-device', function (e) {
             e.preventDefault();
             const value = $(this).val();
             player_id = value;
         });
 
         map.on('click', function (e) {
-            if (player_id != null) {
+            console.log(player_id)
+            if (player_id != "0" && player_id != null) {
                 var newMarker = L.marker(e.latlng);
                 //newMarker.bindPopup(`<button>Show/Hider</button> Device ${player_id}`).openPopup().addTo(map);
                 // Agrega el nuevo marcador al array
@@ -714,7 +806,7 @@
     const info = function (title = "System Messages", text, type = 'success') {
         Swal.fire(title, text, type);
     }
-        
+
     return {
         Inicializar: Inicializar,
     }
