@@ -18,11 +18,12 @@
     const conDispositivos = $("#divdispositivos");
     const lblPlayerId = $("#lblPlayerId");
     const carContenido = $("#carContenido");
-    
+
     const lblModel = $("#lblModel");
     const lblLatitud = $("#lblLatitud");
     const lblLongitud = $("#lblLongitud");
-
+    const shoMap = $("#shoMap");
+    
     var map = L.map('map').setView([latitud, longitud], 10.3);
 
     var map2 = L.map('map-modal').setView([latitud, longitud], 7);
@@ -49,7 +50,9 @@
                 return $span;
             }
         });
+
         showDeviceAsginados();
+
         AddDevice.click(function () {
             $('#myModal').modal('show');
         });
@@ -67,7 +70,20 @@
                 btnDivContenedor();
             }
         });
-        
+        shoMap.click(function () {
+            if (shoMap.attr('data-id') == 0) {
+                shoMap.text('Close map')
+                shoMap.attr('data-id',1)
+                $('#cardMapa').css('display', 'block');
+                $('#carContenido').css('display', 'none');
+            } else {
+                shoMap.text('Show map')
+                shoMap.attr('data-id', 0)
+                $('#cardMapa').css('display', 'none');
+                $('#carContenido').css('display', 'block');
+            }
+        });
+
         init_map();
         getProjects();
         handleDeviceForProject();
@@ -81,7 +97,6 @@
         handleSearch();
         handleModalMapProject();
         editPolygonToProject();
-        
     }
 
     const btnDivContenedor = function () {
@@ -89,7 +104,7 @@
         const parametros = {
             player_id: cboDevice.val(),
             ClientID: ClientID,
-            ProjectID: projectId,
+            ProjectID: cboProjects.val(),
             Longitud_1: 1,
             Latitud_1: 1
         }
@@ -101,6 +116,8 @@
                 console.log("Ocurrio un error");
             }
             funesperar(1, '');
+            showDeviceAsginados();
+            getDeveceForProjectDefault();
         }).catch(function (error) {
             console.error(error);
         });
@@ -328,12 +345,16 @@
                                 </div>
                           </div>`;
                 });
+                cboProjects.find('option').remove();
+                let html = "";
+                let items2 = [];
+                html = "<option data-coordenadas='0' value='0'> Select project </option>";
+                for (var i = 0; i < arrProject.length; i++) {
+                    html += `<option data-coordenadas="${arrProject[i].Longitud_1}" value="${arrProject[i].ProjectID}">${arrProject[i].ProjectName}</option>`;
+                };
+                cboProjects.append(html);
 
-                const items2 = sortItems(arrProject).map((v, index) => {
-                    return `<option data-coordenadas="${v.Longitud_1}" value="${v.ProjectID}">${v.ProjectName}</option>`;
-                });
-                cboProjects.append(items2);
-                if ($('#cboProjects').find('option').attr('data-coordenadas') == "0") {
+                if ($('#cboProjects').find('option').filter(':selected').attr('data-coordenadas') == 0 && $('#cboProjects').find('option').filter(':selected').attr('data-coordenadas') == "0") {
                     $('#cardMapa').css('display', 'none');
                     $('#carContenido').css('display', 'block');
                 } else {
@@ -341,7 +362,9 @@
                     $('#carContenido').css('display', 'none');
                 }
                 divProyectos.innerHTML = items.join('');
+                cboProjects.val(projectId);
 
+                showDeviceAsginados();
                 getDeveceForProjectDefault();
                 //addExistingPolygonIntoMap();
                 addExistingAllPolygonIntoMap();
@@ -385,7 +408,7 @@
     const addExistingAllPolygonIntoMap = function () {
         arrProject.forEach(project => {
             console.log(project)
-            if (project.Cordenadas != "0" && project.Cordenadas.length > 0 ) {
+            if (project.Cordenadas != "0" && project.Cordenadas.length > 0) {
                 const coordinates = JSON.parse(project.Cordenadas);
 
                 const coordenadas = coordinates.map(item => {
@@ -403,6 +426,13 @@
                 polygonLayer.addTo(map);
             }
         });
+        if ($('#cboProjects').find('option').filter(':selected').attr('data-coordenadas') == 0 && $('#cboProjects').find('option').filter(':selected').attr('data-coordenadas') == "0") {
+            $('#cardMapa').css('display', 'none');
+            $('#carContenido').css('display', 'block');
+        } else {
+            $('#cardMapa').css('display', 'block');
+            $('#carContenido').css('display', 'none');
+        }
     };
 
     const sortItems = (items) => {
@@ -579,9 +609,9 @@
                 lblPlayerId.text(device);
                 lblModel.text(Model);
                 if (Latitud == 1) {
-                    lblLatitud.css('display','none')
-                    lblLongitud.css('display','none')
-                    $('#titlon').css('display','none')
+                    lblLatitud.css('display', 'none')
+                    lblLongitud.css('display', 'none')
+                    $('#titlon').css('display', 'none')
                     $('#titlat').css('display', 'none')
                 }
                 lblLatitud.text(Latitud);
@@ -622,6 +652,7 @@
         });
 
         cboDevice.append(items2);
+
         //divDispositivos.append(items.join(''));
     }
 
