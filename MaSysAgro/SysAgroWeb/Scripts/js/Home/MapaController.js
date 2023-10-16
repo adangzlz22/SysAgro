@@ -17,6 +17,7 @@
     const AddDevice = $('#AddDevice');
     const conDispositivos = $("#divdispositivos");
     const lblPlayerId = $("#lblPlayerId");
+    const carContenido = $("#carContenido");
     
     const lblModel = $("#lblModel");
     const lblLatitud = $("#lblLatitud");
@@ -58,9 +59,19 @@
         btnGrande.click(function () {
             map.invalidateSize();
         });
+        carContenido.click(function () {
+            console.log('hola guapo');
+            if (cboDevice.val() == "0" && cboDevice.val() == 0) {
+                funesperar(3000, "select a device.");
+            } else {
+                btnDivContenedor();
+            }
+        });
+        
         init_map();
         getProjects();
         handleDeviceForProject();
+        $('#cardMapa').css('display', 'none');
         //handleDeviceForDeleteInProject();
         //showDeviceInMap();
         handleDeviceForProjectInMap();
@@ -70,6 +81,29 @@
         handleSearch();
         handleModalMapProject();
         editPolygonToProject();
+        
+    }
+
+    const btnDivContenedor = function () {
+        const options = url + `/Home/postAsignarDispositivoLocalizacion`;
+        const parametros = {
+            player_id: cboDevice.val(),
+            ClientID: ClientID,
+            ProjectID: projectId,
+            Longitud_1: 1,
+            Latitud_1: 1
+        }
+        funesperar(0, 'Please wait a few seconds.');
+        axios.post(options, parametros).then(function (response) {
+            const result = response.data;
+            if (result.SUCCESS == true) {
+            } else {
+                console.log("Ocurrio un error");
+            }
+            funesperar(1, '');
+        }).catch(function (error) {
+            console.error(error);
+        });
     }
 
     const handleModalMapProject = () => {
@@ -296,10 +330,16 @@
                 });
 
                 const items2 = sortItems(arrProject).map((v, index) => {
-                    return `<option value="${v.ProjectID}">${v.ProjectName}</option>`;
+                    return `<option data-coordenadas="${v.Longitud_1}" value="${v.ProjectID}">${v.ProjectName}</option>`;
                 });
                 cboProjects.append(items2);
-
+                if ($('#cboProjects').find('option').attr('data-coordenadas') == "0") {
+                    $('#cardMapa').css('display', 'none');
+                    $('#carContenido').css('display', 'block');
+                } else {
+                    $('#cardMapa').css('display', 'block');
+                    $('#carContenido').css('display', 'none');
+                }
                 divProyectos.innerHTML = items.join('');
 
                 getDeveceForProjectDefault();
@@ -344,8 +384,8 @@
 
     const addExistingAllPolygonIntoMap = function () {
         arrProject.forEach(project => {
-
-            if (project.Cordenadas && project.Cordenadas.length > 0) {
+            console.log(project)
+            if (project.Cordenadas != "0" && project.Cordenadas.length > 0 ) {
                 const coordinates = JSON.parse(project.Cordenadas);
 
                 const coordenadas = coordinates.map(item => {
@@ -458,10 +498,10 @@
     const handleDeviceForDeleteInProject = () => {
 
         //document.getElementById(`card-device-${projectId}`).addEventListener('click', async (e) => {
-            //e.preventDefault();
+        //e.preventDefault();
         $("#btnRemoveDevice").click(function (e) {
             e.preventDefault();
-            
+
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -514,7 +554,7 @@
 
     const showDeviceAssign = function (lstDatos) {
         var items = [];
-
+        console.log(lstDatos);
         conDispositivos.find('button').remove();
         for (var f = 0; f < lstDatos.length; f++) {
             if (lstDatos[f].Model.trim() == 'PLAYER') {
@@ -527,7 +567,7 @@
                 items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}"  id="btnDevice${lstDatos[f].player_id}"><img src="/Content/img/Icono-mapa-4.png" style="width:50%;"></button> `);
             }
         }
-   
+
         conDispositivos.append(items);
         for (var f = 0; f < lstDatos.length; f++) {
             let device = lstDatos[f].player_id;
@@ -538,6 +578,12 @@
                 $('#myModalInformation').modal('show');
                 lblPlayerId.text(device);
                 lblModel.text(Model);
+                if (Latitud == 1) {
+                    lblLatitud.css('display','none')
+                    lblLongitud.css('display','none')
+                    $('#titlon').css('display','none')
+                    $('#titlat').css('display', 'none')
+                }
                 lblLatitud.text(Latitud);
                 lblLongitud.text(Longitud);
 
@@ -586,7 +632,7 @@
         arrDevicesAsignados.forEach(device => {
             let iconColor = 'blue'; // Color predeterminado
             //iconColor = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png';
-    
+
             if (device.Model.trim() === 'MASTER') {
                 iconColor = '/Content/img/Icono-mapa-2.png';
             } else if (device.Model.trim() === 'PLAYER') {
@@ -640,7 +686,7 @@
                     } else {
                         console.log("An error occurred");
                     }
-                   // funesperar(1, '');
+                    // funesperar(1, '');
                 }).catch(function (error) {
                     console.error(error);
                 });
@@ -717,37 +763,51 @@
 
             var ProjectName = $("#ProjectName").val();
 
-            if (coordenadas != null && ProjectName.length > 0) {
-                var formData = $(this).serializeArray().reduce(function (obj, item) {
-                    obj[item.name] = item.value;
-                    return obj;
-                }, {});
+            //if (coordenadas != null && ProjectName.length > 0) {
+            var formData = $(this).serializeArray().reduce(function (obj, item) {
+                obj[item.name] = item.value;
+                return obj;
+            }, {});
 
-                const options = url + '/Home/postAddProjectos';
-                const center = calculateCenterCoordinates(coordenadas);
+            const options = url + '/Home/postAddProjectos';
+            console.log(coordenadas)
+            let center;
+            let primeraLatitud;
+            let primeraLongitud;
+            if (coordenadas != null) {
+                center = calculateCenterCoordinates(coordenadas);
 
-                const primeraLatitud = center.lat;
-                const primeraLongitud = center.lng;
+                primeraLatitud = center.lat;
+                primeraLongitud = center.lng;
 
                 formData.ClientID = ClientID;
                 formData.Cordenadas = JSON.stringify(coordenadas);
                 formData.Longitud_1 = primeraLongitud;
                 formData.Latitud_1 = primeraLatitud;
-
-                axios.post(options, formData).then(function (response) {
-                    if (response.data.SUCCESS == true) {
-                        var _ProjectID = response.data.ITEMS.ProjectID;
-
-                        location.href = `Mapa?projectId=${_ProjectID}`;
-                    } else {
-                        info("System Messages", "(Connection error) An error occurred while trying to carry out this processo", "error");
-                    }
-                }).catch(function (error) {
-                    info("System Messages", error, "error");
-                });
             } else {
-                info("System Messages", "The Project Name field is required, select the project polygon.", "warning");
+                primeraLatitud = 0;
+                primeraLongitud = 0;
+
+                formData.ClientID = ClientID;
+                formData.Cordenadas = 0;
+                formData.Longitud_1 = primeraLongitud;
+                formData.Latitud_1 = primeraLatitud;
             }
+
+            axios.post(options, formData).then(function (response) {
+                if (response.data.SUCCESS == true) {
+                    var _ProjectID = response.data.ITEMS.ProjectID;
+
+                    location.href = `Mapa?projectId=${_ProjectID}`;
+                } else {
+                    info("System Messages", "(Connection error) An error occurred while trying to carry out this processo", "error");
+                }
+            }).catch(function (error) {
+                info("System Messages", error, "error");
+            });
+            //} else {
+            //    info("System Messages", "The Project Name field is required, select the project polygon.", "warning");
+            //}
         });
     }
 
@@ -818,6 +878,7 @@
                 if (result.SUCCESS == true) {
                     type = "success ";
                     getDeveceForProjectDefault();
+                    showDeviceForAssign();
                 } else {
                     type = "warning";
                 }
