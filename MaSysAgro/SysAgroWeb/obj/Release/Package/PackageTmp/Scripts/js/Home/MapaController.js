@@ -18,6 +18,7 @@
     const conDispositivos = $("#divdispositivos");
     const lblPlayerId = $("#lblPlayerId");
     const carContenido = $("#carContenido");
+    const carContenido2 = $("#carContenido2");
 
     const lblModel = $("#lblModel");
     const lblLatitud = $("#lblLatitud");
@@ -27,6 +28,30 @@
     var map = L.map('map').setView([latitud, longitud], 10.3);
 
     var map2 = L.map('map-modal').setView([latitud, longitud], 7);
+
+    const Card = `       <div class="col-lg-3 col-sm-12 col-md-4 mb-3" id="btnClickCont{1}">
+                <div class="card box" style=" border: 1px solid #7ab37f;">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12" style="text-align:right">
+<button style="display:none;" data-tipo="1" class="btn btn-danger CloseButton" id="btnEliminar{0}"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+</div>
+</div>
+                
+                    <div class="card-body mt-5 mb-5 text-left">
+
+                     
+                        <h2 style="color:#7ab37f; font-size:28px">{0} : {1}</h2>
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <small  class="text-body-secondary"></small> <div class="btn-group">
+                                <button style="display:none;" type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnGo" data-bs-toggle="modal" data-bs-target="#myModal"> <i class="fa-solid fa-caret-right"></i></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>    `;
+
 
     var Inicializar = function () {
         cboProjects.select2();
@@ -76,11 +101,14 @@
                 shoMap.attr('data-id',1)
                 $('#cardMapa').css('display', 'block');
                 $('#carContenido').css('display', 'none');
+                //carContenido2.css('display', 'none');
+                
             } else {
                 shoMap.text('Show map')
                 shoMap.attr('data-id', 0)
                 $('#cardMapa').css('display', 'none');
                 $('#carContenido').css('display', 'block');
+                //carContenido2.css('display', 'block');
             }
         });
 
@@ -599,6 +627,14 @@
         }
 
         conDispositivos.append(items);
+        let itm = "";
+        carContenido2.find('div').remove();
+        console.log('hola')
+        for (var i = 0; i < lstDatos.length; i++) {
+            itm += Card.format(lstDatos[i].Model, lstDatos[i].player_id);
+        }
+        carContenido2.append(itm);
+
         for (var f = 0; f < lstDatos.length; f++) {
             let device = lstDatos[f].player_id;
             let Model = lstDatos[f].Model;
@@ -619,6 +655,22 @@
 
                 $("#btnRemoveDevice").val(device);
             });
+            $('#btnClickCont' + lstDatos[f].player_id).click(function () {
+                $('#myModalInformation').modal('show');
+                lblPlayerId.text(device);
+                lblModel.text(Model);
+                if (Latitud == 1) {
+                    lblLatitud.css('display', 'none')
+                    lblLongitud.css('display', 'none')
+                    $('#titlon').css('display', 'none')
+                    $('#titlat').css('display', 'none')
+                }
+                lblLatitud.text(Latitud);
+                lblLongitud.text(Longitud);
+
+                $("#btnRemoveDevice").val(device);
+            });
+            
         }
     }
 
@@ -955,6 +1007,15 @@
     const info = function (title = "System Messages", text, type = 'success') {
         Swal.fire(title, text, type);
     }
+
+    String.prototype.format = function () {
+        var args = arguments;
+        return this.replace(/{([0-9]+)}/g, function (match, index) {
+            // check if the argument is there
+            return typeof args[index] == 'undefined' ? match : args[index];
+        });
+    };
+
 
     return {
         Inicializar: Inicializar,

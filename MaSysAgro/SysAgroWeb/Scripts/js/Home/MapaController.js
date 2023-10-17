@@ -630,9 +630,11 @@
         let itm = "";
         carContenido2.find('div').remove();
         console.log('hola')
+        itm = "<div class='row'>";
         for (var i = 0; i < lstDatos.length; i++) {
             itm += Card.format(lstDatos[i].Model, lstDatos[i].player_id);
         }
+        itm += "</div>";
         carContenido2.append(itm);
 
         for (var f = 0; f < lstDatos.length; f++) {
