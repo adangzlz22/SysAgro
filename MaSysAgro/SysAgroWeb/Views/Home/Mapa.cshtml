@@ -147,7 +147,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 mb-3" >
+            <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
                 <nav class="navbar navbar-light bg-light mb-2 " style="background-color: #7ab37f !important; ">
                     <form class="container-fluid justify-content-start gap-1">
 
@@ -185,16 +185,16 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <!-- <div class="form-group has-feedback">
-                    <i class="fa fa-search form-control-feedback" style="color: #70757a; font-size: 24px;"></i>
-                    <input type="text" class="form-control busq" id="cityInput" list="cityDatalist" placeholder="Write a country...">
-                    <datalist id="cityDatalist" style=" inset: 0px auto auto 0px;">
-                        <option value="San Francisco" data-coodenadas="40.420973, -3.752641">
-                        <option value="New York" data-coodenadas="40.320973, -3.742641">
-                        <option value="Seattle" data-coodenadas="40.430973, -3.742641">
-                        <option value="Los Angeles" data-coodenadas="41.360973, -3.742641">
-                        <option value="Chicago" data-coodenadas="40.310973, -3.532641">
-                    </datalist>
-                </div> -->
+                            <i class="fa fa-search form-control-feedback" style="color: #70757a; font-size: 24px;"></i>
+                            <input type="text" class="form-control busq" id="cityInput" list="cityDatalist" placeholder="Write a country...">
+                            <datalist id="cityDatalist" style=" inset: 0px auto auto 0px;">
+                                <option value="San Francisco" data-coodenadas="40.420973, -3.752641">
+                                <option value="New York" data-coodenadas="40.320973, -3.742641">
+                                <option value="Seattle" data-coodenadas="40.430973, -3.742641">
+                                <option value="Los Angeles" data-coodenadas="41.360973, -3.742641">
+                                <option value="Chicago" data-coodenadas="40.310973, -3.532641">
+                            </datalist>
+                        </div> -->
                     </div>
                 </div>
 
@@ -209,13 +209,37 @@
                 </div>
             </div>
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-12 map2" id="carContenido" style="display:none;height:900px;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12" id="carContenido" style="display:none;">
+                <div class="col-lg-12 col-sm-12 col-md-12 ">
+                    <div class="card box" style=" border: 1px solid #7ab37f;">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12" style="text-align:right">
+                                <button style="display:none;" data-tipo="1" class="btn btn-danger CloseButton" id="btnEliminar{0}"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
 
+                        <div class="card-body mt-5 mb-5 text-left">
+
+
+                            <h2 style="color:#7ab37f; font-size:28px">assign device</h2>
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <small class="text-body-secondary"></small> <div class="btn-group">
+                                    <button style="display:none;" type="button" class="btn btn-primary" style="font-size: 20px; padding: 0.3rem 1rem" id="btnGo" data-bs-toggle="modal" data-bs-target="#myModal"> <i class="fa-solid fa-caret-right"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
 
+        </div>
 
-        </div>
-        </div>
+    </div>
+    <div class="row">
+        <div id="carContenido2" class="col-lg-12 col-md-12 col-sm-12 col-12"></div>
+    </div>
 </main>
 
 <!-- The Modal Device -->
