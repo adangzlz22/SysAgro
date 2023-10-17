@@ -7,9 +7,12 @@
     const btnActivar = $('#btnActivar');
     const agregarinputTitulo = $('#agregarinputTitulo');
     const flexSwitchCheckChecked = $('#flexSwitchCheckChecked');
-    
+    const lblPlayerId = $("#lblPlayerId");
+    const lblModel = $("#lblModel");
+    const lblLatitud = $("#lblLatitud");
+    const lblLongitud = $("#lblLongitud");
 
-    const Card = `       <div class="col-lg-3 col-sm-12 col-md-4 mb-3">
+    const Card = `       <div class="col-lg-3 col-sm-12 col-md-4 mb-3" id="btnClickCont{1}">
                 <div class="card box" style=" border: 1px solid #7ab37f;">
 <div class="row">
 <div class="col-lg-12 col-md-12 col-sm-12" style="text-align:right">
@@ -86,7 +89,7 @@
             if (flexSwitchCheckChecked.prop('checked') == true) {
                 btnActivar.css('display', 'none');
                 btnEliminar.css('display', '');
-                btnEliminar.attr('data-Activo',1)
+                btnEliminar.attr('data-Activo', 1)
                 postObtenerDispositivos(1);
             } else {
                 btnActivar.css('display', '');
@@ -137,6 +140,10 @@
                     contenedorDevice.append(html);
                     for (var i = 0; i < result.ITEMS.length; i++) {
                         let player = result.ITEMS[i].player_id;
+                        let device = result.ITEMS[i].player_id;
+                        let Model = result.ITEMS[i].Model;
+                        let Latitud = result.ITEMS[i].Latitud;
+                        let Longitud = result.ITEMS[i].Longitud;
                         $('#btnEliminar' + player).click(function () {
 
                             let Activo = flexSwitchCheckChecked.prop('checked') == true ? 1 : 2;
@@ -144,6 +151,22 @@
 
                             postActivarDesactivar(player, Activo);
                         });
+                        $('#btnClickCont' + result.ITEMS[i].player_id).click(function () {
+                            $('#myModalInformation').modal('show');
+                            lblPlayerId.text(device);
+                            lblModel.text(Model);
+                            if (Latitud == 1) {
+                                lblLatitud.css('display', 'none')
+                                lblLongitud.css('display', 'none')
+                                $('#titlon').css('display', 'none')
+                                $('#titlat').css('display', 'none')
+                            }
+                            lblLatitud.text(Latitud);
+                            lblLongitud.text(Longitud);
+
+                        });
+
+
                     }
                 }
             } else {
