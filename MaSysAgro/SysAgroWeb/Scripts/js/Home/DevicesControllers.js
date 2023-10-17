@@ -18,11 +18,9 @@
 </div>
                 
                     <div class="card-body mt-5 mb-5 text-left">
-                        <img src="/Content/img/dispositivos.png" style="width:50px" class="mb-3" />
 
                      
-                        <h2 style="color:#7ab37f; font-size:28px">Player : {0}</h2>
-                        <h7><b>Date reaction : {1}</b></h7>
+                        <h2 style="color:#7ab37f; font-size:28px">{0} : {1}</h2>
                         <div class="d-flex justify-content-between align-items-center">
 
                             <small  class="text-body-secondary"></small> <div class="btn-group">
@@ -133,7 +131,7 @@
                     contenedorDevice.find('div').remove();
                     let html = '';
                     for (var i = 0; i < result.ITEMS.length; i++) {
-                        html += Card.format(result.ITEMS[i].player_id, result.ITEMS[i].Date_Creation);
+                        html += Card.format(result.ITEMS[i].Model, result.ITEMS[i].player_id);
                     }
                     html += '';
                     contenedorDevice.append(html);
