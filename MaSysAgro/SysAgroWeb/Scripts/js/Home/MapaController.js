@@ -251,9 +251,9 @@
 
         if (drawControl2 == null) {
             drawControl2 = new L.Control.Draw({
-                edit: {
-                    featureGroup: drawnItems
-                },
+                //edit: {
+                //    featureGroup: drawnItems
+                //},
                 draw: {
                     polygon: true,
                     marker: false,

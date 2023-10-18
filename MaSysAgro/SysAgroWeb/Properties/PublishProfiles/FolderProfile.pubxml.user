@@ -231,10 +231,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/08/2018 12:18:16</publishTime>
     </File>
     <File Include="bin/SysAgroWeb.dll">
-      <publishTime>10/17/2023 02:08:23</publishTime>
+      <publishTime>10/17/2023 23:34:42</publishTime>
     </File>
     <File Include="bin/SysAgroWeb.pdb">
-      <publishTime>10/17/2023 02:08:23</publishTime>
+      <publishTime>10/17/2023 23:34:42</publishTime>
     </File>
     <File Include="bin/System.Buffers.dll">
       <publishTime>02/19/2020 03:05:18</publishTime>
@@ -7308,13 +7308,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/11/2023 08:44:08</publishTime>
     </File>
     <File Include="Scripts/js/Home/DevicesControllers.js">
-      <publishTime>10/17/2023 00:13:01</publishTime>
+      <publishTime>10/17/2023 16:32:42</publishTime>
     </File>
     <File Include="Scripts/js/Home/IndexController.js">
-      <publishTime>10/16/2023 23:40:07</publishTime>
+      <publishTime>10/17/2023 19:56:49</publishTime>
     </File>
     <File Include="Scripts/js/Home/MapaController.js">
-      <publishTime>10/17/2023 01:53:58</publishTime>
+      <publishTime>10/17/2023 23:33:36</publishTime>
     </File>
     <File Include="Scripts/js/Home/ProjectController.js">
       <publishTime>10/14/2023 13:21:01</publishTime>
@@ -7434,13 +7434,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/26/2023 10:20:17</publishTime>
     </File>
     <File Include="Views/Home/Devices.cshtml">
-      <publishTime>10/15/2023 13:52:52</publishTime>
+      <publishTime>10/17/2023 16:32:43</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>10/16/2023 23:39:13</publishTime>
     </File>
     <File Include="Views/Home/Mapa.cshtml">
-      <publishTime>10/17/2023 01:09:18</publishTime>
+      <publishTime>10/17/2023 19:56:49</publishTime>
     </File>
     <File Include="Views/Home/Perfil.cshtml">
       <publishTime>08/28/2023 17:39:28</publishTime>
