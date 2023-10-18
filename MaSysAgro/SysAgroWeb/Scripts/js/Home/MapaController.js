@@ -616,13 +616,13 @@
         conDispositivos.find('button').remove();
         for (var f = 0; f < lstDatos.length; f++) {
             if (lstDatos[f].Model.trim() == 'PLAYER') {
-                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}" id="btnDevice${lstDatos[f].player_id}"><img src="/Content/img/Icono-mapa-1.png" style="width:50%;"></button> `);
+                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}" id="btnDevice${lstDatos[f].player_id}" style="width: 50px;padding: 6px 0px!important;"><img src="/Content/img/Icono-mapa-1.png" style="width:50%;"></button> `);
             } else if (lstDatos[f].Model.trim() == 'MASTER') {
-                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}" id="btnDevice${lstDatos[f].player_id}"><img src="/Content/img/Icono-mapa-2.png" style="width:50%;"></button> `);
+                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}" id="btnDevice${lstDatos[f].player_id}" style="width: 50px;padding: 6px 0px!important;"><img src="/Content/img/Icono-mapa-2.png" style="width:50%;"></button> `);
             } else if (lstDatos[f].Model.trim() == 'SONDA') {
-                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}"  id="btnDevice${lstDatos[f].player_id}"><img src="/Content/img/Icono-mapa-3.png" style="width:50%;"></button> `);
+                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}"  id="btnDevice${lstDatos[f].player_id}" style="width: 50px;padding: 6px 0px!important;"><img src="/Content/img/Icono-mapa-3.png" style="width:50%;"></button> `);
             } else if (lstDatos[f].Model.trim() == 'PREUSER') {
-                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}"  id="btnDevice${lstDatos[f].player_id}"><img src="/Content/img/Icono-mapa-4.png" style="width:50%;"></button> `);
+                items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${lstDatos[f].player_id}" data-bs-toggle="tooltip" title="Device ${lstDatos[f].player_id}"  id="btnDevice${lstDatos[f].player_id}" style="width: 50px;padding: 6px 0px!important;"><img src="/Content/img/Icono-mapa-4.png" style="width:50%;"></button> `);
             }
         }
 

@@ -109,38 +109,44 @@
             font-size: 20px;
             /*color: #257eca*/
         }
+    #carContenido2 .card{
+        height:100%!important
+    }
 </style>
 
 
 <main>
     <div class="container-fluid" style="padding-right:0px!important;padding-left:0px!important">
         <div class="row">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <select class="input form-control form-control-lg form-select" id="cboProjects" style="height:45px; width:100%"></select>
 
-            <div class=" col-md-4 col-sm-12">
-                <div class="form-group">
-                    <select class="input form-control form-control-lg form-select" id="cboProjects" style="height:45px; width:100%"></select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <select class="input form-control form-control-lg form-select selecction-device js-example-templating" id="cboDevice" style="height:45px; width:100%"></select>
 
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class=" col-md-4 col-sm-12">
-                <div class="form-group">
-                    <select class="input form-control form-control-lg form-select selecction-device js-example-templating" id="cboDevice" style="height:45px; width:100%"></select>
-
-                </div>
-            </div>
-            <div class="  col-md-4 col-sm-6">
-                <button type="button" class="btn btn-primary btn-sm float-end" id="shoMap" data-id="0">
+            <div class="col-lg-6 col-md-4 col-sm-12">
+                <button type="button" class="btn btn-primary btn-sm float-end mb-3 mt-2" id="shoMap" data-id="0" style="margin-left:3px">
                     Show Map
                 </button>
-                <button type="button" class="btn btn-primary btn-sm float-end" id="AddDevice">
+                <button type="button" class="btn btn-primary btn-sm float-end mb-3 mt-2" id="AddDevice"style="margin-left:3px">
                     <i class="fa fa-plus"></i> Add Device
                 </button>
-                <button type="button" class="btn btn-primary btn-sm float-end" id="button-modal-map-project">
+                <button type="button" class="btn btn-primary btn-sm float-end mb-3 mt-2" id="button-modal-map-project"style="margin-left:3px">
                     <i class="fa fa-plus"></i> Add Project
                 </button>
-
             </div>
         </div>
+      
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 @*<h2 class="mb-5">Your projects</h2>*@
@@ -148,10 +154,10 @@
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
-                <nav class="navbar navbar-light bg-light mb-2 " style="background-color: #7ab37f !important; ">
+                <nav class="navbar navbar-light bg-light mb-2 " style="background-color: #7ab37f !important; border-radius:5px!important">
                     <form class="container-fluid justify-content-start gap-1">
 
-                        <div id="divdispositivos">
+                        <div id="divdispositivos" >
                             @* <div id="lista-dispositivos"> *@
                         </div>
                         <button class="btn btn-sm btn-secondary px-2" type="button" style="font-size:20px; padding:5px 10px;display:none;" onclick="mapaGrande()" id="btnGrande"><i class="fas fa-expand"></i></button>
@@ -209,9 +215,9 @@
                 </div>
             </div>
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-12" id="carContenido" style="display:none;">
-                <div class="col-lg-12 col-sm-12 col-md-12 ">
-                    <div class="card box" style=" border: 1px solid #7ab37f;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-5" id="carContenido" style="display:none;">
+               
+                    <div class="card box" style=" border: 1px dashed #7ab37f;">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12" style="text-align:right">
                                 <button style="display:none;" data-tipo="1" class="btn btn-danger CloseButton" id="btnEliminar{0}"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
@@ -231,7 +237,7 @@
 
                         </div>
                     </div>
-                </div>
+               
             </div>
 
         </div>
@@ -310,32 +316,32 @@
     <div class="modal-dialog modal-lg" role="document">
         <form class="modal-content" id="form-project">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Information</h5>
+                <h4 class="modal-title" id="staticBackdropLabel">Information</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-12">
-                        <label>Player Id : </label>
-                        <label id="lblPlayerId"></label>
+                        <h4>Player Id : <label id="lblPlayerId"></label></h4>
+                        
                     </div>
                     <div class="col-12">
-                        <label>Model : </label>
-                        <label id="lblModel"></label>
+                        <h4>Model :  <label id="lblModel"></label></h4>
+                       
                     </div>
                     <div class="col-12">
-                        <label id="titlon">Longitud : </label>
-                        <label id="lblLatitud"></label>
+                        <h4 id="titlon">Longitud :  <label id="lblLatitud"></label></h4>
+                       
                     </div>
                     <div class="col-12">
-                        <label id="titlat">Latitud : </label>
-                        <label id="lblLongitud"></label>
+                        <h4 id="titlat">Latitud : <label id="lblLongitud"></label></h4>
+                        
                     </div>
                 </div>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-warning" name="btn-remove-device" id="btnRemoveDevice">Remove Device</button>
+                <button type="button" class="btn btn-primary" name="btn-remove-device" id="btnRemoveDevice">Remove Device</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </form>
