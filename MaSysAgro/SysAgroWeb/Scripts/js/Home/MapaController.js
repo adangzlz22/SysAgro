@@ -156,28 +156,17 @@
             maxZoom: 20,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         });
-        osm.addTo(map2);
 
-        //googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-        //    maxZoom: 20,
-        //    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        //});
-
-        //googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-        //    maxZoom: 20,
-        //    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        //});
-
-        hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+        var hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
             maxZoom: 20,
             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
 
+        hybrid.addTo(map2);
+
         var baseMaps = {
-            "OSM": osm,
-            //'Google Street': googleStreets,
-            //"Google Satellite": googleSat,
             'Google Satellite': hybrid,
+            "OSM": osm,
         };
         var overlayMaps = {
 
@@ -201,28 +190,17 @@
             maxZoom: 20,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         });
-        osm.addTo(map);
-
-        //googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-        //    maxZoom: 20,
-        //    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        //});
-
-        //googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-        //    maxZoom: 20,
-        //    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        //});
-
-        hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+        
+        var hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
             maxZoom: 20,
             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
 
+        hybrid.addTo(map);
+
         var baseMaps = {
-            "OSM": osm,
-            //'Google Street': googleStreets,
-            //"Google Satellite": googleSat,
             'Google Satellite': hybrid,
+            "OSM": osm
         };
 
         var overlayMaps = {
@@ -273,9 +251,9 @@
 
         if (drawControl2 == null) {
             drawControl2 = new L.Control.Draw({
-                //edit: {
-                //    featureGroup: drawnItems
-                //},
+                edit: {
+                    featureGroup: drawnItems
+                },
                 draw: {
                     polygon: true,
                     marker: false,
@@ -292,6 +270,7 @@
 
         map.addControl(drawControl2);
         //Manejadores de eventos para guardar el polígono dibujado
+
         map.on(L.Draw.Event.CREATED, (event) => {
             const layer = event.layer;
             drawnItems.addLayer(layer);
@@ -311,17 +290,28 @@
                 Longitud_1: primeraLongitud,
                 Latitud_1: primeraLatitud
             }
-            funesperar(0, 'Please wait a few seconds.');
-            axios.post(options, parametros).then(function (response) {
-                //if (response.SUCCESS == true) {
-                //   window.location.href = `Mapa?projectId=${projectId}`;
-                //} else {
-                //    info("System Messages", "(Connection error) An error occurred while trying to carry out this processo", "error");
-                //}
-                window.location.href = `Mapa?projectId=${projectId}`;
-                funesperar(1, '');
-            }).catch(function (error) {
-                info("System Messages", error, "error");
+
+           
+            Swal.fire({
+                title: 'Do you want to finish creating the polygon?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    funesperar(0, 'Please wait a few seconds.');
+                    axios.post(options, parametros).then(function (response) {
+                        window.location.href = `Mapa?projectId=${projectId}`;
+                        funesperar(1, '');
+                    }).catch(function (error) {
+                        info("System Messages", error, "error");
+                    });
+                } else {
+                    map.removeLayer(layer);
+                }
             });
         });
     }
@@ -434,8 +424,10 @@
     };
 
     const addExistingAllPolygonIntoMap = function () {
+        var polygons = {};
+
+        console.log(arrProject)
         arrProject.forEach(project => {
-            console.log(project)
             if (project.Cordenadas != "0" && project.Cordenadas.length > 0) {
                 const coordinates = JSON.parse(project.Cordenadas);
 
@@ -445,6 +437,35 @@
                         "lng": item.lng
                     };
                 });
+
+                function deletePolygon(polygonId) {
+                    const polygon = polygons[polygonId];
+                    if (polygon) {
+                        polygon.remove();
+
+                        delete polygons[polygonId];
+
+                        const options = url + '/Home/postUpdateProjectosCoodenadas';
+                        const center = calculateCenterCoordinates(coordenadas);
+
+                        const primeraLatitud = 0;
+                        const primeraLongitud = 0;
+
+                        const parametros = {
+                            Cordenadas: "0",
+                            ProjectID: polygonId,
+                            Longitud_1: primeraLongitud,
+                            Latitud_1: primeraLatitud
+                        }
+
+                        funesperar(0, 'Please wait a few seconds.');
+                        axios.post(options, parametros).then(function (response) {
+                            funesperar(1, '');
+                        }).catch(function (error) {
+                            info("System Messages", error, "error");
+                        });
+                    }
+                }
                 // Crea una capa de polígono utilizando las coordenadas
                 const polygonLayer = L.polygon(coordenadas, {
                     color: 'white', // Color del borde del polígono
@@ -452,6 +473,23 @@
                     dashArray: '10',
                 });
                 polygonLayer.addTo(map);
+                polygons[project.ProjectID] = polygonLayer;
+
+                polygonLayer.on('click', function () {
+                    Swal.fire({
+                        title: 'Are you sure to delete this polygon?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            deletePolygon(project.ProjectID);
+                        }
+                    });
+                });
             }
         });
         if ($('#cboProjects').find('option').filter(':selected').attr('data-coordenadas') == 0 && $('#cboProjects').find('option').filter(':selected').attr('data-coordenadas') == "0") {
@@ -677,19 +715,6 @@
     }
 
     const showDeviceForAssign = function () {
-        //var items = [], divDispositivos = $("#lista-dispositivos").empty();
-        //arrDevice.filter(element => { return element.Longitud === 0 && element.Latitud === 0 && element.ProjectID === projectId }).map((v, index) => {
-        //    if (v.Model.trim() == 'PLAYER') {
-        //        items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}" data-bs-toggle="tooltip" title="Device ${v.player_id}"><i style='color:green' class="fa-solid fa-location-dot"></i></button> `);
-        //    } else if (v.Model.trim() == 'MASTER') {
-        //        items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}" data-bs-toggle="tooltip" title="Device ${v.player_id}"><i style='color:red' class="fa-solid fa-location-dot"></i></button> `);
-        //    } else if (v.Model.trim() == 'SONDA') {
-        //        items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}" data-bs-toggle="tooltip" title="Device ${v.player_id}"><i style='color:yellow' class="fa-solid fa-location-dot"></i></button> `);
-        //    } else if (v.Model.trim() == 'PREUSER') {
-        //        items.push(`<button class="btn btn-sm btn-secondary px-2 selecction-device" type="button" value="${v.player_id}" data-bs-toggle="tooltip" title="Device ${v.player_id}"><i style='color:yellow' class="fa-solid fa-location-dot"></i></button> `);
-        //    }
-        //});
-
         var items2 = [];
         cboDevice.find('option').remove();
         items2.push(`<option value="0" title="/Content/img/IconoDispositivos.png">Select device</option>`)
@@ -806,8 +831,7 @@
         map.on('click', function (e) {
             if (player_id != "0" && player_id != null) {
                 var newMarker = L.marker(e.latlng);
-                //newMarker.bindPopup(`<button>Show/Hider</button> Device ${player_id}`).openPopup().addTo(map);
-                // Agrega el nuevo marcador al array
+               
 
                 var lat = newMarker._latlng.lat;
                 var lng = newMarker._latlng.lng;
@@ -855,7 +879,7 @@
             }, {});
 
             const options = url + '/Home/postAddProjectos';
-            console.log(coordenadas)
+
             let center;
             let primeraLatitud;
             let primeraLongitud;
