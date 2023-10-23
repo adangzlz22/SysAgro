@@ -692,6 +692,7 @@
                 }
                 lblLatitud.text(Latitud);
                 lblLongitud.text(Longitud);
+                postLlamadaUnidad(device);
 
                 $("#btnRemoveDevice").val(device);
             });
@@ -707,11 +708,29 @@
                 }
                 lblLatitud.text(Latitud);
                 lblLongitud.text(Longitud);
-
+                postLlamadaUnidad(device);
                 $("#btnRemoveDevice").val(device);
             });
             
         }
+    }
+
+    
+    const postLlamadaUnidad = function (player_id) {
+        let parametros = {
+            player_id: player_id
+        }
+        const options = url + '/Home/postLlamadaUnidad';
+        axios.post(options, parametros).then(function (response) {
+            const result = response.data;
+            if (result.SUCCESS == true) {
+                // EXITOSO ALGUNA ACCION
+            } else {
+                //MENSAJE DE ERROR
+            }
+        }).catch(function (error) {
+            console.error(error);
+        });
     }
 
     const showDeviceForAssign = function () {

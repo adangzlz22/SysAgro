@@ -1061,5 +1061,39 @@ namespace SysAgroWeb.Controllers
         }
 
 
+
+
+        public ActionResult postLlamadaUnidad(devices parametros)
+        {
+
+            //para obtener el id es parametros.player_id
+            objResponse = new ClsModResponse();
+            paramss = new DynamicParameters();
+            try
+            {
+                string consulta = "SELECT * FROM projects WHERE ClientID={0} AND Activo={1}";
+                using (var ctx = new MySqlConnection(conexion))
+                {
+                    ctx.Open();
+                    consulta = string.Format(consulta, parametros.ClientID, parametros.Activo);
+                    var objProject = ctx.Query<resultProject>(consulta, paramss, null, true, 300).ToList();
+                    if (objProject.Count() >= 0)
+                    {
+                        objResponse.ITEMS = objProject;
+                        objResponse.MESSAGE = "";
+                        objResponse.SUCCESS = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objResponse.ITEMS = null;
+                objResponse.MESSAGE = ex.Message;
+                objResponse.SUCCESS = false;
+            }
+
+            return Json(objResponse, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
